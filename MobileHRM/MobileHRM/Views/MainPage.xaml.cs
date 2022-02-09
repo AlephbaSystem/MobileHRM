@@ -22,5 +22,15 @@ namespace MobileHRM
         {
 
         }
+
+        private void PunchInTabGesture(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PunchOutTabGesture(object sender, EventArgs e)
+        {
+
+        }
     }
 }
