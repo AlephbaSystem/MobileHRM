@@ -63,8 +63,8 @@
 
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-    
+
+
     <ContentPage.Content>
         <Grid>
             <xct:TabView                         
@@ -109,33 +109,101 @@
                                          Source="Notification.png"/>
                             </Frame>
                         </StackLayout>
-                        
+
                         <sh:Shadows Padding="0"
                                     CornerRadius="5"
                                     Margin="20,10">
                             <sh:Shadows.Shades>
                                 <sh:ImmutableShades>
+
                                     <sh:Shade BlurRadius="0.5"
                                               Opacity="0.3"
-                                              Offset="0,1"
-                                              Color="White" />
-                                    <sh:Shade BlurRadius="0.5"
-                                              Opacity="0.3"
-                                              Offset="1,5"
+                                              Offset="0,5"
                                               Color="White" />
                                 </sh:ImmutableShades>
                             </sh:Shadows.Shades>
                             <Frame Padding="0" CornerRadius="5">
-                            <StackLayout Orientation="Horizontal" BackgroundColor="White">
-                                <entryCustom:CustomEntry HorizontalOptions="EndAndExpand"/>
-                                <Image Source="Search.png" Margin="0,0,15,0"/>
-                            </StackLayout>
+                                <StackLayout Orientation="Horizontal" BackgroundColor="White">
+                                    <entryCustom:CustomEntry HorizontalOptions="EndAndExpand"/>
+                                    <Image Source="Search.png" Margin="0,0,15,0"/>
+                                </StackLayout>
                             </Frame>
                         </sh:Shadows>
+
+                        <Frame Padding="0"
+                               Margin="10"
+                               CornerRadius="5">
+                            <Grid RowDefinitions="0.5*, 2*, 0.2*, 2*, 0.5*"
+                                  >
+                                <Grid Grid.Row="1" ColumnDefinitions="3*,*,10*">
+                                    <Frame CornerRadius="50"
+                                       Grid.Column="0"
+                                       HeightRequest="50"
+                                       BackgroundColor="#272B35"
+                                       WidthRequest="50"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="End"
+                                       Margin="0"
+                                       Padding="0">
+                                        <ImageButton BackgroundColor="#272B35"
+                                             Margin="10"
+                                         Source="Notification.png"/>
+                                    </Frame>
+                                    <Grid Grid.Column="2" Padding="5">
+                                        <Label Text="Not yut" VerticalOptions="Start"/>
+                                        <Label Text="Punch in time" VerticalOptions="End"/>
+                                    </Grid>
+                                </Grid>
+
+
+                                <Frame CornerRadius="50"
+                                       Grid.Row="3" 
+                                       Grid.Column="0"
+                                       HeightRequest="50"
+                                       BackgroundColor="#272B35"
+                                       WidthRequest="50"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="End"
+                                       Margin="0"
+                                       Padding="0">
+                                    <ImageButton BackgroundColor="#272B35"
+                                             Margin="10"
+                                         Source="Notification.png"/>
+                                </Frame>
+                                <Grid Grid.Column="2" Grid.Row="3" Padding="5">
+                                    <Label Text="Not yut" VerticalOptions="Start"/>
+                                    <Label Text="Punch in time" VerticalOptions="End"/>
+                                </Grid>
+                            </Grid>
+                            <!--<Grid RowDefinitions="*,*">
+                                <Frame Grid.Row="0">
+                                    <Grid ColumnDefinitions="2*,2*">
+
+                                    </Grid>
+                                </Frame>
+                                <Frame Grid.Row="1">
+                                    <Grid ColumnDefinitions="*,2*">
+                                        <Frame CornerRadius="50"                                       
+                                       Grid.Column="0"
+                                       HeightRequest="50"
+                                       BackgroundColor="#272B35"
+                                       WidthRequest="50"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="StartAndExpand"                                       
+                                       Padding="0">
+                                            <Image BackgroundColor="#272B35"
+                                             Margin="10,0,10,0"
+                                         Source="punchput.png"/>
+                                        </Frame>
+                                        <Label Text="Test" Grid.Column="1" />
+                                    </Grid>
+                                </Frame>
+                            </Grid>-->
+                        </Frame>
                     </StackLayout>
                 </xct:TabViewItem>
-                
-                
+
+
                 <xct:TabViewItem
                     Text="Time"  
                     Icon="Time.png"
