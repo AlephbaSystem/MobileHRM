@@ -2,15 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MobileHRM"
-             x:Class="MobileHRM.Views.LogInPage">
+             x:Class="MobileHRM.Views.LogInPage"
+             BackgroundImage="background.png">
 
-    <StackLayout>
+    <StackLayout >
         <Grid
                 VerticalOptions="Start"
                 HorizontalOptions="FillAndExpand"
                 HeightRequest="500">
             <Grid.RowDefinitions>
-                <RowDefinition Height="5*"/>
+                <RowDefinition Height="7*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
@@ -18,32 +19,66 @@
             </Grid.RowDefinitions>
 
             <Image
-                    Grid.Row="0"
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                Grid.Row="0"
+                Source="Alephba.png"
+                
                     />
 
             <Label
+                    HorizontalOptions="Center"
+                    VerticalOptions="End"
                     TextColor="#26AB5B"
                     Text="Login to your dashboard"
                     FontFamily="Roboto"
                     FontSize="20"
                     Grid.Row="1"
                     />
+            <Frame Grid.Row="3"
+                   Margin="0"
+                   Padding="0"
+                   CornerRadius="10"
+                   WidthRequest="250"
+                   HeightRequest="50"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   BackgroundColor="#7F8D8D8D"
+                   BorderColor="#26AB5B">
+                <!--border: 1px solid #26AB5B;-->
+                <Entry 
+                    Placeholder="Email"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    PlaceholderColor="White"
+                    TextColor="#e9ecef"
+                    HorizontalTextAlignment="Center"
+                        />
+            </Frame>
 
-            <Entry Grid.Row="3"
-                       Placeholder="Email"
-                       PlaceholderColor="White"
-                       BackgroundColor="#8D8D8D"
-                       TextColor="#e9ecef"
-                       Opacity="50"
-                    />
+           
 
-            <Entry Grid.Row="4"
-                       Placeholder="Password"
-                       PlaceholderColor="White"
-                       BackgroundColor="#8D8D8D"
-                       TextColor="#e9ecef"
-                       Opacity="50"
-                    />
+            <Frame Grid.Row="4"
+                   Margin="0"
+                   Padding="0"
+                   CornerRadius="10"
+                   WidthRequest="250"
+                   HeightRequest="50"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   BackgroundColor="#7F8D8D8D"
+                   BorderColor="#26AB5B">
+                <!--border: 1px solid #26AB5B;-->
+                <Entry 
+                    Placeholder="Password"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    PlaceholderColor="White"
+                    TextColor="#e9ecef"
+                    IsPassword="True"
+                    HorizontalTextAlignment="Center"
+                        />
+            </Frame>
 
         </Grid>
     </StackLayout>
