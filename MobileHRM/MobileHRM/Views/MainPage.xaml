@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:entryCustom="clr-namespace:MobileHRM.Controls"
+             xmlns:local="clr-namespace:MobileHRM" xmlns:sh="http://sharpnado.com"
+             x:Class="MobileHRM.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="TabItemTemplate">
+                <Grid 
+                      RowDefinitions="*,Auto">
+                    <Image
+				        Grid.Row="0"
+                        TranslationY="5"
+				        VerticalOptions="EndAndExpand"
+				        HorizontalOptions="Center"
+				        WidthRequest="24"
+				        HeightRequest="24"
+                        Margin="0"
+				        Source="{TemplateBinding CurrentIcon}" />
+                    <Label
+				        Grid.Row="1"
+				        HorizontalOptions="Center"
+				        FontSize="{TemplateBinding FontSize}"
+				        Text="{TemplateBinding Text}"
+				        TextColor="{TemplateBinding CurrentTextColor}" />
+                </Grid>
+            </ControlTemplate>
+            <ControlTemplate x:Key="FabTabItemTemplate">
+                <Grid RowDefinitions="*,8*,*">
+                    <ImageButton
+                        Grid.Row="1"
+                        InputTransparent="True"
+                        Source="{TemplateBinding CurrentIcon}"
+                        Padding="20"
+                        BorderColor="#1A1C23"
+                        BorderWidth="10"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start"
+                        BackgroundColor="#26AB5B"
+                        HeightRequest="70"
+                        WidthRequest="70"
+                        CornerRadius="50"/>
+                </Grid>
+
+            </ControlTemplate>
+
+            <Style
+		        x:Key="TabItemStyle"
+		        TargetType="xct:TabViewItem">
+                <Setter
+			        Property="FontSize"
+			        Value="12" />
+                <Setter
+			        Property="TextColor"
+			        Value="#979797" />
+                <Setter
+			        Property="TextColorSelected"
+			        Value="White" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ContentPage.Content>
+        <Grid>
+            <xct:TabView                         
+                Padding="0,0,0,10"
+                TabContentBackgroundColor="#1A1C23"
+                BackgroundColor="#272B35"
+                TabStripPlacement="Bottom"
+                IsTabTransitionEnabled="True">
+
+                <xct:TabViewItem
+                    Text="Dashboard"  
+                    Icon="Dashboard.png"
+                    ControlTemplate="{StaticResource TabItemTemplate}"
+                    Style="{StaticResource TabItemStyle}">
+                    <StackLayout BackgroundColor="#1A1C23">
+                        <StackLayout Orientation="Horizontal">
+                            <Grid RowDefinitions="Auto,Auto">
+                                <Label Text="Hi, User 01"
+                                       TextColor="White"
+                                       VerticalOptions="EndAndExpand"
+                                       FontSize="Large"
+                                       Grid.Row="0"
+                                       Margin="20,30,0,0"/>
+
+                                <Label Text="Good afternoon"
+                                   TextColor="White"
+                                       Grid.Row="2"
+                                   VerticalOptions="StartAndExpand"
+                                   FontSize="Large"
+                                   Margin="20,0,0,0"/>
+                            </Grid>
+                            <Frame CornerRadius="50"
+                                   HeightRequest="50"
+                                   BackgroundColor="#272B35"
+                                   WidthRequest="50"
+                                   VerticalOptions="CenterAndExpand"
+                                   Margin="0,30,20,0"
+                                   HorizontalOptions="EndAndExpand"
+                                   Padding="0">
+                                <ImageButton BackgroundColor="#272B35"
+                                             Margin="10"
+                                         Source="Notification.png"/>
+                            </Frame>
+                        </StackLayout>
+
+                        <sh:Shadows Padding="0"
+                                    CornerRadius="5"
+                                    Margin="20,10">
+                            <sh:Shadows.Shades>
+                                <sh:ImmutableShades>
+
+                                    <sh:Shade BlurRadius="0.5"
+                                              Opacity="0.3"
+                                              Offset="0,5"
+                                              Color="White" />
+                                </sh:ImmutableShades>
+                            </sh:Shadows.Shades>
+                            <Frame Padding="0" CornerRadius="5">
+                                <StackLayout Orientation="Horizontal" BackgroundColor="White">
+                                    <entryCustom:CustomEntry HorizontalOptions="EndAndExpand"/>
+                                    <Image Source="Search.png" Margin="0,0,15,0"/>
+                                </StackLayout>
+                            </Frame>
+                        </sh:Shadows>
+
+                        <Frame Padding="0"
+                               Margin="10"
+                               BackgroundColor="#272B35"
+                               CornerRadius="5">
+                            <Grid RowDefinitions="0.5*, 2*, 0.2*, 2*, 0.5*">
+                                <Grid Grid.Row="1" ColumnDefinitions="3*,*,10*">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="PunchInTabGesture"/>
+                                    </Grid.GestureRecognizers>
+                                    <Frame CornerRadius="50"
+                                       Grid.Column="0"
+                                       HeightRequest="50"
+                                       BackgroundColor="#272B35"
+                                       WidthRequest="50"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="End"
+                                       Margin="0"
+                                       Padding="0">
+                                        <ImageButton BackgroundColor="#272B35"
+                                             Margin="10"
+                                         Source="Notification.png"/>
+                                    </Frame>
+                                    <Grid Grid.Column="2" Padding="5">
+                                        <Label Text="Not yut" VerticalOptions="Start" TextColor="#CCCCCC"/>
+                                        <Label Text="Punch in time" VerticalOptions="End" TextColor="#8D8D8D"/>
+                                    </Grid>
+                                </Grid>
+                                <Grid Grid.Row="3" ColumnDefinitions="3*,*,10*">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="PunchOutTabGesture"/>
+                                    </Grid.GestureRecognizers>
+                                    <Frame CornerRadius="50"
+                                       Grid.Column="0"
+                                       HeightRequest="50"
+                                       BackgroundColor="#272B35"
+                                       WidthRequest="50"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="End"
+                                       Margin="0"
+                                       Padding="0">
+                                        <ImageButton BackgroundColor="#272B35"
+                                             Margin="10"
+                                         Source="Notification.png"/>
+                                    </Frame>
+                                    <Grid Grid.Column="2" Padding="5">
+                                        <Label Text="Not yut" VerticalOptions="Start" TextColor="#CCCCCC"/>
+                                        <Label Text="Punch out time" VerticalOptions="End" TextColor="#8D8D8D"/>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+
+                            <!--<Grid RowDefinitions="*,*">
+                                <Frame Grid.Row="0">
+                                    <Grid ColumnDefinitions="2*,2*">
+
+                                    </Grid>
+                                </Frame>
+                                <Frame Grid.Row="1">
+                                    <Grid ColumnDefinitions="*,2*">
+                                        <Frame CornerRadius="50"                                       
+                                       Grid.Column="0"
+                                       HeightRequest="50"
+                                       BackgroundColor="#272B35"
+                                       WidthRequest="50"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="StartAndExpand"                                       
+                                       Padding="0">
+                                            <Image BackgroundColor="#272B35"
+                                             Margin="10,0,10,0"
+                                         Source="punchput.png"/>
+                                        </Frame>
+                                        <Label Text="Test" Grid.Column="1" />
+                                    </Grid>
+                                </Frame>
+                            </Grid>-->
+                        </Frame>
+                    </StackLayout>
+                </xct:TabViewItem>
+
+
+                <xct:TabViewItem
+                    Text="Time"  
+                    Icon="Time.png"
+                    ControlTemplate="{StaticResource TabItemTemplate}"
+                    Style="{StaticResource TabItemStyle}">
+                    <Grid BackgroundColor="Green">
+                        <Label
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Text="TabContent1" />
+                    </Grid>
+                </xct:TabViewItem>
+
+                <xct:TabViewItem                                        
+                    Icon="Word.png"
+                    ControlTemplate="{StaticResource FabTabItemTemplate}"
+                    Style="{StaticResource TabItemStyle}"
+                    TabTapped="OnFabTabTapped">
+
+                    <Grid BackgroundColor="LightYellow">
+                        <Label    
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Text="TabContent3" />
+                    </Grid>
+                </xct:TabViewItem>
+
+
+                <xct:TabViewItem
+                    Text="Task"  
+                    Icon="Task.png"
+                    ControlTemplate="{StaticResource TabItemTemplate}"
+                    Style="{StaticResource TabItemStyle}">
+                    <Grid BackgroundColor="CadetBlue">
+                        <Label    
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Text="TabContent3" />
+                    </Grid>
+                </xct:TabViewItem>
+                <xct:TabViewItem
+                    Text="Settings"  
+                    Icon="Settings.png"
+                    ControlTemplate="{StaticResource TabItemTemplate}"
+                    Style="{StaticResource TabItemStyle}">
+                    <Grid BackgroundColor="LightCoral">
+                        <Label    
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Text="TabContent3" />
+                    </Grid>
+                </xct:TabViewItem>
+            </xct:TabView>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>
