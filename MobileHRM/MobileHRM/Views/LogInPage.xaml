@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MobileHRM"
+             x:Class="MobileHRM.Views.LogInPage">
+
+    <StackLayout>
+        <Grid
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand"
+                HeightRequest="500">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <Image
+                    Grid.Row="0"
+                    />
+
+            <Label
+                    TextColor="#26AB5B"
+                    Text="Login to your dashboard"
+                    FontFamily="Roboto"
+                    FontSize="20"
+                    Grid.Row="1"
+                    />
+
+            <Entry Grid.Row="3"
+                       Placeholder="Email"
+                       PlaceholderColor="White"
+                       BackgroundColor="#8D8D8D"
+                       TextColor="#e9ecef"
+                       Opacity="50"
+                    />
+
+            <Entry Grid.Row="4"
+                       Placeholder="Password"
+                       PlaceholderColor="White"
+                       BackgroundColor="#8D8D8D"
+                       TextColor="#e9ecef"
+                       Opacity="50"
+                    />
+
+        </Grid>
+    </StackLayout>
+
+</ContentPage>
