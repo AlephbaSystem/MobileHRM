@@ -23043,7 +23043,13 @@ namespace MobileHRM.Droid
 			public const int tooltip_frame_light = 2131165545;
 			
 			// aapt resource value: 0x7F07016A
-			public const int Word = 2131165546;
+			public const int userImage = 2131165546;
+			
+			// aapt resource value: 0x7F07016B
+			public const int VectorarrowLeft = 2131165547;
+			
+			// aapt resource value: 0x7F07016C
+			public const int Word = 2131165548;
 			
 			static Drawable()
 			{

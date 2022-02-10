@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using MobileHRM.Controls;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using MobileHRM.Views;
 
 namespace MobileHRM
 {
@@ -16,6 +18,9 @@ namespace MobileHRM
         public MainPage()
         {
             InitializeComponent();
+
+            TabPages.TabItems[1].Content = new chatPage();
+
         }
 
         private void OnFabTabTapped(object sender, Xamarin.CommunityToolkit.UI.Views.TabTappedEventArgs e)
@@ -29,6 +34,12 @@ namespace MobileHRM
         }
 
         private void PunchOutTabGesture(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void TabView_Scrolled(object sender, ItemsViewScrolledEventArgs e)
         {
 
         }

@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:sh="http://sharpnado.com"
+             xmlns:customEntry="clr-namespace:MobileHRM.Controls"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#1A1C23"
+             x:Class="MobileHRM.Views.chatPage">
+    <ContentView.Content>
+        <StackLayout BackgroundColor="#1A1C23">
+            <StackLayout Orientation="Horizontal"
+                         HeightRequest="60"
+                         Margin="20">
+                <ImageButton Source="VectorarrowLeft.png" 
+                       HeightRequest="25"
+                       WidthRequest="25"
+                             BackgroundColor="Transparent"/>
+                <Frame CornerRadius="50"
+                       HeightRequest="50"
+                       WidthRequest="50"
+                       HorizontalOptions="EndAndExpand"
+                       BackgroundColor="#272B35"
+                       Padding="0">
+                    <Image BackgroundColor="#272B35"
+                                             Margin="10"
+                                         Source="Notification.png"/>
+                </Frame>
+                <Frame CornerRadius="50"
+                   HeightRequest="50"
+                   WidthRequest="50"
+                   HorizontalOptions="End"
+                       BackgroundColor="#272B35"
+                   Padding="0">
+                    <Image BackgroundColor="#272B35"
+                                         Source="userImage.png"/>
+                </Frame>
+            </StackLayout>
+            <sh:Shadows Padding="0"
+                        CornerRadius="5"
+                        Margin="10">
+                <sh:Shadows.Shades>
+                    <sh:ImmutableShades>
+                        <sh:Shade BlurRadius="10"
+                                  Opacity="0.3"
+                                  Offset="0,5"
+                                  Color="White" />
+                    </sh:ImmutableShades>
+                </sh:Shadows.Shades>
+                <Frame Padding="0" 
+                       BackgroundColor="#FFFFFF"
+                       CornerRadius="5"
+                       HeightRequest="70"
+                       Margin="10,0">
+                    <Grid ColumnDefinitions="0.5*,8*,2*">
+                        <customEntry:CustomEntry Grid.Column="1" Placeholder="Search"/>
+                        <Image Grid.Column="2"
+                               Margin="10"
+                               Source="Search.png"/>
+                    </Grid>
+                </Frame>
+            </sh:Shadows>
+            <ScrollView Padding="0"
+                        VerticalOptions="EndAndExpand"
+                        Margin="10">
+                <CollectionView >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="2*,5*,2*">
+                                <Frame CornerRadius="50"
+                                       HeightRequest="50"
+                                       WidthRequest="50"
+                                       Grid.Column="0"
+                                       HorizontalOptions="Center"
+                                       BackgroundColor="#272B35"
+                                       Margin="0"
+                                       Padding="0">
+                                    <Image Source="userImage.png"
+                                           Margin="10"/>
+                                </Frame>
+                                <StackLayout Grid.Column="1"
+                                         HorizontalOptions="Start"
+                                             Spacing="0"
+                                             VerticalOptions="Center">
+                                    <Label Text="{Binding NameUser}" TextColor="#CCCCCC"/>
+                                    <Label Text="{Binding NameInformation}" TextColor="#8D8D8D"/>
+                                </StackLayout>
+
+                                <StackLayout Grid.Column="2"
+                                         HorizontalOptions="Center">
+                                    <Label Text="{Binding Time}" TextColor="#CCCCCC"/>
+                                    <Frame Padding="0"
+                                       BackgroundColor="#F07520"
+                                       CornerRadius="44">
+                                        <Label Text="{Binding Number}"
+                                           TextColor="White"/>
+                                    </Frame>
+                                </StackLayout>
+                                <BoxView HeightRequest="1" Color="Black"
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+           
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

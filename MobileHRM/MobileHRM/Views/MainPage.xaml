@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:entryCustom="clr-namespace:MobileHRM.Controls"
              xmlns:local="clr-namespace:MobileHRM" xmlns:sh="http://sharpnado.com"
+             NavigationPage.HasNavigationBar="False"
              x:Class="MobileHRM.MainPage">
 
     <ContentPage.Resources>
@@ -66,11 +67,12 @@
 
 
     <ContentPage.Content>
-        <Grid>
-            <xct:TabView                         
+            <xct:TabView  
+                IsSwipeEnabled="False"
                 Padding="0,0,0,10"
                 TabContentBackgroundColor="#1A1C23"
                 BackgroundColor="#272B35"
+                x:Name="TabPages"
                 TabStripPlacement="Bottom"
                 IsTabTransitionEnabled="True">
 
@@ -105,7 +107,7 @@
                                    HorizontalOptions="EndAndExpand"
                                    Padding="0">
                                 <ImageButton BackgroundColor="#272B35"
-                                             Margin="10"
+                                             Margin="15"
                                          Source="Notification.png"/>
                             </Frame>
                         </StackLayout>
@@ -225,14 +227,7 @@
                     Text="Time"  
                     Icon="Time.png"
                     ControlTemplate="{StaticResource TabItemTemplate}"
-                    Style="{StaticResource TabItemStyle}">
-                    <Grid BackgroundColor="Green">
-                        <Label
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
-                            Text="TabContent1" />
-                    </Grid>
-                </xct:TabViewItem>
+                    Style="{StaticResource TabItemStyle}" />
 
                 <xct:TabViewItem                                        
                     Icon="Word.png"
@@ -274,7 +269,6 @@
                     </Grid>
                 </xct:TabViewItem>
             </xct:TabView>
-        </Grid>
     </ContentPage.Content>
 
 </ContentPage>
