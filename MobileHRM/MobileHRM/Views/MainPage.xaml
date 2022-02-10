@@ -3,7 +3,7 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:entryCustom="clr-namespace:MobileHRM.Controls"
-             xmlns:local="clr-namespace:MobileHRM" xmlns:sh="http://sharpnado.com"
+             xmlns:local="clr-namespace:MobileHRM" xmlns:sh="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
              x:Class="MobileHRM.MainPage">
 
     <ContentPage.Resources>

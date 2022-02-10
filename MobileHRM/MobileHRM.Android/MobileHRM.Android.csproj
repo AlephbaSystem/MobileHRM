@@ -31,6 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <MandroidI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -117,9 +118,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\background.png" /> 
+    <AndroidResource Include="Resources\drawable\background.png" />
   </ItemGroup>
-  <ItemGroup> 
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable\Word.png" />
   </ItemGroup>
   <ItemGroup>

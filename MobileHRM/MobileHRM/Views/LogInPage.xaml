@@ -2,17 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MobileHRM"
+             xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
              x:Class="MobileHRM.Views.LogInPage"
              BackgroundImage="background.png">
 
     <StackLayout >
         <Grid
-                VerticalOptions="Start"
+                VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
-                HeightRequest="500">
+                >
             <Grid.RowDefinitions>
                 <RowDefinition Height="7*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
@@ -46,7 +49,7 @@
                    BackgroundColor="#7F8D8D8D"
                    BorderColor="#26AB5B">
                 <!--border: 1px solid #26AB5B;-->
-                <Entry 
+                <coustomEntry:CustomEntry 
                     Placeholder="Email"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand"
@@ -69,7 +72,7 @@
                    BackgroundColor="#7F8D8D8D"
                    BorderColor="#26AB5B">
                 <!--border: 1px solid #26AB5B;-->
-                <Entry 
+                <coustomEntry:CustomEntry 
                     Placeholder="Password"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand"
@@ -79,6 +82,15 @@
                     HorizontalTextAlignment="Center"
                         />
             </Frame>
+
+            <Button Grid.Column="6"
+                    BackgroundColor="#F07520"
+                    WidthRequest="290"
+                    HeightRequest="50"
+                    Text="LogIn"
+                    TextColor="White"
+                    CornerRadius="10"
+                />
 
         </Grid>
     </StackLayout>
