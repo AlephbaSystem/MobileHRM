@@ -12,13 +12,13 @@
                 HorizontalOptions="FillAndExpand"
                 >
             <Grid.RowDefinitions>
-                <RowDefinition Height="7*"/>
+                <RowDefinition Height="5*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
 
             <Image
@@ -26,7 +26,8 @@
                 HorizontalOptions="Center"
                 Grid.Row="0"
                 Source="Alephba.png"
-                
+                WidthRequest="172"
+                HeightRequest="172"
                     />
 
             <Label
@@ -39,16 +40,15 @@
                     Grid.Row="1"
                     />
             <Frame Grid.Row="3"
-                   Margin="0"
+                   Margin="8"
                    Padding="0"
                    CornerRadius="10"
                    WidthRequest="250"
                    HeightRequest="50"
                    HorizontalOptions="Center"
-                   VerticalOptions="Center"
+                   VerticalOptions="End"
                    BackgroundColor="#7F8D8D8D"
                    BorderColor="#26AB5B">
-                <!--border: 1px solid #26AB5B;-->
                 <coustomEntry:CustomEntry 
                     Placeholder="Email"
                     HorizontalOptions="FillAndExpand"
@@ -62,16 +62,15 @@
            
 
             <Frame Grid.Row="4"
-                   Margin="0"
+                   Margin="8"
                    Padding="0"
                    CornerRadius="10"
                    WidthRequest="250"
                    HeightRequest="50"
                    HorizontalOptions="Center"
-                   VerticalOptions="Center"
+                   VerticalOptions="Start"
                    BackgroundColor="#7F8D8D8D"
                    BorderColor="#26AB5B">
-                <!--border: 1px solid #26AB5B;-->
                 <coustomEntry:CustomEntry 
                     Placeholder="Password"
                     HorizontalOptions="FillAndExpand"
@@ -83,8 +82,10 @@
                         />
             </Frame>
 
-            <Button Grid.Column="6"
+            <Button Grid.Row="6"
                     BackgroundColor="#F07520"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
                     WidthRequest="290"
                     HeightRequest="50"
                     Text="LogIn"

@@ -19,19 +19,5 @@ namespace MobileHRM.Views
             InitializeComponent();
         }
 
-        private void OnFabTabTapped(object sender, Xamarin.CommunityToolkit.UI.Views.TabTappedEventArgs e)
-        {
-
-        }
-
-        private async void PunchInTabGesture(object sender, EventArgs e)
-        {
-            await PopupNavigation.Instance.PushAsync(new Views.Popup.PunchIn());
-        }
-
-        private void PunchOutTabGesture(object sender, EventArgs e)
-        {
-
-        }
     }
 }
