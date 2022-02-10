@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -23,9 +24,9 @@ namespace MobileHRM.Views
 
         }
 
-        private void PunchInTabGesture(object sender, EventArgs e)
+        private async void PunchInTabGesture(object sender, EventArgs e)
         {
-
+            await PopupNavigation.Instance.PushAsync(new Views.Popup.PunchIn());
         }
 
         private void PunchOutTabGesture(object sender, EventArgs e)
