@@ -44,5 +44,10 @@ namespace MobileHRM
         {
 
         }
+
+        private async void OnNotificationButtonClick(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PushAsync(new Views.Popup.Notifications());
+        }
     }
 }

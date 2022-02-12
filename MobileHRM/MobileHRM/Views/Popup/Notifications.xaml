@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  
+            xmlns:animations="http://rotorgames.com"
+            xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="MobileHRM.Views.Popup.Notifications"
+            xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"  
+            xmlns:forms="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" xmlns:local="clr-namespace:MobileHRM.Controls">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="200"
+            DurationOut="200"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <Frame Margin="10,80" CornerRadius="20" BackgroundColor="#272B35">
+        <Grid RowDefinitions="*,4*,0.5*">
+            <Label Grid.Row="0" VerticalTextAlignment="Center" TextColor="#CCCCCC" FontSize="Large" Text="Punch In" HorizontalOptions="StartAndExpand"/>
+            <ImageButton Grid.Row="0" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Source="close.png"/>
+            <Frame Grid.Row="1" BackgroundColor="#1A1C23">
+                <Grid RowDefinitions="*,2*">
+                    <Grid Grid.Row="0" RowDefinitions="*,*,*" ColumnDefinitions="*,4*">
+                        <StackLayout Spacing="0" VerticalOptions="Center" Grid.RowSpan="3" Grid.Column="1">
+                            <Label Grid.Column="1" TextColor="#8D8D8D" HorizontalTextAlignment="Start" Grid.Row="0" Text="Punch In date And Time" />
+                            <Label Grid.Column="1" TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="1" Text="Today(9:11 AM)" />
+                            <Label Grid.Column="1" TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="2" Text="09-02-2022" />
+                        </StackLayout>
+                        <Frame BackgroundColor="#272B35"  Grid.RowSpan="3" Grid.Column="0" Padding="0" CornerRadius="50" VerticalOptions="CenterAndExpand" HeightRequest="60">
+                            <Image VerticalOptions="CenterAndExpand" Aspect="AspectFill" HorizontalOptions="CenterAndExpand" Source="punchput.png"/>
+                        </Frame>
+                    </Grid>
+                    <StackLayout Grid.Row="1" VerticalOptions="StartAndExpand">
+                        <Label TextColor="#CCCCCC" Text="Punch In Note"/>
+                        <Editor BackgroundColor="#272B35" PlaceholderColor="#535458" WidthRequest="200" FontSize="Micro"  HeightRequest="160" Placeholder="Type Something here"/>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <StackLayout VerticalOptions="CenterAndExpand" Grid.Row="2" Orientation="Horizontal" Spacing="30" HorizontalOptions="End" Margin="0,0,0,0">
+                <Button CornerRadius="5" BackgroundColor="#8D8D8D" VerticalOptions="CenterAndExpand" HorizontalOptions="End" TextColor="White" Text="Cancel"/>
+                <Button CornerRadius="5" Text="Punch In" BackgroundColor="#26AB5B" VerticalOptions="CenterAndExpand" TextColor="White" HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+        </Grid>
+    </Frame>
+</pages:PopupPage>

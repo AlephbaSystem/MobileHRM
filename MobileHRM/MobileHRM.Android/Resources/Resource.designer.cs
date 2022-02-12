@@ -14,7 +14,7 @@ namespace MobileHRM.Droid
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.1.0.11")]
 	public partial class Resource
 	{
 		
@@ -26625,7 +26625,7 @@ namespace MobileHRM.Droid
 			public const int punchIn = 2131165538;
 			
 			// aapt resource value: 0x7F070163
-			public const int punchPut = 2131165539;
+			public const int punchOut = 2131165539;
 			
 			// aapt resource value: 0x7F070164
 			public const int Search = 2131165540;
@@ -26643,16 +26643,25 @@ namespace MobileHRM.Droid
 			public const int Time = 2131165544;
 			
 			// aapt resource value: 0x7F070169
-			public const int tooltip_frame_dark = 2131165545;
+			public const int timeWhite = 2131165545;
 			
 			// aapt resource value: 0x7F07016A
-			public const int userImage = 2131165546;
+			public const int tooltip_frame_dark = 2131165546;
 			
 			// aapt resource value: 0x7F07016B
-			public const int VectorarrowLeft = 2131165547;
+			public const int tooltip_frame_light = 2131165547;
 			
 			// aapt resource value: 0x7F07016C
-			public const int Word = 2131165548;
+			public const int userImage = 2131165548;
+			
+			// aapt resource value: 0x7F07016D
+			public const int userWhite = 2131165549;
+			
+			// aapt resource value: 0x7F07016E
+			public const int VectorarrowLeft = 2131165550;
+			
+			// aapt resource value: 0x7F07016F
+			public const int Word = 2131165551;
 			
 			static Drawable()
 			{
