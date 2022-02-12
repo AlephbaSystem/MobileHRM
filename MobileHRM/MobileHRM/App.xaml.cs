@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobileHRM.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace MobileHRM
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            MainPage = new MainPage(); 
+            MainPage = new chat3(); 
         }
 
         protected override void OnStart()
