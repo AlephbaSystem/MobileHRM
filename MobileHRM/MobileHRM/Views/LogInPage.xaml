@@ -50,6 +50,7 @@
                    BackgroundColor="#7F8D8D8D"
                    BorderColor="#26AB5B">
                 <coustomEntry:CustomEntry 
+                    x:Name="email"
                     Placeholder="Email"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand"
@@ -72,6 +73,7 @@
                    BackgroundColor="#7F8D8D8D"
                    BorderColor="#26AB5B">
                 <coustomEntry:CustomEntry 
+                    x:Name="pass"
                     Placeholder="Password"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand"
@@ -91,6 +93,7 @@
                     Text="LogIn"
                     TextColor="White"
                     CornerRadius="10"
+                    Clicked="LogIn_Btn_Clk"
                 />
 
         </Grid>
