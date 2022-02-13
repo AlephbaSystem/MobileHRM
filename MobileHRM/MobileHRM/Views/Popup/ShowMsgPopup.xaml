@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+    
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"  
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"  
+                 CloseWhenBackgroundIsClicked="True"  
+                 x:Class="MobileHRM.Views.Popup.ShowMsgPopup">
+    <popup:PopupPage.Content>
+        
+        <StackLayout 
+                     Padding="0"  
+                     Margin="0"
+                     BackgroundColor="#272B35"  
+                     HorizontalOptions="Start"  
+                     VerticalOptions="Start">
+
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="7*" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image  x:Name="img"
+                       Grid.Column="0"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                    />
+                <Label  x:Name="errText"
+                        Grid.Column="1"
+                       TextColor="#CCCCCC"
+                    VerticalOptions="Center"   
+                    HorizontalOptions="Start"
+                        FontSize="16"
+                        FontFamily="Roboto"/>
+                <ImageButton
+                    Grid.Column="2"
+                    Source="closeIcon.png"
+                    VerticalOptions="Start"
+                    HorizontalOptions="End"
+                    WidthRequest="15"
+                    HeightRequest="15"
+                    Clicked="ExitButton_Clicked"
+                    />
+
+            </Grid>
+            <ProgressBar x:Name="prgresbar" Progress="1" 
+                         Margin="0"
+                        HeightRequest="5"
+                         VerticalOptions="End"
+                         HorizontalOptions="Fill"/>
+        </StackLayout>
+
+        
+    </popup:PopupPage.Content>
+</popup:PopupPage> 
