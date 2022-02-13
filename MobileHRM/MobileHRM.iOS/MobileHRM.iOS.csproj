@@ -148,4 +148,19 @@
     <BundleResource Include="Resources\Alephba.png" />
     <BundleResource Include="Resources\background.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\closeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\errIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\infoIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\succesIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\warnIcon.png" />
+  </ItemGroup>
 </Project>
