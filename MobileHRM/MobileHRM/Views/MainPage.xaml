@@ -109,9 +109,11 @@
                                    Margin="0,20,10,0"
                                    HorizontalOptions="EndAndExpand"
                                    Padding="0">
-                            <ImageButton BackgroundColor="#272B35"
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTabNotification"/>
+                            </Frame.GestureRecognizers>
+                            <Image BackgroundColor="#272B35"
                                              Margin="10"
-                                         Clicked="OnNotificationButtonClick"
                                          Source="Notification.png"/>
                         </Frame>
                         <Frame CornerRadius="50"

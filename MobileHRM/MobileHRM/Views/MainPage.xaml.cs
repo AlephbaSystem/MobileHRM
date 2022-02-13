@@ -31,7 +31,12 @@ namespace MobileHRM
 
         private async void PunchInTabGesture(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new Views.Popup.PunchIn());
+            if (!IsBusy)
+            {
+                IsBusy = true;
+                await PopupNavigation.Instance.PushAsync(new Views.Popup.PunchIn());
+            }
+            IsBusy = false;
         }
 
         private void PunchOutTabGesture(object sender, EventArgs e)
@@ -45,9 +50,14 @@ namespace MobileHRM
 
         }
 
-        private async void OnNotificationButtonClick(object sender, EventArgs e)
+        private async void OnTabNotification(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new Views.Popup.Notifications());
+            if (!IsBusy)
+            {
+                IsBusy = true;
+                await PopupNavigation.Instance.PushAsync(new Views.Popup.Notifications());
+            }
+            IsBusy = false;
         }
     }
 }
