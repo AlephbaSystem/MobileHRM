@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 using System.Security.Cryptography;
+using System.Net.Mail;
 
 namespace MobileHRM.Views
 {
@@ -25,9 +26,13 @@ namespace MobileHRM.Views
         {
             if (pass.Text == "" || email.Text == "" || pass.Text == null || email.Text == null)
                    new Popup.ShowMsgPopup("Please enter your username and password" , "Error" , 3);
+            else if (!IsValidMail(email.Text))
+                   new Popup.ShowMsgPopup("Please enter correct Email" , "Error" , 3);
+
             else
             {
             string hashPass = ComputeSha256Hash(pass.Text);
+            
             
 
             }
@@ -48,6 +53,20 @@ namespace MobileHRM.Views
                     builder.Append(bytes[i].ToString("x2"));
                 }
                 return builder.ToString();
+            }
+        }
+
+        private static bool IsValidMail(string emailaddress)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(emailaddress);
+
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
             }
         }
     }
