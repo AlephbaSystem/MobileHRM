@@ -26,6 +26,10 @@ namespace MobileHRM.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            if (CheckSelfPermission(Android.Manifest.Permission.RecordAudio) != Permission.Granted)
+            {
+                RequestPermissions(new String[] { Android.Manifest.Permission.RecordAudio }, 1);
+            }
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
