@@ -39,8 +39,8 @@
                     Source="closeIcon.png"
                     VerticalOptions="Start"
                     HorizontalOptions="End"
-                    WidthRequest="15"
-                    HeightRequest="15"
+                    WidthRequest="13"
+                    HeightRequest="13"
                     Clicked="ExitButton_Clicked"
                     />
 
@@ -48,7 +48,7 @@
             <ProgressBar x:Name="prgresbar" Progress="1" 
                          Margin="0"
                         HeightRequest="5"
-                         VerticalOptions="End"
+                         VerticalOptions="EndAndExpand"
                          HorizontalOptions="Fill"/>
         </StackLayout>
 
