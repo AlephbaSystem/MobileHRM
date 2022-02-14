@@ -6,6 +6,7 @@
             x:Class="MobileHRM.Views.Popup.Notifications"
     BackgroundColor="#44ffffff"
     CloseWhenBackgroundIsClicked="True"
+    HasKeyboardOffset="False"
             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
     
     <pages:PopupPage.Animation>

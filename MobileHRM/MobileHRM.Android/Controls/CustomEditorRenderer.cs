@@ -28,9 +28,10 @@ namespace MobileHRM.Droid.Controls
                 GradientDrawable gd = new GradientDrawable();
                 gd.SetColor(Android.Graphics.Color.Transparent);
                 Control.SetBackgroundDrawable(gd);
+                //Control.SetHintTextColor(Android.Graphics.Color.Transparent);
                 Control.SetRawInputType(InputTypes.TextFlagNoSuggestions);
                 
-                //Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.Black));
+                Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.Black));
             }
         }
     }

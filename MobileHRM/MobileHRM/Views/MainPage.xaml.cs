@@ -35,8 +35,8 @@ namespace MobileHRM
             {
                 IsBusy = true;
                 await PopupNavigation.Instance.PushAsync(new Views.Popup.PunchIn());
-            }
-            IsBusy = false;
+                IsBusy = false;
+            }            
         }
 
         private void PunchOutTabGesture(object sender, EventArgs e)
@@ -56,8 +56,8 @@ namespace MobileHRM
             {
                 IsBusy = true;
                 await PopupNavigation.Instance.PushAsync(new Views.Popup.Notifications());
+                IsBusy = false;
             }
-            IsBusy = false;
         }
     }
 }

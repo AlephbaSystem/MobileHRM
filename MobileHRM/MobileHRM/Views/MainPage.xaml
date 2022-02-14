@@ -182,7 +182,7 @@
                                        HorizontalOptions="End"
                                        Margin="0"
                                        Padding="0">
-                                            <ImageButton BackgroundColor="#1C1F26"
+                                            <Image BackgroundColor="#1C1F26"
                                              Margin="10"
                                          Source="punchIn.png"/>
                                         </Frame>
@@ -204,7 +204,7 @@
                                                HorizontalOptions="End"
                                                Margin="0"
                                                Padding="0">
-                                            <ImageButton BackgroundColor="#1C1F26"
+                                            <Image BackgroundColor="#1C1F26"
                                                          Margin="10"
                                                          Source="punchOut.png"/>
                                         </Frame>
@@ -238,7 +238,7 @@
                                                HorizontalOptions="End"
                                                Margin="0"
                                                Padding="0">
-                                            <ImageButton BackgroundColor="#1C1F26"
+                                            <Image BackgroundColor="#1C1F26"
                                                          Margin="10"
                                                          Source="timeWhite.png"/>
                                         </Frame>
@@ -273,7 +273,7 @@
                                                HorizontalOptions="End"
                                                Margin="0"
                                                Padding="0">
-                                                <ImageButton BackgroundColor="#1C1F26"
+                                                <Image BackgroundColor="#1C1F26"
                                                          Margin="10"
                                                          Source="userWhite.png"/>
                                             </Frame>
