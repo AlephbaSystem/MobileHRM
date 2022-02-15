@@ -11,7 +11,7 @@ namespace MobileHRM
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            MainPage = new chat3(); 
+            MainPage = new Chat3(); 
         }
 
         protected override void OnStart()

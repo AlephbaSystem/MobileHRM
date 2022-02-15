@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <SelectedDevice>Xiaomi Redmi Note 8 Pro %2822.26.104.25:5555%29</SelectedDevice>
-    <ActiveDebugProfile>Xiaomi Redmi Note 8 Pro %2822.26.104.25:5555%29</ActiveDebugProfile>
-    <DefaultDevice>pixel_5_-_api_30</DefaultDevice>
+    <SelectedDevice>Samsung SM-J730F</SelectedDevice>
+    <ActiveDebugProfile>Samsung SM-J730F</ActiveDebugProfile>
+    <DefaultDevice>Pixel_2_API_31</DefaultDevice>
   </PropertyGroup>
 </Project>
