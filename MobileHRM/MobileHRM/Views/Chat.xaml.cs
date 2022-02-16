@@ -61,7 +61,6 @@ namespace MobileHRM.Views
             lbl.Text = Msg.Text;
             lbl.TextColor = Color.White;
             lbl.FontSize = 14;
-            //lbl.FontFamily = "Quicksand";
             lbl.VerticalTextAlignment = TextAlignment.Center;
             lbl.HorizontalTextAlignment = TextAlignment.Start;
             frm.Content = lbl;
@@ -85,6 +84,8 @@ namespace MobileHRM.Views
                 ImgPlayer.VerticalOptions = LayoutOptions.CenterAndExpand;
                 ImgPlayer.HorizontalOptions = LayoutOptions.EndAndExpand;
                 ImgPlayer.BackgroundColor = Color.Transparent;
+                ImgPlayer.WidthRequest = 30;
+                ImgPlayer.HeightRequest = 30;
                 f.CornerRadius = 10;
                 f.Padding= new Thickness(0);
                 ImgPlayer.Clicked += new EventHandler(test);
