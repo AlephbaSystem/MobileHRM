@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:customentry="clr-namespace:MobileHRM.Controls"
-             x:Class="MobileHRM.Views.chat3"
+             x:Class="MobileHRM.Views.MessagePage"
              Background="#272B35"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
@@ -35,8 +35,10 @@
 
 
             </Grid>
-            <ScrollView Grid.Row="1">
-                <StackLayout Background="#272B35" x:Name="StacklayoutMsg" Spacing="15">
+            
+            <ScrollView Grid.Row="1">                
+                <StackLayout Background="#272B35" x:Name="messagelayout" Spacing="15">
+                    
                     <!--<BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <Frame
@@ -59,7 +61,7 @@
                    IsClippedToBounds="False"
                    BackgroundColor="#1A1C23">
                 <Grid ColumnDefinitions="*,*,4*,*" IsClippedToBounds="False">
-                    <customentry:CustomEntry x:Name="msgentry"  Grid.Column="2" 
+                    <customentry:CustomEntry x:Name="messageEntry"  Grid.Column="2" 
                             Placeholder="Type Somthing Here " 
                             PlaceholderColor="White" 
                             FontSize="15"
@@ -67,6 +69,9 @@
                     <Frame Grid.Column="0" Padding="0"
                            BackgroundColor="#272B35"
                            CornerRadius="30">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_oppenCamera"/>
+                        </Frame.GestureRecognizers>
                         <Image Grid.Column="0" Source="finalCamera.png"
                                HeightRequest="20"
                            VerticalOptions="Center"
@@ -76,10 +81,9 @@
                     <Frame Grid.Column="1" Padding="0"
                            BackgroundColor="#272B35"
                            CornerRadius="30"
-                           x:Name="voicefrm"
-                           >
+                           x:Name="voicefrm">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_recorder" />
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_voiceRecorder" />
                         </Frame.GestureRecognizers>
                         <Image x:Name="AudioImg" Grid.Column="1" Source="Vectormicro.png"
                            VerticalOptions="Center"
@@ -87,13 +91,12 @@
                     </Frame>
                     <Frame Grid.Column="3" Padding="0" BackgroundColor="#272B35" CornerRadius="30">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_sendMessage" />
                         </Frame.GestureRecognizers>
                         <Image Grid.Column="3" Source="VectorarrowSend.png"
                                Margin="5,0,0,0"
                                VerticalOptions="Center"
-                               HorizontalOptions="Center"
-                               />
+                               HorizontalOptions="Center"/>
                     </Frame>
 
                 </Grid>
