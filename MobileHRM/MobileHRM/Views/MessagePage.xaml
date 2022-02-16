@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:customentry="clr-namespace:MobileHRM.Controls"
+             x:Class="MobileHRM.Views.MessagePage"
+             Background="#272B35"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid RowDefinitions="*,7*">
+            <Grid Grid.Row="0" ColumnDefinitions="*,5*,2*"
+                  BackgroundColor="#000000">
+                <ImageButton Grid.Column="0"
+                             Source="VectorArrow.png"
+                             VerticalOptions="Center"
+                             HorizontalOptions="CenterAndExpand"
+                             BackgroundColor="Transparent"
+                             WidthRequest="30"
+                             HeightRequest="40"
+                             />
+                <Label Grid.Column="1" Text="ALEPHBA SYSTEM" 
+                       TextColor="White" 
+                       HorizontalOptions="End" 
+                       VerticalOptions="Center"/>
+                <Frame Grid.Column="2"
+                       CornerRadius="50"
+                       Padding="0"
+                       VerticalOptions="Center"
+                       HorizontalOptions="CenterAndExpand"
+                       Margin="17">
+                    <Image Source="imageUser.png" >
+
+                    </Image>
+
+                </Frame>
+
+
+
+            </Grid>
+            
+            <ScrollView Grid.Row="1">                
+                <StackLayout Background="#272B35" x:Name="messagelayout" Spacing="15">
+                    
+                    <!--<BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                                CornerRadius="20"
+                                Margin="5,0,70,0" 
+                                BackgroundColor="#1A1C23">
+                                <Label Text="{Binding Text}"
+                                       TextColor="White"
+                                       />
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>-->
+                </StackLayout>
+            </ScrollView>
+            <Switch Grid.Row="1" x:Name="sw"  VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Frame Grid.Row="2" Padding="5"
+                   VerticalOptions="Center"
+                   CornerRadius="25"
+                   Margin="5,0"
+                   IsClippedToBounds="False"
+                   BackgroundColor="#1A1C23">
+                <Grid ColumnDefinitions="*,*,4*,*" IsClippedToBounds="False">
+                    <customentry:CustomEntry x:Name="messageEntry"  Grid.Column="2" 
+                            Placeholder="Type Somthing Here " 
+                            PlaceholderColor="White" 
+                            FontSize="15"
+                            TextColor="White"/>
+                    <Frame Grid.Column="0" Padding="0"
+                           BackgroundColor="#272B35"
+                           CornerRadius="30">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_oppenCamera"/>
+                        </Frame.GestureRecognizers>
+                        <Image Grid.Column="0" Source="camera.png"
+                               HeightRequest="20"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                               Margin="10"/>
+                    </Frame>
+                    <Frame Grid.Column="1" Padding="0"
+                           BackgroundColor="#272B35"
+                           CornerRadius="30"
+                           x:Name="voicefrm">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_voiceRecorder" />
+                        </Frame.GestureRecognizers>
+                        <Image x:Name="AudioImg" Grid.Column="1" Source="microphone.png"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+                    </Frame>
+                    <Frame Grid.Column="3" Padding="0" BackgroundColor="#272B35" CornerRadius="30">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_sendMessage" />
+                        </Frame.GestureRecognizers>
+                        <Image Grid.Column="3" Source="sendArrow.png"
+                               Margin="5,0,0,0"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+                    </Frame>
+
+                </Grid>
+            </Frame>
+        </Grid>
+
+
+    </ContentPage.Content>
+</ContentPage>
