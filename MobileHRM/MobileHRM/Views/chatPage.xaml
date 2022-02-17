@@ -21,7 +21,11 @@
                        VerticalOptions="Center"
                        HorizontalOptions="EndAndExpand"
                        BackgroundColor="#272B35"
+                       x:Name="NotificationFrame"
                        Padding="0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTabNotification"/>
+                    </Frame.GestureRecognizers>
                     <Image BackgroundColor="#272B35"
                                              Margin="10"
                                          Source="Notification.png"/>

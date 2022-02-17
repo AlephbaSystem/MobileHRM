@@ -4,9 +4,9 @@
             xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="MobileHRM.Views.Popup.Notifications"
-    BackgroundColor="#44ffffff"
-    CloseWhenBackgroundIsClicked="True"
-    HasKeyboardOffset="False"
+            BackgroundColor="#44ffffff"
+            CloseWhenBackgroundIsClicked="True"
+            HasKeyboardOffset="False"
             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
     
     <pages:PopupPage.Animation>
@@ -27,7 +27,14 @@
             <Grid RowDefinitions="1*,Auto,5*" BackgroundColor="#272B35">
                 <Grid RowDefinitions="*,2*,*" Grid.Row="0">
                     <Label Grid.Row="1" VerticalOptions="Center" TextColor="#CCCCCC" FontSize="Large" Text="Punch In" HorizontalOptions="StartAndExpand" Margin="30,0,0,0"/>
-                    <ImageButton Grid.Row="1" VerticalOptions="Center" HorizontalOptions="End" Source="close.png" BackgroundColor="Transparent" Margin="0,5,20,5"/>
+                    <ImageButton Grid.Row="1" 
+                                 x:Name="ImageExitNotification"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="End" 
+                                 Source="close.png"
+                                 BackgroundColor="Transparent" 
+                                 Margin="0,5,20,5"
+                                 Clicked="OnCloseImageButtonClicked"/>
                 </Grid>
                 <BoxView HeightRequest="10" Grid.Row="1" BackgroundColor="#1A1C23"/>
                 <ScrollView Grid.Row="2" Margin="0" BackgroundColor="#1A1C23">

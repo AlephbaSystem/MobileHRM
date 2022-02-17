@@ -79,9 +79,10 @@
                 IsTabTransitionEnabled="True">
 
                 <xct:TabViewItem
-                    Text="Dashboard"  
+                    Text="DASHBOARD"  
                     Icon="Dashboard.png"
                     ControlTemplate="{StaticResource TabItemTemplate}"
+                    TabTapped="TabViewItem_TabTapped"
                     Style="{StaticResource TabItemStyle}">
                     
                     <Grid BackgroundColor="#1A1C23" RowDefinitions="2*,0.8*,6*">
@@ -102,13 +103,14 @@
                                    Margin="20,0,0,0"/>
                         </Grid>
                         <Frame CornerRadius="50"
-                                   HeightRequest="50"
-                                   BackgroundColor="#272B35"
-                                   WidthRequest="50"
-                                   VerticalOptions="Start"
-                                   Margin="0,20,10,0"
-                                   HorizontalOptions="EndAndExpand"
-                                   Padding="0">
+                               x:Name="NotificationFrame"
+                               HeightRequest="50"
+                               BackgroundColor="#272B35"
+                               WidthRequest="50"
+                               VerticalOptions="Start"
+                               Margin="0,20,10,0"
+                               HorizontalOptions="EndAndExpand"
+                               Padding="0">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnTabNotification"/>
                             </Frame.GestureRecognizers>
@@ -169,7 +171,8 @@
                                BackgroundColor="#272B35"
                                CornerRadius="11">
                                 <Grid RowDefinitions="0.5*, 2*, 0.2*, 2*, 0.5*">
-                                    <Grid Grid.Row="1" ColumnDefinitions="3*,0*,10*">
+                                    <Grid Grid.Row="1" ColumnDefinitions="3*,0*,10*" 
+                                          x:Name="PunchInGrid">
                                         <Grid.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="PunchInTabGesture"/>
                                         </Grid.GestureRecognizers>
@@ -294,16 +297,17 @@
 
 
                 <xct:TabViewItem
-                    Text="Time"  
+                    Text="TIME"  
                     Icon="Time.png"
                     ControlTemplate="{StaticResource TabItemTemplate}"
-                    Style="{StaticResource TabItemStyle}" />
+                    Style="{StaticResource TabItemStyle}" 
+                    TabTapped="TabViewItem_TabTapped"/>
 
                 <xct:TabViewItem                                        
                     Icon="Word.png"
                     ControlTemplate="{StaticResource FabTabItemTemplate}"
                     Style="{StaticResource TabItemStyle}"
-                    TabTapped="OnFabTabTapped">
+                    TabTapped="TabViewItem_TabTapped">
 
                     <Grid BackgroundColor="LightYellow">
                         <Label    
@@ -315,10 +319,11 @@
 
 
                 <xct:TabViewItem
-                    Text="Task"  
+                    Text="TASK"  
                     Icon="Task.png"
                     ControlTemplate="{StaticResource TabItemTemplate}"
-                    Style="{StaticResource TabItemStyle}">
+                    Style="{StaticResource TabItemStyle}"
+                    TabTapped="TabViewItem_TabTapped">
                     <Grid BackgroundColor="CadetBlue">
                         <Label    
                             HorizontalOptions="Center"
@@ -327,10 +332,11 @@
                     </Grid>
                 </xct:TabViewItem>
                 <xct:TabViewItem
-                    Text="Settings"  
+                    Text="CHAT"  
                     Icon="Settings.png"
                     ControlTemplate="{StaticResource TabItemTemplate}"
-                    Style="{StaticResource TabItemStyle}">
+                    Style="{StaticResource TabItemStyle}"
+                    TabTapped="TabViewItem_TabTapped">
                     <Grid BackgroundColor="LightCoral">
                         <Label    
                             HorizontalOptions="Center"

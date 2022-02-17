@@ -1,10 +1,8 @@
 ﻿using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -42,8 +40,16 @@ namespace MobileHRM.Views.Popup
            };
             await Task.Run(() =>
             {
-                collectionNotification.ItemsSource = list; 
+                collectionNotification.ItemsSource = list;
             });
+        }
+
+        private async void OnCloseImageButtonClicked(object sender, EventArgs e)
+        {
+            Animation animation = new Animation(v => ImageExitNotification.Scale = v, 0.8, 1.3, Easing.SinInOut);
+            animation.Commit(ImageExitNotification, "animate", 20, 200, Easing.SinIn);
+            await ImageExitNotification.ScaleTo(1, 200, Easing.SinIn);
+            await PopupNavigation.Instance.PopAsync();
         }
     }
     public class tempDatas

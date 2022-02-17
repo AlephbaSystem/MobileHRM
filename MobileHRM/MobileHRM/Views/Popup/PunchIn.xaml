@@ -28,7 +28,10 @@
             <Grid RowDefinitions="1*,4*,1*" BackgroundColor="#272B35">
                 <Grid RowDefinitions="*,2*,*" Grid.Row="0">
                     <Label Grid.Row="1" VerticalOptions="Center" TextColor="#CCCCCC" FontSize="Large" Text="Punch In" HorizontalOptions="StartAndExpand" Margin="30,0,0,0"/>
-                    <ImageButton Grid.Row="1" VerticalOptions="Center" HorizontalOptions="End" Source="close.png" BackgroundColor="Transparent" Margin="0,5,20,5"/>
+                    <ImageButton Grid.Row="1" VerticalOptions="Center" HorizontalOptions="End"
+                                 Source="close.png" BackgroundColor="Transparent"
+                                 Margin="0,5,20,5" Clicked="OnExitImageButtonClicked"
+                                 x:Name="ImageExitPunchIn"/>
                 </Grid>
                 <Grid RowDefinitions="2*,3*" Grid.Row="1" BackgroundColor="#1A1C23" VerticalOptions="FillAndExpand">
                     <Grid ColumnDefinitions="2*,8*" Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="20,0">

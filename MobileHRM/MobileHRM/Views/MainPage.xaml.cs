@@ -1,13 +1,9 @@
 ﻿using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using MobileHRM.Controls;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using MobileHRM.Views;
+using Xamarin.CommunityToolkit.UI.Views;
 
 namespace MobileHRM
 {
@@ -34,9 +30,13 @@ namespace MobileHRM
             if (!IsBusy)
             {
                 IsBusy = true;
+                Animation animation = new Animation(v => PunchInGrid.Scale = v, 0.8, 1.3, Easing.SinInOut);
+                animation.Commit(PunchInGrid, "animate", 20, 200, Easing.SinIn);
+                await PunchInGrid.ScaleTo(1, 200, Easing.SinIn);
                 await PopupNavigation.Instance.PushAsync(new Views.Popup.PunchIn());
                 IsBusy = false;
-            }            
+
+            }
         }
 
         private void PunchOutTabGesture(object sender, EventArgs e)
@@ -55,9 +55,23 @@ namespace MobileHRM
             if (!IsBusy)
             {
                 IsBusy = true;
+                Animation animation = new Animation(v => NotificationFrame.Scale = v, 0.8, 1.3, Easing.SinInOut);
+                animation.Commit(NotificationFrame, "animate", 20, 200, Easing.SinIn);
                 await PopupNavigation.Instance.PushAsync(new Views.Popup.Notifications());
                 IsBusy = false;
+                await NotificationFrame.ScaleTo(1, 200, Easing.SinIn);
+                //string music;
+                // Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{music}.wav");
             }
+        }
+
+        private async void TabViewItem_TabTapped(object sender, Xamarin.CommunityToolkit.UI.Views.TabTappedEventArgs e)
+        {
+            TabViewItem tabView = (TabViewItem)sender;
+            Animation animation = new Animation(v => tabView.Scale = v, 0.8, 1.3, Easing.SinInOut);
+            animation.Commit(tabView, "animate", 20, 200, Easing.SinIn);
+
+            await tabView.ScaleTo(1, 200, Easing.SinIn);
         }
     }
 }

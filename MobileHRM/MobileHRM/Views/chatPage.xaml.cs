@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -50,6 +48,19 @@ namespace MobileHRM.Views
             public string SubTitle { get; set; }
             public string Time { get; set; }
             public string Number { get; set; }
+        }
+
+        private async void OnTabNotification(object sender, EventArgs e)
+        {
+            //if (!IsBusy)
+            //{
+            //    IsBusy = true;
+                Animation animation = new Animation(v => NotificationFrame.Scale = v, 0.8, 1.3, Easing.SinInOut);
+                animation.Commit(NotificationFrame, "animate", 20, 200, Easing.SinIn);
+                await PopupNavigation.Instance.PushAsync(new Popup.Notifications());
+                //IsBusy = false;
+                await NotificationFrame.ScaleTo(1, 200, Easing.SinIn);
+            //}
         }
     }
 }
