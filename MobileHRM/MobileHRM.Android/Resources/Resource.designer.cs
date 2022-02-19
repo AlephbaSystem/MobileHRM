@@ -26643,31 +26643,37 @@ namespace MobileHRM.Droid
 			public const int Task = 2131165544;
 			
 			// aapt resource value: 0x7F070169
-			public const int test_custom_background = 2131165545;
+			public const int TasksGreen = 2131165545;
 			
 			// aapt resource value: 0x7F07016A
-			public const int Time = 2131165546;
+			public const int TasksOrange = 2131165546;
 			
 			// aapt resource value: 0x7F07016B
-			public const int timeWhite = 2131165547;
+			public const int test_custom_background = 2131165547;
 			
 			// aapt resource value: 0x7F07016C
-			public const int tooltip_frame_dark = 2131165548;
+			public const int Time = 2131165548;
 			
 			// aapt resource value: 0x7F07016D
-			public const int tooltip_frame_light = 2131165549;
+			public const int timeWhite = 2131165549;
 			
 			// aapt resource value: 0x7F07016E
-			public const int userImage = 2131165550;
+			public const int tooltip_frame_dark = 2131165550;
 			
 			// aapt resource value: 0x7F07016F
-			public const int userWhite = 2131165551;
+			public const int tooltip_frame_light = 2131165551;
 			
 			// aapt resource value: 0x7F070170
-			public const int VectorarrowLeft = 2131165552;
+			public const int userImage = 2131165552;
 			
 			// aapt resource value: 0x7F070171
-			public const int Word = 2131165553;
+			public const int userWhite = 2131165553;
+			
+			// aapt resource value: 0x7F070172
+			public const int VectorarrowLeft = 2131165554;
+			
+			// aapt resource value: 0x7F070173
+			public const int Word = 2131165555;
 			
 			static Drawable()
 			{

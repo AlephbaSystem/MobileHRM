@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  
+    xmlns:animations="http://rotorgames.com"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MobileHRM.Views.Popup.TasksCalendar"
+    CloseWhenBackgroundIsClicked="True"
+    HasKeyboardOffset="False"
+    BackgroundColor="#44ffffff"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:Custom="clr-namespace:MobileHRM.Controls">
+    
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="200"
+            DurationOut="200"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+
+    <ContentPage.Content>
+        <Frame Padding="0" CornerRadius="27" Margin="25,100" BackgroundColor="Transparent">
+            <Grid RowDefinitions="1*,4*,1*" BackgroundColor="#272B35">
+                <Grid RowDefinitions="*,2*,*" Grid.Row="0">
+                    <Label Grid.Row="1" VerticalOptions="Center" TextColor="#CCCCCC" FontSize="Large" Text="Issue Name #1" 
+                           HorizontalOptions="StartAndExpand" Margin="30,0,0,0"/>
+                    <ImageButton Grid.Row="1" VerticalOptions="Center" HorizontalOptions="End"
+                                 Source="close.png" BackgroundColor="Transparent"
+                                 Margin="0,5,20,5" Clicked="OnExitImageButtonClicked"
+                                 x:Name="ImageExitPunchIn"/>
+                </Grid>
+                <Grid RowDefinitions="2*,3*" Grid.Row="1" BackgroundColor="#1A1C23" VerticalOptions="FillAndExpand">
+                    <Grid ColumnDefinitions="2*,8*" Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="20,0">
+                        <Frame Padding="0" Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" CornerRadius="50" BackgroundColor="#272B35">
+                            <Image Source="TasksGreen.png" BackgroundColor="Transparent" Margin="20"/>
+                        </Frame>
+
+                        <Grid VerticalOptions="Center" Grid.Column="1" RowDefinitions="*,*,*">
+                            <Label TextColor="#8D8D8D" HorizontalTextAlignment="Start" Grid.Row="0" Text="Punch In date And Time" />
+                            <Label TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="1" Text="Today(9:11 AM)" />
+                            <Label TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="2" Text="09-02-2022" />
+                        </Grid>
+                    </Grid>
+                    <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand" Margin="27,0" BackgroundColor="#1A1C23">
+                        <Label TextColor="#CCCCCC" Text="Punch In Note"/>
+                        <Frame VerticalOptions="FillAndExpand" Margin="0,0,0,20" Padding="0" CornerRadius="5" BackgroundColor="Transparent">
+                            <Custom:CustomEditor BackgroundColor="#272B35" PlaceholderColor="#535458" Placeholder="Details note here" TextColor="#CCCCCC"/>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="2" Margin="0,0,0,0">
+                    <Grid ColumnDefinitions="*,1.65*,*" RowDefinitions="2*,4*,2*">                        
+                        <Button CornerRadius="5" Text="Done" BackgroundColor="#26AB5B" TextColor="#FFFFFF" VerticalOptions="Center"
+                                     Grid.Column="2" Grid.Row="1" HorizontalOptions="Fill"/>
+                    </Grid>
+
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </ContentPage.Content>
+
+</pages:PopupPage>

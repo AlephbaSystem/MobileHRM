@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#1A1C23"
+             x:Class="MobileHRM.Views.TasksCalendarPage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="*,*,*,*,5*">
+            <StackLayout Orientation="Horizontal"
+                         Grid.Row="0"
+                         VerticalOptions="End"
+                         Margin="20,0">
+                <ImageButton Source="VectorarrowLeft.png" 
+                       HeightRequest="25"
+                       WidthRequest="25"
+                             BackgroundColor="Transparent"/>
+                <Frame CornerRadius="50"
+                       HeightRequest="50"
+                       WidthRequest="50"
+                       VerticalOptions="Center"
+                       HorizontalOptions="EndAndExpand"
+                       BackgroundColor="#272B35"
+                       x:Name="NotificationFrame"
+                       Padding="0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTabNotification"/>
+                    </Frame.GestureRecognizers>
+                    <Image BackgroundColor="#272B35"
+                                             Margin="10"
+                                         Source="Notification.png"/>
+                </Frame>
+                <Frame CornerRadius="50"
+                       HeightRequest="50"
+                       WidthRequest="50"
+                       VerticalOptions="Center"
+                       HorizontalOptions="End"
+                       BackgroundColor="#272B35"
+                       Padding="0">
+                    <Image BackgroundColor="#272B35"
+                           Margin="-2"
+                                         Source="userImage.png"/>
+                </Frame>
+            </StackLayout>
+
+            <Grid ColumnDefinitions="*,*,*" Margin="20,0"
+                  VerticalOptions="End"
+                  Grid.Row="1">
+                <Label Text="Previews" Grid.Column="0" HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       TextColor="#CCCCCC"/>
+                <Label Text="February" Grid.Column="1"
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center"
+                       FontSize="Large"
+                       TextColor="#CCCCCC"/>
+                <Label Text="Next >" Grid.Column="2" 
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"
+                       TextColor="#CCCCCC"/>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*,*,*" 
+                  VerticalOptions="Center"
+                  Margin="15,0"
+                  Grid.Row="2">
+                <Button CornerRadius="11"
+                        BackgroundColor="#26AB5B"
+                        Text="19 Sat"
+                        TextColor="#FFFFFF"
+                        Grid.Column="0"/>
+                <Button CornerRadius="11"
+                        BackgroundColor="#26AB5B"
+                        Text="19 Sat"
+                        TextColor="#FFFFFF"
+                        Grid.Column="1"/>
+                <Button CornerRadius="11"
+                        BackgroundColor="#26AB5B"
+                        Text="19 Sat"
+                        TextColor="#FFFFFF"
+                        Grid.Column="2"/>
+                <Button CornerRadius="11"
+                        BackgroundColor="#26AB5B"
+                        Text="19 Sat"
+                        TextColor="#FFFFFF"
+                        Grid.Column="3"/>
+            </Grid>
+
+            <Label Text="0 Up coming" 
+                   Margin="30,0"
+                   VerticalOptions="Center"
+                   Grid.Row="3"
+                   FontSize="Body"
+                   TextColor="#CCCCCC"/>
+
+            <Frame Padding="0" 
+                   BackgroundColor="Transparent"
+                   Margin="30,0"
+                   CornerRadius="12"
+                   Grid.Row="4">
+                <CollectionView x:Name="red">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,10">
+                                <Frame Padding="0,10" CornerRadius="12" BackgroundColor="#272B35" >
+                                    <StackLayout Orientation="Horizontal" Margin="0">
+                                        <Label Text="{Binding TaskTime}" 
+                                               VerticalOptions="Center"
+                                               TextColor="#CCCCCC"
+                                               Margin="10,0"
+                                               HorizontalOptions="Start"/>
+                                        <StackLayout BindableLayout.ItemsSource="{Binding task}" Orientation="Horizontal" FlowDirection="RightToLeft">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Frame CornerRadius="11"
+                                                           Padding="15,5"                                       
+                                                           VerticalOptions="Center"
+                                                           Margin="1,0"
+                                                           BackgroundColor="{Binding TaskColor1}">
+                                                        <Label Text="{Binding Text1}"
+                                                       TextColor="#FFFFFF"/>
+                                                    </Frame>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
