@@ -20,19 +20,21 @@ namespace MobileHRM.Views
         public LogInPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
-        private void LogIn_Btn_Clk(object sender, EventArgs e)
+        private async void LogIn_Btn_Clk(object sender, EventArgs e)
         {
-            if (pass.Text == "" || email.Text == "" || pass.Text == null || email.Text == null)
-                   new Popup.ShowMsgPopup("Please enter your username and password" , "Error" , 3);
+            if (pass.Text == "" || email.Text == "" || pass.Text ==null || email.Text == null)
+                   await new Popup.ShowMsgPopup("Please enter your username and password" , "Error" , 3).ShowAsync();
             else if (!IsValidMail(email.Text))
-                   new Popup.ShowMsgPopup("Please enter correct Email" , "Error" , 3);
+                   await new Popup.ShowMsgPopup("Please enter correct Email" , "Error" , 3).ShowAsync();
 
             else
             {
                 string hashPass = BCrypt.Net.BCrypt.HashPassword(pass.Text);
-                new Popup.ShowMsgPopup(hashPass, "Information", 10);
+                await new Popup.ShowMsgPopup(hashPass, "Information", 2).ShowAsync();
+                await Navigation.PushAsync(new CameraViews());
             
             
 

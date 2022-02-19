@@ -1,5 +1,6 @@
 ﻿using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,24 +45,27 @@ namespace MobileHRM.Views.Popup
                     prgresbar.ProgressColor = Color.FromHex("#5296D5");
                     break;
             }
+            
+
+        }
+
+        public async Task ShowAsync()
+        {
             isShow = true;
-            Navigation.PushPopupAsync(this);
-
-        }
-
-        private void ExitButton_Clicked(object sender, EventArgs e)
-        {
-            isShow = false;
-            Navigation.PopPopupAsync();
-        }
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
+            await PopupNavigation.Instance.PushAsync(this);
             await prgresbar.ProgressTo(0, (uint)showMeliSec, Easing.Linear);
             if (isShow)
-                await Navigation.PopPopupAsync();
-
+                await PopupNavigation.Instance.PopAsync();
+           
         }
+
+        private async void ExitButton_Clicked(object sender, EventArgs e)
+        {
+            isShow = false;
+
+            await PopupNavigation.Instance.PopAsync();
+        }
+        
 
         protected override bool OnBackgroundClicked()
         {
