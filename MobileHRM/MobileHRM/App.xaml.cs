@@ -11,7 +11,7 @@ namespace MobileHRM
         {
             InitializeComponent();
 
-            MainPage = new LogInPage();
+            MainPage = new NavigationPage(new CameraViews());
         }
 
         protected override void OnStart()
