@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MobileHRM.Models;
 using MobileHRM.ViewModels;
 using Plugin.AudioRecorder;
 using System.IO;
@@ -17,20 +15,20 @@ namespace MobileHRM.Views
     public partial class MessagePage : ContentPage
     {
         public MessagesVm Vm = new MessagesVm();
+        private readonly AudioRecorderService audioRecorderService = new AudioRecorderService();
         private readonly AudioPlayer audioPlayer = new AudioPlayer();
-        private List<AudioRecorderService> audioRecorderServices = new List<AudioRecorderService>();
-
+        private List<AudioRecorderService> ShowVoice = new List<AudioRecorderService>();
         public MessagePage()
         {
             InitializeComponent();
             BindingContext = Vm;
         }
-
-        private void TapGestureRecognizer_sendMessage(object sender, EventArgs e)
+       //Make Frame for messagae and voice  *******************************//
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(messageEntry.Text))
             {
-                var itemMessage = new MessageItem
+                var itm = new Models.MessageItem
                 {
                     Text = messageEntry.Text,
                     Time = DateTime.Now,
@@ -39,30 +37,17 @@ namespace MobileHRM.Views
                     IsMessageYours = sw.IsToggled,
                 };
 
-                MakeFrame(itemMessage);
-                Vm.MyMessage.Add(itemMessage);
+                MakeFrame(itm);
+                Vm.MyMessage.Add(itm);
             }
             Vm.MyMessage = Vm.MyMessage;
             messageEntry.Text = "";
+
         }
-
-        private void MakeFrame(MessageItem Message)
+        private void MakeFrame(Models.MessageItem Msg)
         {
-            Label lbl = new Label
-            {
-                Text = Message.Text,
-                TextColor = Color.White,
-                FontSize = 14,
-                VerticalTextAlignment = TextAlignment.Center,
-                HorizontalTextAlignment = TextAlignment.Start
-            };
-
-            Frame frm = new Frame
-            {
-                CornerRadius = 20,
-                Content = lbl
-            };
-            if (Message.IsMessageYours)
+            Frame frm = new Frame();
+            if (Msg.IsMessageYours)
             {
                 frm.BackgroundColor = Color.FromHex("#1A1C23");
                 frm.Margin = new Thickness(5, 0, 70, 0);
@@ -72,176 +57,107 @@ namespace MobileHRM.Views
                 frm.Margin = new Thickness(70, 0, 5, 0);
                 frm.BackgroundColor = Color.FromHex("#8D8D8D");
             }
-
+            frm.CornerRadius = 20;
+            Label lbl = new Label();
+            lbl.Text = Msg.Text;
+            lbl.TextColor = Color.White;
+            lbl.FontSize = 14;
+            lbl.VerticalTextAlignment = TextAlignment.Center;
+            lbl.HorizontalTextAlignment = TextAlignment.Start;
+            frm.Content = lbl;
             messagelayout.Children.Add(frm);
         }
+        //*****************************************************************//
 
-        private void MakeVoiceFrame()
+        // Record the voice ***********************************************//
+
+        private async void TapGestureRecognizer_Tapped_recorder(object sender, EventArgs e)
         {
-            ImageButton ImgPlayer = new ImageButton
+            if (ShowVoice.Count > 0 && ShowVoice[ShowVoice.Count - 1].IsRecording)
             {
-                Source = "Dashboard.png",
-                Margin = new Thickness(15),
-                Padding = new Thickness(0),
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.EndAndExpand,
-                BackgroundColor = Color.Transparent
-            };
+                await voicefrm.ScaleTo(1);
+                voicefrm.BackgroundColor = Color.FromHex("272B35");
+                await ShowVoice.Last().StopRecording();
 
-            ImgPlayer.Clicked += new EventHandler(PlayVoice);
+                Frame f = new Frame();
+                ImageButton ImgPlayer = new ImageButton();
+                ImgPlayer.Source = "playbuttonarrowhead.png";
+                ImgPlayer.Margin = new Thickness(15);
+                ImgPlayer.Padding = new Thickness(0);
 
-            Frame f = new Frame
-            {
-                CornerRadius = 10,
-                Padding = new Thickness(0),
-                Content = ImgPlayer
-            };
-
-            var itm = new MessageItem
-            {
-                Text = messageEntry.Text,
-                Time = DateTime.Now,
-                To = "1",
-                From = "2",
-                IsMessageYours = sw.IsToggled,
-            };
-
-            if (itm.IsMessageYours)
-            {
-                f.BackgroundColor = Color.FromHex("#1A1C23");
-                f.Margin = new Thickness(5, 0, 70, 0);
-            }
-            else
-            {
-                f.Margin = new Thickness(70, 0, 5, 0);
-                f.BackgroundColor = Color.FromHex("#8D8D8D");
-            }
-
-            Vm.MyMessage.Add(itm);
-            messagelayout.Children.Add(f);
-            ImgPlayer.CommandParameter = audioRecorderServices.Last();
-        }
-
-
-
-        private async void TapGestureRecognizer_voiceRecorder(object sender, EventArgs e)
-        {
-            if (!IsBusy)
-            {
-                IsBusy = true;
-                var status = await Permissions.RequestAsync<Permissions.Microphone>();
-                if (status != PermissionStatus.Granted)
+                ImgPlayer.VerticalOptions = LayoutOptions.CenterAndExpand;
+                ImgPlayer.HorizontalOptions = LayoutOptions.EndAndExpand;
+                ImgPlayer.BackgroundColor = Color.Transparent;
+                ImgPlayer.WidthRequest = 30;
+                ImgPlayer.HeightRequest = 30;
+                f.CornerRadius = 10;
+                f.Padding = new Thickness(0);
+                ImgPlayer.Clicked += new EventHandler(test);
+                f.Content = ImgPlayer;
+                var itm = new Models.MessageItem
                 {
-                    return;
-                }
-
-                if (audioRecorderServices.Count > 0 && audioRecorderServices[audioRecorderServices.Count - 1].IsRecording)
+                    Text = messageEntry.Text,
+                    Time = DateTime.Now,
+                    To = "1",
+                    From = "2",
+                    IsMessageYours = sw.IsToggled,
+                };
+                if (itm.IsMessageYours)
                 {
-                    await voicefrm.ScaleTo(1);
-                    voicefrm.BackgroundColor = Color.FromHex("272B35");
-                    await audioRecorderServices.Last().StopRecording();
-                    MakeVoiceFrame();
-                    audioPlayer.Play(audioRecorderServices.Last().GetAudioFilePath());
+                    f.BackgroundColor = Color.FromHex("#1A1C23");
+                    f.Margin = new Thickness(5, 0, 70, 0);
                 }
                 else
                 {
-                    await voicefrm.ScaleTo(1.3, 100);
-                    voicefrm.BackgroundColor = Color.White;
-                    audioRecorderServices.Add(new AudioRecorderService());
-                    await audioRecorderServices.Last().StartRecording();
+                    f.Margin = new Thickness(70, 0, 5, 0);
+                    f.BackgroundColor = Color.FromHex("#8D8D8D");
                 }
-                IsBusy = false;
-            }
-            //var test = audioRecorderServices.Last();
-        }
 
-        private void PlayVoice(object sender, EventArgs e)
-        {
-            var t = sender as ImageButton;
-            var voice = (AudioRecorderService)t.CommandParameter;
-            audioPlayer.Play(voice.GetAudioFilePath());
 
-            //audioPlayer.FinishedPlaying += FinishedPlay;
-        }
+                Vm.MyMessage.Add(itm);
+                messagelayout.Children.Add(f);
+                ImgPlayer.CommandParameter = ShowVoice.Last().GetAudioFilePath();
 
-        //private void FinishedPlay(object s,EventArgs e)
-        //{
+                //var path=ShowVoice.Last().GetAudioFilePath();
+                //ImgPlayer.CommandParameter = ShowVoice.Last();
+                //Vm.MyMessage.Add(itm);
+                //messagelayout.Children.Add(f);
 
-        //}
+                //string m = "s";
+                //Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{m}.wav");
 
-        private async void TapGestureRecognizer_oppenCamera(object sender, EventArgs e)
-        {
-            await TakePhotoAsync();
-            CreateImageMessage();
-        }
-
-        async Task TakePhotoAsync()
-        {
-            try
-            {
-                var photo = await MediaPicker.CapturePhotoAsync();
-                await LoadPhotoAsync(photo);
-                Console.WriteLine($"CapturePhotoAsync COMPLETED: {sourseImage}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
-            }
-        }
-        string sourseImage;
-        private async Task LoadPhotoAsync(FileResult photo)
-        {
-            // canceled
-            if (photo == null)
-            {
-                sourseImage = null;
-                return;
-            }
-            // save the file into local storage
-            var newFile = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
-            using (var stream = await photo.OpenReadAsync())
-            using (var newStream = File.OpenWrite(newFile))
-                await stream.CopyToAsync(newStream);
-
-            sourseImage = newFile;
-        }
-        public void CreateImageMessage()
-        {
-            ImageButton CameraImage = new ImageButton
-            {
-                Margin = new Thickness(1),
-                Padding = new Thickness(0),
-                VerticalOptions = LayoutOptions.Fill,
-                HorizontalOptions = LayoutOptions.Fill,
-                BackgroundColor = Color.Transparent
-            };
-            Frame f = new Frame
-            {
-                CornerRadius = 10,
-                Padding = new Thickness(0),
-                Content = CameraImage
-            };
-            var itm = new MessageItem
-            {
-                Text = messageEntry.Text,
-                Time = DateTime.Now,
-                To = "1",
-                From = "2",
-                IsMessageYours = sw.IsToggled,
-            };
-            if (itm.IsMessageYours)
-            {
-                f.BackgroundColor = Color.FromHex("#1A1C23");
-                f.Margin = new Thickness(5, 0, 70, 0);
+                //ImgPlayer.CommandParameter = ShowVoice.Last().GetAudioFilePath();
+                //audioPlayer.Play(audioRecorderService.GetAudioFilePath());
             }
             else
             {
-                f.Margin = new Thickness(70, 0, 5, 0);
-                f.BackgroundColor = Color.FromHex("#8D8D8D");
+
+                await voicefrm.ScaleTo(1.3, 100);
+                voicefrm.BackgroundColor = Color.White;
+                ShowVoice.Add(new AudioRecorderService());
+                string m = "s";
+                m += ShowVoice.Count();
+                ShowVoice.Last().FilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{m}.wav");
+                await ShowVoice.Last().StartRecording();
             }
-            CameraImage.Source = sourseImage;
-            Vm.MyMessage.Add(itm);
-            messagelayout.Children.Add(f);
+
+        }
+
+        // *************************************************************************//
+
+        // Show and Play the voice ************************************************//
+        private void test(object sender, EventArgs e)
+        {
+            var t = sender as ImageButton;
+            var voice = (string)t.CommandParameter;
+            
+            audioPlayer.Play(voice);
+        }
+
+        //***********************************************************************//
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

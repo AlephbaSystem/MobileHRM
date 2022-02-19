@@ -110,8 +110,9 @@ namespace MobileHRM.Views
                 }
                 Vm.MyMessage.Add(itm);
                 StacklayoutMsg.Children.Add(f);
-                ImgPlayer.CommandParameter = ShowVoice.Last();
-                audioPlayer.Play(audioRecorderService.GetAudioFilePath());
+                ImgPlayer.CommandParameter = ShowVoice.Add(new AudioRecorderService().GetAudioFilePath());
+                //ImgPlayer.CommandParameter = ShowVoice.Last().GetAudioFilePath();
+                //audioPlayer.Play(audioRecorderService.GetAudioFilePath());
             }
             else
             {
@@ -127,7 +128,7 @@ namespace MobileHRM.Views
         {
             var t = sender as ImageButton;
             var voice = (AudioRecorderService)t.CommandParameter;
-            audioPlayer.Play(voice.GetAudioFilePath());
+            audioPlayer.Play(voice);
         }
     }
 }

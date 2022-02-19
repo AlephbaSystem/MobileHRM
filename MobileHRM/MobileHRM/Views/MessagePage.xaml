@@ -70,7 +70,7 @@
                            BackgroundColor="#272B35"
                            CornerRadius="30">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_oppenCamera"/>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                         </Frame.GestureRecognizers>
                         <Image Grid.Column="0" Source="finalCamera.png"
                                HeightRequest="20"
@@ -83,7 +83,7 @@
                            CornerRadius="30"
                            x:Name="voicefrm">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_voiceRecorder" />
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_recorder" />
                         </Frame.GestureRecognizers>
                         <Image x:Name="AudioImg" Grid.Column="1" Source="Vectormicro.png"
                            VerticalOptions="Center"
@@ -91,7 +91,7 @@
                     </Frame>
                     <Frame Grid.Column="3" Padding="0" BackgroundColor="#272B35" CornerRadius="30">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_sendMessage" />
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                         </Frame.GestureRecognizers>
                         <Image Grid.Column="3" Source="VectorarrowSend.png"
                                Margin="5,0,0,0"
