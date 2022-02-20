@@ -4,11 +4,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileHRM.Views.CameraViews">
     <ContentPage.Content>
-        <Grid ColumnDefinitions="*,*,*,*,*">
+        <Grid RowDefinitions="8*,*,*" BackgroundColor="#1A1C23">
             
             <xct:CameraView
-                Grid.Column="0"
-                Grid.ColumnSpan="5"
+               Margin="0"
+                Grid.Row="0"
+                Grid.RowSpan="2"
                 x:Name="xctCameraView"
                 CaptureMode="Photo"
                 MediaCaptured="MediaCaptured"
@@ -20,44 +21,56 @@
 
             </xct:CameraView>
 
-
+            <StackLayout Grid.Row="1"
+                Orientation="Horizontal" VerticalOptions="End"
+                         Margin="0">
                 <Slider
-                    Grid.Column="4"
+                    
                     Minimum="0.99"
                     Maximum="10"
-                    Rotation="-90"
+                    HeightRequest="20"
                     x:Name="zoomslider"
                     Margin="0"
-                    WidthRequest="1000"
-                    VerticalOptions="Fill"
-                    HorizontalOptions="EndAndExpand"
+                    WidthRequest="350"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
                     
                     />
+                <Label BindingContext="{x:Reference Name=zoomslider}"
+                        Text ="{Binding Path=Value, StringFormat='{0:#,#.0}'}"
+                           TextColor="Red" FontSize="14" HorizontalOptions="Center" />
 
-            <StackLayout VerticalOptions="EndAndExpand" Spacing="2" Padding="6"
-                         Grid.Column="0"
-                         Grid.ColumnSpan="5">
-                <Label Text="Video Mode" TextColor="White" FontSize="14" VerticalOptions="Center"/>
-                <StackLayout Orientation="Horizontal">
-                    <Switch Toggled="Switch_Toggled" x:Name="switchMode" VerticalOptions="Center"/>
-                    <Switch Toggled="switchCam_Toggled" x:Name="switchCam" VerticalOptions="Center"/>
-                    <Label BindingContext="{x:Reference Name=zoomslider}"
-                        Text ="{Binding Path=Value}"
-                           TextColor="Red" FontSize="14" HorizontalOptions="EndAndExpand" 
-                           VerticalOptions="Center"/>
-                  
-                </StackLayout>
-                <Button Text="Capture" Clicked="CaptureImage" x:Name="captureBtn"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="5"/>
-                <StackLayout Orientation="Horizontal"
-                             Grid.Column="0"
-                             Grid.ColumnSpan="5">
-                    <Button Text="Record Video" Clicked="RecordVideo" IsEnabled="false" x:Name="btnrecordVideo" 
-                            HorizontalOptions="FillAndExpand"/>
-                    <Button Text="Stop Video" Clicked="StopVideo" IsEnabled="False" x:Name="btnstopVideo" 
-                            VerticalOptions="EndAndExpand"  HorizontalOptions="FillAndExpand"/>
-                </StackLayout>
+            </StackLayout>
+
+
+
+
+            <StackLayout VerticalOptions="EndAndExpand" Spacing="2" Padding="10"
+                         Margin="0"
+                         BackgroundColor="#1A1C23"
+                         Grid.Row="2">
+                
+                
+                
+                <Grid ColumnDefinitions="*,*,*"
+                      >
+                    <ImageButton x:Name="RecImgBtn" 
+                                Grid.Column="0" 
+                                 Source="rec.png" 
+                                 Clicked="RecordVideo" 
+                                 BackgroundColor="Transparent"
+                                 
+                                 HeightRequest="5"/>
+                    <ImageButton Grid.Column="1" 
+                                 Source="cam.png" 
+                                 Clicked="CaptureImage" 
+                                 
+                                 BackgroundColor="Transparent"/>
+                    <ImageButton Grid.Column="2" 
+                                 Source="switchCam.png" 
+                                 Clicked="switchCam" 
+                                 BackgroundColor="Transparent"/>
+                </Grid>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

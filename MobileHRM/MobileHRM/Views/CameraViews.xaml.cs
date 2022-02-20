@@ -12,49 +12,40 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CameraViews : ContentPage
     {
+        private bool isRecording{ set; get; }
         public CameraViews()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false); 
+            NavigationPage.SetHasNavigationBar(this, false);
+            isRecording = false;
             
         }
 
         private void CaptureImage(object sender, EventArgs e)
         {
+            xctCameraView.CaptureMode = CameraCaptureMode.Photo;
             xctCameraView.Shutter();
         }
         private void RecordVideo(object sender, EventArgs e)
         {
-            xctCameraView.Shutter();
-            btnrecordVideo.IsEnabled = false;
-            btnstopVideo.IsEnabled = true;
-        }
-        private void StopVideo(object sender, EventArgs e)
-        {
-            xctCameraView.Shutter();
-            btnrecordVideo.IsEnabled = true;
-            btnstopVideo.IsEnabled = false;
-        }
-
-        private void Switch_Toggled(object sender, ToggledEventArgs e)
-        {
-            if (xctCameraView.CaptureMode == CameraCaptureMode.Photo)
+            if (!isRecording)
             {
                 xctCameraView.CaptureMode = CameraCaptureMode.Video;
-
-                captureBtn.IsEnabled = false;
-                btnrecordVideo.IsEnabled = true;
-                btnstopVideo.IsEnabled = false;
+                isRecording = true;
+                RecImgBtn.Source = "stopRec.png";
             }
             else
             {
-                xctCameraView.CaptureMode = CameraCaptureMode.Photo;
+                isRecording = false;
+                RecImgBtn.Source = "rec.png";
 
-                captureBtn.IsEnabled = true;
-                btnrecordVideo.IsEnabled = false;
-                btnstopVideo.IsEnabled = false;
+
             }
+            xctCameraView.Shutter();
         }
+        
+
+        
 
         private async void MediaCaptured(object sender, MediaCapturedEventArgs e)
         {
@@ -79,12 +70,9 @@ namespace MobileHRM.Views
 
         }
 
-        private void CloseImageView(object sender, EventArgs e)
-        {
-            //imgViewPanel.IsVisible = false;
-        }
+     
 
-        private void switchCam_Toggled(object sender, ToggledEventArgs e)
+        private void switchCam(object sender, EventArgs e)
         {
             if (xctCameraView.CameraOptions == CameraOptions.Back)
                 xctCameraView.CameraOptions = CameraOptions.Front;
@@ -93,6 +81,5 @@ namespace MobileHRM.Views
 
             zoomslider.Maximum = xctCameraView.MaxZoom;
         }
-
     }
 }
