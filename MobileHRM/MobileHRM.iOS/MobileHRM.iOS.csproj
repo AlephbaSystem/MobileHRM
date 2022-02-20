@@ -169,4 +169,16 @@
   <ItemGroup>
     <BundleResource Include="Resources\warnIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\stopRec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\switchCam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cam.png" />
+  </ItemGroup>
 </Project>
