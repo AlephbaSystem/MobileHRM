@@ -10,7 +10,7 @@ namespace MobileHRM
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new Views.KnowledgePage();
         }
 
         protected override void OnStart()
