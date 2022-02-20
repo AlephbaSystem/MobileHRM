@@ -7,70 +7,10 @@
              BackgroundColor="#1A1C23"
              x:Class="MobileHRM.Views.chatPage">
     <ContentView.Content>
-        <Grid BackgroundColor="#1A1C23" RowDefinitions="1.5*,0.8*,6*">
-            <StackLayout Orientation="Horizontal"
-                         Grid.Row="0"
-                         Margin="20,0">
-                <ImageButton Source="VectorarrowLeft.png" 
-                       HeightRequest="25"
-                       WidthRequest="25"
-                             BackgroundColor="Transparent"/>
-                <Frame CornerRadius="50"
-                       HeightRequest="50"
-                       WidthRequest="50"
-                       VerticalOptions="Center"
-                       HorizontalOptions="EndAndExpand"
-                       BackgroundColor="#272B35"
-                       x:Name="NotificationFrame"
-                       Padding="0">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnTabNotification"/>
-                    </Frame.GestureRecognizers>
-                    <Image BackgroundColor="#272B35"
-                                             Margin="10"
-                                         Source="Notification.png"/>
-                </Frame>
-                <Frame CornerRadius="50"
-                       HeightRequest="50"
-                       WidthRequest="50"
-                       VerticalOptions="Center"
-                       HorizontalOptions="End"
-                       BackgroundColor="#272B35"
-                       Padding="0">
-                    <Image BackgroundColor="#272B35"
-                           Margin="-2"
-                                         Source="userImage.png"/>
-                </Frame>
-            </StackLayout>
-            <sh:Shadows Padding="0"
-                        Grid.Row="1"
-                        CornerRadius="5"
-                        Margin="10">
-                <sh:Shadows.Shades>
-                    <sh:ImmutableShades>
-                        <sh:Shade BlurRadius="10"
-                                  Opacity="0.3"
-                                  Offset="0,5"
-                                  Color="White" />
-                    </sh:ImmutableShades>
-                </sh:Shadows.Shades>
-                <Frame Padding="0" 
-                       BackgroundColor="#FFFFFF"
-                       CornerRadius="5"
-                       HeightRequest="70"
-                       Margin="10,0">
-                    <Grid ColumnDefinitions="0.5*,8*,2*">
-                        <customEntry:CustomEntry Grid.Column="1" Placeholder="Search"/>
-                        <Image Grid.Column="2"
-                               Margin="10"
-                               Source="Search.png"/>
-                    </Grid>
-                </Frame>
-            </sh:Shadows>
+        <Grid BackgroundColor="#1A1C23">
             <Frame Padding="0"
                    CornerRadius="11"
                    BackgroundColor="Transparent"
-                   Grid.Row="2"
                    VerticalOptions="EndAndExpand"
                    Margin="10,10,10,40">
                 <ScrollView Padding="0">

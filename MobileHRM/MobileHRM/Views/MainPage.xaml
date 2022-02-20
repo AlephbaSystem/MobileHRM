@@ -31,6 +31,7 @@
 				        TextColor="{TemplateBinding CurrentTextColor}" />
                 </Grid>
             </ControlTemplate>
+            
             <ControlTemplate x:Key="FabTabItemTemplate">
                 <Grid RowDefinitions="*,8*,*">
                     <ImageButton
@@ -63,53 +64,35 @@
 			        Property="TextColorSelected"
 			        Value="White" />
             </Style>
-
         </ResourceDictionary>
     </ContentPage.Resources>
 
-
     <ContentPage.Content>
-            <xct:TabView  
-                IsSwipeEnabled="False"
-                Padding="0,0,0,10"
-                TabContentBackgroundColor="#1A1C23"
-                BackgroundColor="#272B35"
-                x:Name="TabPages"
-                TabStripPlacement="Bottom"
-                IsTabTransitionEnabled="True">
-
-                <xct:TabViewItem
-                    Text="DASHBOARD"  
-                    Icon="Dashboard.png"
-                    ControlTemplate="{StaticResource TabItemTemplate}"
-                    TabTapped="TabViewItem_TabTapped"
-                    Style="{StaticResource TabItemStyle}">
-                    
-                    <Grid BackgroundColor="#1A1C23" RowDefinitions="2*,0.8*,6*">
-                    <StackLayout Orientation="Horizontal" Grid.Row="0">
-                        <Grid RowDefinitions="Auto,Auto" RowSpacing="0">
-                            <Label Text="Hi, User 01"
+        <StackLayout>
+            <Grid RowDefinitions="2*,*,10*">
+                <Grid Grid.Row="0" ColumnDefinitions="*,*" VerticalOptions="Start" x:Name="gridHeaderParent" Padding="20,30,0,0">
+                    <StackLayout
+                          x:Name="gridUserHeader"
+                          Grid.Column="0">
+                        <Label Text="Hi, User 01"
                                        TextColor="White"
                                        VerticalOptions="EndAndExpand"
-                                       FontSize="Large"
-                                       Grid.Row="0"
-                                       Margin="20,30,0,0"/>
+                                       FontSize="Large"/>
 
-                            <Label Text="Good afternoon"
+                        <Label Text="Good afternoon"
                                    TextColor="White"
-                                       Grid.Row="2"
                                    VerticalOptions="StartAndExpand"
-                                   FontSize="Large"
-                                   Margin="20,0,0,0"/>
-                        </Grid>
+                                   FontSize="Large"/>
+                    </StackLayout>
+                    <Grid Grid.Column="1" ColumnDefinitions="*,*,*">
                         <Frame CornerRadius="50"
+                               Grid.Column="1"
                                x:Name="NotificationFrame"
                                HeightRequest="50"
                                BackgroundColor="#272B35"
                                WidthRequest="50"
-                               VerticalOptions="Start"
-                               Margin="0,20,10,0"
-                               HorizontalOptions="EndAndExpand"
+                               VerticalOptions="Center"
+                               Margin="0,10,10,0"
                                Padding="0">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnTabNotification"/>
@@ -118,65 +101,81 @@
                                              Margin="10"
                                          Source="Notification.png"/>
                         </Frame>
-                        <Frame CornerRadius="50"
+                        <Frame CornerRadius="50" 
+                               Grid.Column="2"
+                               BorderColor="#7B61FF"  
+                               TranslationX="-5"
                                HeightRequest="50"
                                WidthRequest="50"
-                               VerticalOptions="Start"
-                                   Margin="0,20,20,0"
-                               HorizontalOptions="End"
-                               BackgroundColor="#272B35"
+                               VerticalOptions="Center"
+                               Margin="0,10,10,0"
                                Padding="0">
                             <Image BackgroundColor="#272B35"
                                          Source="userImage.png"/>
                         </Frame>
-                    </StackLayout>
+                    </Grid>
 
-                    <sh:Shadows Grid.Row="1"
-                                Padding="0"
-                                VerticalOptions="Start"
-                                CornerRadius="5"
-                                Margin="10,0,10,10">
-                        <sh:Shadows.Shades>
-                            <sh:ImmutableShades>
-                                <sh:Shade BlurRadius="10"
+                </Grid>
+                
+                <sh:Shadows Padding="0"
+                        Grid.Row="1"
+                        VerticalOptions="Start"
+                        CornerRadius="5"
+                        Margin="10,0,10,10">
+                    <sh:Shadows.Shades>
+                        <sh:ImmutableShades>
+                            <sh:Shade BlurRadius="10"
                                           Opacity="0.3"
                                           Offset="0,5"
                                           Color="White" />
-                            </sh:ImmutableShades>
-                        </sh:Shadows.Shades>
-                        <Frame Padding="0" 
+                        </sh:ImmutableShades>
+                    </sh:Shadows.Shades>
+                    <Frame Padding="0" 
                                BackgroundColor="#FFFFFF"
                                CornerRadius="5"
                                HeightRequest="70"
                                Margin="10,0">
-                            <Grid ColumnDefinitions="0.5*,8*,2*">
-                                <entryCustom:CustomEntry Grid.Column="1" Placeholder="Search"/>
-                                <Image Grid.Column="2"
+                        <Grid ColumnDefinitions="0.5*,8*,2*">
+                            <entryCustom:CustomEntry Grid.Column="1" Placeholder="Search"/>
+                            <Image Grid.Column="2"
                                        Margin="10"
                                        Source="Search.png"/>
-                            </Grid>
-                        </Frame>
-                    </sh:Shadows>
+                        </Grid>
+                    </Frame>
+                </sh:Shadows>
+                
+                <xct:TabView Grid.Row="2" 
+                         IsSwipeEnabled="False"
+                         Padding="0,0,0,10"
+                         TabContentBackgroundColor="#1A1C23"
+                         BackgroundColor="#272B35"
+                         x:Name="TabPages"
+                         TabStripPlacement="Bottom"
+                         IsTabTransitionEnabled="True">
 
-                    <Frame Grid.Row="2"
-                           Padding="0"
-                           CornerRadius="11"
-                           BackgroundColor="Transparent"
-                           Margin="10,0,10,40">
-                    <ScrollView Padding="0">
-                        <StackLayout Spacing="10">
+                    <xct:TabViewItem Text="DASHBOARD" 
+                                     x:Name="DashboardTabItem"
+                                 Icon="Dashboard.png"
+                                 ControlTemplate="{StaticResource TabItemTemplate}"
+                                 TabTapped="DashboardTabTapped"
+                                 Style="{StaticResource TabItemStyle}">
 
+                        <Grid BackgroundColor="#1A1C23">
                             <Frame Padding="0"
+                               CornerRadius="11"
+                               BackgroundColor="Transparent"
+                               Margin="10,0,10,40">
+                                <ScrollView Padding="0">
+                                    <StackLayout Spacing="10">
+
+                                        <Frame Padding="0"
                                Margin="1"
                                BackgroundColor="#272B35"
                                CornerRadius="11">
-                                <Grid RowDefinitions="0.5*, 2*, 0.2*, 2*, 0.5*">
-                                    <Grid Grid.Row="1" ColumnDefinitions="3*,0*,10*" 
+                                            <Grid RowDefinitions="0.5*, 2*, 0.2*, 2*, 0.5*">
+                                                <Grid Grid.Row="1" ColumnDefinitions="3*,0*,10*" 
                                           x:Name="PunchInGrid">
-                                        <Grid.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="PunchInTabGesture"/>
-                                        </Grid.GestureRecognizers>
-                                        <Frame CornerRadius="50"
+                                                    <Frame CornerRadius="50"
                                        Grid.Column="0"
                                        HeightRequest="50"
                                        BackgroundColor="#1C1F26"
@@ -185,20 +184,17 @@
                                        HorizontalOptions="End"
                                        Margin="0"
                                        Padding="0">
-                                            <Image BackgroundColor="#1C1F26"
+                                                        <Image BackgroundColor="#1C1F26"
                                              Margin="10"
                                          Source="punchIn.png"/>
-                                        </Frame>
-                                        <StackLayout Grid.Column="2" Padding="5" Spacing="0">
-                                            <Label Text="Not yut" VerticalOptions="Start" TextColor="#CCCCCC"/>
-                                            <Label Text="Punch in time" VerticalOptions="End" TextColor="#8D8D8D"/>
-                                        </StackLayout>
-                                    </Grid>
-                                    <Grid Grid.Row="3" ColumnDefinitions="3*,0*,10*">
-                                        <Grid.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="PunchOutTabGesture"/>
-                                        </Grid.GestureRecognizers>
-                                        <Frame CornerRadius="50"                                              
+                                                    </Frame>
+                                                    <StackLayout Grid.Column="2" Padding="5" Spacing="0">
+                                                        <Label Text="Not yut" VerticalOptions="Start" TextColor="#CCCCCC"/>
+                                                        <Label Text="Punch in time" VerticalOptions="End" TextColor="#8D8D8D"/>
+                                                    </StackLayout>
+                                                </Grid>
+                                                <Grid Grid.Row="3" ColumnDefinitions="3*,0*,10*">
+                                                    <Frame CornerRadius="50"                                              
                                                Grid.Column="0"
                                                HeightRequest="50"
                                                BackgroundColor="#1C1F26"
@@ -207,67 +203,67 @@
                                                HorizontalOptions="End"
                                                Margin="0"
                                                Padding="0">
-                                            <Image BackgroundColor="#1C1F26"
+                                                        <Image BackgroundColor="#1C1F26"
                                                          Margin="10"
                                                          Source="punchOut.png"/>
+                                                    </Frame>
+                                                    <StackLayout Grid.Column="2" Padding="5" Spacing="0">
+                                                        <Label Text="Not yut" VerticalOptions="Start" TextColor="#CCCCCC"/>
+                                                        <Label Text="Punch out time" VerticalOptions="End" TextColor="#8D8D8D"/>
+                                                    </StackLayout>
+                                                </Grid>
+                                            </Grid>
                                         </Frame>
-                                        <StackLayout Grid.Column="2" Padding="5" Spacing="0">
-                                            <Label Text="Not yut" VerticalOptions="Start" TextColor="#CCCCCC"/>
-                                            <Label Text="Punch out time" VerticalOptions="End" TextColor="#8D8D8D"/>
-                                        </StackLayout>
-                                    </Grid>
-                                </Grid>
-                            </Frame>
-                            <Frame Padding="0"
+                                        <Frame Padding="0"
                                Margin="1"
                                BackgroundColor="#272B35"
                                CornerRadius="11">
-                                <Grid RowDefinitions="0.1*, *, 2*,0.3*">
-                                    <Label Grid.Column="0"
+                                            <Grid RowDefinitions="0.1*, *, 2*,0.3*">
+                                                <Label Grid.Column="0"
                                        Grid.Row="1"
                                        Margin="23,0,0,0"
                                        VerticalOptions="Center"
                                        TextColor="#CCCCCC"
                                        Text="Monthly time"/>
 
-                                    <Grid Grid.Row="2" ColumnDefinitions="3*,0*,10*">
+                                                <Grid Grid.Row="2" ColumnDefinitions="3*,0*,10*">
 
-                                        <Frame CornerRadius="50"
-                                               Grid.Column="0"
-                                               HeightRequest="50"
-                                               BackgroundColor="#1C1F26"
-                                               WidthRequest="50"
-                                               VerticalOptions="Start"
-                                               HorizontalOptions="End"
-                                               Margin="0"
-                                               Padding="0">
-                                            <Image BackgroundColor="#1C1F26"
+                                                    <Frame CornerRadius="4"
+                                                           Grid.Column="0"
+                                                           HeightRequest="50"
+                                                           BackgroundColor="#1C1F26"
+                                                           WidthRequest="50"
+                                                           VerticalOptions="Start"
+                                                           HorizontalOptions="End"
+                                                           Margin="0"
+                                                           Padding="0">
+                                                        <Image BackgroundColor="#1C1F26"
                                                          Margin="10"
                                                          Source="timeWhite.png"/>
+                                                    </Frame>
+                                                    <Grid Grid.Column="2" Padding="5" RowDefinitions="Auto,Auto,0,Auto">
+                                                        <Label Text="60 h" TextColor="#8D8D8D" Grid.Row="0"/>
+                                                        <Label Text="Total schedule time" TextColor="#8D8D8D" Grid.Row="1"/>
+                                                        <Label Text="Over time - 0 m" TextColor="#8D8D8D" Grid.Row="3"/>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
                                         </Frame>
-                                        <Grid Grid.Column="2" Padding="5" RowDefinitions="Auto,Auto,0,Auto">
-                                            <Label Text="60 h" TextColor="#8D8D8D" Grid.Row="0"/>
-                                            <Label Text="Total schedule time" TextColor="#8D8D8D" Grid.Row="1"/>
-                                            <Label Text="Over time - 0 m" TextColor="#8D8D8D" Grid.Row="3"/>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Frame>
-                            <Frame Padding="0"
+                                        <Frame Padding="0"
                                Margin="1"
                                BackgroundColor="#272B35"
                                CornerRadius="11">
-                                    <Grid RowDefinitions="0.1*, *, 2*,0.3*">
-                                        <Label Grid.Column="0"
+                                            <Grid RowDefinitions="0.1*, *, 2*,0.3*">
+                                                <Label Grid.Column="0"
                                        Grid.Row="1"
                                        Margin="23,0,0,0"
                                        VerticalOptions="Center"
                                        TextColor="#CCCCCC"
                                        Text="Monthly time"/>
 
-                                        <Grid Grid.Row="2" ColumnDefinitions="3*,0*,10*">
+                                                <Grid Grid.Row="2" ColumnDefinitions="3*,0*,10*">
 
-                                            <Frame CornerRadius="50"
+                                                    <Frame CornerRadius="4"
                                                Grid.Column="0"
                                                HeightRequest="50"
                                                BackgroundColor="#1C1F26"
@@ -276,75 +272,60 @@
                                                HorizontalOptions="End"
                                                Margin="0"
                                                Padding="0">
-                                                <Image BackgroundColor="#1C1F26"
+                                                        <Image BackgroundColor="#1C1F26"
                                                          Margin="10"
                                                          Source="userWhite.png"/>
-                                            </Frame>
-                                            <Grid Grid.Column="2" Padding="5" RowDefinitions="Auto,Auto,0,Auto">
-                                                <Label Text="60 h" TextColor="#8D8D8D" Grid.Row="0"/>
-                                                <Label Text="Total schedule time" TextColor="#8D8D8D" Grid.Row="1"/>
-                                                <Label Text="Over time - 0 m" TextColor="#8D8D8D" Grid.Row="3"/>
+                                                    </Frame>
+                                                    <Grid Grid.Column="2" Padding="5" RowDefinitions="Auto,Auto,0,Auto">
+                                                        <Label Text="60 h" TextColor="#8D8D8D" Grid.Row="0"/>
+                                                        <Label Text="Total schedule time" TextColor="#8D8D8D" Grid.Row="1"/>
+                                                        <Label Text="Over time - 0 m" TextColor="#8D8D8D" Grid.Row="3"/>
+                                                    </Grid>
+                                                </Grid>
                                             </Grid>
-                                        </Grid>
-                                    </Grid>
-                                </Frame>
+                                        </Frame>
 
-                            </StackLayout>
-                    </ScrollView>
-                    </Frame>
-                </Grid>
-                </xct:TabViewItem>
+                                    </StackLayout>
+                                </ScrollView>
+                            </Frame>
+                        </Grid>
+                    </xct:TabViewItem>
 
+                    <xct:TabViewItem Text="TIME"  
+                                     Icon="Time.png"
+                                     ControlTemplate="{StaticResource TabItemTemplate}"
+                                     Style="{StaticResource TabItemStyle}" 
+                                     TabTapped="PageWithBackButton"/>
 
-                <xct:TabViewItem
-                    Text="TIME"  
-                    Icon="Time.png"
-                    ControlTemplate="{StaticResource TabItemTemplate}"
-                    Style="{StaticResource TabItemStyle}" 
-                    TabTapped="TabViewItem_TabTapped"/>
-
-                <xct:TabViewItem                                        
+                    <xct:TabViewItem                                        
                     Icon="Word.png"
                     ControlTemplate="{StaticResource FabTabItemTemplate}"
                     Style="{StaticResource TabItemStyle}"
-                    TabTapped="TabViewItem_TabTapped">
+                    TabTapped="ShowPopupPunchIn"/>
 
-                    <Grid BackgroundColor="LightYellow">
-                        <Label    
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
-                            Text="TabContent3" />
-                    </Grid>
-                </xct:TabViewItem>
-
-
-                <xct:TabViewItem
+                    <xct:TabViewItem
                     Text="TASK"  
                     Icon="Task.png"
                     ControlTemplate="{StaticResource TabItemTemplate}"
                     Style="{StaticResource TabItemStyle}"
                     TabTapped="TabViewItem_TabTapped">
-                    <Grid BackgroundColor="CadetBlue">
-                        <Label    
+                        <Grid BackgroundColor="CadetBlue">
+                            <Label    
                             HorizontalOptions="Center"
                             VerticalOptions="Center"
                             Text="TabContent3" />
-                    </Grid>
-                </xct:TabViewItem>
-                <xct:TabViewItem
+                        </Grid>
+                    </xct:TabViewItem>
+                    
+                    <xct:TabViewItem
                     Text="CHAT"  
                     Icon="Settings.png"
                     ControlTemplate="{StaticResource TabItemTemplate}"
                     Style="{StaticResource TabItemStyle}"
-                    TabTapped="TabViewItem_TabTapped">
-                    <Grid BackgroundColor="LightCoral">
-                        <Label    
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
-                            Text="TabContent3" />
-                    </Grid>
-                </xct:TabViewItem>
-            </xct:TabView>
-    </ContentPage.Content>
+                    TabTapped="PageWithBackButton"/>
+                </xct:TabView>
+            </Grid>
+        </StackLayout>
 
+    </ContentPage.Content>
 </ContentPage>

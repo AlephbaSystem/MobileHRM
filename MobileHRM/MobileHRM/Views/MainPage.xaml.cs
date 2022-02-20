@@ -2,8 +2,10 @@
 using System;
 using System.ComponentModel;
 using Xamarin.Forms;
+using System.Linq;
 using MobileHRM.Views;
 using Xamarin.CommunityToolkit.UI.Views;
+using System.Threading.Tasks;
 
 namespace MobileHRM
 {
@@ -16,38 +18,8 @@ namespace MobileHRM
         {
             InitializeComponent();
 
-            TabPages.TabItems[1].Content = new chatPage();
-
-        }
-
-        private void OnFabTabTapped(object sender, Xamarin.CommunityToolkit.UI.Views.TabTappedEventArgs e)
-        {
-
-        }
-
-        private async void PunchInTabGesture(object sender, EventArgs e)
-        {
-            if (!IsBusy)
-            {
-                IsBusy = true;
-                Animation animation = new Animation(v => PunchInGrid.Scale = v, 0.8, 1.3, Easing.SinInOut);
-                animation.Commit(PunchInGrid, "animate", 20, 200, Easing.SinIn);
-                await PunchInGrid.ScaleTo(1, 200, Easing.SinIn);
-                await PopupNavigation.Instance.PushAsync(new Views.Popup.PunchIn());
-                IsBusy = false;
-
-            }
-        }
-
-        private void PunchOutTabGesture(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void TabView_Scrolled(object sender, ItemsViewScrolledEventArgs e)
-        {
-
+            TabPages.TabItems[4].Content = new chatPage();
+            TabPages.TabItems[1].Content= new TasksCalendarPage();
         }
 
         private async void OnTabNotification(object sender, EventArgs e)
@@ -60,8 +32,6 @@ namespace MobileHRM
                 await PopupNavigation.Instance.PushAsync(new Views.Popup.Notifications());
                 IsBusy = false;
                 await NotificationFrame.ScaleTo(1, 200, Easing.SinIn);
-                //string music;
-                // Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{music}.wav");
             }
         }
 
@@ -72,6 +42,52 @@ namespace MobileHRM
             animation.Commit(tabView, "animate", 20, 200, Easing.SinIn);
 
             await tabView.ScaleTo(1, 200, Easing.SinIn);
+        }
+
+        private async void DashboardTabTapped(object sender, TabTappedEventArgs e)
+        {
+            TabViewItem tabView = (TabViewItem)sender;
+            Animation animation = new Animation(v => tabView.Scale = v, 0.8, 1.3, Easing.SinInOut);
+            animation.Commit(tabView, "animate", 20, 200, Easing.SinIn);
+
+            await tabView.ScaleTo(1, 200, Easing.SinIn);
+            gridHeaderParent.Children.Remove(ImageButtonArrowLeft);
+            gridUserHeader.IsVisible = true;
+        }
+
+        ImageButton ImageButtonArrowLeft = new ImageButton
+        {
+            Source = "VectorarrowLeft.png",
+            HeightRequest = 25,
+            WidthRequest = 25,
+            VerticalOptions = LayoutOptions.Center,
+            HorizontalOptions = LayoutOptions.Start,
+            BackgroundColor = Color.Transparent,
+        };
+
+        private async void PageWithBackButton(object sender, TabTappedEventArgs e)
+        {
+            TabViewItem tabView = (TabViewItem)sender;
+            Animation animation = new Animation(v => tabView.Scale = v, 0.8, 1.3, Easing.SinInOut);
+            animation.Commit(tabView, "animate", 20, 200, Easing.SinIn);
+            await tabView.ScaleTo(1, 200, Easing.SinIn);
+
+            gridUserHeader.IsVisible = false;
+            gridHeaderParent.Children.Add(ImageButtonArrowLeft);
+        }
+
+        private async void ShowPopupPunchIn(object sender, TabTappedEventArgs e)
+        {
+            if (!IsBusy)
+            {
+                IsBusy = true;
+                TabViewItem tabView = (TabViewItem)sender;
+                Animation animation = new Animation(v => tabView.Scale = v, 0.8, 1.3, Easing.SinInOut);
+                animation.Commit(tabView, "animate", 20, 200, Easing.SinIn);
+                await tabView.ScaleTo(1, 200, Easing.SinIn);
+                await PopupNavigation.Instance.PushAsync(new Views.Popup.PunchIn());
+                IsBusy = false;
+            }
         }
     }
 }
