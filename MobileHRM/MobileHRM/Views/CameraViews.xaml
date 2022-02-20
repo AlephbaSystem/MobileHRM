@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" Title="Camera View"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileHRM.Views.CameraViews">
+    <ContentPage.Content>
+        <Grid RowDefinitions="8*,*,*" BackgroundColor="#1A1C23">
+            
+            <xct:CameraView
+               Margin="0"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                x:Name="xctCameraView"
+                CaptureMode="Photo"
+                MediaCaptured="MediaCaptured"
+                HorizontalOptions="FillAndExpand"
+                CameraOptions="Back"
+                BindingContext="{x:Reference Name=zoomslider}"
+                Zoom ="{Binding Path=Value}"
+                VerticalOptions="FillAndExpand">
+
+            </xct:CameraView>
+
+            <StackLayout Grid.Row="1"
+                Orientation="Horizontal" VerticalOptions="End"
+                         Margin="0">
+                <Slider
+                    
+                    Minimum="0.99"
+                    Maximum="10"
+                    HeightRequest="20"
+                    x:Name="zoomslider"
+                    Margin="0"
+                    WidthRequest="350"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    
+                    />
+                <Label BindingContext="{x:Reference Name=zoomslider}"
+                        Text ="{Binding Path=Value, StringFormat='{0:#,#.0}'}"
+                           TextColor="Red" FontSize="14" HorizontalOptions="Center" />
+
+            </StackLayout>
+
+
+
+
+            <StackLayout VerticalOptions="EndAndExpand" Spacing="2" Padding="10"
+                         Margin="0"
+                         BackgroundColor="#1A1C23"
+                         Grid.Row="2">
+                
+                
+                
+                <Grid ColumnDefinitions="*,*,*"
+                      >
+                    <ImageButton x:Name="RecImgBtn" 
+                                Grid.Column="0" 
+                                 Source="rec.png" 
+                                 Clicked="RecordVideo" 
+                                 BackgroundColor="Transparent"
+                                 
+                                 HeightRequest="5"/>
+                    <ImageButton Grid.Column="1" 
+                                 Source="cam.png" 
+                                 Clicked="CaptureImage" 
+                                 
+                                 BackgroundColor="Transparent"/>
+                    <ImageButton Grid.Column="2" 
+                                 Source="switchCam.png" 
+                                 Clicked="switchCam" 
+                                 BackgroundColor="Transparent"/>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
