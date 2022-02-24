@@ -38,19 +38,7 @@
             
             <ScrollView Grid.Row="1">                
                 <StackLayout Background="#272B35" x:Name="messagelayout" Spacing="15">
-                    
-                    <!--<BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Frame
-                                CornerRadius="20"
-                                Margin="5,0,70,0" 
-                                BackgroundColor="#1A1C23">
-                                <Label Text="{Binding Text}"
-                                       TextColor="White"
-                                       />
-                            </Frame>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>-->
+               
                 </StackLayout>
             </ScrollView>
             <Switch Grid.Row="1" x:Name="sw"  VerticalOptions="Center" HorizontalOptions="Center"/>

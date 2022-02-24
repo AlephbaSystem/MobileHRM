@@ -10,8 +10,9 @@ namespace MobileHRM
         public App()
         {
             InitializeComponent();
+            
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            MainPage = new MessagePage(); 
+            MainPage = new  NavigationPage(new Knowledge()); 
         }
 
         protected override void OnStart()

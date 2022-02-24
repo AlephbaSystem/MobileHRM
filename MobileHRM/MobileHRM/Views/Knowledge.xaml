@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:customentry="clr-namespace:MobileHRM.Controls" 
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:sh="http://sharpnado.com"
+             x:Class="MobileHRM.Views.Knowledge"
+             Background="#000000"
+             NavigationPage.HasNavigationBar="False">
+    <ContentView.Content>
+        <Grid RowDefinitions="*,1*,5*">
+            <Grid Grid.Row="0" ColumnDefinitions="*,*,3*">
+                <Grid Grid.Column="2" ColumnDefinitions="*,*,*" VerticalOptions="Center">
+
+                    <Frame Grid.Column="0" BackgroundColor="#272B35"
+                       CornerRadius="50"
+                       Padding="0"
+                       VerticalOptions="Center"
+                       Margin="12">
+                        <Image Source="Plus.png" 
+                           BackgroundColor="#272B35"
+                               Margin="10"
+                           >
+
+                        </Image>
+
+                    </Frame>
+
+                    <Frame Grid.Column="1"
+                       CornerRadius="50"
+                       Padding="0"
+                       VerticalOptions="Center"
+                       Margin="10">
+                        <Image Source="Notification2.png" 
+                           BackgroundColor="#272B35"
+                           >
+
+                        </Image>
+
+                    </Frame>
+                    <Frame Grid.Column="2"
+                       CornerRadius="50"
+                       Padding="0"
+                       VerticalOptions="Center"
+                       Margin="10">
+                        <Image Source="imageUser.png" >
+
+                        </Image>
+
+                    </Frame>
+                </Grid>
+
+                <ImageButton Grid.Column="0"
+                             Source="VectorArrow.png"
+                             VerticalOptions="Center"
+                             HorizontalOptions="CenterAndExpand"
+                             BackgroundColor="Transparent"
+                             WidthRequest="30"
+                             HeightRequest="40"
+                             />
+
+
+
+
+
+            </Grid>
+
+            <sh:Shadows x:Name="CatShadows" Grid.Row="1"
+            CornerRadius="10">
+                <sh:Shadows.Shades>
+                    <sh:ImmutableShades>
+
+                        <sh:Shade BlurRadius="10"
+                      Opacity="0.2"
+                      Offset="0,5"
+                      Color="White" />
+                    </sh:ImmutableShades>
+                </sh:Shadows.Shades>
+
+                <Frame  Padding="0" Margin="15,20,15,0"
+                        CornerRadius="5"
+                   
+                       VerticalOptions="StartAndExpand"
+                       HorizontalOptions="Fill">
+                    <Grid ColumnDefinitions="8*,2*"  HeightRequest="50"  >
+                        <customentry:CustomEntry Placeholder="Knowladge" FontSize="Small" Margin="5, 0, 0, 0"/>
+                        <Image Grid.Column="1"   
+                           Source="Search.png"
+                            Aspect="AspectFit"
+                            Margin="12"
+                            BackgroundColor="Transparent"
+                           />
+
+
+                    </Grid>
+
+                </Frame>
+            </sh:Shadows>
+            <Frame Grid.Row="2" VerticalOptions="Start" Padding="0" CornerRadius="20" BackgroundColor="Transparent" Margin="20,5">
+                <CollectionView  x:Name="Describtion">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="0" BackgroundColor="#272B35" CornerRadius="20">
+
+                                <Grid BackgroundColor="#272B35" RowDefinitions="*,1.5*,*" Margin="20,0" Padding="10">
+                                    <StackLayout Grid.Row="0" BindableLayout.ItemsSource="{Binding images}" Spacing="-25" Orientation="Horizontal" HorizontalOptions="End">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Frame Padding="1" CornerRadius="24" HeightRequest="40" WidthRequest="40" BorderColor="#7B61FF" BackgroundColor="Transparent">
+                                                    <ff:CachedImage Source="{Binding Image}" Aspect="AspectFill">
+                                                        <ff:CachedImage.Transformations>
+                                                            <ffTransformations:CircleTransformation />
+                                                        </ff:CachedImage.Transformations>
+                                                    </ff:CachedImage>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                    <Label Grid.Row="0" Text="{Binding Header}" TextColor="#CCCCCC" Margin="0,10"/>
+                                    <Label Grid.Row="1" Text="{Binding Text}" VerticalOptions="Center" TextColor="#8D8D8D"/>
+                                    <Label Grid.Row="2" Text="{Binding Sub}" HorizontalOptions="End" TextColor="#8D8D8D"/>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>
