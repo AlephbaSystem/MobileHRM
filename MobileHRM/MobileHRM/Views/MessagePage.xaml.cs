@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MobileHRM.ViewModels;
 using Plugin.AudioRecorder;
 using System.IO;
+using MobileHRM.ViewModel;
 
 namespace MobileHRM.Views
 {

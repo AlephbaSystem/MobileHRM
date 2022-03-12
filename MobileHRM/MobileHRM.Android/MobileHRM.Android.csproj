@@ -131,7 +131,6 @@
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
-    <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MobileHRM\MobileHRM.csproj">
@@ -177,9 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\playbuttonarrowhead.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\punchPut.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\VectorArrow.png" />
