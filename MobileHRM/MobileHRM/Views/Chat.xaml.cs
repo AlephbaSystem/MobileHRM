@@ -7,30 +7,29 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MobileHRM.ViewModels;
 using Plugin.AudioRecorder;
-using System.IO;
 
 namespace MobileHRM.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MessagePage : ContentPage
+    public partial class chat3 : ContentPage
     {
         public MessagesVm Vm = new MessagesVm();
         private readonly AudioRecorderService audioRecorderService = new AudioRecorderService();
         private readonly AudioPlayer audioPlayer = new AudioPlayer();
         private List<AudioRecorderService> ShowVoice = new List<AudioRecorderService>();
-        public MessagePage()
+        public chat3()
         {
             InitializeComponent();
             BindingContext = Vm;
         }
-       //Make Frame for messagae and voice  *******************************//
+
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(messageEntry.Text))
+            if (!string.IsNullOrEmpty(msgentry.Text))
             {
                 var itm = new Models.MessageItem
                 {
-                    Text = messageEntry.Text,
+                    Text = msgentry.Text,
                     Time = DateTime.Now,
                     To = "1",
                     From = "2",
@@ -41,7 +40,7 @@ namespace MobileHRM.Views
                 Vm.MyMessage.Add(itm);
             }
             Vm.MyMessage = Vm.MyMessage;
-            messageEntry.Text = "";
+            msgentry.Text = "";
 
         }
         private void MakeFrame(Models.MessageItem Msg)
@@ -65,11 +64,8 @@ namespace MobileHRM.Views
             lbl.VerticalTextAlignment = TextAlignment.Center;
             lbl.HorizontalTextAlignment = TextAlignment.Start;
             frm.Content = lbl;
-            messagelayout.Children.Add(frm);
+            StacklayoutMsg.Children.Add(frm);
         }
-        //*****************************************************************//
-
-        // Record the voice ***********************************************//
 
         private async void TapGestureRecognizer_Tapped_recorder(object sender, EventArgs e)
         {
@@ -82,21 +78,21 @@ namespace MobileHRM.Views
                 Frame f = new Frame();
                 ImageButton ImgPlayer = new ImageButton();
                 ImgPlayer.Source = "playbuttonarrowhead.png";
-                ImgPlayer.Margin = new Thickness(15);
-                ImgPlayer.Padding = new Thickness(0);
-
+                ImgPlayer.Margin= new Thickness(15);
+                ImgPlayer.Padding= new Thickness(0);
+                
                 ImgPlayer.VerticalOptions = LayoutOptions.CenterAndExpand;
                 ImgPlayer.HorizontalOptions = LayoutOptions.EndAndExpand;
                 ImgPlayer.BackgroundColor = Color.Transparent;
                 ImgPlayer.WidthRequest = 30;
                 ImgPlayer.HeightRequest = 30;
                 f.CornerRadius = 10;
-                f.Padding = new Thickness(0);
+                f.Padding= new Thickness(0);
                 ImgPlayer.Clicked += new EventHandler(test);
                 f.Content = ImgPlayer;
                 var itm = new Models.MessageItem
                 {
-                    Text = messageEntry.Text,
+                    Text = msgentry.Text,
                     Time = DateTime.Now,
                     To = "1",
                     From = "2",
@@ -112,20 +108,9 @@ namespace MobileHRM.Views
                     f.Margin = new Thickness(70, 0, 5, 0);
                     f.BackgroundColor = Color.FromHex("#8D8D8D");
                 }
-
-
                 Vm.MyMessage.Add(itm);
-                messagelayout.Children.Add(f);
-                ImgPlayer.CommandParameter = ShowVoice.Last().GetAudioFilePath();
-
-                //var path=ShowVoice.Last().GetAudioFilePath();
-                //ImgPlayer.CommandParameter = ShowVoice.Last();
-                //Vm.MyMessage.Add(itm);
-                //messagelayout.Children.Add(f);
-
-                //string m = "s";
-                //Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{m}.wav");
-
+                StacklayoutMsg.Children.Add(f);
+                ImgPlayer.CommandParameter = ShowVoice.Add(new AudioRecorderService().GetAudioFilePath());
                 //ImgPlayer.CommandParameter = ShowVoice.Last().GetAudioFilePath();
                 //audioPlayer.Play(audioRecorderService.GetAudioFilePath());
             }
@@ -135,29 +120,15 @@ namespace MobileHRM.Views
                 await voicefrm.ScaleTo(1.3, 100);
                 voicefrm.BackgroundColor = Color.White;
                 ShowVoice.Add(new AudioRecorderService());
-                string m = "s";
-                m += ShowVoice.Count();
-                ShowVoice.Last().FilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{m}.wav");
                 await ShowVoice.Last().StartRecording();
             }
 
         }
-
-        // *************************************************************************//
-
-        // Show and Play the voice ************************************************//
         private void test(object sender, EventArgs e)
         {
             var t = sender as ImageButton;
-            var voice = (string)t.CommandParameter;
-            
+            var voice = (AudioRecorderService)t.CommandParameter;
             audioPlayer.Play(voice);
-        }
-
-        //***********************************************************************//
-        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

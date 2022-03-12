@@ -8,12 +8,9 @@ using MobileHRM.Droid.Controls;
 using System;
 
 
-#pragma warning disable CS0612 // Type or member is obsolete
 [assembly: ExportRenderer(typeof(CustomEntry), typeof(CustomEntryRenderer))]
-#pragma warning restore CS0612 // Type or member is obsolete
 namespace MobileHRM.Droid.Controls
-{
-    [Obsolete]
+{ 
     public class CustomEntryRenderer : EntryRenderer
     {
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
