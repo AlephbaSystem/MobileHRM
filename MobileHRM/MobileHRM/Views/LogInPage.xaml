@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MobileHRM"
+             xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
+             x:Class="MobileHRM.Views.LogInPage"
+             BackgroundImage="background.png">
+
+    <StackLayout >
+        <Grid
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+
+            <Image
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                Grid.Row="0"
+                Source="Alephba.png"
+                WidthRequest="172"
+                HeightRequest="172"
+                    />
+
+            <Label
+                    HorizontalOptions="Center"
+                    VerticalOptions="End"
+                    TextColor="#26AB5B"
+                    Text="Login to your dashboard"
+                    FontFamily="Roboto"
+                    FontSize="20"
+                    Grid.Row="1"
+                    />
+            <Frame Grid.Row="3"
+                   Margin="8"
+                   Padding="0"
+                   CornerRadius="10"
+                   WidthRequest="250"
+                   HeightRequest="50"
+                   HorizontalOptions="Center"
+                   VerticalOptions="End"
+                   BackgroundColor="#7F8D8D8D"
+                   BorderColor="#26AB5B">
+                <coustomEntry:CustomEntry 
+                    x:Name="email"
+                    Placeholder="Email"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    PlaceholderColor="White"
+                    TextColor="#e9ecef"
+                    HorizontalTextAlignment="Center"
+                        />
+            </Frame>
+
+           
+
+            <Frame Grid.Row="4"
+                   Margin="8"
+                   Padding="0"
+                   CornerRadius="10"
+                   WidthRequest="250"
+                   HeightRequest="50"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   BackgroundColor="#7F8D8D8D"
+                   BorderColor="#26AB5B">
+                <coustomEntry:CustomEntry 
+                    x:Name="pass"
+                    Placeholder="Password"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    PlaceholderColor="White"
+                    TextColor="#e9ecef"
+                    IsPassword="True"
+                    HorizontalTextAlignment="Center"
+                        />
+            </Frame>
+
+            <Button Grid.Row="6"
+                    BackgroundColor="#F07520"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="290"
+                    HeightRequest="50"
+                    Text="LogIn"
+                    TextColor="White"
+                    CornerRadius="10"
+                    Clicked="LogIn_Btn_Clk"
+                />
+
+        </Grid>
+    </StackLayout>
+
+</ContentPage>

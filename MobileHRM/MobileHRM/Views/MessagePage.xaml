@@ -38,19 +38,7 @@
             
             <ScrollView Grid.Row="1">                
                 <StackLayout Background="#272B35" x:Name="messagelayout" Spacing="15">
-                    
-                    <!--<BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Frame
-                                CornerRadius="20"
-                                Margin="5,0,70,0" 
-                                BackgroundColor="#1A1C23">
-                                <Label Text="{Binding Text}"
-                                       TextColor="White"
-                                       />
-                            </Frame>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>-->
+               
                 </StackLayout>
             </ScrollView>
             <Switch Grid.Row="1" x:Name="sw"  VerticalOptions="Center" HorizontalOptions="Center"/>
@@ -70,9 +58,9 @@
                            BackgroundColor="#272B35"
                            CornerRadius="30">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_oppenCamera"/>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                         </Frame.GestureRecognizers>
-                        <Image Grid.Column="0" Source="camera.png"
+                        <Image Grid.Column="0" Source="finalCamera.png"
                                HeightRequest="20"
                            VerticalOptions="Center"
                            HorizontalOptions="Center"
@@ -83,17 +71,17 @@
                            CornerRadius="30"
                            x:Name="voicefrm">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_voiceRecorder" />
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_recorder" />
                         </Frame.GestureRecognizers>
-                        <Image x:Name="AudioImg" Grid.Column="1" Source="microphone.png"
+                        <Image x:Name="AudioImg" Grid.Column="1" Source="Vectormicro.png"
                            VerticalOptions="Center"
                            HorizontalOptions="Center"/>
                     </Frame>
                     <Frame Grid.Column="3" Padding="0" BackgroundColor="#272B35" CornerRadius="30">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_sendMessage" />
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                         </Frame.GestureRecognizers>
-                        <Image Grid.Column="3" Source="sendArrow.png"
+                        <Image Grid.Column="3" Source="VectorarrowSend.png"
                                Margin="5,0,0,0"
                                VerticalOptions="Center"
                                HorizontalOptions="Center"/>

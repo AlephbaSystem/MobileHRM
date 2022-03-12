@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileHRM.Views.KnowledgePage">
+    <ContentPage.Content>
+        <Grid x:Name="myMain"
+            BackgroundColor="#1A1C23">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <Frame
+                Grid.Row="0"></Frame>
+            
+            <Grid
+                Grid.Row="1"
+                BackgroundColor="#1A1C23">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.2*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                
+
+                <Label Grid.Row="0"
+                       x:Name="Title"
+                       Margin="10"
+                       VerticalOptions="Start"
+                       HorizontalOptions="StartAndExpand"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="#CCCCCC"
+                       Text="Microservices - .Net"/>
+
+                <Label Grid.Row="1"
+                       x:Name="Author"
+                       Margin="10"
+                       VerticalOptions="Start"
+                       HorizontalOptions="StartAndExpand"
+                       FontSize="12"
+                       TextColor="#8D8D8D"
+                       Text="Amir Shafie - 19.02.2022 - 13:13 PM"
+                    />
+
+                <StackLayout x:Name="Technologys"
+                             Grid.Row="2"
+                             Orientation="Horizontal"
+                             Spacing="15"
+                             Padding="10">
+                    <Frame 
+                        CornerRadius="11"
+                        BackgroundColor="#26AB5B"
+                        WidthRequest="60"
+                        Margin="0"
+                        Padding="0"
+                        >
+                        <Label Text="Docker"
+                               FontSize="9"
+                               TextColor="#FFFFFF"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+                    </Frame>
+                    <Frame 
+                        CornerRadius="11"
+                        BackgroundColor="#F07520"
+                        WidthRequest="60"
+                        Margin="0"
+                        Padding="0"
+                        >
+                        <Label Text="C#.net"
+                               FontSize="9"
+                               TextColor="#FFFFFF"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               Margin="0"/>
+                    </Frame>
+                    
+
+                </StackLayout>
+
+            </Grid>
+
+           
+            <Line 
+                X1="0"
+                Y1="500"
+                X2="0"
+                Y2="500"
+                Stroke="DarkBlue"
+                />
+                <!--StrokeDashArray="1,1"
+                StrokeDashOffset="6"--> 
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

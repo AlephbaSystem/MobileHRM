@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" Title="Camera View"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileHRM.Views.CameraViews">
+    <ContentPage.Content>
+        <Grid ColumnDefinitions="*,*,*,*,*">
+            
+            <xct:CameraView
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+                x:Name="xctCameraView"
+                CaptureMode="Photo"
+                MediaCaptured="MediaCaptured"
+                HorizontalOptions="FillAndExpand"
+                CameraOptions="Back"
+                BindingContext="{x:Reference Name=zoomslider}"
+                Zoom ="{Binding Path=Value}"
+                VerticalOptions="FillAndExpand">
+
+            </xct:CameraView>
+
+
+                <Slider
+                    Grid.Column="4"
+                    Minimum="0.99"
+                    Maximum="10"
+                    Rotation="-90"
+                    x:Name="zoomslider"
+                    Margin="0"
+                    WidthRequest="1000"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="EndAndExpand"
+                    
+                    />
+
+            <StackLayout VerticalOptions="EndAndExpand" Spacing="2" Padding="6"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="5">
+                <Label Text="Video Mode" TextColor="White" FontSize="14" VerticalOptions="Center"/>
+                <StackLayout Orientation="Horizontal">
+                    <Switch Toggled="Switch_Toggled" x:Name="switchMode" VerticalOptions="Center"/>
+                    <Switch Toggled="switchCam_Toggled" x:Name="switchCam" VerticalOptions="Center"/>
+                    <Label BindingContext="{x:Reference Name=zoomslider}"
+                        Text ="{Binding Path=Value}"
+                           TextColor="Red" FontSize="14" HorizontalOptions="EndAndExpand" 
+                           VerticalOptions="Center"/>
+                  
+                </StackLayout>
+                <Button Text="Capture" Clicked="CaptureImage" x:Name="captureBtn"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="5"/>
+                <StackLayout Orientation="Horizontal"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="5">
+                    <Button Text="Record Video" Clicked="RecordVideo" IsEnabled="false" x:Name="btnrecordVideo" 
+                            HorizontalOptions="FillAndExpand"/>
+                    <Button Text="Stop Video" Clicked="StopVideo" IsEnabled="False" x:Name="btnstopVideo" 
+                            VerticalOptions="EndAndExpand"  HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
