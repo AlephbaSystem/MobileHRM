@@ -23,8 +23,18 @@ namespace MobileHRM.Views
 
         private void CaptureImage(object sender, EventArgs e)
         {
-            xctCameraView.CaptureMode = CameraCaptureMode.Photo;
-            xctCameraView.Shutter();
+            if (isRecording)
+            {
+                isRecording = false;
+                xctCameraView.Shutter();
+                xctCameraView.CaptureMode = CameraCaptureMode.Photo;
+                RecImgBtn.Source = "cam.png";
+            }
+            else
+            {
+                xctCameraView.CaptureMode = CameraCaptureMode.Photo;
+                xctCameraView.Shutter();
+            }
         }
         private void RecordVideo(object sender, EventArgs e)
         {
