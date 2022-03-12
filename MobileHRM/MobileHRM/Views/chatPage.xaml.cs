@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using MobileHRM.ViewModel;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

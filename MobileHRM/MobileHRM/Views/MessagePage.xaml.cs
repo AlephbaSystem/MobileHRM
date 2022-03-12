@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MobileHRM.ViewModels;
+using MobileHRM.ViewModel;
 using Plugin.AudioRecorder;
 using System.IO;
 
@@ -38,9 +38,9 @@ namespace MobileHRM.Views
                 };
 
                 MakeFrame(itm);
-                Vm.MyMessage.Add(itm);
+                //Vm.MyMessage.Add(itm);
             }
-            Vm.MyMessage = Vm.MyMessage;
+            //Vm.MyMessage = Vm.MyMessage;
             messageEntry.Text = "";
 
         }
@@ -114,7 +114,7 @@ namespace MobileHRM.Views
                 }
 
 
-                Vm.MyMessage.Add(itm);
+                //Vm.MyMessage.Add(itm);
                 messagelayout.Children.Add(f);
                 ImgPlayer.CommandParameter = ShowVoice.Last().GetAudioFilePath();
 
@@ -131,7 +131,6 @@ namespace MobileHRM.Views
             }
             else
             {
-
                 await voicefrm.ScaleTo(1.3, 100);
                 voicefrm.BackgroundColor = Color.White;
                 ShowVoice.Add(new AudioRecorderService());

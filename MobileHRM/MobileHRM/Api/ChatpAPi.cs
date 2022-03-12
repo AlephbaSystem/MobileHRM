@@ -7,12 +7,13 @@ using MobileHRM.Helper;
 using MobileHRM.Models.Api;
 using System.Threading.Tasks;
 using System.Net.Mime;
+using MobileHRM.Models;
 
 namespace MobileHRM.Api
 {
     class ChatpAPi
     {
-        string requestUri = "http://185.18.214.100:29174/api/Message";
+        string requestUri = "http://185.18.214.100:29174/api/Message/";
         HttpClient Client = new HttpClient();
         public async Task<bool> CreateGroup(Group dataObj)
         {
@@ -20,7 +21,7 @@ namespace MobileHRM.Api
             {
                 string url = string.Format(requestUri, "/CreteGroup");
                 string contentStr = JsonDataConverter<Group>.ObjectToJsonString(dataObj);
-                StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(contentStr, Encoding.UTF8);
                 HttpResponseMessage response = new HttpResponseMessage();
                 using (HttpClient request = new HttpClient())
                 {
@@ -42,25 +43,17 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = string.Format(requestUri, "/GetGroupsByUserid");
-                string contentStr = JsonDataConverter<int>.ObjectToJsonString(userId);
-                StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
+                string url = requestUri + $"GetGroupsByUserid?userId={userId}";
                 HttpResponseMessage response = new HttpResponseMessage();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri(url),
-                    Content = new StringContent("some json", Encoding.UTF8, "application / json"),
-                };
                 using (HttpClient client = new HttpClient())
                 {
-                    response = await client.SendAsync(request);
+                    response = await client.GetAsync(url);
                 }
-                response.EnsureSuccessStatusCode();
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     string jsonStr = await response.Content.ReadAsStringAsync();
-                    return JsonDataConverter<List<Group>>.JsonStringToObject(jsonStr);
+                    var items = JsonDataConverter<List<Group>>.JsonStringToObject(jsonStr);
+                    return items ??new List<Group>();
                 }
                 return new List<Group>();
             }
