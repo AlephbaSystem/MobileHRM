@@ -24,6 +24,7 @@ namespace MobileHRM.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             Rg.Plugins.Popup.Popup.Init();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             Sharpnado.Shades.iOS.iOSShadowsRenderer.Initialize();
             Syncfusion.SfImageEditor.XForms.iOS.SfImageEditorRenderer.Init();
             LoadApplication(new App());

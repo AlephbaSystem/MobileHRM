@@ -16,16 +16,15 @@
     <PackageReference Include="Sharpnado.Shadows" Version="1.1.1" />
     <PackageReference Include="Syncfusion.Xamarin.SfImageEditor" Version="16.1.0.37" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+    <PackageReference Include="XLabs.Forms" Version="2.0.5782" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
+  <!--<ItemGroup>
     <EmbeddedResource Update="Views\KnowledgePage.xaml">
     <Compile Update="Views\LogInPage.xaml.cs">
       <DependentUpon>LogInPage.xaml</DependentUpon>
@@ -33,7 +32,7 @@
     <Compile Update="Views\Popup\ShowMsgPopup.xaml.cs">
       <DependentUpon>ShowMsgPopup.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <EmbeddedResource Update="Views\CameraViews.xaml">

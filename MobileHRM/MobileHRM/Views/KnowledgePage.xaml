@@ -1,20 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:shape="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             BackgroundColor="#272B35"
              x:Class="MobileHRM.Views.KnowledgePage">
+
     <ContentPage.Content>
         <Grid x:Name="myMain"
-            BackgroundColor="#1A1C23">
+            BackgroundColor="Transparent"
+              RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="3*"/>
-                <RowDefinition Height="5*"/>
+                <RowDefinition Height="6*"/>
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <Frame
-                Grid.Row="0"></Frame>
-            
+                Grid.Row="0"
+                BackgroundColor="#1A1C23"
+                Margin="0"
+                Padding="0">
+
+
+
+
+                <Grid HorizontalOptions="EndAndExpand" ColumnDefinitions="*,*,*">
+                    <Frame CornerRadius="50"
+                               Grid.Column="0"
+                               HeightRequest="50"
+                               BackgroundColor="#272B35"
+                               WidthRequest="50"
+                               VerticalOptions="Center"
+                               Margin="0,10,10,0"
+                               Padding="0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer />
+                        </Frame.GestureRecognizers>
+                        <Image BackgroundColor="#272B35"
+                                             Margin="10"
+                                         Source="IconsAnimation.png"/>
+                    </Frame>
+                    <Frame CornerRadius="50"
+                               Grid.Column="1"
+                               x:Name="NotificationFrame"
+                               HeightRequest="50"
+                               BackgroundColor="#272B35"
+                               WidthRequest="50"
+                               VerticalOptions="Center"
+                               Margin="0,10,10,0"
+                               Padding="0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer />
+                        </Frame.GestureRecognizers>
+                        <Image BackgroundColor="#272B35"
+                                             Margin="10"
+                                         Source="Notification.png"/>
+                    </Frame>
+                    <Frame CornerRadius="50" 
+                               Grid.Column="2"
+                               BorderColor="#7B61FF"  
+                               
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               VerticalOptions="Center"
+                                   BackgroundColor="Transparent"
+                               Margin="0,10,10,0"
+                               Padding="0">
+                        <ff:CachedImage BackgroundColor="Transparent"
+                                         Source="userImage.png"
+                                                VerticalOptions="FillAndExpand"
+                                                HorizontalOptions="FillAndExpand"/>
+                    </Frame>
+                </Grid>
+
+
+
+
+            </Frame>
+
             <Grid
                 Grid.Row="1"
                 BackgroundColor="#1A1C23">
@@ -24,8 +88,8 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
-                
+
+
 
                 <Label Grid.Row="0"
                        x:Name="Title"
@@ -47,54 +111,260 @@
                        Text="Amir Shafie - 19.02.2022 - 13:13 PM"
                     />
 
-                <StackLayout x:Name="Technologys"
-                             Grid.Row="2"
+                <ScrollView Grid.Row="2"
+                    Orientation="Horizontal"
+                            Margin="0"
+                            Padding="0">
+                    <StackLayout x:Name="Technologys"
+                             
                              Orientation="Horizontal"
                              Spacing="15"
-                             Padding="10">
-                    <Frame 
-                        CornerRadius="11"
-                        BackgroundColor="#26AB5B"
-                        WidthRequest="60"
-                        Margin="0"
-                        Padding="0"
-                        >
-                        <Label Text="Docker"
-                               FontSize="9"
-                               TextColor="#FFFFFF"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"/>
-                    </Frame>
-                    <Frame 
-                        CornerRadius="11"
-                        BackgroundColor="#F07520"
-                        WidthRequest="60"
-                        Margin="0"
-                        Padding="0"
-                        >
-                        <Label Text="C#.net"
-                               FontSize="9"
-                               TextColor="#FFFFFF"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"
-                               Margin="0"/>
-                    </Frame>
-                    
+                             Padding="7"
+                             BindableLayout.ItemsSource="{Binding Technologies}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame 
+                                CornerRadius="15"
+                                BackgroundColor="{Binding TechnologyColor}"
+                                WidthRequest="60"
+                                Margin="0"
+                                Padding="0">
 
-                </StackLayout>
+                                    <Label Text="{Binding TechnologyName}"
+                                       shape:ShadowEffect.Color="Black" 
+                                       shape:ShadowEffect.OffsetY="5" 
+                                       shape:ShadowEffect.OffsetX="5" 
+                                       shape:ShadowEffect.Radius="3" 
+                                       shape:ShadowEffect.Opacity="0.7"
+                                    FontSize="9"
+                                    TextColor="#FFFFFF"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"/>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+
+
+
+                    </StackLayout>
+                </ScrollView>
 
             </Grid>
 
-           
+            <!--<Frame Grid.Row="2" 
+                   Grid.ColumnSpan="3"
+                   Margin="0"
+                   Padding="0"
+                   BackgroundColor=""
+                   VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand"
+                ></Frame>-->
+
             <Line 
+                Grid.Row="2"
+                Stroke="#26AB5B"
                 X1="0"
-                Y1="500"
-                X2="0"
-                Y2="500"
-                Stroke="DarkBlue"
-                />
-                <!--StrokeDashArray="1,1"
-                StrokeDashOffset="6"--> 
+                Y1="0"
+                X2="500"
+                Y2="0"
+                Margin="0,5,0,5"/>
+
+            <StackLayout Orientation="Vertical" Spacing="10"
+                Grid.Row="2"
+                         Margin="0,15,0,0"
+                BackgroundColor="#272B35"
+                         
+                Padding="0">
+                <Label
+                    Margin="10,10,0,0"
+                    FontSize="18"
+                    TextColor="#CCCCCC"
+                    Text="Details"/>
+
+                <ScrollView
+                    Margin="10,0,0,0">
+
+                    <Label x:Name="DetailLbl"
+                        FontSize="14"
+                        TextColor="#8D8D8D"
+                        
+                       />
+                </ScrollView>
+
+            </StackLayout>
+
+            <Line 
+                Grid.Row="3"
+                Stroke="#26AB5B"
+                X1="0"
+                Y1="0"
+                X2="400"
+                Y2="0"
+                Margin="20,5,20,5"
+                 
+                StrokeDashArray="5,5"
+                StrokeDashOffset="6"/>
+
+            <StackLayout Orientation="Vertical" Spacing="10"
+                Grid.Row="3"
+                         Margin="0,15,0,0"
+                BackgroundColor="#272B35"
+                         
+                Padding="0">
+                <Label
+                    Margin="10,10,0,0"
+                    FontSize="18"
+                    TextColor="#CCCCCC"
+                    Text="References"/>
+
+                <ScrollView
+                    Margin="10,0,0,0">
+
+                    <StackLayout x:Name="ReferencesLayoat"
+                                 Orientation="Vertical"
+                                 Spacing="5"
+                                 BindableLayout.ItemsSource="{Binding References}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+
+                                    <Label Text="{Binding RefName}"
+                                          FontSize="10"
+                                          TextColor="#8D8D8D"/>
+                                    <Label HorizontalOptions="EndAndExpand" >
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding RefLinkShow}"
+                                            TextColor="Blue"
+                                            TextDecorations="Underline">
+                                                    <Span.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding TapCommand}"
+                                          CommandParameter="{Binding RefLink}" />
+                                                    </Span.GestureRecognizers>
+                                                </Span>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+
+
+                    </StackLayout>
+
+                </ScrollView>
+
+            </StackLayout>
+
+            <Line
+                Grid.Row="4"
+                Stroke="#26AB5B"
+                X1="0"
+                Y1="0"
+                X2="400"
+                Y2="0"
+                Margin="20,5,20,5"
+                 
+                StrokeDashArray="5,5"
+                StrokeDashOffset="6"/>
+
+
+            <StackLayout Grid.Row="4"
+                         Orientation="Vertical"
+                         Spacing="5">
+                <!--BindableLayout.ItemsSource="{Binding References}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>-->
+                <Frame BackgroundColor="#1A1C23"
+                               CornerRadius="5" 
+                       VerticalOptions="Center"
+                       HorizontalOptions="FillAndExpand"
+                               Margin="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid>
+
+                        </Grid>
+
+                        <Frame Padding="1" CornerRadius="45" HeightRequest="45" WidthRequest="45" 
+                                   BorderColor="#7B61FF" BackgroundColor="Transparent"
+                                   Grid.Row="0" Grid.RowSpan="2"  Grid.Column="0"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center">
+                            <ff:CachedImage Source="Vahid.png" Aspect="AspectFill">
+                                <ff:CachedImage.Transformations>
+                                    <ffTransformations:CircleTransformation />
+                                </ff:CachedImage.Transformations>
+                            </ff:CachedImage>
+                        </Frame>
+
+                        <Label Grid.Row="0"
+                                Grid.Column="1"
+                                TextColor="#CCCCCC"
+                                FontSize="14"
+                                Text="Vahid Zakeri"/>
+
+                        <Label Grid.Row="1"
+                                Grid.Column="1"
+                                TextColor="#8D8D8D"
+                                FontSize="10"
+                                Text="19.02.2022 - 14:08 PM"/>
+
+                        <StackLayout Orientation="Horizontal" Spacing="5"
+                                         Grid.Row="0"  Grid.RowSpan="2"  Grid.Column="2" 
+                                         HorizontalOptions="EndAndExpand"
+                                         VerticalOptions="StartAndExpand">
+
+                            <Frame Margin="0" Padding="0"
+                                    WidthRequest="30" HeightRequest="30" CornerRadius="30"
+                                    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                                    BackgroundColor="#272B35">
+                                <Image Source="happy.png"
+                                           VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                                           Margin="5"/>
+                            </Frame>
+
+                            <Frame Margin="0" Padding="0"
+                                    WidthRequest="30" HeightRequest="30" CornerRadius="30"
+                                    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                                    BackgroundColor="#272B35">
+                                <Image Source="sad.png"
+                                           VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                                           Margin="5"/>
+                            </Frame>
+
+
+
+                        </StackLayout>
+
+
+                        <Label Grid.Row="2"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                TextColor="#8D8D8D"
+                                FontSize="12"
+                                Text="Short Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum......."/>
+
+                    </Grid>
+                </Frame>
+                <!--</DataTemplate>
+                </BindableLayout.ItemTemplate>-->
+            </StackLayout>
+
+
+
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>
