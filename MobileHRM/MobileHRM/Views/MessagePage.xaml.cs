@@ -8,45 +8,51 @@ using Plugin.AudioRecorder;
 using System.IO;
 using MobileHRM.Models.Api;
 using MobileHRM.Models;
+using System.Threading.Tasks;
 
 namespace MobileHRM.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MessagePage : ContentPage
     {
-        public MessagesVm Vm;
+        private MessagesVm Vm;
+        Group group;
         private readonly AudioRecorderService audioRecorderService = new AudioRecorderService();
         private readonly AudioPlayer audioPlayer = new AudioPlayer();
         private List<AudioRecorderService> ShowVoice = new List<AudioRecorderService>();
         public MessagePage(Group item)
         {
-            Vm = new MessagesVm(item.id);
             InitializeComponent();
+            Vm = new MessagesVm(item.id);
             BindingContext = Vm;
             group = item;
             title.Text = group.name;
         }
-        Group group;
         //Make Frame for messagae and voice  *******************************//
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private  void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(messageEntry.Text))
             {
                 var message = new Message { createdAt = DateTime.Now, message = messageEntry.Text, userId = User.UserId, messagesGroupId = group.id, };
                 Vm.sendMessage(message);
             }
-            Vm.intialize();
-            MakeFrame();
+
+            //MakeFrame();
         }
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             messagelayout.Children.Clear();
-            Vm.intialize();
-            await MakeFrame();
+          await  Vm.intialize();
+            var itm = Vm.Items;
+            if (itm != null)
+            {
+                await MakeFrame();
+            }
         }
         private Task MakeFrame()
         {
+
             foreach (var item in Vm.Items)
             {
                 Frame frm = new Frame();

@@ -38,7 +38,7 @@ namespace MobileHRM.Api
                 HttpResponseMessage response = new HttpResponseMessage();
                 using (HttpClient request = new HttpClient())
                 {
-                    response = await request.SendAsync(content);
+                    response = await request.PostAsync(content.RequestUri,content.Content);
                 }
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
