@@ -14,7 +14,7 @@
             </Grid.RowDefinitions>
             <Frame
                 Grid.Row="0"></Frame>
-            
+
             <Grid
                 Grid.Row="1"
                 BackgroundColor="#1A1C23">
@@ -24,8 +24,6 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
-                
 
                 <Label Grid.Row="0"
                        x:Name="Title"
@@ -35,7 +33,7 @@
                        FontSize="24"
                        FontAttributes="Bold"
                        TextColor="#CCCCCC"
-                       Text="Microservices - .Net"/>
+                       Text="{Binding knowledge}"/>
 
                 <Label Grid.Row="1"
                        x:Name="Author"
@@ -52,40 +50,29 @@
                              Orientation="Horizontal"
                              Spacing="15"
                              Padding="10">
-                    <Frame 
-                        CornerRadius="11"
-                        BackgroundColor="#26AB5B"
-                        WidthRequest="60"
-                        Margin="0"
-                        Padding="0"
-                        >
-                        <Label Text="Docker"
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame 
+                                CornerRadius="11"
+                                BackgroundColor="{Binding color}"
+                                WidthRequest="60"
+                                Margin="0"
+                                Padding="0"
+                                >
+                                <Label Text="{Binding tagName}"
                                FontSize="9"
                                TextColor="#FFFFFF"
                                VerticalOptions="Center"
                                HorizontalOptions="Center"/>
-                    </Frame>
-                    <Frame 
-                        CornerRadius="11"
-                        BackgroundColor="#F07520"
-                        WidthRequest="60"
-                        Margin="0"
-                        Padding="0"
-                        >
-                        <Label Text="C#.net"
-                               FontSize="9"
-                               TextColor="#FFFFFF"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"
-                               Margin="0"/>
-                    </Frame>
-                    
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
 
                 </StackLayout>
 
             </Grid>
 
-           
+
             <Line 
                 X1="0"
                 Y1="500"
@@ -93,8 +80,8 @@
                 Y2="500"
                 Stroke="DarkBlue"
                 />
-                <!--StrokeDashArray="1,1"
-                StrokeDashOffset="6"--> 
+            <!--StrokeDashArray="1,1"
+                StrokeDashOffset="6"-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>
