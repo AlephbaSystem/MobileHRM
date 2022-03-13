@@ -7,6 +7,7 @@ using MobileHRM.Views;
 using Xamarin.CommunityToolkit.UI.Views;
 using System.Threading.Tasks;
 using MobileHRM.ViewModel;
+using MobileHRM.Models;
 
 namespace MobileHRM
 {
@@ -18,9 +19,8 @@ namespace MobileHRM
         public MainPage()
         {
             InitializeComponent();
-            chatPage f = new chatPage();
-            f.BindingContext = new ChatViewModel();
-            TabPages.TabItems[4].Content = f;
+            User.UserId = 1;
+            TabPages.TabItems[4].Content = new chatPage();
             TabPages.TabItems[1].Content = new TasksCalendarPage();
         }
         private async void OnTabNotification(object sender, EventArgs e)

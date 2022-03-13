@@ -8,6 +8,7 @@ using MobileHRM.Models.Api;
 using System.Threading.Tasks;
 using System.Net.Mime;
 using MobileHRM.Models;
+using System.Linq;
 
 namespace MobileHRM.Api
 {
@@ -19,19 +20,39 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = string.Format(requestUri, "/CreteGroup");
+                string url = requestUri + "/CreteGroup";
                 string contentStr = JsonDataConverter<Group>.ObjectToJsonString(dataObj);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8);
-                HttpResponseMessage response = new HttpResponseMessage();
-                using (HttpClient request = new HttpClient())
+                HttpRequestMessage request = new HttpRequestMessage()
                 {
-                    response = await request.PostAsync(url, content);
-                }
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    return true;
-                }
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(url),
+                    Content = content,
+                };
+
+                return await Base.Post(request);
+            }
+            catch (Exception e)
+            {
                 return false;
+                throw;
+            }
+        }
+        public async Task<bool> SendMessage(Message dataObj)
+        {
+            try
+            {
+                string url = requestUri + "/ReciveMessage";
+                string contentStr = JsonDataConverter<Message>.ObjectToJsonString(dataObj);
+                StringContent content = new StringContent(contentStr, Encoding.UTF8);
+                HttpRequestMessage request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(url),
+                    Content = content,
+                };
+
+                return await Base.Post(request);
             }
             catch (Exception e)
             {
@@ -44,22 +65,56 @@ namespace MobileHRM.Api
             try
             {
                 string url = requestUri + $"GetGroupsByUserid?userId={userId}";
-                HttpResponseMessage response = new HttpResponseMessage();
-                using (HttpClient client = new HttpClient())
+                string jsonStr = await Base.Get(url);
+                if (jsonStr == null)
                 {
-                    response = await client.GetAsync(url);
+                    return new List<Group>();
                 }
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    string jsonStr = await response.Content.ReadAsStringAsync();
-                    var items = JsonDataConverter<List<Group>>.JsonStringToObject(jsonStr);
-                    return items ??new List<Group>();
-                }
-                return new List<Group>();
+                var items = JsonDataConverter<Group[]>.JsonStringToObject(jsonStr);
+                return items.ToList();
             }
             catch (Exception e)
             {
                 return new List<Group>();
+                throw;
+            }
+        }
+        public async Task<List<Group>> GetUsersByGroupId(int groupId)
+        {
+            try
+            {
+                string url = requestUri + $"GetGroupUsersByGroupId?groupId={groupId}";
+                string jsonStr = await Base.Get(url);
+                if (jsonStr == null)
+                {
+                    return new List<Group>();
+                }
+                var items = JsonDataConverter<Group[]>.JsonStringToObject(jsonStr);
+                return items.ToList();
+            }
+            catch (Exception e)
+            {
+                return new List<Group>();
+                throw;
+            }
+        }
+        public async Task<List<GroupMessage>> GetMessageByGroupId(int GroupId, int offset, int pagination)
+        {
+            try
+            {
+                string url = requestUri + $"GetMessagesByGroupId?Groupid={GroupId}&offset={offset}&pagination={pagination}";
+                string jsonStr = await Base.Get(url);
+                if (jsonStr == null)
+                {
+                    return new List<GroupMessage>();
+                }
+                var items = JsonDataConverter<GroupMessage[]>.JsonStringToObject(jsonStr);
+                return items.ToList();
+            }
+            catch (Exception e)
+            {
+                _ = e.Message;
+                return new List<GroupMessage>();
                 throw;
             }
         }

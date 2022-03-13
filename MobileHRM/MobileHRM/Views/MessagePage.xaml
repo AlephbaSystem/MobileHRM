@@ -16,7 +16,7 @@
                              WidthRequest="30"
                              HeightRequest="40"
                              />
-                <Label Grid.Column="1" Text="ALEPHBA SYSTEM" 
+                <Label x:Name="title" Grid.Column="1" 
                        TextColor="White" 
                        HorizontalOptions="End" 
                        VerticalOptions="Center"/>

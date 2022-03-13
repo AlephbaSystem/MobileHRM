@@ -1,4 +1,5 @@
-﻿using MobileHRM.Models.Api;
+﻿using MobileHRM.Models;
+using MobileHRM.Models.Api;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +13,7 @@ namespace MobileHRM.ViewModel
         public ChatViewModel()
         {
             refresh = new Command(RefreshItems);
-            initialize(1);
+            initialize(User.UserId);
         }
 
         private List<Group> _items;
@@ -38,16 +39,24 @@ namespace MobileHRM.ViewModel
             }
         }
         private bool _Isrefreshing = false;
-        private void RefreshItems(object sender)
+        public void RefreshItems(object sender)
         {
-            initialize(1);
+            initialize(User.UserId);
             Isrefreshing = false;
         }
-        private async void initialize(int userId)
+        public async void initialize(int userId)
         {
-            Api.ChatpAPi api = new Api.ChatpAPi();
-            Items = await api.GetGroupsByUserd(userId);
-        }
+            try
+            {
+                Api.ChatpAPi api = new Api.ChatpAPi();
+                Items = await api.GetGroupsByUserd(userId);
+            }
+            catch (Exception e)
+            {
+                _ = e.Message;
+                throw;
+            }
+        } 
         public ICommand refresh { get; protected set; }
     }
 }
