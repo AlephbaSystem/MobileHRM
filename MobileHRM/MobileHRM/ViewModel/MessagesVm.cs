@@ -2,11 +2,15 @@
 using MobileHRM.Models.Api;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
+using MobileHRM.Models;
+using System.Linq;
 
 namespace MobileHRM.ViewModel
 {
     public class MessagesVm : Base
+
     {
         private int GroupId;
         public MessagesVm(int _GroupId)
@@ -38,10 +42,12 @@ namespace MobileHRM.ViewModel
                 Items = new List<GroupMessage>();
                 throw;
             }
-        }
+            }
         public async void sendMessage(Message msg)
         {
             await request.SendMessage(msg);
         }
+        private ObservableCollection<MessageItem> _myMessage { get; set; }
     }
+
 }
