@@ -6,48 +6,48 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#1A1C23"
              x:Class="MobileHRM.Views.chatPage">
-    <ContentView.BindingContext>
-        <vm:ChatViewModel />
-    </ContentView.BindingContext>
     <ContentView.Content>
-        <Grid BackgroundColor="#1A1C23">
-            <Frame Padding="0"
+        <Frame Padding="0"
                    CornerRadius="11"
-                   BackgroundColor="Transparent"
-                   VerticalOptions="EndAndExpand"
-                   Margin="10,10,10,40">
-                <ListView ItemsSource="{Binding Items}" RefreshCommand="{Binding refresh}">
-                    <ListView.ItemTemplate>
+                   Margin="10,10,10,40"
+                    BackgroundColor="#272b35">
+
+            <ScrollView>
+                <StackLayout BindableLayout.ItemsSource="{Binding Items}">
+                    <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Margin="0,10">
+                            <StackLayout>
                                 <Grid ColumnDefinitions="2*,5*,2*">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
                                     <Frame CornerRadius="50"
                                        HeightRequest="50"
                                        WidthRequest="50"
-                                           VerticalOptions="Center"
+                                       VerticalOptions="Center"
                                        Grid.Column="0"
                                        HorizontalOptions="Center"
                                        BackgroundColor="White"
                                        Margin="0"
                                        Padding="0">
-                                        <Image Source="image"
-                                           Margin="0"/>
+                                        <!--<Image Source="{Binding image}"
+                                           Margin="0"/>-->
                                     </Frame>
                                     <StackLayout Grid.Column="1"
-                                         HorizontalOptions="Start"
+                                             HorizontalOptions="Start"
                                              Spacing="0"
                                              VerticalOptions="Center">
                                         <Label Text="{Binding name}" TextColor="#CCCCCC"/>
-                                        <Label Text="{Binding SubTitle}" TextColor="#8D8D8D"/>
+                                        <Label Text="SubTitle" TextColor="#8D8D8D"/>
                                     </StackLayout>
 
                                     <StackLayout Grid.Column="2"
                                          HorizontalOptions="Center">
-                                        <Label Text="{Binding Time}" TextColor="#CCCCCC" VerticalOptions="Start"/>
+                                        <Label Text="Time" TextColor="#CCCCCC" VerticalOptions="Start"/>
                                         <Frame Padding="0"
                                        BackgroundColor="#F07520"
                                        CornerRadius="44">
-                                            <Label Text="{Binding Number}"
+                                            <Label Text="Number"
                                            TextColor="White" HorizontalOptions="Center"/>
                                         </Frame>
                                     </StackLayout>
@@ -61,9 +61,9 @@
                                 </Grid>
                             </StackLayout>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Frame>
-        </Grid>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+        </Frame>
     </ContentView.Content>
 </ContentView>

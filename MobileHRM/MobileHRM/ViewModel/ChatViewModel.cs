@@ -1,4 +1,5 @@
-﻿using MobileHRM.Models.Api;
+﻿using MobileHRM.Models;
+using MobileHRM.Models.Api;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,7 @@ namespace MobileHRM.ViewModel
         public ChatViewModel()
         {
             refresh = new Command(RefreshItems);
+            initialize(User.UserId);
         }
 
         private List<Group> _items;
@@ -23,19 +25,38 @@ namespace MobileHRM.ViewModel
             }
             set
             {
-                OnPropertyChanged(nameof(Items));
                 _items = value;
+                OnPropertyChanged(nameof(Items));
             }
         }
-        private void RefreshItems(object sender)
+        public bool Isrefreshing
         {
-            initialize(4);
+            get { return _Isrefreshing; }
+            set
+            {
+                OnPropertyChanged(nameof(Isrefreshing));
+                _Isrefreshing = Isrefreshing;
+            }
         }
-        private async void initialize(int userId)
+        private bool _Isrefreshing = false;
+        public void RefreshItems(object sender)
         {
-            Api.ChatpAPi api = new Api.ChatpAPi();
-            Items = await api.GetGroupsByUserd(userId);
+            initialize(User.UserId);
+            Isrefreshing = false;
         }
+        public async void initialize(int userId)
+        {
+            try
+            {
+                Api.ChatpAPi api = new Api.ChatpAPi();
+                Items = await api.GetGroupsByUserd(userId);
+            }
+            catch (Exception e)
+            {
+                _ = e.Message;
+                throw;
+            }
+        } 
         public ICommand refresh { get; protected set; }
     }
 }

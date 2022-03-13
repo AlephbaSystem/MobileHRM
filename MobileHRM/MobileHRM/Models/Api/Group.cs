@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace MobileHRM.Models.Api
 {
@@ -8,6 +9,6 @@ namespace MobileHRM.Models.Api
     {
         public int id { get; set; }
         public string name { get; set; }
-        public string image { get; set; }
+        public ImageSource image { get; set; }
     }
 }

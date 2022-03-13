@@ -13,6 +13,7 @@ namespace MobileHRM.Helper
         }
         public static T JsonStringToObject(string jsonString)
         {
+            var f=JsonConvert.DeserializeObject(jsonString);
             return JsonConvert.DeserializeObject<T>(jsonString);
         }
     }
