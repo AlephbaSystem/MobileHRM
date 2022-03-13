@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace MobileHRM.Api
 {
-    class ChatpAPi
+    class ChatApi
     {
         string requestUri = "http://185.18.214.100:29174/api/Message/";
         HttpClient Client = new HttpClient();
@@ -44,15 +44,17 @@ namespace MobileHRM.Api
             {
                 string url = requestUri + "ReciveMessage";
                 string contentStr = JsonDataConverter<Message>.ObjectToJsonString(dataObj);
-                StringContent content = new StringContent(contentStr, Encoding.UTF8);
+                StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
                 HttpRequestMessage request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
                     RequestUri = new Uri(url),
-                    Content = content,
+                    Content = content 
                 };
+                
+                var status=await Base.Post(request); //if status false message not sended successfully
 
-                return await Base.Post(request);
+                return status;
             }
             catch (Exception e)
             {

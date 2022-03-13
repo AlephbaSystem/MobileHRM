@@ -31,7 +31,7 @@ namespace MobileHRM.ViewModel
                 OnPropertyChanged(nameof(Items));
             }
         }
-        ChatpAPi request = new ChatpAPi();
+        ChatApi request = new ChatApi();
         public async Task intialize()
         {
             try
@@ -45,9 +45,9 @@ namespace MobileHRM.ViewModel
                 throw;
             }
         }
-        public async void sendMessage(Message msg)
+        public async Task<bool> sendMessage(Message msg)
         {
-            await request.SendMessage(msg);
+            return await request.SendMessage(msg);
         }
         private ObservableCollection<MessageItem> _myMessage { get; set; }
     }

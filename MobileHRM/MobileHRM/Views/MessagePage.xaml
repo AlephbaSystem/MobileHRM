@@ -31,9 +31,6 @@
                     </Image>
 
                 </Frame>
-
-
-
             </Grid>
 
             <ScrollView Grid.Row="1">
