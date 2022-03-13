@@ -19,7 +19,7 @@ namespace MobileHRM
             InitializeComponent();
 
             TabPages.TabItems[4].Content = new chatPage();
-            TabPages.TabItems[1].Content= new TasksCalendarPage();
+            TabPages.TabItems[1].Content = new TasksCalendarPage();
         }
 
         private async void OnTabNotification(object sender, EventArgs e)

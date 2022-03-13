@@ -1,14 +1,6 @@
-﻿using Rg.Plugins.Popup.Services;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
-
-using System.Security.Cryptography;
-using System.Net.Mail;
 
 namespace MobileHRM.Views
 {
@@ -20,39 +12,29 @@ namespace MobileHRM.Views
         public LogInPage()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         private async void LogIn_Btn_Clk(object sender, EventArgs e)
         {
-            if (pass.Text == "" || email.Text == "" || pass.Text ==null || email.Text == null)
-                   await new Popup.ShowMsgPopup("Please enter your username and password" , "Error" , 3).ShowAsync();
-            else if (!IsValidMail(email.Text))
-                   await new Popup.ShowMsgPopup("Please enter correct Email" , "Error" , 3).ShowAsync();
-
-            else
+            if (string.IsNullOrEmpty(pass.Text) || string.IsNullOrEmpty(email.Text))
             {
-                string hashPass = BCrypt.Net.BCrypt.HashPassword(pass.Text);
-                await new Popup.ShowMsgPopup(hashPass, "Information", 2).ShowAsync();
-                await Navigation.PushAsync(new CameraViews());
-            
-            
-
+                await new Popup.ShowMsgPopup("Please enter your username and password", "Error", 3).ShowAsync();
+                return;
             }
+            if (!IsValidEmail(email.Text))
+            {
+                await new Popup.ShowMsgPopup("Please enter correct Email", "Error", 3).ShowAsync();
+                return;
+            }
+
+            string hashPass = BCrypt.Net.BCrypt.HashPassword(pass.Text);
+            await new Popup.ShowMsgPopup(hashPass, "Information", 2).ShowAsync();
+            await Navigation.PushAsync(new CameraViews());
         }
 
-        private static bool IsValidMail(string emailaddress)
+        private bool IsValidEmail(string emailaddress)
         {
-            try
-            {
-                MailAddress m = new MailAddress(emailaddress);
-
-                return true;
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
+            return System.Text.RegularExpressions.Regex.IsMatch(emailaddress, @"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$");
         }
     }
 }
