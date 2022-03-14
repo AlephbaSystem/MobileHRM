@@ -75,6 +75,9 @@
     <EmbeddedResource Update="Views\chatPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Loan.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\TasksCalendarPage.xaml"></EmbeddedResource>
     <EmbeddedResource Update="Views\KnowledgePage.xaml"></EmbeddedResource>
     <EmbeddedResource Update="Views\CameraViews.xaml">

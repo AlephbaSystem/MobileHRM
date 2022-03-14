@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:sh="http://sharpnado.com"
+             xmlns:customEntry="clr-namespace:MobileHRM.Controls" xmlns:vm="clr-namespace:MobileHRM.ViewModel"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#1A1C23"
+             x:Class="MobileHRM.Views.Loan">
+
+    <StackLayout VerticalOptions="StartAndExpand" Margin="20">
+        <Label Margin="20,10" Text="Loan History" TextColor="#CCCCCC"
+                   HorizontalOptions="Start"
+                   ></Label>
+        <StackLayout  Spacing="20">
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="20"
+                  RowDefinitions="*,*,*" RowSpacing="20">
+                <Frame Padding="0" Grid.Column="0"
+                            CornerRadius="15"
+                             BackgroundColor="#3C3E45"
+                               HeightRequest="130">
+                    <Grid RowDefinitions="*,*">
+                        <Label Grid.Row="0" Text="Next payment:" VerticalOptions="End" HorizontalOptions="Center" TextColor="#CCCCCC"/>
+                        <Label Grid.Row="1" Text="{Binding LoandNextPay, StringFormat='{0} Days'}" VerticalOptions="Start" HorizontalOptions="Center" TextColor="#CCCCCC"/>
+                    </Grid>
+                </Frame>
+                <Frame Padding="0" Grid.Column="1"
+                            CornerRadius="15"
+                             BackgroundColor="#3C3E45"
+                               HeightRequest="130">
+                    <Label Grid.Row="0" Text="{Binding RiyalinThebox,StringFormat='{0} Riyal in The box'}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
+                </Frame>
+                <Frame Padding="0" Grid.Column="0"
+                       Grid.Row="1"
+                            CornerRadius="15"
+                             BackgroundColor="#3C3E45"
+                               HeightRequest="130">
+                    <Grid RowDefinitions="*,*">
+                        <Label Grid.Row="0" Text="Next Loan Amount" VerticalOptions="End" HorizontalOptions="Center" TextColor="#CCCCCC"/>
+                        <Label Grid.Row="1" Text="{Binding NextLoanAmount,StringFormat='{0} Rials' }" VerticalOptions="Start" HorizontalOptions="Center" TextColor="#CCCCCC"/>
+                    </Grid>
+                </Frame>
+                <Frame Padding="0" Grid.Column="1"
+                       Grid.Row="1"
+                            CornerRadius="15"
+                             BackgroundColor="#3C3E45"
+                               HeightRequest="130">
+                    <Label Grid.Row="0" Text="{Binding Participant,StringFormat='{0} Participant'}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
+                </Frame>
+                <Frame Padding="0" Grid.Column="0"
+                       Grid.Row="2"
+                            CornerRadius="15"
+                             BackgroundColor="#3C3E45"
+                               HeightRequest="130">
+                    <Grid RowDefinitions="*,*">
+                        <Label Grid.Row="0" Text="{Binding Chance,StringFormat='Chance {0}%'}" VerticalOptions="End" HorizontalOptions="Center" TextColor="#CCCCCC"/>
+                        <Label Grid.Row="1" Text="RequwstNow" VerticalOptions="Start" HorizontalOptions="Center" TextColor="#7B61FF"/>
+                    </Grid>
+                </Frame>
+                <Frame Padding="0" Grid.Column="1"
+                       Grid.Row="2"
+                            CornerRadius="15"
+                             BackgroundColor="#3C3E45"
+                               HeightRequest="130">
+                   
+                        <Label Grid.Row="0" Text="History" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" TextColor="#CCCCCC"/>
+                       
+                   
+                </Frame>
+
+            </Grid>
+        </StackLayout>
+       
+    </StackLayout>
+
+</ContentPage>
