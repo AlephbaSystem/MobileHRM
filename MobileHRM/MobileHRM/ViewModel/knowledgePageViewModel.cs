@@ -11,6 +11,7 @@ namespace MobileHRM.ViewModel
         public knowledgePageViewModel(KnowledgeDetail knowledge)
         {
             Item = knowledge;
+            initialize();
         }
         private KnowledgeDetail _item;
         public KnowledgeDetail Item
