@@ -71,7 +71,7 @@ namespace MobileHRM.Api
             }
             catch (Exception e)
             {
-                return e.Message;
+                return "false";
                 throw;
             }
         }

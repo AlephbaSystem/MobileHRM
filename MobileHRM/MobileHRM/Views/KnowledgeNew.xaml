@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#1A1C23"
+             x:Class="MobileHRM.Views.KnowledgeNew">
+    <ContentPage.Content>
+        <Grid RowDefinitions="auto,auto,auto,*,auto"
+              ColumnDefinitions="*,6*"
+              Margin="20,0">
+            <Label Text="Add Invoice"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Margin="0,20"
+                   TextColor="#CCCCCC"/>
+
+            <Label Text="Title"
+                   Grid.Row="1"
+                       TextColor="#CCCCCC"
+                       VerticalOptions="Center"/>
+            <Frame Padding="0"
+                   Grid.Row="1"
+                       CornerRadius="8"
+                       BackgroundColor="#CCCCCC"
+                       Grid.Column="1">
+                    <coustomEntry:CustomEntry VerticalOptions="Center"/>
+                </Frame>
+
+                <Label Text="Tags"
+                       Grid.Row="2"
+                       TextColor="#CCCCCC"
+                       VerticalOptions="Center"/>
+                <Frame Padding="0,5"
+                       Grid.Row="2"
+                       CornerRadius="8"
+                       BackgroundColor="#CCCCCC"
+                       Grid.Column="1">
+                    <ScrollView HorizontalOptions="Fill"
+                                Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal"
+                                     BindableLayout.ItemsSource="{Binding tempModels}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame CornerRadius="50"
+                                           HorizontalOptions="Center"
+                                           Padding="10"
+                                           Margin="2,0"
+                                           VerticalOptions="Center"
+                                           BackgroundColor="{Binding TagColor}">
+                                        <Label Text="{Binding TagTitle}"
+                                               TextColor="#FFFFFF"
+                                               FontSize="Body"
+                                               VerticalOptions="Center"/>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
+
+                <Label Text="Details"
+                       Grid.Row="3"
+                       TextColor="#CCCCCC"
+                       VerticalOptions="Start"/>
+            
+                <ScrollView Grid.Row="3"
+                       Grid.Column="1">
+                <Frame Padding="0"
+                   CornerRadius="8"
+                       BackgroundColor="#CCCCCC">
+                    <Editor/>
+                </Frame>
+            </ScrollView>
+            <Grid ColumnDefinitions="*,*,*"
+                  Grid.Row="4"
+                  Grid.ColumnSpan="2"
+                  VerticalOptions="EndAndExpand"
+                  Margin="0,0,0,20">
+                <Button BackgroundColor="#9A031E"
+                        TextColor="#FFFDFF"
+                        Text="Clear"/>
+                <Button Grid.Column="1"
+                        TextColor="#FFFDFF"
+                        Text="References"
+                        BackgroundColor="#7B61FF"/>
+                <Button Grid.Column="2"
+                        TextColor="#FFFDFF"
+                        Text="Save"
+                        BackgroundColor="#26AB5B"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

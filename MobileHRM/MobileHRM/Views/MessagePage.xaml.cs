@@ -8,6 +8,7 @@ using Plugin.AudioRecorder;
 using System.IO;
 using MobileHRM.Models.Api;
 using MobileHRM.Models;
+using System.Threading.Tasks;
 
 namespace MobileHRM.Views
 {
