@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace MobileHRM.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddInvoice : ContentView
+    public partial class AddInvoiceAttachment : ContentPage
     {
-        public AddInvoice()
+        public AddInvoiceAttachment()
         {
             InitializeComponent();
         }

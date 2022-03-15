@@ -11,7 +11,7 @@ namespace MobileHRM
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            MainPage = new  NavigationPage(new AddInvoice());
+            MainPage = new  NavigationPage(new AddInvoiceAttachment());
         }
 
         protected override void OnStart()
