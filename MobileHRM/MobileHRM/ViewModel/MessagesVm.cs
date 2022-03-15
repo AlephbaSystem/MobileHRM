@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using MobileHRM.Models;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MobileHRM.ViewModel
 {
@@ -26,26 +27,27 @@ namespace MobileHRM.ViewModel
             }
             set
             {
-                _items = Items;
+                _items = value;
                 OnPropertyChanged(nameof(Items));
             }
         }
-        ChatpAPi request = new ChatpAPi();
-        public async void intialize()
+        ChatApi request = new ChatApi();
+        public async Task intialize()
         {
             try
             {
-                Items = await request.GetMessageByGroupId(GroupId, 0, 20);
+                var item = await request.GetMessageByGroupId(GroupId, 0, 20);
+                Items = item ?? new List<GroupMessage>();
             }
             catch (Exception e)
             {
                 Items = new List<GroupMessage>();
                 throw;
             }
-            }
-        public async void sendMessage(Message msg)
+        }
+        public async Task<bool> sendMessage(Message msg)
         {
-            await request.SendMessage(msg);
+            return await request.SendMessage(msg);
         }
         private ObservableCollection<MessageItem> _myMessage { get; set; }
     }

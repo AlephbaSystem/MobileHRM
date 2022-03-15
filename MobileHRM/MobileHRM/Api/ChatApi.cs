@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace MobileHRM.Api
 {
-    class ChatpAPi
+    class ChatApi
     {
         string requestUri = "http://185.18.214.100:29174/api/Message/";
         HttpClient Client = new HttpClient();
@@ -42,17 +42,19 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + "/ReciveMessage";
+                string url = requestUri + "ReciveMessage";
                 string contentStr = JsonDataConverter<Message>.ObjectToJsonString(dataObj);
-                StringContent content = new StringContent(contentStr, Encoding.UTF8);
+                StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
                 HttpRequestMessage request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
                     RequestUri = new Uri(url),
-                    Content = content,
+                    Content = content 
                 };
+                
+                var status=await Base.Post(request); //if status false message not sended successfully
 
-                return await Base.Post(request);
+                return status;
             }
             catch (Exception e)
             {
@@ -98,18 +100,19 @@ namespace MobileHRM.Api
                 throw;
             }
         }
-        public async Task<List<GroupMessage>> GetMessageByGroupId(int GroupId, int offset, int pagination)
+        public async Task<List<GroupMessage>> GetMessageByGroupId(int Groupid, int offset, int pagination)
         {
             try
             {
-                string url = requestUri + $"GetMessagesByGroupId?Groupid={GroupId}&offset={offset}&pagination={pagination}";
+                string url = requestUri + $"GetMessagesByGroupId?Groupid={Groupid}&offset={offset}&pagination={pagination}";
+
                 string jsonStr = await Base.Get(url);
                 if (jsonStr == null)
                 {
                     return new List<GroupMessage>();
                 }
-                var items = JsonDataConverter<GroupMessage[]>.JsonStringToObject(jsonStr);
-                return items.ToList();
+                var items = JsonDataConverter<GroupMessage[]>.JsonStringToObject(jsonStr).ToList();
+                return items;
             }
             catch (Exception e)
             {

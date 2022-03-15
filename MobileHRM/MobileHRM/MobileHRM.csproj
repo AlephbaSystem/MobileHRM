@@ -18,10 +18,6 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-
-    <Compile Remove="Models\NewFolder\**" />
-    <EmbeddedResource Remove="Models\NewFolder\**" />
-    <None Remove="Models\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>

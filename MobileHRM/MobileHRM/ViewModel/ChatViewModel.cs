@@ -48,7 +48,7 @@ namespace MobileHRM.ViewModel
         {
             try
             {
-                Api.ChatpAPi api = new Api.ChatpAPi();
+                Api.ChatApi api = new Api.ChatApi();
                 Items = await api.GetGroupsByUserd(userId);
             }
             catch (Exception e)

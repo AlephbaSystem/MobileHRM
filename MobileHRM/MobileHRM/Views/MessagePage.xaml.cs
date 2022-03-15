@@ -15,63 +15,80 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MessagePage : ContentPage
     {
-        public MessagesVm Vm;
+        private MessagesVm Vm;
+        Group group;
         private readonly AudioRecorderService audioRecorderService = new AudioRecorderService();
         private readonly AudioPlayer audioPlayer = new AudioPlayer();
         private List<AudioRecorderService> ShowVoice = new List<AudioRecorderService>();
         public MessagePage(Group item)
         {
-            Vm = new MessagesVm(item.id);
             InitializeComponent();
+            Vm = new MessagesVm(item.id);
             BindingContext = Vm;
             group = item;
             title.Text = group.name;
         }
-        Group group;
         //Make Frame for messagae and voice  *******************************//
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(messageEntry.Text))
             {
-                var message = new Message { createdAt = DateTime.Now, message = messageEntry.Text, userId = User.UserId, messagesGroupId = group.id, };
-                Vm.sendMessage(message);
+                var message = new Message { updateAt = DateTime.Now, createdAt = DateTime.Now, message = messageEntry.Text, userId = User.UserId, messagesGroupId = group.id, };
+                await Vm.sendMessage(message);
             }
-            Vm.intialize();
-            MakeFrame();
+            messageEntry.Text = String.Empty;
         }
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             messagelayout.Children.Clear();
-            Vm.intialize();
-            await MakeFrame();
-        }
-        private Task MakeFrame()
-        {
-            foreach (var item in Vm.Items)
+            await Vm.intialize();
+            var itm = Vm.Items;
+            if (itm != null)
             {
-                Frame frm = new Frame();
-                if (User.UserId == item.userId)
-                {
-                    frm.BackgroundColor = Color.FromHex("#1A1C23");
-                    frm.Margin = new Thickness(5, 0, 70, 0);
-                }
-                else
-                {
-                    frm.Margin = new Thickness(70, 0, 5, 0);
-                    frm.BackgroundColor = Color.FromHex("#8D8D8D");
-                }
-                frm.CornerRadius = 20;
-                Label lbl = new Label();
-                lbl.Text = item.message;
-                lbl.TextColor = Color.White;
-                lbl.FontSize = 14;
-                lbl.VerticalTextAlignment = TextAlignment.Center;
-                lbl.HorizontalTextAlignment = TextAlignment.Start;
-                frm.Content = lbl;
-                messagelayout.Children.Add(frm);
+                addmessage();
+            }
+        }
+        private Task addmessage()
+        {
+
+            foreach (GroupMessage item in Vm.Items)
+            {
+                MakeFrame(item);
             }
             return Task.CompletedTask;
+        }
+        private void MakeFrame(GroupMessage item) //MakeMessageFrame
+        {
+
+            Frame frm = new Frame();
+            var timelabel = new Label { Text = item.createdAt.ToString(), FontSize = 8, TextColor = Color.Silver, HorizontalTextAlignment = TextAlignment.Start };
+            var pad=timelabel.Padding;
+            pad.Top += 2;
+            timelabel.Padding = pad;
+            if (User.UserId == item.userId)
+            {
+                frm.BackgroundColor = Color.FromHex("#1A1C23");
+                frm.Margin = new Thickness(5, 0, 70, 0);
+            }
+            else
+            {
+                timelabel.HorizontalTextAlignment = TextAlignment.End;
+                frm.Margin = new Thickness(70, 0, 5, 0);
+                frm.BackgroundColor = Color.FromHex("#8D8D8D");
+            }
+            frm.CornerRadius = 20;
+            Label lbl = new Label();
+            lbl.Text = item.message;
+            lbl.TextColor = Color.White;
+            lbl.FontSize = 14;
+            lbl.VerticalTextAlignment = TextAlignment.Center;
+            lbl.HorizontalTextAlignment = TextAlignment.Start;
+            var stack = new StackLayout();
+            stack.Children.Add(lbl);
+            stack.Children.Add(timelabel);
+            frm.Content = stack;
+            messagelayout.Children.Add(frm);
         }
         //*****************************************************************//
 
