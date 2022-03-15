@@ -9,16 +9,18 @@
 
     <StackLayout >
         <Grid VerticalOptions="FillAndExpand"
-              RowDefinitions="5*,3*,3*"
+              RowDefinitions="5*,*,2*,2*,2*,3*"
               HorizontalOptions="FillAndExpand">
 
-            <Image VerticalOptions="Start"
-                   Margin="0,50,0,0"
-                   HorizontalOptions="Center"
-                   Grid.Row="0"
-                   Source="Alephba.png"
-                   WidthRequest="172"
-                   HeightRequest="172"/>
+            <ImageButton VerticalOptions="Start"
+                         Margin="0,50,0,0"
+                         BackgroundColor="Transparent"
+                         Clicked="OnImageButtonClicked"
+                         HorizontalOptions="Center"
+                         Grid.Row="0"
+                         Source="Alephba.png"
+                         WidthRequest="172"
+                         HeightRequest="172"/>
 
             <Label HorizontalOptions="Center"
                    VerticalOptions="End"
@@ -26,7 +28,7 @@
                    Text="LOGIN TO YOUR DASHBOARD"
                    FontFamily="Roboto"
                    FontSize="20"
-                   Grid.Row="0"/>
+                   Grid.Row="1"/>
             
             <Frame Grid.Row="3"
                    Margin="8"

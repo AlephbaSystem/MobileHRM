@@ -308,7 +308,7 @@
                     Icon="Task.png"
                     ControlTemplate="{StaticResource TabItemTemplate}"
                     Style="{StaticResource TabItemStyle}"
-                    TabTapped="TabViewItem_TabTapped">
+                    TabTapped="PageWithBackButton">
                         <Grid BackgroundColor="CadetBlue">
                             <Label    
                             HorizontalOptions="Center"

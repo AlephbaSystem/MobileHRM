@@ -11,7 +11,7 @@ namespace MobileHRM
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            MainPage = new  NavigationPage(new Loan());
+            MainPage = new  NavigationPage(new KnowledgeNew());
         }
 
         protected override void OnStart()

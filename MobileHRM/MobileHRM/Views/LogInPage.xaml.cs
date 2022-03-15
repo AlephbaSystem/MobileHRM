@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MobileHRM.Api;
+using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MobileHRM.Views
@@ -16,25 +18,39 @@ namespace MobileHRM.Views
 
         private async void LogIn_Btn_Clk(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(pass.Text) || string.IsNullOrEmpty(email.Text))
+            if (!IsBusy)
             {
-                await new Popup.ShowMsgPopup("Please enter your username and password", "Error", 3).ShowAsync();
-                return;
-            }
-            if (!IsValidEmail(email.Text))
-            {
-                await new Popup.ShowMsgPopup("Please enter correct Email", "Error", 3).ShowAsync();
-                return;
+                IsBusy = true;
+                if (string.IsNullOrEmpty(pass.Text) || string.IsNullOrEmpty(email.Text))
+                {
+                    await new Popup.ShowMsgPopup("Please enter your username and password", "Error", 3).ShowAsync();
+                    return;
+                }
+                if (!IsValidEmail(email.Text))
+                {
+                    await new Popup.ShowMsgPopup("Please enter correct Email", "Error", 3).ShowAsync();
+                    return;
+                }
+
+                string hashPass = BCrypt.Net.BCrypt.HashPassword(pass.Text);
+                await new Popup.ShowMsgPopup(hashPass, "Information", 2).ShowAsync();
+                await Navigation.PushAsync(new CameraViews());
+                IsBusy = false;
             }
 
-            string hashPass = BCrypt.Net.BCrypt.HashPassword(pass.Text);
-            await new Popup.ShowMsgPopup(hashPass, "Information", 2).ShowAsync();
-            await Navigation.PushAsync(new CameraViews());
         }
 
         private bool IsValidEmail(string emailaddress)
         {
             return System.Text.RegularExpressions.Regex.IsMatch(emailaddress, @"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$");
+        }
+
+        private async void OnImageButtonClicked(object sender, EventArgs e)
+        {
+            AuthenticationApi authenticationApi = new AuthenticationApi();
+
+            var TC =await authenticationApi.TestConnection();
+            await DisplayAlert("", TC.ToString(), "cancel");
         }
     }
 }
