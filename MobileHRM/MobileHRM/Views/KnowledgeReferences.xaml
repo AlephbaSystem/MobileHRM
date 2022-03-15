@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#1A1C23"
+             x:Class="MobileHRM.Views.KnowledgeReferences">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,2*,Auto,Auto">
+            <Label Text="References"
+                   Grid.Row="0"
+                   Margin="10,20"
+                   TextColor="#CCCCCC"/>
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                  Grid.Row="1"
+                  Margin="20,0">
+                <Frame Padding="0"
+                       Grid.Row="0"
+                       Margin="0,0,0,10"
+                       CornerRadius="8"
+                       BackgroundColor="#CCCCCC">
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.1"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.3"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.6"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.9"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.99"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="1.0"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="1.0"/>
+                            <GradientStop  Color="#838383"
+                          Offset="0.5" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <StackLayout Orientation="Horizontal"
+                                 HeightRequest="+60"
+                                 Margin="10,0">
+                        <Label Text="Treanor, Brian (2006)."
+                               TextColor="#1A1C23"
+                           VerticalOptions="Center"/>
+                        <Label Text="Aspects of alterity"
+                               TextDecorations="Underline"
+                               VerticalOptions="Center"
+                               TextColor="#7B61FF"
+                               HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="0"
+                       Grid.Row="1"                       
+                       Margin="0,0,0,10"
+                       CornerRadius="8"
+                       BackgroundColor="#CCCCCC">
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.1"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.3"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.6"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.9"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.99"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="1.0"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="1.0"/>
+                            <GradientStop  Color="#838383"
+                          Offset="0.5" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <StackLayout Orientation="Horizontal"
+                                 HeightRequest="+60"
+                                 Margin="10,0">
+                        <Label Text="Treanor, Brian (2006)."
+                               TextColor="#1A1C23"
+                               VerticalOptions="Center"/>
+                        <Label Text="Aspects of alterity"                               
+                               TextDecorations="Underline"
+                               VerticalOptions="Center"
+                               TextColor="#7B61FF"
+                               HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="0"
+                       Grid.Row="2"
+                       Margin="0,0,0,10"
+                       CornerRadius="8"
+                       BackgroundColor="#CCCCCC">
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.1"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.3"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.6"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.9"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.99"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="1.0"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="1.0"/>
+                            <GradientStop  Color="#838383"
+                          Offset="0.5" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <StackLayout Orientation="Horizontal"
+                                 HeightRequest="+60"
+                                 Margin="10,0">
+                        <Label Text="Treanor, Brian (2006)."
+                               TextColor="#1A1C23"
+                           VerticalOptions="Center"/>
+                        <Label Text="Aspects of alterity"
+                               TextDecorations="Underline"
+                               VerticalOptions="Center"
+                               TextColor="#7B61FF"
+                               HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="0"
+                       Grid.Row="3"
+                       Margin="0,0,0,10"
+                       CornerRadius="8"
+                       BackgroundColor="#CCCCCC">
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.1"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.3"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.6"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.9"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.99"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="1.0"/>
+                            <GradientStop Color="#CCCCCC"
+                          Offset="1.0"/>
+                            <GradientStop  Color="#838383"
+                          Offset="0.5" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <StackLayout Orientation="Horizontal"
+                                 HeightRequest="+60"
+                                 Margin="10,0">
+                        <Label Text="Treanor, Brian (2006)."
+                               TextColor="#1A1C23"
+                           VerticalOptions="Center"/>
+                        <Label Text="Aspects of alterity"                               
+                               TextDecorations="Underline"
+                               VerticalOptions="Center"
+                               TextColor="#7B61FF"
+                               HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+            <Grid ColumnDefinitions="*,*,*"  
+                  Grid.Row="3"
+                  VerticalOptions="EndAndExpand"
+                  Margin="20,0,20,20">
+                <Button BackgroundColor="#9A031E"
+                        TextColor="#FFFDFF"
+                        CornerRadius="8"
+                        Text="Clear"/>
+                <Button Grid.Column="1"
+                        TextColor="#FFFDFF"
+                        CornerRadius="8"
+                        Text="References"
+                        BackgroundColor="#7B61FF"/>
+                <Button Grid.Column="2"
+                        TextColor="#FFFDFF"
+                        CornerRadius="8"
+                        Text="Save"
+                        BackgroundColor="#26AB5B"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

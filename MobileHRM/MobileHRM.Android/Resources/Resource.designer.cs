@@ -14,7 +14,7 @@ namespace MobileHRM.Droid
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.2.0.155")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
 	public partial class Resource
 	{
 		
@@ -27126,19 +27126,19 @@ namespace MobileHRM.Droid
 			public const int userWhite = 2131165653;
 			
 			// aapt resource value: 0x7F0701D6
-			public const int vahidzakeri = 2131165654;
+			public const int VectorArrow = 2131165654;
 			
 			// aapt resource value: 0x7F0701D7
-			public const int VectorArrow = 2131165655;
+			public const int VectorarrowLeft = 2131165655;
 			
 			// aapt resource value: 0x7F0701D8
-			public const int VectorarrowLeft = 2131165656;
+			public const int VectorarrowSend = 2131165656;
 			
 			// aapt resource value: 0x7F0701D9
-			public const int VectorarrowSend = 2131165657;
+			public const int Vectorcamera = 2131165657;
 			
 			// aapt resource value: 0x7F0701DA
-			public const int Vectorcamera = 2131165658;
+			public const int Vectordir = 2131165658;
 			
 			// aapt resource value: 0x7F0701DB
 			public const int Vectormicro = 2131165659;
