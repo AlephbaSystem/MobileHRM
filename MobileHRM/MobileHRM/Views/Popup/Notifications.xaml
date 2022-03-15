@@ -42,7 +42,6 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout BackgroundColor="#272B35">
-                                   
                                     <Grid ColumnDefinitions="2*,8*">
                                         <Image Source="{Binding image}" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="0" Margin="20"/>
                                         <Grid RowDefinitions="*,*" Grid.Column="1">
