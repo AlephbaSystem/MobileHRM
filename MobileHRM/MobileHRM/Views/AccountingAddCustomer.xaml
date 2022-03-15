@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:sh="http://sharpnado.com"
+             xmlns:customEntry="clr-namespace:MobileHRM.Controls" xmlns:vm="clr-namespace:MobileHRM.ViewModel"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#1A1C23"
+             x:Class="MobileHRM.Views.AccountingAddCustomer">
+
+    <StackLayout  Margin="20" Spacing="10">
+        <Label Margin="5,20" Text="Add Customer" TextColor="#CCCCCC"
+                   HorizontalOptions="Start"
+                   ></Label>
+        <Grid ColumnDefinitions="*,3*"
+              RowDefinitions="*,*,*,*,*" RowSpacing="20">
+
+
+            <Label  Text="Name" TextColor="#CCCCCC"
+                   HorizontalOptions="Start"
+                VerticalOptions="Center"
+               Grid.Column="0"
+               Grid.Row="0"></Label>
+            <Frame Padding="0"
+              Grid.Column="1"
+               Grid.Row="0"
+               BackgroundColor="#CCCCCC"
+               CornerRadius="10"
+               >
+                <customEntry:CustomEntry
+                   
+                    Placeholder="Name"
+                    PlaceholderColor="#1A1C23"
+                    FontSize="13"/>
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.95" />
+                        <GradientStop Color="Silver"
+                          Offset="0.1" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+
+
+            </Frame>
+            <Label  Text="Address" TextColor="#CCCCCC"
+                   HorizontalOptions="Start"
+                VerticalOptions="Center"
+               Grid.Column="0"
+               Grid.Row="1"></Label>
+            <Frame Padding="0"
+              Grid.Column="1"
+               Grid.Row="1"
+               BackgroundColor="#CCCCCC"
+               CornerRadius="10"
+               >
+                <customEntry:CustomEntry
+                   
+                    Placeholder="Address"
+                    PlaceholderColor="#1A1C23"
+                    FontSize="13">
+
+                </customEntry:CustomEntry>
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.95" />
+                        <GradientStop Color="Silver"
+                          Offset="0.1" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+
+            </Frame>
+            <Label  Text="Email" TextColor="#CCCCCC"
+                   HorizontalOptions="Start"
+                VerticalOptions="Center"
+               Grid.Column="0"
+               Grid.Row="2"></Label>
+            <Frame Padding="0"
+              Grid.Column="1"
+               Grid.Row="2"
+               BackgroundColor="#CCCCCC"
+               CornerRadius="10"
+               >
+                <customEntry:CustomEntry
+                   
+                    Placeholder="Email"
+                    PlaceholderColor="#1A1C23"
+                    FontSize="13">
+
+                </customEntry:CustomEntry>
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.95" />
+                        <GradientStop Color="Silver"
+                          Offset="0.1" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+
+            </Frame>
+            <Label  Text="Phone" TextColor="#CCCCCC"
+                   HorizontalOptions="Start"
+                VerticalOptions="Center"
+               Grid.Column="0"
+               Grid.Row="3"></Label>
+            <Frame Padding="0"
+              Grid.Column="1"
+               Grid.Row="3"
+               BackgroundColor="#CCCCCC"
+               CornerRadius="10"
+               >
+                <customEntry:CustomEntry
+                   
+                    Placeholder="Phone"
+                    PlaceholderColor="#1A1C23"
+                    FontSize="13">
+
+                </customEntry:CustomEntry>
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.95" />
+                        <GradientStop Color="Silver"
+                          Offset="0.1" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+
+            </Frame>
+            <Label  Text="City" TextColor="#CCCCCC"
+                   HorizontalOptions="Start"
+                VerticalOptions="Center"
+               Grid.Column="0"
+               Grid.Row="4"></Label>
+            <Frame Padding="0"
+              Grid.Column="1"
+               Grid.Row="4"
+               BackgroundColor="#CCCCCC"
+               CornerRadius="10"
+               >
+                <customEntry:CustomEntry
+                   
+                    Placeholder="City"
+                    PlaceholderColor="#1A1C23"
+                    FontSize="13">
+
+                </customEntry:CustomEntry>
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.95" />
+                        <GradientStop Color="Silver"
+                          Offset="0.1" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+
+            </Frame>
+
+        </Grid>
+
+        <Grid ColumnDefinitions="*,*,*"
+                  VerticalOptions="EndAndExpand">
+            <Button 
+                   Grid.Column="0"
+                   BackgroundColor="#9A031E"
+                Text="Clear"
+                TextColor="#EBEBEB"
+                CornerRadius="8"/>
+
+
+            <Button 
+                   Grid.Column="2"
+                   BackgroundColor="#26AB5B"
+                Text="Save"
+                 TextColor="#EBEBEB"
+                CornerRadius="8"/>
+
+
+
+        </Grid>
+
+
+
+    </StackLayout>
+</ContentPage>

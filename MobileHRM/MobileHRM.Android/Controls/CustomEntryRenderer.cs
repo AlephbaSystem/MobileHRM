@@ -23,7 +23,7 @@ namespace MobileHRM.Droid.Controls
                 gd.SetColor(Android.Graphics.Color.Transparent);
                 Control.SetBackgroundDrawable(gd);
                 Control.SetRawInputType(InputTypes.TextFlagNoSuggestions);
-                Control.SetHintTextColor(ColorStateList.ValueOf(Android.Graphics.Color.LightGray));
+                Control.SetHintTextColor(ColorStateList.ValueOf(Android.Graphics.Color.Black));
             }
         }
     }
