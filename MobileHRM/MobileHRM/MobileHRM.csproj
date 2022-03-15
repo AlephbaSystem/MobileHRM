@@ -78,6 +78,15 @@
     <EmbeddedResource Update="Views\Loan.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popup\KnowledgeDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popup\NewReference.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popup\NewTag.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\TasksCalendarPage.xaml"></EmbeddedResource>
     <EmbeddedResource Update="Views\KnowledgePage.xaml"></EmbeddedResource>
     <EmbeddedResource Update="Views\CameraViews.xaml">
