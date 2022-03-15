@@ -9,6 +9,8 @@ using System.IO;
 using MobileHRM.Models.Api;
 using MobileHRM.Models;
 using System.Threading.Tasks;
+using MobileHRM.Helper;
+using System.Reflection;
 
 namespace MobileHRM.Views
 {
@@ -63,7 +65,7 @@ namespace MobileHRM.Views
 
             Frame frm = new Frame();
             var timelabel = new Label { Text = item.createdAt.ToString(), FontSize = 8, TextColor = Color.Silver, HorizontalTextAlignment = TextAlignment.Start };
-            var pad=timelabel.Padding;
+            var pad = timelabel.Padding;
             pad.Top += 2;
             timelabel.Padding = pad;
             if (User.UserId == item.userId)
