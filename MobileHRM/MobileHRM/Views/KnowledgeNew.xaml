@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
+             xmlns:sh="http://sharpnado.com"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#1A1C23"
              x:Class="MobileHRM.Views.KnowledgeNew">
     <ContentPage.Content>
-        <Grid RowDefinitions="auto,auto,auto,*,auto"
+        <Grid RowDefinitions="Auto,Auto,*,10*,Auto"
               ColumnDefinitions="*,6*"
               Margin="20,0">
             <Label Text="Add Invoice"
@@ -24,68 +26,133 @@
                        CornerRadius="8"
                        BackgroundColor="#CCCCCC"
                        Grid.Column="1">
-                    <coustomEntry:CustomEntry VerticalOptions="Center"/>
-                </Frame>
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.1"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.3"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.6"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.9"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.99"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="1.0"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="1.0"/>
+                        <GradientStop  Color="#838383"
+                          Offset="0.5" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <coustomEntry:CustomEntry VerticalOptions="Center"/>
+            </Frame>
 
-                <Label Text="Tags"
+            <Label Text="Tags"
                        Grid.Row="2"
                        TextColor="#CCCCCC"
                        VerticalOptions="Center"/>
-                <Frame Padding="0,5"
+
+            <Frame Padding="0,0"
                        Grid.Row="2"
                        CornerRadius="8"
                        BackgroundColor="#CCCCCC"
                        Grid.Column="1">
-                    <ScrollView HorizontalOptions="Fill"
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.1"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.3"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.6"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.9"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.99"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="1.0"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="1.0"/>
+                        <GradientStop  Color="#838383"
+                          Offset="0.5" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <ScrollView HorizontalOptions="Fill"
                                 Orientation="Horizontal">
-                        <StackLayout Orientation="Horizontal"
+                    <StackLayout Orientation="Horizontal"
                                      BindableLayout.ItemsSource="{Binding tempModels}">
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate>
-                                    <Frame CornerRadius="50"
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame CornerRadius="20"
                                            HorizontalOptions="Center"
                                            Padding="10"
-                                           Margin="2,0"
+                                           Margin="2,5"
                                            VerticalOptions="Center"
                                            BackgroundColor="{Binding TagColor}">
-                                        <Label Text="{Binding TagTitle}"
-                                               TextColor="#FFFFFF"
-                                               FontSize="Body"
-                                               VerticalOptions="Center"/>
-                                    </Frame>
-                                </DataTemplate>
-                            </BindableLayout.ItemTemplate>
-                        </StackLayout>
-                    </ScrollView>
-                </Frame>
+                                    <Label Text="{Binding TagTitle}"
+                                           TextColor="#FFFFFF"
+                                           FontSize="Body"
+                                           VerticalOptions="Center"/>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
 
-                <Label Text="Details"
+            <Label Text="Details"
                        Grid.Row="3"
                        TextColor="#CCCCCC"
                        VerticalOptions="Start"/>
-            
-                <ScrollView Grid.Row="3"
-                       Grid.Column="1">
-                <Frame Padding="0"
-                   CornerRadius="8"
-                       BackgroundColor="#CCCCCC">
-                    <Editor/>
-                </Frame>
-            </ScrollView>
-            <Grid ColumnDefinitions="*,*,*"
+
+
+            <Frame Padding="0"
+                   Grid.Row="3"
+                       Grid.Column="1"
+                   Margin="0,0,0,30"
+                       CornerRadius="10">
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.1"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.3"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.6"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.9"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="0.99"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="1.0"/>
+                        <GradientStop Color="#CCCCCC"
+                          Offset="1.0"/>
+                        <GradientStop  Color="#414141"
+                          Offset="0.5" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <Editor/>
+            </Frame>
+
+            <Grid ColumnDefinitions="*,*,*"  
                   Grid.Row="4"
                   Grid.ColumnSpan="2"
                   VerticalOptions="EndAndExpand"
                   Margin="0,0,0,20">
                 <Button BackgroundColor="#9A031E"
                         TextColor="#FFFDFF"
+                        CornerRadius="8"
                         Text="Clear"/>
                 <Button Grid.Column="1"
                         TextColor="#FFFDFF"
+                        CornerRadius="8"
                         Text="References"
                         BackgroundColor="#7B61FF"/>
                 <Button Grid.Column="2"
                         TextColor="#FFFDFF"
+                        CornerRadius="8"
                         Text="Save"
                         BackgroundColor="#26AB5B"/>
             </Grid>

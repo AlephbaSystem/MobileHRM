@@ -5,6 +5,9 @@
     <ActiveDebugProfile>Samsung SM-G965U1</ActiveDebugProfile>
     <DefaultDevice>Android_Emulator_30</DefaultDevice>
     <AndroidDesignerPreferredTheme>Theme.DeviceDefault.Light.NoActionBar.Fullscreen</AndroidDesignerPreferredTheme>
+    <SelectedDevice>Samsung SM-J730F</SelectedDevice>
+    <ActiveDebugProfile>Samsung SM-J730F</ActiveDebugProfile>
+    <DefaultDevice>Pixel_2_API_31</DefaultDevice>
     <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
   </PropertyGroup>
 </Project>
