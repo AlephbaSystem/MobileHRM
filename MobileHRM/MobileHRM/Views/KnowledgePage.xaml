@@ -2,9 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileHRM.Views.KnowledgePage"
-             BackgroundColor="#1A1C23"
-             Title="Knowledge Detail"
-             >
+             BackgroundColor="#1A1C23">
     <ContentPage.Content>
         <Grid x:Name="myMain"
             BackgroundColor="#1A1C23">
@@ -25,7 +23,6 @@
                        FontAttributes="Bold"
                        TextColor="#CCCCCC"
                        Text="{Binding Item.title}"/>
-
                 <Label
                        x:Name="Author"
                        Margin="10"

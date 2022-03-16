@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:customentry="clr-namespace:MobileHRM.Controls"
              x:Class="MobileHRM.Views.MessagePage"
              Background="#272B35"
-             NavigationPage.HasNavigationBar="False">
+             Shell.NavBarIsVisible="False"
+             >
+
     <ContentPage.Content>
         <Grid RowDefinitions="*,7*">
             <Grid Grid.Row="0" ColumnDefinitions="*,5*,2*"

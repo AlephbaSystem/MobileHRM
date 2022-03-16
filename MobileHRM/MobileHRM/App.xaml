@@ -3,8 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileHRM.App">
     <Application.Resources>
-        <Style TargetType="NavigationPage">
-            <Setter Property="BarBackgroundColor" Value="Black" />
+        <Style x:Key="basic"
+           TargetType="Shell">
+            <Setter Property="Shell.FlyoutBackgroundColor"
+                Value="LightGreen" />
+            <Setter Property="Shell.TabBarBackgroundColor"
+                Value="#2f353a" />
+            <Setter Property="Shell.BackgroundColor"
+                Value="#2f353a" />
+            <Setter Property="Shell.TitleColor"
+                Value="Silver" />
+            <Setter Property="Shell.DisabledColor"
+                Value="Silver" />
+            <Setter Property="Shell.UnselectedColor"
+                Value="LightGreen" />
+            <Setter Property="Shell.BackgroundColor" Value="#1A1C23"/>
         </Style>
     </Application.Resources>
 </Application>

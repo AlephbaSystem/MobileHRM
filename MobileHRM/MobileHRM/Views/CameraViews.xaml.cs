@@ -58,7 +58,6 @@ namespace MobileHRM.Views
 
         private void MediaCaptured(object sender, MediaCapturedEventArgs e)
         {
-
             if (xctCameraView.CaptureMode == CameraCaptureMode.Photo)
             {
                 var bytes = e.ImageData;

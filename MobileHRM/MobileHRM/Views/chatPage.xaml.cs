@@ -24,5 +24,25 @@ namespace MobileHRM.Views
             var i = (TapGestureRecognizer)((Grid)sender).GestureRecognizers[0];
             await Navigation.PushAsync(new MessagePage((Group)i.CommandParameter));
         }
+
+        private void ImageButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ImageButton_Clicked_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ImageButton_Clicked_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ImageButton_Clicked_3(object sender, EventArgs e)
+        {
+
+        }
     }
 }
