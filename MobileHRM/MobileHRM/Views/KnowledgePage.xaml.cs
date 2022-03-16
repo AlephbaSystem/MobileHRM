@@ -8,6 +8,8 @@ using Xamarin.Forms.Xaml;
 using MobileHRM.Models.Api;
 using MobileHRM.ViewModel;
 using MobileHRM.Models.Entities;
+using Rg.Plugins.Popup.Services;
+using MobileHRM.Views.Popup;
 
 namespace MobileHRM.Views
 {
@@ -31,6 +33,11 @@ namespace MobileHRM.Views
                 await Task.Delay(1000);
                 await Navigation.PopAsync();
             }
+        }
+
+        private async void OnNewFrameClicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PushAsync(new KnowledgeCommentsPopup(vm.Item.id));
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using MobileHRM.Api;
+using MobileHRM.Models;
+using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +15,17 @@ namespace MobileHRM.Views.Popup
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class KnowledgeCommentsPopup : PopupPage
     {
-        public KnowledgeCommentsPopup()
+        int knowledgeId;
+        public KnowledgeCommentsPopup(int _knowledgeId)
         {
+            knowledgeId = _knowledgeId;
             InitializeComponent();
+        }
+        KnowledgeApi request = new KnowledgeApi();
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            var comment = new MobileHRM.Models.Entities.Request.comment { createAt = DateTime.Now, KnowledgeId = knowledgeId, message = messageEditor.Text,userId=User.UserId };
+            bool res = await request.PostComment(comment);
         }
     }
 }
