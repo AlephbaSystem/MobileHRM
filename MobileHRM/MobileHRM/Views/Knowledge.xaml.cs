@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MobileHRM.ViewModel;
 using MobileHRM.Models.Api;
+using Rg.Plugins.Popup.Services;
 
 namespace MobileHRM.Views
 {
@@ -32,14 +33,14 @@ namespace MobileHRM.Views
 
         }
 
-        private void ImageButton_Clicked_1(object sender, EventArgs e)
+        private async void ImageButton_Clicked_1(object sender, EventArgs e)
         {
-
+            await PopupNavigation.Instance.PushAsync(new Popup.Notifications());
         }
 
-        private void ImageButton_Clicked_2(object sender, EventArgs e)
+        private async void OnNewFrameClicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new KnowledgeNew());
         }
 
         private void ImageButton_Clicked_3(object sender, EventArgs e)

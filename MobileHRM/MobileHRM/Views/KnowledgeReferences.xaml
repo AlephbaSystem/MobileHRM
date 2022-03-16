@@ -152,18 +152,25 @@
                           Offset="0.5" />
                         </LinearGradientBrush>
                     </Frame.Background>
-                    <StackLayout Orientation="Horizontal"
-                                 HeightRequest="+60"
-                                 Margin="10,0">
-                        <Label Text="Treanor, Brian (2006)."
+                    <StackLayout BindableLayout.ItemsSource="{Binding KnowledgeDetail.references}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal"
+                                        HeightRequest="+60"
+                                        Margin="10,0">
+                                    <Label Text="{Binding referencesName}"
                                TextColor="#1A1C23"
                            VerticalOptions="Center"/>
-                        <Label Text="Aspects of alterity"                               
+                                    <Label Text="{Binding link}"                             
                                TextDecorations="Underline"
                                VerticalOptions="Center"
                                TextColor="#7B61FF"
                                HorizontalOptions="EndAndExpand"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
                     </StackLayout>
+
                 </Frame>
             </Grid>
             <Grid ColumnDefinitions="*,*,*"  
@@ -171,18 +178,21 @@
                   VerticalOptions="EndAndExpand"
                   Margin="20,0,20,20">
                 <Button BackgroundColor="#9A031E"
+                        Clicked="Button_Clicked_2"
                         TextColor="#FFFDFF"
                         CornerRadius="8"
                         Text="Clear"/>
                 <Button Grid.Column="1"
+                        Clicked="Button_Clicked_1"
                         TextColor="#FFFDFF"
                         CornerRadius="8"
-                        Text="References"
+                        Text="New"
                         BackgroundColor="#7B61FF"/>
                 <Button Grid.Column="2"
+                        Clicked="Button_Clicked"
                         TextColor="#FFFDFF"
                         CornerRadius="8"
-                        Text="Save"
+                        Text="Done"
                         BackgroundColor="#26AB5B"/>
             </Grid>
         </Grid>

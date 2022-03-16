@@ -30,9 +30,9 @@ namespace MobileHRM.Views
 
         }
 
-        private void ImageButton_Clicked_1(object sender, EventArgs e)
+        private async void ImageButton_Clicked_1(object sender, EventArgs e)
         {
-
+            await PopupNavigation.Instance.PushAsync(new Popup.Notifications());
         }
 
         private void ImageButton_Clicked_2(object sender, EventArgs e)

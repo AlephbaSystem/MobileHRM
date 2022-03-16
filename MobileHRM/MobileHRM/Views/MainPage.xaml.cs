@@ -22,9 +22,18 @@ namespace MobileHRM
             User.UserId = 1;
         }
 
-        private void ImageButton_Clicked(object sender, EventArgs e)
+        private async void OnTabNotification(object sender, EventArgs e)
         {
-
+            if (!IsBusy)
+            {
+                var NotificationFrame = sender as Frame;
+                IsBusy = true;
+                Animation animation = new Animation(v => NotificationFrame.Scale = v, 0.8, 1.3, Easing.SinInOut);
+                animation.Commit(NotificationFrame, "animate", 20, 200, Easing.SinIn);
+                await PopupNavigation.Instance.PushAsync(new Views.Popup.Notifications());
+                IsBusy = false;
+                await NotificationFrame.ScaleTo(1, 200, Easing.SinIn);
+            }
         }
 
         private void ImageButton_Clicked_1(object sender, EventArgs e)

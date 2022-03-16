@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MobileHRM.Views.Popup;
+using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,31 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class KnowledgeReferences : ContentPage
     {
-        public KnowledgeReferences()
+        ViewModel.KnowledgeNew _vm;
+        public KnowledgeReferences(ViewModel.KnowledgeNew vm)
         {
             InitializeComponent();
+            _vm = vm;
+            BindingContext = _vm;
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
+
+        private async void Button_Clicked_1(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PushAsync(new NewReference(vm));
+        }
+
+        private async void Button_Clicked_2(object sender, EventArgs e)
+        {
+            bool res = await DisplayAlert("Warning!", "Data Will be Lost \nAre You Sure? ", "Accept", "Cancel");
+            if (res)
+            {
+                _vm.KnowledgeDetail.references.Clear();
+            }
         }
     }
 }

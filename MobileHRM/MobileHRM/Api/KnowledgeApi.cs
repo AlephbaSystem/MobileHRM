@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MobileHRM.Models.Api;
 using MobileHRM.Helper;
+using System.Net.Http;
 
 namespace MobileHRM.Api
 {
@@ -24,6 +25,28 @@ namespace MobileHRM.Api
             catch (Exception e)
             {
                 return new List<KnowledgeDetail>();
+                throw;
+            }
+        }
+        public async Task<bool> PostKnowledge(PostKnoweldgeDetail item)
+        {
+            try
+            {
+                string url = requestUri + "insertKnowledge";
+                string jsnoStr = JsonDataConverter<PostKnoweldgeDetail>.ObjectToJsonString(item);
+                StringContent content = new StringContent(jsnoStr, Encoding.UTF8, "application/json");
+                HttpRequestMessage request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(url),
+                    Content = content
+                };
+                await Base.Post(request);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
                 throw;
             }
         }
