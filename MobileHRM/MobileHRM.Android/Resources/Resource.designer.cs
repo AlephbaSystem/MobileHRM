@@ -27141,13 +27141,16 @@ namespace MobileHRM.Droid
 			public const int Vectordir = 2131165658;
 			
 			// aapt resource value: 0x7F0701DB
-			public const int Vectormicro = 2131165659;
+			public const int Vectorknowledge = 2131165659;
 			
 			// aapt resource value: 0x7F0701DC
-			public const int warnIcon = 2131165660;
+			public const int Vectormicro = 2131165660;
 			
 			// aapt resource value: 0x7F0701DD
-			public const int Word = 2131165661;
+			public const int warnIcon = 2131165661;
+			
+			// aapt resource value: 0x7F0701DE
+			public const int Word = 2131165662;
 			
 			static Drawable()
 			{

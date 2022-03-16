@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace MobileHRM.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Tasks : ContentView
+    public partial class Tasks : ContentPage
     {
         public Tasks()
         {

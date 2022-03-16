@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MobileHRM"
              xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
-             NavigationPage.HasNavigationBar="False"
              x:Class="MobileHRM.Views.LogInPage"
              BackgroundImage="background.png">
 

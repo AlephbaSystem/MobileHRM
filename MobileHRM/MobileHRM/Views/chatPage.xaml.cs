@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace MobileHRM.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class chatPage : ContentView
+    public partial class chatPage : ContentPage
     {
         ChatViewModel vm = new ChatViewModel();
         public chatPage()

@@ -15,8 +15,8 @@ namespace MobileHRM.Views
         public CameraViews()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false); 
-            
+            NavigationPage.SetHasNavigationBar(this, false);
+
         }
 
         private void CaptureImage(object sender, EventArgs e)
@@ -56,13 +56,13 @@ namespace MobileHRM.Views
             }
         }
 
-        private async void MediaCaptured(object sender, MediaCapturedEventArgs e)
+        private void MediaCaptured(object sender, MediaCapturedEventArgs e)
         {
 
             if (xctCameraView.CaptureMode == CameraCaptureMode.Photo)
             {
-                ImageEdit imgEdit = new ImageEdit(e.Image);
-                Navigation.PushAsync(imgEdit);
+                var bytes = e.ImageData;
+                _ = 5;
             }
             //else
             //{

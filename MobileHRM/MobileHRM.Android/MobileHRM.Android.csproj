@@ -112,6 +112,7 @@
     <None Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\drawable\file_text.webp" />
     <AndroidResource Include="Resources\drawable\IssueTask.webp" />
+    <AndroidResource Include="Resources\drawable\Vectorknowledge.webp" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Alephba.png" />

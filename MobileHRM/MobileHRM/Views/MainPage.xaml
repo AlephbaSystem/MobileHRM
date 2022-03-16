@@ -1,15 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:entryCustom="clr-namespace:MobileHRM.Controls"
-             xmlns:local="clr-namespace:MobileHRM"
-             xmlns:sh="http://sharpnado.com"
-             BackgroundColor="#1A1C23"
-             NavigationPage.HasNavigationBar="False"
-             x:Class="MobileHRM.MainPage">
-
-    <ContentPage.Resources>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"             
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             xmlns:views="clr-namespace:MobileHRM.Views"
+             BackgroundColor="#fff"
+             x:Class="MobileHRM.MainPage"
+             Shell.UnselectedColor="LightGreen">
+    <TabBar>
+        <Tab Title="Knowledge"
+                    Icon="Vectorknowledge.webp">
+            <ShellContent 
+                    ContentTemplate="{DataTemplate views:Knowledge}" />
+        </Tab>
+        <Tab Title="Tasks"
+                    Icon="Task.png">
+            <ShellContent 
+                      ContentTemplate="{DataTemplate views:Tasks}" />
+        </Tab>
+        <Tab Title="Chats"
+                    Icon="Settings.png">
+            <ShellContent 
+                      ContentTemplate="{DataTemplate views:chatPage}" />
+        </Tab>
+        <Tab Title="Camera"
+                    Icon="camera.png">
+            <ShellContent 
+                      ContentTemplate="{DataTemplate views:CameraViews}" />
+        </Tab>
+    </TabBar>
+    <!--<ContentPage.Resources>
         <ResourceDictionary>
             <ControlTemplate x:Key="TabItemTemplate">
                 <Grid 
@@ -67,7 +85,6 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.Content>
         <StackLayout>
             <Grid RowDefinitions="2*,*,10*">
                 <Grid Grid.Row="0" ColumnDefinitions="*,*" VerticalOptions="Start" x:Name="gridHeaderParent" Padding="20,30,0,0">
@@ -114,7 +131,6 @@
                                          Source="userImage.png"/>
                         </Frame>
                     </Grid>
-
                 </Grid>
                 
                 <sh:Shadows Padding="0"
@@ -291,8 +307,8 @@
                         </Grid>
                     </xct:TabViewItem>
 
-                    <xct:TabViewItem Text="TIME"  
-                                     Icon="Time.png"
+                    <xct:TabViewItem Text="Knowledge"  
+                                     Icon="Vectorknowledge.png"
                                      ControlTemplate="{StaticResource TabItemTemplate}"
                                      Style="{StaticResource TabItemStyle}" 
                                      TabTapped="PageWithBackButton"/>
@@ -325,7 +341,6 @@
                     TabTapped="PageWithBackButton"/>
                 </xct:TabView>
             </Grid>
-        </StackLayout>
+        </StackLayout>-->
 
-    </ContentPage.Content>
-</ContentPage>
+</Shell>

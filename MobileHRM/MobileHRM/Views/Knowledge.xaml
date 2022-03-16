@@ -1,15 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:customentry="clr-namespace:MobileHRM.Controls" 
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:sh="http://sharpnado.com"
              x:Class="MobileHRM.Views.Knowledge"
-             Background="#000000"
-             NavigationPage.HasNavigationBar="False">
-    <ContentView.Content>
+             Background="#000000">
+    <ContentPage.Content>
         <Grid RowDefinitions="*,*">
-
             <Frame Grid.RowSpan="2" VerticalOptions="Start" Padding="0" CornerRadius="20" BackgroundColor="Transparent" Margin="20,5">
                 <CollectionView ItemsSource="{Binding Items}"  x:Name="Describtion">
                     <CollectionView.ItemTemplate>
@@ -41,7 +38,6 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </Frame>
-
         </Grid>
-    </ContentView.Content>
-</ContentView>
+    </ContentPage.Content>
+</ContentPage>

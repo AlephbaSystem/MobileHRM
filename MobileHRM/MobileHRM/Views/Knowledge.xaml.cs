@@ -11,7 +11,7 @@ using MobileHRM.Models.Api;
 namespace MobileHRM.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Knowledge : ContentView
+    public partial class Knowledge : ContentPage
     {
         KnowledgeViewModel vm;
         public Knowledge()

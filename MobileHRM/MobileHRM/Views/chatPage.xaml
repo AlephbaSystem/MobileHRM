@@ -1,12 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:sh="http://sharpnado.com"
-             xmlns:customEntry="clr-namespace:MobileHRM.Controls" xmlns:vm="clr-namespace:MobileHRM.ViewModel"
-             NavigationPage.HasNavigationBar="False"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"                           
              BackgroundColor="#1A1C23"
              x:Class="MobileHRM.Views.chatPage">
-    <ContentView.Content>
+    <ContentPage.Content>
         <Frame Padding="0"
                    CornerRadius="11"
                    Margin="10,10,10,40"
@@ -65,5 +62,5 @@
                 </StackLayout>
             </ScrollView>
         </Frame>
-    </ContentView.Content>
-</ContentView>
+    </ContentPage.Content>
+</ContentPage>
