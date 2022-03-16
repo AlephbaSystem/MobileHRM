@@ -21,7 +21,11 @@ namespace MobileHRM.Views
             vm = new KnowledgeViewModel();
             BindingContext = vm;
         }
-
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            vm.initialize();
+        }
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             var i=(TapGestureRecognizer)((Frame)sender).GestureRecognizers[0];

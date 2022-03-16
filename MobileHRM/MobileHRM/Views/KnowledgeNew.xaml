@@ -43,7 +43,7 @@
                           Offset="0.5" />
                     </LinearGradientBrush>
                 </Frame.Background>
-                <coustomEntry:CustomEntry VerticalOptions="Center"/>
+                <coustomEntry:CustomEntry Text="{Binding KnowledgeDetail.knowledge.title}" VerticalOptions="Center"/>
             </Frame>
 
             <Label Text="Tags"
@@ -56,6 +56,9 @@
                        CornerRadius="8"
                        BackgroundColor="#CCCCCC"
                        Grid.Column="1">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="On_TagsTapped" />
+                </Frame.GestureRecognizers>
                 <Frame.Background>
                     <LinearGradientBrush EndPoint="0,1">
                         <GradientStop Color="#CCCCCC"
@@ -76,10 +79,10 @@
                           Offset="0.5" />
                     </LinearGradientBrush>
                 </Frame.Background>
-                <ScrollView HorizontalOptions="Fill"
+                <ScrollView Margin="10" BackgroundColor="Red"
                                 Orientation="Horizontal">
                     <StackLayout Orientation="Horizontal"
-                                     BindableLayout.ItemsSource="{Binding tempModels}">
+                                     BindableLayout.ItemsSource="{Binding KnowledgeDetail.tags}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <Frame CornerRadius="20"
@@ -87,8 +90,8 @@
                                            Padding="10"
                                         Margin="2,3"
                                            VerticalOptions="Center"
-                                           BackgroundColor="{Binding TagColor}">
-                                    <Label Text="{Binding TagTitle}"
+                                           BackgroundColor="{Binding color}">
+                                    <Label Text="{Binding tagName}"
                                            HorizontalOptions="Center"
                                            TextColor="#FFFFFF"
                                            FontSize="Body"
@@ -131,7 +134,7 @@
                           Offset="0.5" />
                     </LinearGradientBrush>
                 </Frame.Background>
-                <Editor/>
+                <Editor Text="{Binding KnowledgeDetail.knowledge.detail}"/>
             </Frame>
 
             <Grid ColumnDefinitions="*,*,*"  
@@ -143,7 +146,7 @@
                         TextColor="#FFFDFF"
                         CornerRadius="8"
                         Text="Clear"
-                        Clicked="OnCancelClicked"/>
+                        Clicked="OnClearClicked"/>
                 <Button Grid.Column="1"
                         TextColor="#FFFDFF"
                         CornerRadius="8"
@@ -154,7 +157,7 @@
                         TextColor="#FFFDFF"
                         CornerRadius="8"
                         Text="Save"
-                        Command="OnSave"
+                        Command="{Binding OnSave}"
                         BackgroundColor="#26AB5B"/>
             </Grid>
         </Grid>

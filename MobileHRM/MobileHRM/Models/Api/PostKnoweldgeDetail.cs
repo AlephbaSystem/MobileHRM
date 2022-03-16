@@ -1,16 +1,15 @@
 ﻿using MobileHRM.Models.Entities.Request;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace MobileHRM.Models.Api
 {
     public class PostKnoweldgeDetail
     {
-        public int userId { get; set; }
-        public string title { get; set; }
-        public string detail { get; set; }
-        public List<reference> references { get; set; }
-        public List<tag> tags { get; set; }
+        public knowledge knowledge { get; set; }
+        public ObservableCollection<reference> references { get; set; } = new ObservableCollection<reference>();
+        public ObservableCollection<tag> tags { get; set; } = new ObservableCollection<tag>();
     }
 }

@@ -1,4 +1,5 @@
-﻿using MobileHRM.Views.Popup;
+﻿using MobileHRM.ViewModel;
+using MobileHRM.Views.Popup;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -12,16 +13,15 @@ using Xamarin.Forms.Xaml;
 namespace MobileHRM.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class KnowledgeReferences : ContentPage
+    public partial class KnowledgeTags : ContentPage
     {
-        ViewModel.KnowledgeNewViewModel _vm;
-        public KnowledgeReferences(ViewModel.KnowledgeNewViewModel vm)
+        KnowledgeNewViewModel vm = new KnowledgeNewViewModel();
+        public KnowledgeTags(KnowledgeNewViewModel _vm)
         {
             InitializeComponent();
-            _vm = vm;
-            BindingContext = _vm;
+            vm = _vm;
+            BindingContext = vm;
         }
-
         private async void Button_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
@@ -29,16 +29,16 @@ namespace MobileHRM.Views
 
         private async void Button_Clicked_1(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new NewReference(_vm));
+            await PopupNavigation.Instance.PushAsync(new NewTag(vm));
         }
 
-        private async void Button_Clicked_2(object sender, EventArgs e)
+        private async void OnClear_Tapped(object sender, EventArgs e)
         {
             bool res = await DisplayAlert("Warning!", "Data Will be Lost \nAre You Sure? ", "Accept", "Cancel");
             if (res)
             {
-                _vm.KnowledgeDetail.references.Clear();
-                _vm.KnowledgeDetail.references = _vm.KnowledgeDetail.references;
+                vm.KnowledgeDetail.tags.Clear();
+                vm.KnowledgeDetail.tags = vm.KnowledgeDetail.tags;
             }
         }
     }

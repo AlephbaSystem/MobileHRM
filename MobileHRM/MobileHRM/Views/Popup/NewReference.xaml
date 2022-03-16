@@ -2,7 +2,8 @@
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileHRM.Views.Popup.NewReference"
-                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:animation="http://rotorgames.com" xmlns:controls="clr-namespace:MobileHRM.Controls">
+             HasKeyboardOffset="False"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:animation="http://rotorgames.com" xmlns:controls="clr-namespace:MobileHRM.Controls">
     <pages:PopupPage.Animation>
         <animation:MoveAnimation
         DurationIn="200"
@@ -14,7 +15,7 @@
         PositionOut="Right"
         />
     </pages:PopupPage.Animation>
-    <Frame Padding="0,15" BackgroundColor="#272B35" CornerRadius="27" Margin="40,100">
+    <Frame BackgroundColor="#272B35" CornerRadius="27" Margin="40,140">
         <Grid BackgroundColor="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -28,12 +29,12 @@
             <Frame Grid.Row="1" BackgroundColor="#1A1C23" BorderColor="#2F3541">
                 <Grid RowDefinitions="0.5*,*,0.5*,*,0.5*,*">
                     <Label TextColor="#CCCCCC" Grid.Row="0" Text="Reference" />
-                    <controls:CustomEntry x:Name="Reference" Grid.Row="1" FontSize="Micro" PlaceholderColor="#535458" Placeholder="Reference" BackgroundColor="#272B35" />
+                    <controls:CustomEntry x:Name="Reference" Grid.Row="1" TextColor="#CCCCCC" FontSize="Micro" PlaceholderColor="#535458" Placeholder="Reference" BackgroundColor="#272B35" />
                     <Label TextColor="#CCCCCC" Grid.Row="2" Text="Link" />
-                    <controls:CustomEntry x:Name="Link" Grid.Row="3" FontSize="Micro" PlaceholderColor="#535458" Placeholder="Link" BackgroundColor="#272B35" />
+                    <controls:CustomEntry x:Name="Link" Grid.Row="3" FontSize="Micro" TextColor="#CCCCCC" PlaceholderColor="#535458" Placeholder="Link" BackgroundColor="#272B35" />
                 </Grid>
             </Frame>
-            <Button Clicked="Button_Clicked" Margin="0,10,20,10" Grid.Row="2" HorizontalOptions="EndAndExpand" TextColor="#EBEBEB" Text="Add" BackgroundColor="#26AB5B" />
+            <Button Clicked="Add_Clicked" Margin="0,10,20,10" Grid.Row="2" HorizontalOptions="EndAndExpand" TextColor="#EBEBEB" Text="Add" BackgroundColor="#26AB5B" />
         </Grid>
     </Frame>
 </pages:PopupPage>

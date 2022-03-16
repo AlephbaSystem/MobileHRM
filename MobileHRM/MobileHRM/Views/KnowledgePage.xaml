@@ -65,9 +65,15 @@
                                 Text="References"
                                 TextColor="#CCCCCC"
                                     />
-                            <StackLayout Orientation="Horizontal">
-                                <Label TextColor="#8D8D8D" Text="{Binding Item.referencesName}" HorizontalOptions="Start" />
-                                <Label TextColor="#8D8D8D" Text="{Binding Item.adress}"  HorizontalTextAlignment="End"/>
+                            <StackLayout BindableLayout.ItemsSource="{Binding Item.references}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="#8D8D8D" Text="{Binding Item.referencesName}" HorizontalOptions="Start" />
+                                            <Label TextColor="#8D8D8D" Text="{Binding Item.link}" TextDecorations="Underline"  HorizontalTextAlignment="End"/>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
                             </StackLayout>
                             <Line BackgroundColor="#26AB5B" HeightRequest="1"/>
                             <Label

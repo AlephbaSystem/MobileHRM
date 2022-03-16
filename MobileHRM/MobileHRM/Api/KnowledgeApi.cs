@@ -41,8 +41,8 @@ namespace MobileHRM.Api
                     RequestUri = new Uri(url),
                     Content = content
                 };
-                await Base.Post(request);
-                return true;
+
+                return await Base.Post(request);
             }
             catch (Exception e)
             {

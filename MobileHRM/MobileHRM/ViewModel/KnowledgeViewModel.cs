@@ -10,7 +10,6 @@ namespace MobileHRM.ViewModel
     {
         public KnowledgeViewModel()
         {
-            initialize();
         }
         private List<KnowledgeDetail> _items;
         public List<KnowledgeDetail> Items

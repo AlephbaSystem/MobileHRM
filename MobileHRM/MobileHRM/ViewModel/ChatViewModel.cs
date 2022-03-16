@@ -13,7 +13,6 @@ namespace MobileHRM.ViewModel
         public ChatViewModel()
         {
             refresh = new Command(RefreshItems);
-            initialize(User.UserId);
         }
 
         private List<Group> _items;
@@ -41,15 +40,15 @@ namespace MobileHRM.ViewModel
         private bool _Isrefreshing = false;
         public void RefreshItems(object sender)
         {
-            initialize(User.UserId);
+            initialize();
             Isrefreshing = false;
         }
-        public async void initialize(int userId)
+        public async void initialize()
         {
             try
             {
                 Api.ChatApi api = new Api.ChatApi();
-                Items = await api.GetGroupsByUserd(userId);
+                Items = await api.GetGroupsByUserd(User.UserId);
             }
             catch (Exception e)
             {

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="#1A1C23"
+             x:Class="MobileHRM.Views.KnowledgeTags">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,2*,Auto,Auto">
+            <Label Text="Tags"
+                   Grid.Row="0"
+                   Margin="10,20"
+                   TextColor="#CCCCCC"/>
+            <StackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding KnowledgeDetail.tags}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                                       Grid.Row="3"
+                                       Margin="0,0,0,10"
+                                       CornerRadius="8"
+                                       BackgroundColor="#CCCCCC">
+                            <StackLayout Orientation="Horizontal"
+                                                 HeightRequest="40"
+                                                 Margin="10,0">
+                                <Label Text="{Binding tagName}"
+                                                TextColor="#1A1C23"
+                                                VerticalOptions="Center"/>
+                                <Frame Padding="10" CornerRadius="40" BackgroundColor="{Binding color}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" >
+                                    <Label Text="{Binding tagName}"                             
+                                                VerticalOptions="Center"
+                                                TextColor="#7B61FF"
+                                                FontSize="Micro"
+                                                HorizontalOptions="CenterAndExpand"/>
+                                </Frame>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+            <Grid ColumnDefinitions="*,*,*"  
+                  Grid.Row="3"
+                  VerticalOptions="EndAndExpand"
+                  Margin="20,0,20,20">
+                <Button BackgroundColor="#9A031E"
+                        Clicked="OnClear_Tapped"
+                        TextColor="#FFFDFF"
+                        CornerRadius="8"
+                        Text="Clear"/>
+                <Button Grid.Column="1"
+                        Clicked="Button_Clicked_1"
+                        TextColor="#FFFDFF"
+                        CornerRadius="8"
+                        Text="New"
+                        BackgroundColor="#7B61FF"/>
+                <Button Grid.Column="2"
+                        Clicked="Button_Clicked"
+                        TextColor="#FFFDFF"
+                        CornerRadius="8"
+                        Text="Done"
+                        BackgroundColor="#26AB5B"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
