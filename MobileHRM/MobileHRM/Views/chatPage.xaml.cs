@@ -21,7 +21,9 @@ namespace MobileHRM.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            loading.IsVisible = loading.IsRunning = true;
             vm.initialize();
+            loading.IsVisible = loading.IsRunning = false;
         }
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {

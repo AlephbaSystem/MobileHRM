@@ -51,14 +51,11 @@
                        TextColor="#CCCCCC"
                        VerticalOptions="Center"/>
 
-            <Frame Padding="0,0"
+            <Frame
                        Grid.Row="2"
                        CornerRadius="8"
-                       BackgroundColor="#CCCCCC"
+                       BackgroundColor="Transparent"
                        Grid.Column="1">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="On_TagsTapped" />
-                </Frame.GestureRecognizers>
                 <Frame.Background>
                     <LinearGradientBrush EndPoint="0,1">
                         <GradientStop Color="#CCCCCC"
@@ -79,69 +76,92 @@
                           Offset="0.5" />
                     </LinearGradientBrush>
                 </Frame.Background>
-                <ScrollView Margin="10" BackgroundColor="Red"
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="On_TagsTapped" />
+                </Frame.GestureRecognizers>
+            </Frame>
+            <ScrollView
+                       Grid.Row="2"
+                       BackgroundColor="Transparent"
+                       Grid.Column="1"
                                 Orientation="Horizontal">
-                    <StackLayout Orientation="Horizontal"
+                <ScrollView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="On_TagsTapped" />
+                </ScrollView.GestureRecognizers>
+                <StackLayout Orientation="Horizontal"
                                      BindableLayout.ItemsSource="{Binding KnowledgeDetail.tags}">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <Frame CornerRadius="20"
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="On_TagsTapped" />
+                    </StackLayout.GestureRecognizers>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="20"
                                            HorizontalOptions="Center"
                                            Padding="10"
                                         Margin="2,3"
                                            VerticalOptions="Center"
                                            BackgroundColor="{Binding color}">
-                                    <Label Text="{Binding tagName}"
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="On_TagsTapped" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="{Binding tagName}"
                                            HorizontalOptions="Center"
                                            TextColor="#FFFFFF"
                                            FontSize="Body"
                                            VerticalOptions="Center"/>
-                                </Frame>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </StackLayout>
-                </ScrollView>
-            </Frame>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+
 
             <Label Text="Details"
                        Grid.Row="3"
                        TextColor="#CCCCCC"
                        VerticalOptions="Start"/>
 
-
-            <Frame Padding="0"
-                   Grid.Row="3"
-                       Grid.Column="1"
-                   Margin="0,0,0,30"
-                       CornerRadius="10">
-                <Frame.Background>
-                    <LinearGradientBrush EndPoint="0,1">
-                        <GradientStop Color="#CCCCCC"
+            <StackLayout Grid.Row="3"
+                       Grid.Column="1" >
+                <Frame Padding="0" Margin="0,0,0,20" CornerRadius="10" VerticalOptions="FillAndExpand">
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#CCCCCC"
                           Offset="0.1"/>
-                        <GradientStop Color="#CCCCCC"
+                            <GradientStop Color="#CCCCCC"
                           Offset="0.3"/>
-                        <GradientStop Color="#CCCCCC"
+                            <GradientStop Color="#CCCCCC"
                           Offset="0.6"/>
-                        <GradientStop Color="#CCCCCC"
+                            <GradientStop Color="#CCCCCC"
                           Offset="0.9"/>
-                        <GradientStop Color="#CCCCCC"
+                            <GradientStop Color="#CCCCCC"
                           Offset="0.99"/>
-                        <GradientStop Color="#CCCCCC"
+                            <GradientStop Color="#CCCCCC"
                           Offset="1.0"/>
-                        <GradientStop Color="#CCCCCC"
+                            <GradientStop Color="#CCCCCC"
                           Offset="1.0"/>
-                        <GradientStop  Color="#414141"
+                            <GradientStop  Color="#414141"
                           Offset="0.5" />
-                    </LinearGradientBrush>
-                </Frame.Background>
-                <Editor Text="{Binding KnowledgeDetail.knowledge.detail}"/>
-            </Frame>
-
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <Editor VerticalOptions="FillAndExpand" Text="{Binding KnowledgeDetail.knowledge.detail}"/>
+                </Frame>
+                <Label    
+                    IsVisible="{Binding ReferenceCheck}"
+                    Text="* You Must have At Least One Reference" 
+                    TextColor="Red"                     
+                    HorizontalOptions="StartAndExpand"/>
+                <Label              
+                    IsVisible="{Binding Tagcheck}"
+                    Text="* You Must have At Least One Tag" 
+                    TextColor="Red" 
+                    HorizontalOptions="StartAndExpand"/>
+            </StackLayout>
             <Grid ColumnDefinitions="*,*,*"  
                   Grid.Row="4"
-                  Grid.ColumnSpan="2"
+                  Grid.ColumnSpan="2"                  
                   VerticalOptions="EndAndExpand"
-                  Margin="0,0,0,20">
+                  Margin="0,0,0,15">
                 <Button BackgroundColor="#9A031E"
                         TextColor="#FFFDFF"
                         CornerRadius="8"
@@ -158,7 +178,9 @@
                         CornerRadius="8"
                         Text="Save"
                         Command="{Binding OnSave}"
-                        BackgroundColor="#26AB5B"/>
+                        BackgroundColor="#26AB5B"
+                        IsEnabled="{Binding SaveEnabled}"
+                        />
             </Grid>
         </Grid>
     </ContentPage.Content>

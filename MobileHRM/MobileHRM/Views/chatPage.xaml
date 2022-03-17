@@ -32,7 +32,7 @@
         <StackLayout Padding="0"
                    Margin="10,0"
                     BackgroundColor="#272b35">
-            
+
             <Frame Padding="0"  Grid.Row="0"
                                BackgroundColor="#FFFFFF"
                                CornerRadius="5"
@@ -45,6 +45,7 @@
                                        Source="Search.png"/>
                 </Grid>
             </Frame>
+            <ActivityIndicator x:Name="loading" IsVisible="true" IsRunning="True" Color="LightBlue" />
             <ScrollView>
                 <StackLayout BindableLayout.ItemsSource="{Binding Items}">
                     <BindableLayout.ItemTemplate>

@@ -28,6 +28,7 @@ namespace MobileHRM.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            vm.initialize();
             if (_Knowledge == null)
             {
                 await Task.Delay(1000);
@@ -37,7 +38,24 @@ namespace MobileHRM.Views
 
         private async void OnNewFrameClicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new KnowledgeCommentsPopup(vm.Item.id));
+            var popup = new KnowledgeCommentsPopup(vm.Item.id);
+            popup.Disappearing += Popup_Disappearing;
+            await PopupNavigation.Instance.PushAsync(popup);
+        }
+
+        private void Popup_Disappearing(object sender, EventArgs e)
+        {
+            vm.initialize();
+        }
+
+        private async void OnNotificationClicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PushAsync(new Notifications());
+        }
+
+        private void OnProfileClicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

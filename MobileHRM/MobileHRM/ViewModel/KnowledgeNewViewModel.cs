@@ -14,10 +14,40 @@ namespace MobileHRM.ViewModel
     {
         public KnowledgeNewViewModel()
         {
-            OnSave = new Command(OnSaveClicked);
-            KnowledgeDetail = new PostKnoweldgeDetail {knowledge=new Models.Entities.Request.knowledge(),references=new ObservableCollection<Models.Entities.Request.reference>(),tags=new ObservableCollection<Models.Entities.Request.tag>() };
+            OnSave = new Command((sender) => OnSaveClicked(sender));
+            KnowledgeDetail = new PostKnoweldgeDetail { knowledge = new Models.Entities.Request.knowledge(), references = new ObservableCollection<Models.Entities.Request.reference>(), tags = new ObservableCollection<Models.Entities.Request.tag>() };
             KnowledgeDetail.knowledge.userId = User.UserId;
         }
+        private bool _Tagcheck { get; set; }
+        public bool Tagcheck
+        {
+            get { return _Tagcheck; }
+            set
+            {
+                _Tagcheck = value;
+                OnPropertyChanged(nameof(Tagcheck));
+            }
+        }
+        private bool _ReferenceCheck { get; set; }
+        public bool ReferenceCheck
+        {
+            get { return _ReferenceCheck; }
+            set
+            {
+                _ReferenceCheck = value;
+                OnPropertyChanged(nameof(ReferenceCheck));
+            }
+        }
+        public bool SaveEnabled
+        {
+            get { return _SaveEnabled; }
+            set
+            {
+                _SaveEnabled = value;
+                OnPropertyChanged(nameof(SaveEnabled));
+            }
+        }
+        private bool _SaveEnabled { get; set; }
         private PostKnoweldgeDetail _KnowledgeDetail;
         public PostKnoweldgeDetail KnowledgeDetail
         {
@@ -28,6 +58,9 @@ namespace MobileHRM.ViewModel
             set
             {
                 _KnowledgeDetail = value;
+                Tagcheck = !Convert.ToBoolean(KnowledgeDetail.tags.Count);
+                ReferenceCheck = !Convert.ToBoolean(KnowledgeDetail.references.Count);
+                SaveEnabled = !(Tagcheck || ReferenceCheck);
                 OnPropertyChanged(nameof(KnowledgeDetail));
             }
         }

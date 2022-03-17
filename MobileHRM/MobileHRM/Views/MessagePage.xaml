@@ -3,51 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:customentry="clr-namespace:MobileHRM.Controls"
              x:Class="MobileHRM.Views.MessagePage"
              Background="#272B35"
-             Shell.NavBarIsVisible="False"
              >
-
+    <Shell.TitleView>
+        <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" >
+            <Frame Margin="0,0,15,0" Padding="0" CornerRadius="40">
+                <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="imageUser.png" />
+            </Frame>
+            <Label x:Name="title" FontSize="Medium" VerticalTextAlignment="Center" TextColor="#CCCCCC" />
+        </StackLayout>
+    </Shell.TitleView>
     <ContentPage.Content>
-        <Grid RowDefinitions="*,7*">
-            <Grid Grid.Row="0" ColumnDefinitions="*,5*,2*"
-                  BackgroundColor="#000000">
-                <ImageButton Grid.Column="0"
-                             Source="VectorArrow.png"
-                             VerticalOptions="Center"
-                             HorizontalOptions="CenterAndExpand"
-                             BackgroundColor="Transparent"
-                             WidthRequest="30"
-                             HeightRequest="40"
-                             />
-                <Label x:Name="title" Grid.Column="1" 
-                       TextColor="White" 
-                       HorizontalOptions="End" 
-                       VerticalOptions="Center"/>
-                <Frame Grid.Column="2"
-                       CornerRadius="50"
-                       Padding="0"
-                       VerticalOptions="Center"
-                       HorizontalOptions="CenterAndExpand"
-                       Margin="17">
-                    <Image Source="imageUser.png" >
+        <Grid RowDefinitions="7*">
 
-                    </Image>
 
-                </Frame>
-            </Grid>
-
-            <ScrollView Grid.Row="1">
+            <ScrollView Grid.Row="0">
                 <StackLayout Background="#272B35" x:Name="messagelayout" Spacing="15">
-
+                    <ActivityIndicator Grid.Row="1" Color="LightBlue" IsRunning="True" x:Name="loading"  VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"/>
                 </StackLayout>
             </ScrollView>
-            <Frame Grid.Row="2" Padding="5"
+            <Frame Grid.Row="1" Padding="5"
                    VerticalOptions="Center"
                    CornerRadius="25"
                    Margin="5,0"
                    IsClippedToBounds="False"
                    BackgroundColor="#1A1C23">
                 <Grid ColumnDefinitions="*,*,4*,*" IsClippedToBounds="False">
-                    <customentry:CustomEntry x:Name="messageEntry"  Grid.Column="2" 
+                    <Entry x:Name="messageEntry"  Grid.Column="2" 
                             Placeholder="Type Somthing Here " 
                             PlaceholderColor="White" 
                             FontSize="15"

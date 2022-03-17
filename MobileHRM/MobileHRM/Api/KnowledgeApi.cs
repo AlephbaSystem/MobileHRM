@@ -105,5 +105,26 @@ namespace MobileHRM.Api
                 throw;
             }
         }
+        public async Task<bool> SendReaction(Reaction reaction)
+        {
+            try
+            {
+                string uri = requestUri + "insertReaction";
+                string jsonstr = JsonDataConverter<Reaction>.ObjectToJsonString(reaction);
+                HttpRequestMessage request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(uri),
+                    Content = new StringContent(jsonstr, Encoding.UTF8, "application/json")
+                };
+                bool res= await Base.Post(request);
+                return res;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw;
+            }
+        }
     }
 }

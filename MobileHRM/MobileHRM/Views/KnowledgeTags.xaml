@@ -9,7 +9,8 @@
                    Grid.Row="0"
                    Margin="10,20"
                    TextColor="#CCCCCC"/>
-            <StackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding KnowledgeDetail.tags}">
+            <ScrollView Grid.Row="1" >
+            <StackLayout BindableLayout.ItemsSource="{Binding KnowledgeDetail.tags}">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Frame
@@ -26,7 +27,7 @@
                                 <Frame Padding="10" CornerRadius="40" BackgroundColor="{Binding color}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" >
                                     <Label Text="{Binding tagName}"                             
                                                 VerticalOptions="Center"
-                                                TextColor="#7B61FF"
+                                                TextColor="#cccccc"
                                                 FontSize="Micro"
                                                 HorizontalOptions="CenterAndExpand"/>
                                 </Frame>
@@ -35,6 +36,7 @@
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </StackLayout>
+            </ScrollView>
             <Grid ColumnDefinitions="*,*,*"  
                   Grid.Row="3"
                   VerticalOptions="EndAndExpand"

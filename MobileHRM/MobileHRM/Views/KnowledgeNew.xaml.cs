@@ -21,7 +21,7 @@ namespace MobileHRM.Views
             //BindableLayout.SetItemsSource(cView, tempDate());
         }
         protected override void OnAppearing()
-        {
+        {            
             base.OnAppearing();
             vm.KnowledgeDetail = vm.KnowledgeDetail;
         }

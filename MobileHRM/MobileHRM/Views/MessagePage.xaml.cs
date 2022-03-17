@@ -38,22 +38,25 @@ namespace MobileHRM.Views
                 var message = new Message { updateAt = DateTime.Now, createdAt = DateTime.Now, message = messageEntry.Text, userId = User.UserId, messagesGroupId = group.id, };
                 await Vm.sendMessage(message);
             }
+            await Vm.intialize();
+            addmessage();
             messageEntry.Text = String.Empty;
         }
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            messagelayout.Children.Clear();
+            loading.IsVisible = loading.IsRunning = true;
             await Vm.intialize();
             var itm = Vm.Items;
             if (itm != null)
             {
-                addmessage();
+                await addmessage();
             }
+            loading.IsVisible = loading.IsRunning = false;
         }
         private Task addmessage()
         {
-
+            messagelayout.Children.Clear();
             foreach (GroupMessage item in Vm.Items)
             {
                 MakeFrame(item);
