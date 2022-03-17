@@ -110,14 +110,24 @@
                                     <DataTemplate>
                                         <Frame Padding="0" CornerRadius="10" BackgroundColor="#1A1C23" >
                                             <Grid ColumnDefinitions="2.5*,*,*" RowDefinitions="1*,2*">
-                                                <Frame Grid.Column="1" Grid.Row="0" CornerRadius="40" IsEnabled="{Binding isLike}" Margin="0,10,0,0" BackgroundColor="#272B35" Padding="0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Frame x:Name="smile" Grid.Column="1" Grid.Row="0" CornerRadius="40" IsEnabled="{Binding isLike}" Margin="0,10,0,0" BackgroundColor="#272B35" Padding="0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                                    <Frame.Triggers>
+                                                        <DataTrigger TargetType="Frame" Binding="{Binding IsEnabled,Source={x:Reference smile}}" Value="false" >
+                                                            <Setter Property="BackgroundColor"  Value="#abffffff"/>
+                                                        </DataTrigger>
+                                                    </Frame.Triggers>
                                                     <Frame.GestureRecognizers>
                                                         <TapGestureRecognizer Command="{Binding BindingContext.SendReaction, Source={x:Reference page}}" CommandParameter="{Binding .}"/>
                                                     </Frame.GestureRecognizers>
                                                     <Image WidthRequest="40" HeightRequest="40" VerticalOptions="CenterAndExpand"  Aspect="AspectFit" Source="smile.png"  />
                                                     </Frame>
-                                                <Frame Grid.Column="2" Grid.Row="0" CornerRadius="40" IsEnabled="{Binding isLike}" BackgroundColor="#272B35" Padding="5" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                                                    <Frame.GestureRecognizers>
+                                                    <Frame Grid.Column="2" Grid.Row="0" x:Name="frown" CornerRadius="40" IsEnabled="{Binding !isLike}" BackgroundColor="#272B35" Padding="5" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                                        <Frame.Triggers>
+                                                            <DataTrigger TargetType="Frame" Binding="{Binding IsEnabled,Source={x:Reference frown}}" Value="false" >
+                                                                <Setter Property="BackgroundColor"  Value="#abffffff"/>
+                                                            </DataTrigger>
+                                                        </Frame.Triggers>
+                                                        <Frame.GestureRecognizers>
                                                             <TapGestureRecognizer Command="{Binding BindingContext.SendReaction, Source={x:Reference page}}" CommandParameter="{Binding .}" />
                                                         </Frame.GestureRecognizers>
                                                         <Image WidthRequest="27" HeightRequest="27" VerticalOptions="FillAndExpand"  Aspect="AspectFit" Source="frown.png" />
