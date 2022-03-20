@@ -53,11 +53,11 @@
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}" />
                                 </Frame.GestureRecognizers>
                                 <Grid BackgroundColor="#272B35" RowDefinitions="*,1.5*,*" Margin="20,0" Padding="10">
-                                    <StackLayout Grid.Row="0" BindableLayout.ItemsSource="{Binding images}" Spacing="-25" Orientation="Horizontal" HorizontalOptions="End">
+                                    <StackLayout Grid.Row="0" Spacing="-25" BindableLayout.ItemsSource="{Binding commentedUsers}" Orientation="Horizontal" HorizontalOptions="End">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate>
                                                 <Frame Padding="1" CornerRadius="24" HeightRequest="40" WidthRequest="40" BorderColor="#7B61FF" BackgroundColor="Transparent">
-                                                    <ff:CachedImage Source="{Binding Image}" Aspect="AspectFill">
+                                                    <ff:CachedImage Source="{Binding UserImage}" Aspect="AspectFill">
                                                         <ff:CachedImage.Transformations>
                                                             <ffTransformations:CircleTransformation />
                                                         </ff:CachedImage.Transformations>
@@ -68,7 +68,9 @@
                                     </StackLayout>
                                     <Label Grid.Row="0" Text="{Binding title}" TextColor="#CCCCCC" Margin="0,10"/>
                                     <Label Grid.Row="1" Text="{Binding detail}" VerticalOptions="Center" TextColor="#8D8D8D"/>
-                                    <Label Grid.Row="2" Text="{Binding tags[0].tagName}" HorizontalOptions="End" TextColor="#8D8D8D"/>
+                                    <Frame Grid.Row="2" BackgroundColor="{Binding tags[0].color}" HorizontalOptions="End" CornerRadius="40" Padding="10" VerticalOptions="CenterAndExpand">
+                                    <Label  Text="{Binding tags[0].tagName}"  TextColor="#8D8D8D"/>
+                                    </Frame>
                                 </Grid>
                             </Frame>
                         </DataTemplate>

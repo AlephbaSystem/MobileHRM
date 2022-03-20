@@ -29,6 +29,43 @@ namespace MobileHRM.Api
                 throw;
             }
         }
+        public async Task<bool> PostImage(UserProfile user)
+        {
+            try
+            {
+                string url = requestUri + "insertUserProfile";
+                string jsnoStr = JsonDataConverter<UserProfile>.ObjectToJsonString(user);
+                StringContent content = new StringContent(jsnoStr, Encoding.UTF8, "application/json");
+                HttpRequestMessage request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(url),
+                    Content = content
+                };
+
+                return await Base.Post(request);
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+        public async Task<List<UserProfile>> GetUserProfile(int knowledgeId)
+        {
+            try
+            {
+                string url = requestUri + $"GetKnowledgeCommentsUser?knowledgId={knowledgeId}";
+                string jsonstr = await Base.Get(url);
+                var items = JsonDataConverter<UserProfile[]>.JsonStringToObject(jsonstr).ToList();
+                return items ?? new List<UserProfile>();
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
         public async Task<bool> PostKnowledge(PostKnoweldgeDetail item)
         {
             try
@@ -51,12 +88,12 @@ namespace MobileHRM.Api
                 throw;
             }
         }
-        public async Task<bool> PostComment(comment item)
+        public async Task<bool> PostComment(AddComment item)
         {
             try
             {
                 string url = requestUri + "insertComment";
-                string jsnoStr = JsonDataConverter<comment>.ObjectToJsonString(item);
+                string jsnoStr = JsonDataConverter<AddComment>.ObjectToJsonString(item);
                 StringContent content = new StringContent(jsnoStr, Encoding.UTF8, "application/json");
                 HttpRequestMessage request = new HttpRequestMessage()
                 {
@@ -105,19 +142,40 @@ namespace MobileHRM.Api
                 throw;
             }
         }
-        public async Task<bool> SendReaction(Reaction reaction)
+        public async Task<bool> SendReaction(Models.Api.Reaction reaction)
         {
             try
             {
                 string uri = requestUri + "insertReaction";
-                string jsonstr = JsonDataConverter<Reaction>.ObjectToJsonString(reaction);
+                string jsonstr = JsonDataConverter<Models.Api.Reaction>.ObjectToJsonString(reaction);
                 HttpRequestMessage request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
                     RequestUri = new Uri(uri),
                     Content = new StringContent(jsonstr, Encoding.UTF8, "application/json")
                 };
-                bool res= await Base.Post(request);
+                bool res = await Base.Post(request);
+                return res;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw;
+            }
+        }
+        public async Task<bool> UpdateReaction(Models.Entities.Request.Reaction reaction)
+        {
+            try
+            {
+                string uri = requestUri + "updateReaction";
+                string jsonstr = JsonDataConverter<Models.Entities.Request.Reaction>.ObjectToJsonString(reaction);
+                HttpRequestMessage request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Put,
+                    RequestUri = new Uri(uri),
+                    Content = new StringContent(jsonstr, Encoding.UTF8, "application/json")
+                };
+                bool res = await Base.Put(request);
                 return res;
             }
             catch (Exception e)

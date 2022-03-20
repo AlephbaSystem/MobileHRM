@@ -17,16 +17,16 @@ namespace MobileHRM.Views.Popup
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class KnowledgeCommentsPopup : PopupPage
     {
-        int knowledgeId;
+        int knowledgeid;
         public KnowledgeCommentsPopup(int _knowledgeId)
         {
             InitializeComponent();
-            knowledgeId = _knowledgeId;
+            knowledgeid = _knowledgeId;
         }
         KnowledgeApi request = new KnowledgeApi();
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            var comment = new Models.Entities.Request.comment { createAt = MobileHRM.Helper.PersianDateTimeConverter.DateTimeToPersian(DateTime.Now), KnowledgeId = knowledgeId, message = commentmessage.Text ?? "", userId = User.UserId };
+            var comment = new Models.Api.AddComment { createAt = (DateTime.Now), knowledgeId = knowledgeid, message = commentmessage.Text ?? "", userId = User.UserId, };
             bool res = await request.PostComment(comment);
             await Task.Delay(500);
             await PopupNavigation.Instance.PopAsync();

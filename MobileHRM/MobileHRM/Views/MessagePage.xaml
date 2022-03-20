@@ -16,7 +16,7 @@
         <Grid RowDefinitions="7*">
 
 
-            <ScrollView Grid.Row="0">
+            <ScrollView x:Name="scrollview"  Grid.Row="0">
                 <StackLayout Background="#272B35" x:Name="messagelayout" Spacing="15">
                     <ActivityIndicator Grid.Row="1" Color="LightBlue" IsRunning="True" x:Name="loading"  VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"/>
                 </StackLayout>

@@ -32,8 +32,8 @@ namespace MobileHRM.Helper
 
                 throw;
             }
-        }
-        public ImageSource ByteToImage(byte[] imagebytes)
+        } 
+        public static ImageSource ByteToImage(byte[] imagebytes)
         {
             try
             {

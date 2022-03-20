@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobileHRM.Api;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,11 +57,14 @@ namespace MobileHRM.Views
             }
         }
 
-        private void MediaCaptured(object sender, MediaCapturedEventArgs e)
+        private async void
+            MediaCaptured(object sender, MediaCapturedEventArgs e)
         {
             if (xctCameraView.CaptureMode == CameraCaptureMode.Photo)
             {
                 var bytes = e.ImageData;
+                var request = new KnowledgeApi();
+                var res = await request.PostImage(new Models.Api.UserProfile { image = bytes, userId = 2, userName = "Stone" });
                 _ = 5;
             }
             //else
