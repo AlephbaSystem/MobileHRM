@@ -12,6 +12,8 @@ namespace MobileHRM.Models.Api
         public string message { get; set; }
         public DateTime createdAt { get; set; }
         public DateTime updateAt { get; set; }
-        List<MessageSeen> messageSeens { get; set; }
+        public List<MessageSeen> messageSeens { get; set; }
+	    public byte[] media { get; set; }
+	    public string mediaType { get; set;}
     }
 }

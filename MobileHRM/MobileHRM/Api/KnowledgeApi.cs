@@ -29,7 +29,7 @@ namespace MobileHRM.Api
                 throw;
             }
         }
-        public async Task<bool> PostImage(UserProfile user)
+        public async Task<bool> PostUserProfile(UserProfile user)
         {
             try
             {

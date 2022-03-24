@@ -7,13 +7,15 @@ using System.Text;
 using MobileHRM.Models;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+using Plugin.AudioRecorder;
 
 namespace MobileHRM.ViewModel
 {
     public class MessagesVm : Base
-
     {
         private int GroupId;
+        AudioPlayer audioplayer = new AudioPlayer();
         public MessagesVm(int _GroupId)
         {
             GroupId = _GroupId;
@@ -50,6 +52,35 @@ namespace MobileHRM.ViewModel
             return await request.SendMessage(msg);
         }
         private ObservableCollection<MessageItem> _myMessage { get; set; }
-    }
 
+        public void PlayVoice(object sender, EventArgs e)
+        {
+            if (IsPlaying)
+            {
+                audioplayer.Pause();
+                audioplayer = new AudioPlayer();
+                IsPlaying = false;
+            }
+            var t = sender as ImageButton;
+            var Audio = (string)t.CommandParameter;
+            if (Audio == currentAudio)
+            {
+                currentAudio = string.Empty;
+                return;
+            }
+            currentAudio = Audio;
+            audioplayer.FinishedPlaying += Audioplayer_FinishedPlaying;
+            audioplayer.Play(Audio);
+            IsPlaying = true;
+        }
+
+        private void Audioplayer_FinishedPlaying(object sender, EventArgs e)
+        {
+            IsPlaying = false;
+            currentAudio = string.Empty;
+        }
+
+        private string currentAudio { get; set; } = string.Empty;
+        private bool IsPlaying { get; set; } = false; //true of false eather Audio Is Is Playing or not        
+    }
 }

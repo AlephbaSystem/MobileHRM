@@ -11,5 +11,7 @@ namespace MobileHRM.Models.Api
         public string message { get; set; }
         public DateTime createdAt { get; set; }
         public DateTime updateAt { get; set; }
+	    public byte[] media {get; set;}
+	    public string mediaType{get; set;}
     }
 }

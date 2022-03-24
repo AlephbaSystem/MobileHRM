@@ -48,7 +48,7 @@ namespace MobileHRM.ViewModel
             {
                 for (int i = 0; i < users.Count; i++)
                 {
-                    var userImageSource = ImageConverter.ByteToImage(users[i].image);
+                    var userImageSource = DataConverter.ByteToImage(users[i].image);
                     Items[index].commentedUsers.Add(new image { UserImage = userImageSource });
                 }
                 return Task.CompletedTask;
