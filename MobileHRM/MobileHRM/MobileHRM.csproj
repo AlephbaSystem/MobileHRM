@@ -72,6 +72,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\CreateGroup.xaml.cs">
+      <DependentUpon>CreateGroup.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\LogInPage.xaml.cs">
       <DependentUpon>LogInPage.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,12 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Views\chatPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Contactslist.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CreateGroup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\KnowledgeReferences.xaml">

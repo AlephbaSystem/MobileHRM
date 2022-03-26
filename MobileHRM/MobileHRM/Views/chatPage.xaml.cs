@@ -41,14 +41,19 @@ namespace MobileHRM.Views
             await PopupNavigation.Instance.PushAsync(new Popup.Notifications());
         }
 
-        private void ImageButton_Clicked_2(object sender, EventArgs e)
+        private async void ImageButton_Clicked_2(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new Contactslist());
         }
 
         private void ImageButton_Clicked_3(object sender, EventArgs e)
         {
 
+        }
+
+        private void CustomEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            vm.SearchByMessage(searchBar.Text);
         }
     }
 }

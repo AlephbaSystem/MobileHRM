@@ -43,11 +43,11 @@ namespace MobileHRM.ViewModel
             initialize();
             Isrefreshing = false;
         }
+        Api.ChatApi api = new Api.ChatApi();
         public async void initialize()
         {
             try
             {
-                Api.ChatApi api = new Api.ChatApi();
                 Items = await api.GetGroupsByUserd(User.UserId);
             }
             catch (Exception e)
@@ -55,7 +55,11 @@ namespace MobileHRM.ViewModel
                 _ = e.Message;
                 throw;
             }
-        } 
+        }
+        public async void SearchByMessage(string message)
+        {
+            Items = await api.GetAllChatsByMessage(message);
+        }
         public ICommand refresh { get; protected set; }
     }
 }
