@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using MobileHRM.Models.Api;
 using MobileHRM.Api;
+using System.Windows.Input;
+using Xamarin.Forms;
+using MobileHRM.Models;
 
 namespace MobileHRM.ViewModel
 {
@@ -11,7 +14,7 @@ namespace MobileHRM.ViewModel
         public knowledgePageViewModel(KnowledgeDetail knowledge)
         {
             Item = knowledge;
-            initialize();
+            SendReaction = new Command(insertReaction);
         }
         private KnowledgeDetail _item;
         public KnowledgeDetail Item
@@ -39,11 +42,55 @@ namespace MobileHRM.ViewModel
                 OnPropertyChanged(nameof(Comments));
             }
         }
+        //private bool _smileEnabled;
+        //public bool smileEnabled
+        //{
+        //    get
+        //    {
+        //        return _smileEnabled;
+        //    }
+        //    set
+        //    {
+        //        _smileEnabled = value;
+        //        OnPropertyChanged(nameof(smileEnabled));
+        //    }
+        //}
+        //private bool _frawnEnabled;
+        //public bool frawnEnabled
+        //{
+        //    get
+        //    {
+        //        return _frawnEnabled;
+        //    }
+        //    set
+        //    {
+        //        _frawnEnabled = value;
+        //        OnPropertyChanged(nameof(frawnEnabled));
+        //    }
+        //}
         KnowledgeApi request = new KnowledgeApi();
         public async void initialize()
         {
-            var i= await request.GetCommentsByKnowledgeId(Item.id);
-            Comments = i ?? new List<Comment>();             
+            var i = await request.GetCommentsByKnowledgeId(Item.id);
+            Comments = i ?? new List<Comment>();
         }
+        private async void insertReaction(object sender)
+        {
+            var param = (Comment)sender;
+            bool res = false;
+            if (param.reactionId == null)
+            {
+                res = await request.SendReaction(new Reaction() { commentId = param.commentId, isLike = !param.isLike, userId = User.UserId });
+            }
+            else
+            {
+                res = await request.UpdateReaction(new Models.Entities.Request.Reaction { reactionId = param.reactionId, commentId = param.commentId, isLike = !param.isLike, userId = User.UserId });
+            }
+            if (res)
+            {
+                initialize();
+            }
+        }
+        public ICommand SendReaction { get; protected set; }
     }
 }

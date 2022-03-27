@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MobileHRM.Models.Entities;
+using Xamarin.Forms;
 
 namespace MobileHRM.Models.Api
 {
@@ -11,10 +12,12 @@ namespace MobileHRM.Models.Api
         public int userId { get; set; }
         public string title { get; set; }
         public string detail { get; set; }
-        public int referenceId { get; set; }
-        public string referencesName { get; set; }
-        public string adress { get; set; }
-        public string link { get; set; }
+        public List<Reference> references { get; set; }
         public List<Tag> tags { get; set; }
+        public List<image> commentedUsers { get; set; }
+    }
+    public class image
+    {
+        public ImageSource UserImage { get; set; }
     }
 }

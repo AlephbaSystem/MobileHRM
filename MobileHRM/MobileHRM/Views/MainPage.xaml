@@ -1,11 +1,178 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"             
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
-             xmlns:views="clr-namespace:MobileHRM.Views"
-             BackgroundColor="#fff"
+             xmlns:views="clr-namespace:MobileHRM.Views" xmlns:entryCustom="clr-namespace:MobileHRM.Controls"
+       BackgroundColor="#fff"
+            Shell.BackgroundColor="#1A1C23"
+            Shell.NavBarHasShadow="False"
              x:Class="MobileHRM.MainPage"
-             Shell.UnselectedColor="LightGreen">
+            Style="{StaticResource basic}">
     <TabBar>
+        <Tab Title="Dashboard"
+                    Icon="Dashboard.png">
+            <ShellContent>
+                <ContentPage Shell.BackgroundColor="#1A1C23">
+                    <Shell.TitleView>
+                        <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" Margin="0,0,20,0">
+                            <Frame Padding="0" CornerRadius="40">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ImageButton_Clicked_1" />
+                                </Frame.GestureRecognizers>
+                                <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="imageUser.png" />
+                            </Frame>
+                            <Frame BackgroundColor="#272B35" CornerRadius="40" Padding="0" VerticalOptions="CenterAndExpand">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTabNotification" />
+                                </Frame.GestureRecognizers>
+                                <Image Aspect="AspectFill" WidthRequest="50" HeightRequest="50" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="Notification2.png" />
+                            </Frame>
+                            <Label HorizontalOptions="EndAndExpand" FontSize="Large" VerticalTextAlignment="Center" TextColor="#CCCCCC" Text="Hi User 01" />
+                        </StackLayout>
+                    </Shell.TitleView>
+                    <StackLayout BackgroundColor="#1A1C23">
+                        <Label Margin="10,0,0,0" Text="Good afternoon!" FontSize="Large" TextColor="#CCCCCC" />
+                        <Frame Padding="0"  Grid.Row="0"
+                               BackgroundColor="#FFFFFF"
+                               CornerRadius="5"
+                               HeightRequest="50"
+                               Margin="10,20">
+                            <Grid ColumnDefinitions="0.5*,8*,2*" VerticalOptions="CenterAndExpand">
+                                <entryCustom:CustomEntry   Grid.Column="1" Placeholder="Search"/>
+                                <ImageButton  Grid.Column="2" BackgroundColor="Transparent"
+                                       Margin="10"
+                                       Source="Search.png"/>
+                            </Grid>
+                        </Frame>
+                        <Frame Padding="0"
+                               CornerRadius="11"
+                               BackgroundColor="Transparent"
+                               Margin="10,0,10,40">
+                            <ScrollView Padding="0">
+                                <StackLayout Spacing="10">
+
+                                    <Frame Padding="0"
+                               Margin="1"
+                               BackgroundColor="#272B35"
+                               CornerRadius="11">
+                                        <Grid RowDefinitions="0.5*, 2*, 0.2*, 2*, 0.5*">
+                                            <Grid Grid.Row="1" ColumnDefinitions="3*,0*,10*" 
+                                          x:Name="PunchInGrid">
+                                                <Frame CornerRadius="50"
+                                       Grid.Column="0"
+                                       HeightRequest="50"
+                                       BackgroundColor="#1C1F26"
+                                       WidthRequest="50"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="End"
+                                       Margin="0"
+                                       Padding="0">
+                                                    <Image BackgroundColor="#1C1F26"
+                                             Margin="10"
+                                         Source="punchIn.png"/>
+                                                </Frame>
+                                                <StackLayout Grid.Column="2" Padding="5" Spacing="0">
+                                                    <Label Text="Not yut" VerticalOptions="Start" TextColor="#CCCCCC"/>
+                                                    <Label Text="Punch in time" VerticalOptions="End" TextColor="#8D8D8D"/>
+                                                </StackLayout>
+                                            </Grid>
+                                            <Grid Grid.Row="3" ColumnDefinitions="3*,0*,10*">
+                                                <Frame CornerRadius="50"                                              
+                                               Grid.Column="0"
+                                               HeightRequest="50"
+                                               BackgroundColor="#1C1F26"
+                                               WidthRequest="50"
+                                               VerticalOptions="CenterAndExpand"
+                                               HorizontalOptions="End"
+                                               Margin="0"
+                                               Padding="0">
+                                                    <Image BackgroundColor="#1C1F26"
+                                                         Margin="10"
+                                                         Source="punchOut.png"/>
+                                                </Frame>
+                                                <StackLayout Grid.Column="2" Padding="5" Spacing="0">
+                                                    <Label Text="Not yut" VerticalOptions="Start" TextColor="#CCCCCC"/>
+                                                    <Label Text="Punch out time" VerticalOptions="End" TextColor="#8D8D8D"/>
+                                                </StackLayout>
+                                            </Grid>
+                                        </Grid>
+                                    </Frame>
+                                    <Frame Padding="0"
+                               Margin="1"
+                               BackgroundColor="#272B35"
+                               CornerRadius="11">
+                                        <Grid RowDefinitions="0.1*, *, 2*,0.3*">
+                                            <Label Grid.Column="0"
+                                       Grid.Row="1"
+                                       Margin="23,0,0,0"
+                                       VerticalOptions="Center"
+                                       TextColor="#CCCCCC"
+                                       Text="Monthly time"/>
+
+                                            <Grid Grid.Row="2" ColumnDefinitions="3*,0*,10*">
+
+                                                <Frame CornerRadius="4"
+                                                           Grid.Column="0"
+                                                           HeightRequest="50"
+                                                           BackgroundColor="#1C1F26"
+                                                           WidthRequest="50"
+                                                           VerticalOptions="Start"
+                                                           HorizontalOptions="End"
+                                                           Margin="0"
+                                                           Padding="0">
+                                                    <Image BackgroundColor="#1C1F26"
+                                                         Margin="10"
+                                                         Source="timeWhite.png"/>
+                                                </Frame>
+                                                <Grid Grid.Column="2" Padding="5" RowDefinitions="Auto,Auto,0,Auto">
+                                                    <Label Text="60 h" TextColor="#8D8D8D" Grid.Row="0"/>
+                                                    <Label Text="Total schedule time" TextColor="#8D8D8D" Grid.Row="1"/>
+                                                    <Label Text="Over time - 0 m" TextColor="#8D8D8D" Grid.Row="3"/>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </Frame>
+                                    <Frame Padding="0"
+                               Margin="1"
+                               BackgroundColor="#272B35"
+                               CornerRadius="11">
+                                        <Grid RowDefinitions="0.1*, *, 2*,0.3*">
+                                            <Label Grid.Column="0"
+                                       Grid.Row="1"
+                                       Margin="23,0,0,0"
+                                       VerticalOptions="Center"
+                                       TextColor="#CCCCCC"
+                                       Text="Monthly time"/>
+
+                                            <Grid Grid.Row="2" ColumnDefinitions="3*,0*,10*">
+
+                                                <Frame CornerRadius="4"
+                                               Grid.Column="0"
+                                               HeightRequest="50"
+                                               BackgroundColor="#1C1F26"
+                                               WidthRequest="50"
+                                               VerticalOptions="Start"
+                                               HorizontalOptions="End"
+                                               Margin="0"
+                                               Padding="0">
+                                                <Image BackgroundColor="#1C1F26"
+                                                         Margin="10"
+                                                         Source="userWhite.png"/>
+                                                </Frame>
+                                                <Grid Grid.Column="2" Padding="5" RowDefinitions="Auto,Auto,0,Auto">
+                                                    <Label Text="60 h" TextColor="#8D8D8D" Grid.Row="0"/>
+                                                    <Label Text="Total schedule time" TextColor="#8D8D8D" Grid.Row="1"/>
+                                                    <Label Text="Over time - 0 m" TextColor="#8D8D8D" Grid.Row="3"/>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                            </ScrollView>
+                        </Frame>
+                    </StackLayout>
+                </ContentPage>
+            </ShellContent>
+        </Tab>
         <Tab Title="Knowledge"
                     Icon="Vectorknowledge.webp">
             <ShellContent 
@@ -18,15 +185,11 @@
         </Tab>
         <Tab Title="Chats"
                     Icon="Settings.png">
-            <ShellContent 
+            <ShellContent
                       ContentTemplate="{DataTemplate views:chatPage}" />
         </Tab>
-        <Tab Title="Camera"
-                    Icon="camera.png">
-            <ShellContent 
-                      ContentTemplate="{DataTemplate views:CameraViews}" />
-        </Tab>
     </TabBar>
+
     <!--<ContentPage.Resources>
         <ResourceDictionary>
             <ControlTemplate x:Key="TabItemTemplate">

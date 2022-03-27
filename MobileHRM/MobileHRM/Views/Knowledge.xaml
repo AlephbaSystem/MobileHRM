@@ -2,12 +2,49 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:sh="http://sharpnado.com"
-             x:Class="MobileHRM.Views.Knowledge"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:sh="http://sharpnado.com" xmlns:entryCustom="clr-namespace:MobileHRM.Controls"
+             x:Class="MobileHRM.Views.Knowledge" 
+             Shell.BackgroundColor="#1A1C23"
              Background="#000000">
+
+    <Shell.TitleView>
+        <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" Margin="0,0,20,0">
+            <Frame Padding="0" CornerRadius="40">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ImageButton_Clicked" />
+                </Frame.GestureRecognizers>
+                <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+            </Frame>
+            <Frame BackgroundColor="#272B35" CornerRadius="40" Padding="0" VerticalOptions="CenterAndExpand">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ImageButton_Clicked_1" />
+                </Frame.GestureRecognizers>
+                <Image Aspect="AspectFill" WidthRequest="50" HeightRequest="50" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="Notification2.png" />
+            </Frame>
+            <Frame BackgroundColor="#272B35" Padding="5" CornerRadius="40" VerticalOptions="CenterAndExpand">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnNewFrameClicked" />
+                </Frame.GestureRecognizers>
+                <Image Aspect="AspectFill" WidthRequest="38" HeightRequest="38" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="Plus.png" />
+            </Frame>
+            <ImageButton Aspect="AspectFill" WidthRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_Clicked_3" Source="VectorArrow.png" />
+        </StackLayout>
+    </Shell.TitleView>
     <ContentPage.Content>
-        <Grid RowDefinitions="*,*">
-            <Frame Grid.RowSpan="2" VerticalOptions="Start" Padding="0" CornerRadius="20" BackgroundColor="Transparent" Margin="20,5">
+        <Grid RowDefinitions="*,5*">
+            <Frame Padding="0"  Grid.Row="0"
+                               BackgroundColor="#FFFFFF"
+                               CornerRadius="5"
+                               HeightRequest="70"
+                               Margin="10,35,10,0">
+                <Grid ColumnDefinitions="0.5*,8*,2*">
+                    <entryCustom:CustomEntry Grid.Column="1" Placeholder="Search"/>
+                    <ImageButton Grid.Column="2" BackgroundColor="Transparent"
+                                       Margin="10"
+                                       Source="Search.png"/>
+                </Grid>
+            </Frame>
+            <Frame Grid.Row="1" Grid.RowSpan="2" VerticalOptions="Start" Padding="0" CornerRadius="20" BackgroundColor="Transparent" Margin="20,5">
                 <CollectionView ItemsSource="{Binding Items}"  x:Name="Describtion">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -16,11 +53,11 @@
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}" />
                                 </Frame.GestureRecognizers>
                                 <Grid BackgroundColor="#272B35" RowDefinitions="*,1.5*,*" Margin="20,0" Padding="10">
-                                    <StackLayout Grid.Row="0" BindableLayout.ItemsSource="{Binding images}" Spacing="-25" Orientation="Horizontal" HorizontalOptions="End">
+                                    <StackLayout Grid.Row="0" Spacing="-25" BindableLayout.ItemsSource="{Binding commentedUsers}" Orientation="Horizontal" HorizontalOptions="End">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate>
                                                 <Frame Padding="1" CornerRadius="24" HeightRequest="40" WidthRequest="40" BorderColor="#7B61FF" BackgroundColor="Transparent">
-                                                    <ff:CachedImage Source="{Binding Image}" Aspect="AspectFill">
+                                                    <ff:CachedImage Source="{Binding UserImage}" Aspect="AspectFill">
                                                         <ff:CachedImage.Transformations>
                                                             <ffTransformations:CircleTransformation />
                                                         </ff:CachedImage.Transformations>
@@ -31,7 +68,9 @@
                                     </StackLayout>
                                     <Label Grid.Row="0" Text="{Binding title}" TextColor="#CCCCCC" Margin="0,10"/>
                                     <Label Grid.Row="1" Text="{Binding detail}" VerticalOptions="Center" TextColor="#8D8D8D"/>
-                                    <Label Grid.Row="2" Text="{Binding tags[0].tagName}" HorizontalOptions="End" TextColor="#8D8D8D"/>
+                                    <Frame Grid.Row="2" BackgroundColor="{Binding tags[0].color}" HorizontalOptions="End" CornerRadius="40" Padding="10" VerticalOptions="CenterAndExpand">
+                                    <Label  Text="{Binding tags[0].tagName}"  TextColor="#8D8D8D"/>
+                                    </Frame>
                                 </Grid>
                             </Frame>
                         </DataTemplate>

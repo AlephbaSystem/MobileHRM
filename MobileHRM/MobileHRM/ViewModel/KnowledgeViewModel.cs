@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using MobileHRM.Models.Api;
 using MobileHRM.Api;
+using MobileHRM.Helper;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace MobileHRM.ViewModel
 {
@@ -10,7 +13,6 @@ namespace MobileHRM.ViewModel
     {
         public KnowledgeViewModel()
         {
-            initialize();
         }
         private List<KnowledgeDetail> _items;
         public List<KnowledgeDetail> Items
@@ -28,7 +30,34 @@ namespace MobileHRM.ViewModel
         KnowledgeApi request = new KnowledgeApi();
         public async void initialize()
         {
-            Items = await request.GetAllKnowledges(0,20);
+            Items = await request.GetAllKnowledges(0, 20);
+            await Task.Run(async () =>
+            {
+                for (int i = 0; i < Items.Count; i++)
+                {
+                    var KnowldgeCommenstUsers = await request.GetUserProfile(Items[i].id);
+                    Items[i].commentedUsers = new List<image>();
+                    await GetKnowledgeCommentsUser(KnowldgeCommenstUsers, i);
+                }
+            }
+            );
+        }
+        private Task GetKnowledgeCommentsUser(List<UserProfile> users, int index)
+        {
+            try
+            {
+                for (int i = 0; i < users.Count; i++)
+                {
+                    var userImageSource = DataConverter.ByteToImage(users[i].image);
+                    Items[index].commentedUsers.Add(new image { UserImage = userImageSource });
+                }
+                return Task.CompletedTask;
+            }
+            catch (Exception e)
+            {
+                _ = e.Message;
+                throw;
+            }
         }
     }
 }

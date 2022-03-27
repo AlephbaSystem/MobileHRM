@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Mime;
 using MobileHRM.Models;
 using System.Linq;
+using MobileHRM.Models.Entities.Request;
 
 namespace MobileHRM.Api
 {
@@ -20,7 +21,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + "/CreteGroup";
+                string url = requestUri + "CreateGroup";
                 string contentStr = JsonDataConverter<Group>.ObjectToJsonString(dataObj);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8);
                 HttpRequestMessage request = new HttpRequestMessage()
@@ -49,10 +50,10 @@ namespace MobileHRM.Api
                 {
                     Method = HttpMethod.Post,
                     RequestUri = new Uri(url),
-                    Content = content 
+                    Content = content
                 };
-                
-                var status=await Base.Post(request); //if status false message not sended successfully
+
+                var status = await Base.Post(request); //if status false message not sended successfully
 
                 return status;
             }
@@ -111,7 +112,7 @@ namespace MobileHRM.Api
                 {
                     return new List<GroupMessage>();
                 }
-                var items = JsonDataConverter<GroupMessage[]>.JsonStringToObject(jsonStr).ToList();
+                List<GroupMessage> items = JsonDataConverter<GroupMessage[]>.JsonStringToObject(jsonStr).ToList();
                 return items;
             }
             catch (Exception e)
@@ -121,5 +122,46 @@ namespace MobileHRM.Api
                 throw;
             }
         }
+        public async Task<List<UserProfile>> GetContacts()
+        {
+            try
+            {
+                string url = requestUri + $"GetallUsers";
+                string jsonStr = await Base.Get(url);
+                if (jsonStr == null)
+                {
+                    return new List<UserProfile>();
+                }
+                List<UserProfile> items = JsonDataConverter<List<UserProfile>>.JsonStringToObject(jsonStr);
+                return items;
+            }
+            catch (Exception e)
+            {
+                _ = e.Message;
+                return new List<UserProfile>();
+                throw;
+            }
+        }
+        public async Task<List<Group>> GetAllChatsByMessage(string Message)
+        {
+            try
+            {
+                string url = requestUri + $"GetChatsByMessage?Message={Message}";
+                string jsonStr = await Base.Get(url);
+                if (jsonStr == null)
+                {
+                    return new List<Group>();
+                }
+                List<Group> items = JsonDataConverter<List<Group>>.JsonStringToObject(jsonStr);
+                return items;
+            }
+            catch (Exception e)
+            {
+                _ = e.Message;
+                return new List<Group>();
+                throw;
+            }
+        }
+
     }
 }
