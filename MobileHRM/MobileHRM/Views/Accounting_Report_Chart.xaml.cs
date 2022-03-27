@@ -89,6 +89,7 @@ namespace MobileHRM.Views
             };
             charview.Chart = new BarChart { Entries = entries };
             charview1.Chart = new PieChart { Entries = entries };
+            charview2.Chart = new PieChart { Entries = entries };
         }
     }
 }
