@@ -28,7 +28,7 @@ namespace MobileHRM.Views
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             var i = (TapGestureRecognizer)((Grid)sender).GestureRecognizers[0];
-            await Navigation.PushAsync(new MessagePage((Group)i.CommandParameter));
+            await Navigation.PushAsync(new MessagePage((Models.Entities.Group)i.CommandParameter));
         }
 
         private void ImageButton_Clicked(object sender, EventArgs e)

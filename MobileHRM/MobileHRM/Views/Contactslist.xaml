@@ -5,24 +5,17 @@
              BackgroundColor="#1A1C23">
     <Shell.TitleView>
         <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" Margin="0,0,20,0">
-            <Frame Padding="0" CornerRadius="40">
+            <Frame VerticalOptions="CenterAndExpand"  Padding="0" CornerRadius="40">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" />
                 </Frame.GestureRecognizers>
-                <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                <Image Aspect="AspectFill" HorizontalOptions="FillAndExpand" WidthRequest="44" HeightRequest="45" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
             </Frame>
             <Frame BackgroundColor="#272B35" CornerRadius="40" Padding="0" VerticalOptions="CenterAndExpand">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
                 </Frame.GestureRecognizers>
                 <Image Aspect="AspectFill" WidthRequest="50" HeightRequest="50" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent"  Source="Notification2.png" />
-            </Frame>
-
-            <Frame BackgroundColor="#272B35" Padding="6" CornerRadius="40" VerticalOptions="CenterAndExpand">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                </Frame.GestureRecognizers>
-                <Image Aspect="AspectFill" WidthRequest="35" HeightRequest="35" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="Plus.png" />
             </Frame>
         </StackLayout>
     </Shell.TitleView>
@@ -31,8 +24,8 @@
             <Frame Padding="0,0" CornerRadius="10" Margin="10,5" >
                 <SearchBar x:Name="Searchbar" Placeholder="Search..." TextChanged="SearchBar_TextChanged" FontSize="15" HeightRequest="60" />
             </Frame>
-            <CollectionView x:Name="list" ItemsSource="{Binding Path=user}" SelectionMode="Multiple" >
-                <CollectionView.ItemTemplate>
+            <StackLayout x:Name="list" BindableLayout.ItemsSource="{Binding Path=user}" >
+                <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Grid ColumnDefinitions="2*,5*,2*" BackgroundColor="Transparent">
                             <Grid.GestureRecognizers>
@@ -59,9 +52,9 @@
                                             Grid.ColumnSpan="2" />
                         </Grid>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <Button Text="Next" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Clicked="Button_Clicked" />
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+            <Button WidthRequest="130" CornerRadius="5" TextColor="#EBEBEB" BackgroundColor="#00A693" Margin="0,0,20,20" Text="Next" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Clicked="Button_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

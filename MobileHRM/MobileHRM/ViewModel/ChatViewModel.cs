@@ -1,7 +1,10 @@
-﻿using MobileHRM.Models;
+﻿using MobileHRM.Helper;
+using MobileHRM.Models;
 using MobileHRM.Models.Api;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -15,11 +18,15 @@ namespace MobileHRM.ViewModel
             refresh = new Command(RefreshItems);
         }
 
-        private List<Group> _items;
-        public List<Group> Items
+        private ObservableCollection<MobileHRM.Models.Entities.Group> _items;
+        public ObservableCollection<MobileHRM.Models.Entities.Group> Items
         {
             get
             {
+                if (_items==null)
+                {
+                    return new ObservableCollection<MobileHRM.Models.Entities.Group>();
+                }
                 return _items;
             }
             set
@@ -48,7 +55,13 @@ namespace MobileHRM.ViewModel
         {
             try
             {
-                Items = await api.GetGroupsByUserd(User.UserId);
+                Items = new ObservableCollection<Models.Entities.Group>();
+                var items = await api.GetGroupsByUserd(User.UserId);
+                foreach (var item in items)
+                {
+                    Items.Add(new Models.Entities.Group { name = item.name, image = DataConverter.ByteToImage(item.image), id = item.id, lastMessage = item.lastMessage ?? "" });
+                }
+                Items = Items;
             }
             catch (Exception e)
             {
@@ -58,7 +71,17 @@ namespace MobileHRM.ViewModel
         }
         public async void SearchByMessage(string message)
         {
-            Items = await api.GetAllChatsByMessage(message);
+            if (message == "")
+            {
+                initialize();
+            }
+            var items = await api.GetAllChatsByMessage(message);
+            Items = new ObservableCollection<Models.Entities.Group>();
+            foreach (var item in items)
+            {
+                Items.Add(new Models.Entities.Group { name = item.name, image = DataConverter.ByteToImage(item.image), id = item.id, lastMessage = item.lastMessage, lastMessageTime = item.lastMessageTime, unSeenedMessages = item.unSeenedMessages });
+            }
+            Items = Items;
         }
         public ICommand refresh { get; protected set; }
     }

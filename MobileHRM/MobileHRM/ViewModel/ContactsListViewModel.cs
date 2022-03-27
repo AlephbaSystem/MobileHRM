@@ -31,27 +31,10 @@ namespace MobileHRM.ViewModel
                 OnPropertyChanged(nameof(user));
             }
         }
-        private List<UserProfile> _items;
-        public List<UserProfile> items
-        {
-            get
-            {
-                if (items == null)
-                {
-                    return new List<UserProfile>();
-                }
-                return _items;
-            }
-            set
-            {
-                _items = value;
-                OnPropertyChanged(nameof(items));
-            }
-        }
         ChatApi request = new ChatApi();
         public async void initialize()
         {
-            items = await request.GetContacts();
+            var items = await request.GetContacts();
             ByteToImage(items);
         }
         private void ByteToImage(List<UserProfile> items)
