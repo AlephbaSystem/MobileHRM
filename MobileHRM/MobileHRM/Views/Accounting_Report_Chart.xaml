@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileHRM.Views.Accounting_Report_Chart"
+             xmlns:forms="clr-namespace:Microcharts.Forms" xmlns:forms1="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             Background="#272B35"
+             Title="Charts">
+
+    <Grid RowDefinitions="*,*,*">
+            <Grid Grid.Row="0" ColumnDefinitions="*,4*"  VerticalOptions="Start" Margin="0,30,0,0">
+                <Label Grid.Column="0" 
+                       Text="From :"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+
+                <Frame 
+                    Padding="0"
+                    Grid.Column="1"
+                    BackgroundColor="#CCCCCC"
+                    VerticalOptions="Center"
+                    CornerRadius="10"
+                    Margin="0,0,20,0">
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#CCCCCC" Offset="0.8"/>
+                            <GradientStop Color="#CCCCCC" Offset="0.9"/>
+                            <GradientStop Color="#272B35" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <Grid ColumnDefinitions="*,*">
+                        <DatePicker Grid.Column="0"
+                         HorizontalOptions="Start"
+                         FontSize="Small"           >
+
+                        </DatePicker>
+                        <Image Grid.Column="1" Source="Group"
+                               HorizontalOptions="EndAndExpand"
+                               Margin="0,0,7,0"/>
+                    </Grid>
+
+                </Frame>
+        
+            </Grid>
+        <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand" x:Name="content">
+            <forms1:ChartView x:Name="charview" HeightRequest="200" >
+            
+            </forms1:ChartView>
+        </StackLayout>
+        <StackLayout Grid.Row="2">
+            <forms1:ChartView x:Name="charview1" HeightRequest="200" >
+
+            </forms1:ChartView>
+
+        </StackLayout>
+        </Grid>
+
+   
+</ContentPage>
