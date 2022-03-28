@@ -28508,112 +28508,116 @@ namespace MobileHRM.Droid
 			public const int cancelbutton = 2131165286;
 			
 			// aapt resource value: 0x7F070067
-			public const int circle = 2131165287;
+			public const int ChessBoard = 2131165287;
 			
 			// aapt resource value: 0x7F070068
-			public const int circle_select = 2131165288;
+			public const int circle = 2131165288;
 			
 			// aapt resource value: 0x7F070069
-			public const int close = 2131165289;
+			public const int circle_select = 2131165289;
 			
 			// aapt resource value: 0x7F07006A
-			public const int closeIcon = 2131165290;
+			public const int close = 2131165290;
 			
 			// aapt resource value: 0x7F07006B
-			public const int crop = 2131165291;
-			
-			// aapt resource value: 0x7F07006D
-			public const int cropfourtothree_Selected = 2131165293;
-			
-			// aapt resource value: 0x7F07006E
-			public const int cropone = 2131165294;
+			public const int closeIcon = 2131165291;
 			
 			// aapt resource value: 0x7F07006C
-			public const int crop_select = 2131165292;
+			public const int crop = 2131165292;
+			
+			// aapt resource value: 0x7F07006E
+			public const int cropfourtothree_Selected = 2131165294;
 			
 			// aapt resource value: 0x7F07006F
-			public const int Dashboard = 2131165295;
+			public const int cropone = 2131165295;
+			
+			// aapt resource value: 0x7F07006D
+			public const int crop_select = 2131165293;
 			
 			// aapt resource value: 0x7F070070
-			public const int design_fab_background = 2131165296;
+			public const int Dashboard = 2131165296;
 			
 			// aapt resource value: 0x7F070071
-			public const int design_ic_visibility = 2131165297;
+			public const int design_fab_background = 2131165297;
 			
 			// aapt resource value: 0x7F070072
-			public const int design_ic_visibility_off = 2131165298;
+			public const int design_ic_visibility = 2131165298;
 			
 			// aapt resource value: 0x7F070073
-			public const int design_password_eye = 2131165299;
+			public const int design_ic_visibility_off = 2131165299;
 			
 			// aapt resource value: 0x7F070074
-			public const int design_snackbar_background = 2131165300;
+			public const int design_password_eye = 2131165300;
 			
 			// aapt resource value: 0x7F070075
-			public const int dit_select = 2131165301;
+			public const int design_snackbar_background = 2131165301;
 			
 			// aapt resource value: 0x7F070076
-			public const int Download = 2131165302;
-			
-			// aapt resource value: 0x7F070078
-			public const int editTextBackground = 2131165304;
+			public const int dit_select = 2131165302;
 			
 			// aapt resource value: 0x7F070077
-			public const int edit_select = 2131165303;
+			public const int Download = 2131165303;
 			
 			// aapt resource value: 0x7F070079
-			public const int errIcon = 2131165305;
+			public const int editTextBackground = 2131165305;
+			
+			// aapt resource value: 0x7F070078
+			public const int edit_select = 2131165304;
 			
 			// aapt resource value: 0x7F07007A
-			public const int file_text = 2131165306;
+			public const int errIcon = 2131165306;
 			
 			// aapt resource value: 0x7F07007B
-			public const int fill = 2131165307;
+			public const int file_text = 2131165307;
 			
 			// aapt resource value: 0x7F07007C
-			public const int fill_select = 2131165308;
+			public const int fill = 2131165308;
 			
 			// aapt resource value: 0x7F07007D
-			public const int finalCamera = 2131165309;
+			public const int fill_select = 2131165309;
 			
 			// aapt resource value: 0x7F07007E
-			public const int fivetofour = 2131165310;
+			public const int finalCamera = 2131165310;
 			
 			// aapt resource value: 0x7F07007F
-			public const int fivetofourselected = 2131165311;
+			public const int fivetofour = 2131165311;
 			
 			// aapt resource value: 0x7F070080
-			public const int flip = 2131165312;
+			public const int fivetofourselected = 2131165312;
 			
 			// aapt resource value: 0x7F070081
-			public const int flip_select = 2131165313;
+			public const int flip = 2131165313;
 			
 			// aapt resource value: 0x7F070082
-			public const int fourtofive = 2131165314;
+			public const int flip_select = 2131165314;
 			
 			// aapt resource value: 0x7F070083
-			public const int fourtofiveselected = 2131165315;
+			public const int fourtofive = 2131165315;
 			
 			// aapt resource value: 0x7F070084
-			public const int fourtothree = 2131165316;
+			public const int fourtofiveselected = 2131165316;
 			
 			// aapt resource value: 0x7F070085
-			public const int fourtothreeselected = 2131165317;
+			public const int fourtothree = 2131165317;
 			
 			// aapt resource value: 0x7F070086
-			public const int free = 2131165318;
+			public const int fourtothreeselected = 2131165318;
 			
 			// aapt resource value: 0x7F070087
-			public const int freeselected = 2131165319;
+			public const int free = 2131165319;
 			
 			// aapt resource value: 0x7F070088
-			public const int frown = 2131165320;
+			public const int freeselected = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int greenTik = 2131165321;
+			public const int frown = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
+<<<<<<< HEAD
+			public const int greenTik = 2131165322;
+=======
 			public const int Group = 2131165322;
+>>>>>>> ba63a7ef48f0010274d72a2b8e35e2c4c82563f4
 			
 			// aapt resource value: 0x7F07008B
 			public const int ic_arrow_down_24dp = 2131165323;

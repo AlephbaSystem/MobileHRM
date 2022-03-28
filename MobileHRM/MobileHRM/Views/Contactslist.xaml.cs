@@ -38,22 +38,31 @@ namespace MobileHRM.Views
 
         private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
         {
-
         }
 
         private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
         {
-
+            var layout = (Grid)sender;
+            var gesture=(TapGestureRecognizer)layout.GestureRecognizers.First();
+            if (SelectedItems.Contains((Contact)gesture.CommandParameter))
+            {
+                layout.BackgroundColor = Color.Transparent;
+                SelectedItems.Remove((Contact)gesture.CommandParameter);
+            }
+            else
+            {
+                layout.BackgroundColor = Color.FromHex("a0000000");
+                SelectedItems.Add((Contact)gesture.CommandParameter);
+            }
         }
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
         }
-
+        private List<Contact> SelectedItems = new List<Contact>();
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            var items = (List<Contact>)list.SelectedItems;
-            await Navigation.PushAsync(new CreateGroup(items));
+            await Navigation.PushAsync(new CreateGroup(SelectedItems));
         }
     }
 }

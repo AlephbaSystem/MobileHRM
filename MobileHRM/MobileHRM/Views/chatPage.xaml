@@ -65,9 +65,9 @@
                                        BackgroundColor="White"
                                        Margin="0"
                                        Padding="0">
-                                        <!--<Image Source="{Binding image}"
-                                           Margin="0"/>-->
-                                    </Frame>
+                                            <Image Source="{Binding image}"
+                                                />
+                                        </Frame>
                                     <StackLayout Grid.Column="1"
                                              HorizontalOptions="Start"
                                              Spacing="0"

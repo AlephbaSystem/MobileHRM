@@ -17,13 +17,35 @@ namespace MobileHRM.Api
     {
         string requestUri = "http://185.18.214.100:29174/api/Message/";
         HttpClient Client = new HttpClient();
-        public async Task<bool> CreateGroup(Group dataObj)
+        public async Task<bool> CreateGroup(createGroup dataObj)
         {
             try
             {
                 string url = requestUri + "CreateGroup";
-                string contentStr = JsonDataConverter<Group>.ObjectToJsonString(dataObj);
-                StringContent content = new StringContent(contentStr, Encoding.UTF8);
+                string contentStr = JsonDataConverter<createGroup>.ObjectToJsonString(dataObj);
+                StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
+                HttpRequestMessage request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(url),
+                    Content = content,
+                };
+
+                return await Base.Post(request);
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw;
+            }
+        }
+        public async Task<bool> JoinUserToGroup(GroupUser dataObj)
+        {
+            try
+            {
+                string url = requestUri + "joinUsersToGroup";
+                string contentStr = JsonDataConverter<GroupUser>.ObjectToJsonString(dataObj);
+                StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
                 HttpRequestMessage request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
@@ -68,25 +90,6 @@ namespace MobileHRM.Api
             try
             {
                 string url = requestUri + $"GetGroupsByUserid?userId={userId}";
-                string jsonStr = await Base.Get(url);
-                if (jsonStr == null)
-                {
-                    return new List<Group>();
-                }
-                var items = JsonDataConverter<Group[]>.JsonStringToObject(jsonStr);
-                return items.ToList();
-            }
-            catch (Exception e)
-            {
-                return new List<Group>();
-                throw;
-            }
-        }
-        public async Task<List<Group>> GetUsersByGroupId(int groupId)
-        {
-            try
-            {
-                string url = requestUri + $"GetGroupUsersByGroupId?groupId={groupId}";
                 string jsonStr = await Base.Get(url);
                 if (jsonStr == null)
                 {
