@@ -26,7 +26,7 @@ namespace MobileHRM.Views
         public MessagePage(MobileHRM.Models.Entities.Group item)
         {
             InitializeComponent();
-            Vm = new MessagesVm(item.id);
+            Vm = new MessagesVm(item.id, item.image);
             BindingContext = Vm;
             group = item;
             title.Text = group.name;
@@ -36,7 +36,7 @@ namespace MobileHRM.Views
         {
             if (!string.IsNullOrEmpty(messageEntry.Text))
             {
-                var message = new Message { updateAt = DateTime.Now, createdAt = DateTime.Now, message = messageEntry.Text, userId = User.UserId, messagesGroupId = group.id, };
+                var message = new Message { updateAt = DateTime.Now, createdAt = DateTime.Now, message = messageEntry.Text, userId = User.UserId, messagesGroupId = group.id, media = new byte[1], mediaType = "", };
                 messageEntry.Text = string.Empty;
                 await Vm.sendMessage(message);
                 await Vm.intialize();
@@ -47,7 +47,6 @@ namespace MobileHRM.Views
             {
                 await scrollview.ScrollToAsync(lastchild, ScrollToPosition.MakeVisible, true);
             }
-
         }
         protected override async void OnAppearing()
         {
@@ -220,7 +219,7 @@ namespace MobileHRM.Views
                 {
                     return;
                 }
-                var message = new Message { updateAt = DateTime.Now, createdAt = DateTime.Now, message = "Null", userId = User.UserId, messagesGroupId = group.id, mediaType = "Image" };
+                var message = new Message { updateAt = DateTime.Now, createdAt = DateTime.Now, message = "Photo", userId = User.UserId, messagesGroupId = group.id, mediaType = "Image" };
                 //byte[] fileBytes = File.ReadAllBytes(photo.FullPath);
                 using (Stream stream = await photo.OpenReadAsync())
                 {

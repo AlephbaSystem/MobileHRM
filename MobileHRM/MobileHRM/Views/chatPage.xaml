@@ -1,9 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:entryCustom="clr-namespace:MobileHRM.Controls"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:entryCustom="clr-namespace:MobileHRM.Controls" xmlns:local="clr-namespace:MobileHRM.Converter"
              BackgroundColor="#1A1C23"
              
              x:Class="MobileHRM.Views.chatPage">
+    <ContentPage.Resources>
+        <local:TextLenghConverter x:Key="TextLenghtConverter" />
+    </ContentPage.Resources>
     <Shell.TitleView>
         <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" Margin="0,0,20,0">
             <Frame Padding="0" CornerRadius="40">
@@ -73,17 +76,18 @@
                                              Spacing="0"
                                              VerticalOptions="Center">
                                         <Label Text="{Binding name}" TextColor="#CCCCCC"/>
-                                        <Label Text="SubTitle" TextColor="#8D8D8D"/>
+                                            <Label Text="{Binding lastMessage,Converter={StaticResource TextLenghtConverter},ConverterParameter='6'}" TextColor="#8D8D8D"/>
                                     </StackLayout>
 
                                     <StackLayout Grid.Column="2"
                                          HorizontalOptions="Center">
-                                        <Label Text="Time" TextColor="#CCCCCC" VerticalOptions="Start"/>
-                                        <Frame Padding="0"
+                                            <Label Text="{Binding lastMessageTime,StringFormat='{0:hh:mm:ss}'}" TextColor="#CCCCCC" VerticalOptions="Start"/>
+                                            <Frame Padding="0"
                                        BackgroundColor="#F07520"
-                                       CornerRadius="44">
-                                            <Label Text="Number"
-                                           TextColor="White" HorizontalOptions="Center"/>
+                                       CornerRadius="44"  >
+                                                <Label Text="{Binding unSeenedMessages}"
+                                                        TextColor="White" HorizontalOptions="Center">
+                                                </Label>
                                         </Frame>
                                     </StackLayout>
                                     <BoxView HeightRequest="1" Color="#F9FAFB"

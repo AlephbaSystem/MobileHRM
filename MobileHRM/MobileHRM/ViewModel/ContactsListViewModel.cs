@@ -6,6 +6,7 @@ using MobileHRM.Models.Entities.Request;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 
@@ -13,8 +14,8 @@ namespace MobileHRM.ViewModel
 {
     public class ContactsListViewModel : Base
     {
-        CollectionView _list;
-        public ContactsListViewModel(ref CollectionView list)
+        StackLayout _list;
+        public ContactsListViewModel(ref StackLayout list)
         {
             _list = list;
         }
@@ -50,7 +51,21 @@ namespace MobileHRM.ViewModel
                 user.Add(item);
             }
             user = user;
+            AllUsers = user;
             _ = _list;
+        }
+        private ObservableCollection<Contact> AllUsers = new ObservableCollection<Contact>();
+        public void SearchUserByName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                user = AllUsers;
+            }
+            else
+            {
+                var itms = AllUsers.Where(itm => itm.userName.Contains(name)).ToList();
+                user = new ObservableCollection<Contact>(itms);
+            }
         }
     }
 }

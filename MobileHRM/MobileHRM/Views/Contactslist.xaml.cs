@@ -58,6 +58,7 @@ namespace MobileHRM.Views
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
+            vm.SearchUserByName(Searchbar.Text);
         }
         private List<Contact> SelectedItems = new List<Contact>();
         private async void Button_Clicked(object sender, EventArgs e)
