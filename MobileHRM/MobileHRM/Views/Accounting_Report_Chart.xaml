@@ -2,11 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileHRM.Views.Accounting_Report_Chart"
-             xmlns:forms="clr-namespace:Microcharts.Forms" xmlns:forms1="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-             Background="#272B35"
-             Title="Charts">
+             xmlns:forms1="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:conclander ="clr-namespace:MobileHRM.Converter"
+             Background="#1A1C23"
+             Title="Charts"
+             >
+    <ContentPage.Resources>
+        <conclander:CalanderConvert x:Key="clankey"/>
+    </ContentPage.Resources> 
 
-    <Grid RowDefinitions="*,*,*">
+    <Grid RowDefinitions="*,3*,5*">
             <Grid Grid.Row="0" ColumnDefinitions="*,4*"  VerticalOptions="Start" Margin="0,30,0,0">
                 <Label Grid.Column="0" 
                        Text="From :"
@@ -31,7 +36,7 @@
                     <Grid ColumnDefinitions="*,*">
                         <DatePicker Grid.Column="0"
                          HorizontalOptions="Start"
-                         FontSize="Small"           >
+                         FontSize="Small" Format="MMMM yyyy">
 
                         </DatePicker>
                         <Image Grid.Column="1" Source="Group"
@@ -42,18 +47,34 @@
                 </Frame>
         
             </Grid>
-        <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand" x:Name="content">
-            <forms1:ChartView x:Name="charview" HeightRequest="200" >
-            
+        <Frame Padding="0" CornerRadius="15" Grid.Row="1" Margin="10,15,10,10" VerticalOptions="Start">
+            <StackLayout  VerticalOptions="FillAndExpand" x:Name="content">
+                <forms1:ChartView x:Name="charview" HeightRequest="200">
             </forms1:ChartView>
         </StackLayout>
-        <Grid Grid.Row="2" >
-            <forms1:ChartView Grid.Column="0" x:Name="charview1" HeightRequest="200" >
+        </Frame>
 
-            </forms1:ChartView>
-            <forms1:ChartView Grid.Column="1" x:Name="charview2" HeightRequest="200" >
+        <Grid Grid.Row="2" ColumnSpacing="20" VerticalOptions="Start" Margin="10,0">
 
-            </forms1:ChartView>
+            <Frame Grid.Column="0" Padding="0" CornerRadius="15" HeightRequest="300">
+                <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*">
+                    <forms1:ChartView Grid.RowSpan="3" Grid.ColumnSpan="3" x:Name="charview1" HeightRequest="300">
+
+                    </forms1:ChartView>
+                    <Label Grid.Row="0" Grid.Column="0" Text="2020 balance" TextColor="White" FontSize="Micro" HorizontalTextAlignment="Center" />
+                </Grid>
+
+            </Frame>
+
+            <Frame  Grid.Column="1" Padding="0" CornerRadius="15" HeightRequest="300">
+                <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*">
+                    <forms1:ChartView Grid.RowSpan="3" Grid.ColumnSpan="3" x:Name="charview2" HeightRequest="300" >
+
+                    </forms1:ChartView>
+                    <Label Grid.Row="0" Grid.Column="0" Text="2020 balance" TextColor="White" FontSize="Micro" HorizontalTextAlignment="Center" />
+                </Grid>
+
+            </Frame>
 
         </Grid>
         </Grid>
