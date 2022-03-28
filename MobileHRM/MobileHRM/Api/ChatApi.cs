@@ -85,6 +85,46 @@ namespace MobileHRM.Api
                 throw;
             }
         }
+
+        public async Task<bool> InsertMessageSeen(List<Models.Entities.Request.MessageSeen> dataObj)
+        {
+            try
+            {
+                string url = requestUri + "ReciveMessage";
+                string contentStr = JsonDataConverter<List<Models.Entities.Request.MessageSeen>>.ObjectToJsonString(dataObj);
+                StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
+                HttpRequestMessage request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(url),
+                    Content = content
+                };
+
+                var status = await Base.Post(request); //if status false message not seened successfully
+
+                return status;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw;
+            }
+        }
+
+        public async Task<bool> DeleteGroupByGroupId(int groupId)
+        {
+            try
+            {
+                string url = requestUri + $"DeleteGroupByGroupId?groupId={groupId}";
+                var status = await Base.Delete(url);
+                return status;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw;
+            }
+        }
         public async Task<List<Group>> GetGroupsByUserd(int userId)
         {
             try

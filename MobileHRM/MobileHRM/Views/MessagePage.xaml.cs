@@ -58,6 +58,8 @@ namespace MobileHRM.Views
             {
                 await addmessage();
             }
+            Vm.InsertMessageSeen(group.unSeenedMessages);
+            group.unSeenedMessages = 0;
             loading.IsVisible = loading.IsRunning = false;
         }
         private Task addmessage()
@@ -148,7 +150,7 @@ namespace MobileHRM.Views
             {
                 await voicefrm.ScaleTo(1);
                 await ShowVoice.StopRecording();
-                var message = new Message { updateAt = DateTime.Now, createdAt = DateTime.Now, message = "Null", userId = User.UserId, messagesGroupId = group.id, mediaType = "Voice" };
+                var message = new Message { updateAt = DateTime.Now, createdAt = DateTime.Now, message = "Voice", userId = User.UserId, messagesGroupId = group.id, mediaType = "Voice" };
                 using (var stream = ShowVoice.GetAudioFileStream())
                 {
                     message.media = new byte[(int)stream.Length];
@@ -235,6 +237,13 @@ namespace MobileHRM.Views
             {
                 Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
             }
+        }
+
+        private async void DeleteGroip_Tapped_(object sender, EventArgs e)
+        {
+            Vm.DeleteGroup();
+            await Task.Delay(1000);
+            await Navigation.PopAsync();
         }
     }
 }

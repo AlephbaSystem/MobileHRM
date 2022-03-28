@@ -16,7 +16,7 @@ namespace MobileHRM.ViewModel
     {
         private int GroupId;
         private ImageSource iimage;
-        public ImageSource image 
+        public ImageSource image
         {
             get
             {
@@ -28,10 +28,32 @@ namespace MobileHRM.ViewModel
                 OnPropertyChanged(nameof(image));
             }
         }
+        private bool _IsGroupOwner;
+        public bool IsGroupOwner
+        {
+            get
+            {
+                return _IsGroupOwner;
+            }
+            set
+            {
+                _IsGroupOwner = value;
+                OnPropertyChanged(nameof(IsGroupOwner));
+            }
+        }
+
         AudioPlayer audioplayer = new AudioPlayer();
         public MessagesVm(int _GroupId, ImageSource _image)
         {
             GroupId = _GroupId;
+            if (GroupId == User.UserId)
+            {
+                IsGroupOwner = true;
+            }
+            else
+            {
+                IsGroupOwner = false;
+            }
             image = _image;
         }
         private List<GroupMessage> _items;
@@ -93,8 +115,24 @@ namespace MobileHRM.ViewModel
             IsPlaying = false;
             currentAudio = string.Empty;
         }
-
+        public async void DeleteGroup()
+        {
+            await request.DeleteGroupByGroupId(GroupId);
+        }
         private string currentAudio { get; set; } = string.Empty;
         private bool IsPlaying { get; set; } = false; //true of false eather Audio Is Is Playing or not        
+        public async void InsertMessageSeen(int UnSeenedMessageConut)
+        {
+
+            List<Models.Entities.Request.MessageSeen> itms = new List<Models.Entities.Request.MessageSeen>();
+            for (int i = Items.Count - 1; i >= Items.Count - UnSeenedMessageConut; i++)
+            {
+                itms.Add(new Models.Entities.Request.MessageSeen { messageId = Items[i].id, userId = User.UserId });
+            }
+            if (itms.Count>0)
+            {
+                await request.InsertMessageSeen(itms);
+            }
+        }
     }
 }

@@ -10,6 +10,12 @@
                 <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"   Source="{Binding image}" />
             </Frame>
             <Label x:Name="title" FontSize="Medium" VerticalTextAlignment="Center" TextColor="#CCCCCC" />
+            <Frame Margin="0,0,15,0" Padding="0" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="DeleteGroip_Tapped_" />
+                </Frame.GestureRecognizers>
+                <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" IsVisible="{Binding IsGroupOwner}" Source="close.png" />
+            </Frame>
         </StackLayout>
     </Shell.TitleView>
     <ContentPage.Content>

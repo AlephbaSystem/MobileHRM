@@ -56,6 +56,7 @@ namespace MobileHRM.Views
         private async void Save_Clicked(object sender, EventArgs e)
         {
             group.name = GroupName.Text ?? "";
+            group.ownerId = User.UserId;
             bool res=await request.CreateGroup(group);
             if (res)
             {
