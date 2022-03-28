@@ -23,7 +23,7 @@ namespace MobileHRM.ViewModel
         {
             get
             {
-                if (_items==null)
+                if (_items == null)
                 {
                     return new ObservableCollection<MobileHRM.Models.Entities.Group>();
                 }
@@ -63,12 +63,11 @@ namespace MobileHRM.ViewModel
                     var items = await api.GetGroupsByUserd(User.UserId);
                     foreach (var item in items)
                     {
-                        Items.Add(new Models.Entities.Group { name = item.name, image = DataConverter.ByteToImage(item.image), id = item.id, lastMessage = item.lastMessage ?? "" });
+                        Items.Add(new Models.Entities.Group { name = item.name, image = DataConverter.ByteToImage(item.image), id = item.id, lastMessage = item.lastMessage ?? "", ownerId = item.ownerId, lastMessageTime = item.lastMessage == null ? new DateTime() : item.lastMessageTime, unSeenedMessages = item.unSeenedMessages });
                     }
                     Items = Items;
                     IsBusy = false;
                 }
-
             }
             catch (Exception e)
             {
@@ -81,7 +80,7 @@ namespace MobileHRM.ViewModel
         {
             if (IsBusy)
             {
-                return;                    
+                return;
             }
             IsBusy = true;
             if (string.IsNullOrEmpty(message))

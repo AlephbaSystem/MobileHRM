@@ -123,13 +123,16 @@ namespace MobileHRM.ViewModel
         private bool IsPlaying { get; set; } = false; //true of false eather Audio Is Is Playing or not        
         public async void InsertMessageSeen(int UnSeenedMessageConut)
         {
-
+            if (Items.Count == 0)
+            {
+                return;
+            }
             List<Models.Entities.Request.MessageSeen> itms = new List<Models.Entities.Request.MessageSeen>();
-            for (int i = Items.Count - 1; i >= Items.Count - UnSeenedMessageConut; i++)
+            for (int i = Items.Count - 1; i >= Items.Count - UnSeenedMessageConut; i--)
             {
                 itms.Add(new Models.Entities.Request.MessageSeen { messageId = Items[i].id, userId = User.UserId });
             }
-            if (itms.Count>0)
+            if (itms.Count > 0)
             {
                 await request.InsertMessageSeen(itms);
             }

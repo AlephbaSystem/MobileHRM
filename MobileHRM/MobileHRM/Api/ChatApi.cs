@@ -90,7 +90,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + "ReciveMessage";
+                string url = requestUri + "InsertMessageSeens";
                 string contentStr = JsonDataConverter<List<Models.Entities.Request.MessageSeen>>.ObjectToJsonString(dataObj);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
                 HttpRequestMessage request = new HttpRequestMessage()
