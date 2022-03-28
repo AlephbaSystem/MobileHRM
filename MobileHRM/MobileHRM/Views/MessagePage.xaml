@@ -7,7 +7,7 @@
     <Shell.TitleView>
         <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" >
             <Frame Margin="0,0,15,0" Padding="0" CornerRadius="40">
-                <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="imageUser.png" />
+                <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"   Source="{Binding image}" />
             </Frame>
             <Label x:Name="title" FontSize="Medium" VerticalTextAlignment="Center" TextColor="#CCCCCC" />
         </StackLayout>

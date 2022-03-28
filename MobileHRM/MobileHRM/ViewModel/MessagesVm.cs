@@ -15,10 +15,24 @@ namespace MobileHRM.ViewModel
     public class MessagesVm : Base
     {
         private int GroupId;
+        private ImageSource iimage;
+        public ImageSource image 
+        {
+            get
+            {
+                return iimage;
+            }
+            set
+            {
+                iimage = value;
+                OnPropertyChanged(nameof(image));
+            }
+        }
         AudioPlayer audioplayer = new AudioPlayer();
-        public MessagesVm(int _GroupId)
+        public MessagesVm(int _GroupId, ImageSource _image)
         {
             GroupId = _GroupId;
+            image = _image;
         }
         private List<GroupMessage> _items;
         public List<GroupMessage> Items

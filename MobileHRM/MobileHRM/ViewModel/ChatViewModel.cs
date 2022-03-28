@@ -55,13 +55,20 @@ namespace MobileHRM.ViewModel
         {
             try
             {
-                Items = new ObservableCollection<Models.Entities.Group>();
-                var items = await api.GetGroupsByUserd(User.UserId);
-                foreach (var item in items)
+
+                if (!IsBusy)
                 {
-                    Items.Add(new Models.Entities.Group { name = item.name, image = DataConverter.ByteToImage(item.image), id = item.id, lastMessage = item.lastMessage ?? "" });
+                    IsBusy = true;
+                    Items = new ObservableCollection<Models.Entities.Group>();
+                    var items = await api.GetGroupsByUserd(User.UserId);
+                    foreach (var item in items)
+                    {
+                        Items.Add(new Models.Entities.Group { name = item.name, image = DataConverter.ByteToImage(item.image), id = item.id, lastMessage = item.lastMessage ?? "" });
+                    }
+                    Items = Items;
+                    IsBusy = false;
                 }
-                Items = Items;
+
             }
             catch (Exception e)
             {
@@ -69,11 +76,18 @@ namespace MobileHRM.ViewModel
                 throw;
             }
         }
+        private bool IsBusy { get; set; } = false;
         public async void SearchByMessage(string message)
         {
-            if (message == "")
+            if (IsBusy)
+            {
+                return;                    
+            }
+            IsBusy = true;
+            if (string.IsNullOrEmpty(message))
             {
                 initialize();
+                return;
             }
             var items = await api.GetAllChatsByMessage(message);
             Items = new ObservableCollection<Models.Entities.Group>();
@@ -82,6 +96,7 @@ namespace MobileHRM.ViewModel
                 Items.Add(new Models.Entities.Group { name = item.name, image = DataConverter.ByteToImage(item.image), id = item.id, lastMessage = item.lastMessage, lastMessageTime = item.lastMessageTime, unSeenedMessages = item.unSeenedMessages });
             }
             Items = Items;
+            IsBusy = false;
         }
         public ICommand refresh { get; protected set; }
     }
