@@ -18,78 +18,111 @@ namespace MobileHRM.Views
             InitializeComponent();
             List<ChartEntry> entries = new List<ChartEntry>()
             {
-                new ChartEntry(212)
+                new ChartEntry(200)
                 {
-                    Label = "UWP",
-                    ValueLabel = "112",
-                    Color = SKColor.Parse("#2c3e50")
+
+                    Label = "may",
+                    ValueLabel = "2020",
+                    Color = SKColor.Parse("#0080ff"),
                 },
-                new ChartEntry(212)
+                new ChartEntry(180)
                 {
-                    Label = "UWP",
-                    ValueLabel = "112",
-                    Color = SKColor.Parse("#2c3e50")
+                    Label = "jun",
+                    ValueLabel = "2020",
+                    Color = SKColor.Parse("#ff0000")
                 },
-                               new ChartEntry(212)
+                 new ChartEntry(150)
                 {
-                    Label = "UWP",
-                    ValueLabel = "112",
-                    Color = SKColor.Parse("#2c3e50")
+                    Label = "april",
+                    ValueLabel = "2020",
+                    Color = SKColor.Parse("#ffff00")
                 },
-                new ChartEntry(212)
+                new ChartEntry(120)
                 {
-                    Label = "UWP",
-                    ValueLabel = "112",
-                    Color = SKColor.Parse("#2c3e50")
+                    Label = "feb",
+                    ValueLabel = "2020",
+                    Color = SKColor.Parse("#bfff00")
                 },
-                               new ChartEntry(212)
+                               new ChartEntry(100)
                 {
-                    Label = "UWP",
-                    ValueLabel = "112",
-                    Color = SKColor.Parse("#2c3e50")
+                    Label = "mars",
+                    ValueLabel = "2020",
+                    Color = SKColor.Parse("#ffbf00")
                 },
-                new ChartEntry(212)
+                new ChartEntry(80)
                 {
-                    Label = "UWP",
-                    ValueLabel = "112",
-                    Color = SKColor.Parse("#2c3e50")
+                    Label = "jan",
+                    ValueLabel = "2020",
+                    Color = SKColor.Parse("#00ff40")
                 },
-                 new ChartEntry(212)
+                 new ChartEntry(50)
                 {
-                    Label = "UWP",
-                    ValueLabel = "112",
-                    Color = SKColor.Parse("#2c3e50")
+                    Label = "feb",
+                    ValueLabel = "2020",
+                    Color = SKColor.Parse("#4d0000")
                 },
-                  new ChartEntry(212)
+                  new ChartEntry(40)
                 {
-                    Label = "UWP",
-                    ValueLabel = "112",
-                    Color = SKColor.Parse("#2c3e50")
+                    Label = "april",
+                    ValueLabel = "2020",
+                    Color = SKColor.Parse("#ffcccc")
                 },
-                   new ChartEntry(212)
+                   new ChartEntry(30)
                 {
-                    Label = "UWP",
-                    ValueLabel = "112",
-                    Color = SKColor.Parse("#2c3e50")
+                    Label = "april",
+                    ValueLabel = "2020",
+                    Color = SKColor.Parse("#00ffff")
                 },
                     new ChartEntry(10)
                 {
-                    Label = "UWP",
-                    ValueLabel = "112",
-                    Color = SKColor.Parse("#2c3e50")
+                    Label = "aban",
+                    ValueLabel = "56",
+                    Color = SKColor.Parse("#bf00ff")
+
                 },
                      new ChartEntry(2)
                 {
-                    Label = "UWP",
-                    ValueLabel = "112",
-                    Color = SKColor.Parse("#2c3e50")
-                   
-                    
+                    Label = "dey",
+                    ValueLabel = "76",
+                    Color = SKColor.Parse("#808080")
+
+
                 }
             };
-            charview.Chart = new BarChart { Entries = entries };
-            charview1.Chart = new PieChart { Entries = entries };
-            charview2.Chart = new PieChart { Entries = entries };
+
+            List<ChartEntry> entries1 = new List<ChartEntry>()
+            {
+                 new ChartEntry(60)
+                {
+
+                    Label = "",
+                    ValueLabel = "",
+                    Color = SKColor.Parse("#bfff00")
+                },
+                      new ChartEntry(2)
+                {
+                    Label = "",
+                    ValueLabel = "",
+                    Color = SKColor.Parse("#808080")
+
+
+                },
+                     new ChartEntry(2)
+                {
+                    Label = "",
+                    TextColor = SKColor.Parse("#EBEBEB"),
+                    ValueLabel = "",
+                    Color = SKColor.Parse("#4d0000")
+
+
+                }
+
+            };
+
+
+            charview.Chart = new BarChart { Entries = entries, BackgroundColor = SKColor.Parse("#272B35"), LabelTextSize = 12 };
+            charview1.Chart = new PieChart { Entries = entries1, BackgroundColor = SKColor.Parse("#272B35"), LabelTextSize = 12 };
+            charview2.Chart = new PieChart { Entries = entries1, BackgroundColor = SKColor.Parse("#272B35"), LabelTextSize = 12 };
         }
     }
 }
