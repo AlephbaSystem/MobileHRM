@@ -4,14 +4,14 @@ using Xamarin.Forms.Xaml;
 using MobileHRM.Views;
 
 namespace MobileHRM
-{
+{ 
     public partial class App : Application
     {
         public App()
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            MainPage = new MainPage();
+            MainPage = new Accounting_Report();
         }
 
         protected override void OnStart()

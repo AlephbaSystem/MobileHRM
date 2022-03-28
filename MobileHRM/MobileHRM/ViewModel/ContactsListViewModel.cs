@@ -13,8 +13,8 @@ namespace MobileHRM.ViewModel
 {
     public class ContactsListViewModel : Base
     {
-        StackLayout _list;
-        public ContactsListViewModel(ref StackLayout list)
+        CollectionView _list;
+        public ContactsListViewModel(ref CollectionView list)
         {
             _list = list;
         }
