@@ -15,17 +15,17 @@ namespace MobileHRM.ViewModel
     public class MessagesVm : Base
     {
         private int GroupId;
-        private ImageSource iimage;
-        public ImageSource image
+        private ImageSource _Profileimage;
+        public ImageSource Profileimage
         {
             get
             {
-                return iimage;
+                return _Profileimage;
             }
             set
             {
-                iimage = value;
-                OnPropertyChanged(nameof(image));
+                _Profileimage = value;
+                OnPropertyChanged(nameof(Profileimage));
             }
         }
         private bool _IsGroupOwner;
@@ -43,10 +43,10 @@ namespace MobileHRM.ViewModel
         }
 
         AudioPlayer audioplayer = new AudioPlayer();
-        public MessagesVm(int _GroupId, ImageSource _image)
+        public MessagesVm(int _GroupId, ImageSource _image,int userId)
         {
             GroupId = _GroupId;
-            if (GroupId == User.UserId)
+            if (userId == User.UserId)
             {
                 IsGroupOwner = true;
             }
@@ -54,7 +54,7 @@ namespace MobileHRM.ViewModel
             {
                 IsGroupOwner = false;
             }
-            image = _image;
+            Profileimage = _image;
         }
         private List<GroupMessage> _items;
         public List<GroupMessage> Items

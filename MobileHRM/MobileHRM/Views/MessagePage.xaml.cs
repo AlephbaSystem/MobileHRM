@@ -26,7 +26,7 @@ namespace MobileHRM.Views
         public MessagePage(MobileHRM.Models.Entities.Group item)
         {
             InitializeComponent();
-            Vm = new MessagesVm(item.id, item.image);
+            Vm = new MessagesVm(item.id, item.image,item.ownerId);
             BindingContext = Vm;
             group = item;
             title.Text = group.name;
@@ -241,9 +241,12 @@ namespace MobileHRM.Views
 
         private async void DeleteGroip_Tapped_(object sender, EventArgs e)
         {
-            Vm.DeleteGroup();
-            await Task.Delay(1000);
-            await Navigation.PopAsync();
+            if (await DisplayAlert("Warning!", "Group Will Delete Are You Sure?","Ok", "Cancel"))
+            {
+                Vm.DeleteGroup();
+                await Task.Delay(1000);
+                await Navigation.PopAsync();
+            }            
         }
     }
 }
