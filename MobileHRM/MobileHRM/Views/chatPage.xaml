@@ -82,7 +82,7 @@
                                     <StackLayout Grid.Column="2"
                                          HorizontalOptions="Center">
                                             <Label Text="{Binding lastMessageTime,StringFormat='{0:hh:mm:ss}'}" TextColor="#CCCCCC" VerticalOptions="Start"/>
-                                            <Frame Padding="0"
+                                            <Frame Padding="10,5" HorizontalOptions="CenterAndExpand"
                                        BackgroundColor="#F07520"
                                        CornerRadius="44"  >
                                                 <Label Text="{Binding unSeenedMessages}"

@@ -15,24 +15,46 @@ namespace MobileHRM.ViewModel
     public class MessagesVm : Base
     {
         private int GroupId;
-        private ImageSource iimage;
-        public ImageSource image 
+        private ImageSource _Profileimage;
+        public ImageSource Profileimage
         {
             get
             {
-                return iimage;
+                return _Profileimage;
             }
             set
             {
-                iimage = value;
-                OnPropertyChanged(nameof(image));
+                _Profileimage = value;
+                OnPropertyChanged(nameof(Profileimage));
             }
         }
+        private bool _IsGroupOwner;
+        public bool IsGroupOwner
+        {
+            get
+            {
+                return _IsGroupOwner;
+            }
+            set
+            {
+                _IsGroupOwner = value;
+                OnPropertyChanged(nameof(IsGroupOwner));
+            }
+        }
+
         AudioPlayer audioplayer = new AudioPlayer();
-        public MessagesVm(int _GroupId, ImageSource _image)
+        public MessagesVm(int _GroupId, ImageSource _image,int userId)
         {
             GroupId = _GroupId;
-            image = _image;
+            if (userId == User.UserId)
+            {
+                IsGroupOwner = true;
+            }
+            else
+            {
+                IsGroupOwner = false;
+            }
+            Profileimage = _image;
         }
         private List<GroupMessage> _items;
         public List<GroupMessage> Items
@@ -93,8 +115,27 @@ namespace MobileHRM.ViewModel
             IsPlaying = false;
             currentAudio = string.Empty;
         }
-
+        public async void DeleteGroup()
+        {
+            await request.DeleteGroupByGroupId(GroupId);
+        }
         private string currentAudio { get; set; } = string.Empty;
         private bool IsPlaying { get; set; } = false; //true of false eather Audio Is Is Playing or not        
+        public async void InsertMessageSeen(int UnSeenedMessageConut)
+        {
+            if (Items.Count == 0)
+            {
+                return;
+            }
+            List<Models.Entities.Request.MessageSeen> itms = new List<Models.Entities.Request.MessageSeen>();
+            for (int i = Items.Count - 1; i >= Items.Count - UnSeenedMessageConut; i--)
+            {
+                itms.Add(new Models.Entities.Request.MessageSeen { messageId = Items[i].id, userId = User.UserId });
+            }
+            if (itms.Count > 0)
+            {
+                await request.InsertMessageSeen(itms);
+            }
+        }
     }
 }

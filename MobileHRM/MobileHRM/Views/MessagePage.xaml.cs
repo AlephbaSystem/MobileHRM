@@ -26,7 +26,7 @@ namespace MobileHRM.Views
         public MessagePage(MobileHRM.Models.Entities.Group item)
         {
             InitializeComponent();
-            Vm = new MessagesVm(item.id, item.image);
+            Vm = new MessagesVm(item.id, item.image,item.ownerId);
             BindingContext = Vm;
             group = item;
             title.Text = group.name;
@@ -58,6 +58,8 @@ namespace MobileHRM.Views
             {
                 await addmessage();
             }
+            Vm.InsertMessageSeen(group.unSeenedMessages);
+            group.unSeenedMessages = 0;
             loading.IsVisible = loading.IsRunning = false;
         }
         private Task addmessage()
@@ -148,7 +150,7 @@ namespace MobileHRM.Views
             {
                 await voicefrm.ScaleTo(1);
                 await ShowVoice.StopRecording();
-                var message = new Message { updateAt = DateTime.Now, createdAt = DateTime.Now, message = "Null", userId = User.UserId, messagesGroupId = group.id, mediaType = "Voice" };
+                var message = new Message { updateAt = DateTime.Now, createdAt = DateTime.Now, message = "Voice", userId = User.UserId, messagesGroupId = group.id, mediaType = "Voice" };
                 using (var stream = ShowVoice.GetAudioFileStream())
                 {
                     message.media = new byte[(int)stream.Length];
@@ -235,6 +237,16 @@ namespace MobileHRM.Views
             {
                 Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
             }
+        }
+
+        private async void DeleteGroip_Tapped_(object sender, EventArgs e)
+        {
+            if (await DisplayAlert("Warning!", "Group Will Delete Are You Sure?","Ok", "Cancel"))
+            {
+                Vm.DeleteGroup();
+                await Task.Delay(1000);
+                await Navigation.PopAsync();
+            }            
         }
     }
 }

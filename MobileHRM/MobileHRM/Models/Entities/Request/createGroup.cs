@@ -9,6 +9,7 @@ namespace MobileHRM.Models.Entities.Request
     {
         public string name { get; set; }
         public byte[] image { get; set; }
+        public int ownerId { get; set; }
         public List<int> users { get; set; } //group members
     }
 }

@@ -17,6 +17,7 @@ namespace MobileHRM.Api
                 HttpResponseMessage response = new HttpResponseMessage();
                 using (HttpClient request = new HttpClient())
                 {
+                    request.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     response = await request.SendAsync(content);
                 }
                 if (response.StatusCode == HttpStatusCode.OK)
@@ -39,6 +40,27 @@ namespace MobileHRM.Api
                 using (HttpClient request = new HttpClient())
                 {
                     response = await request.PostAsync(content.RequestUri,content.Content);
+                }
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw;
+            }
+        }
+        public static async Task<bool> Delete(string uri)
+        {
+            try
+            {
+                HttpResponseMessage response = new HttpResponseMessage();
+                using (HttpClient request = new HttpClient())
+                {
+                    response = await request.DeleteAsync(uri);
                 }
                 if (response.StatusCode == HttpStatusCode.OK)
                 {

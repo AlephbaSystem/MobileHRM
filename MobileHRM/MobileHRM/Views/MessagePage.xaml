@@ -7,9 +7,15 @@
     <Shell.TitleView>
         <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" >
             <Frame Margin="0,0,15,0" Padding="0" CornerRadius="40">
-                <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"   Source="{Binding image}" />
+                <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"   Source="{Binding Profileimage}" />
             </Frame>
             <Label x:Name="title" FontSize="Medium" VerticalTextAlignment="Center" TextColor="#CCCCCC" />
+            <Frame Margin="0,0,15,0" Padding="0" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="Red">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="DeleteGroip_Tapped_" />
+                </Frame.GestureRecognizers>
+                <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" IsVisible="{Binding IsGroupOwner}" Source="close.png" />
+            </Frame>
         </StackLayout>
     </Shell.TitleView>
     <ContentPage.Content>
