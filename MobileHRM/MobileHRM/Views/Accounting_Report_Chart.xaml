@@ -3,13 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileHRM.Views.Accounting_Report_Chart"
              xmlns:forms1="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-             xmlns:conclander ="clr-namespace:MobileHRM.Converter"
+
              Background="#1A1C23"
              Title="Charts"
              >
-    <ContentPage.Resources>
-        <conclander:CalanderConvert x:Key="clankey"/>
-    </ContentPage.Resources> 
 
     <Grid RowDefinitions="*,3*,5*">
             <Grid Grid.Row="0" ColumnDefinitions="*,4*"  VerticalOptions="Start" Margin="0,30,0,0">
@@ -39,9 +36,7 @@
                          FontSize="Small" Format="MMMM yyyy">
 
                         </DatePicker>
-                        <Image Grid.Column="1" Source="Group"
-                               HorizontalOptions="EndAndExpand"
-                               Margin="0,0,7,0"/>
+                       
                     </Grid>
 
                 </Frame>

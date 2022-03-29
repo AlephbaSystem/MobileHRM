@@ -1,10 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:views="clr-namespace:Xaminals.Views"
-       x:Class="MobileHRM.Views.Accounting_Report_OverView"
-             Background="#272B35"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileHRM.Views.Accounting_Report_OverView"
+             xmlns:forms1="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:conclander ="clr-namespace:MobileHRM.Converter"
+             Background="#1A1C23"
              Title="OverView">
-    
-  
+    <ContentPage.Content>
+        <ListView x:Name="listviewContent" Margin="0,20,0,0" HasUnevenRows="True" SelectionMode="None">
+            <ListView.Header>
+                <Grid ColumnDefinitions="*,*,*,0.5*">
+                    <Label Grid.Column="0" Text="Year" TextColor="Silver" HorizontalOptions="Center"/>
+                    <Label Grid.Column="1" Text="Spent" TextColor="Silver" HorizontalOptions="Center"/>
+                    <Label Grid.Column="2" Text="Balance" TextColor="Silver" HorizontalOptions="Center"/>
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                    <StackLayout>
+
+                            <Grid Padding="10" BackgroundColor="#1A1C23" ColumnDefinitions="*,*,*,0.5*" >
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Grid.GestureRecognizers>
+                            <Label Grid.Column="0" Text="{Binding Year}" TextColor="Silver" HorizontalOptions="Center"/>
+                                <Label Grid.Column="1" Text="{Binding Spent}" TextColor="Silver" HorizontalOptions="Center"/>
+                                <Label Grid.Column="2" Text="{Binding Balance}" TextColor="Silver" HorizontalOptions="Center"/>
+                                <Image Grid.Column="3" Source="Vectordirection.png" Aspect="AspectFit" Margin="4" />
+                            </Grid>
+                            <StackLayout BindableLayout.ItemsSource="{Binding Models}" BackgroundColor="#3C3E45">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                        <Grid ColumnDefinitions="*,*,*,0.5*" Padding="10">
+                                    <Label Grid.Column="0" Text="{Binding Month}" TextColor="Silver" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="1" Text="{Binding Spent}" TextColor="Silver" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="2" Text="{Binding Balance}" TextColor="Silver" HorizontalOptions="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
 </ContentPage>
