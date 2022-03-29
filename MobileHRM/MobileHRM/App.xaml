@@ -28,5 +28,6 @@
         <Style TargetType="Entry" ApplyToDerivedTypes="True">
             <Setter Property="FontFamily" Value="quickSand" />
         </Style>
+
     </Application.Resources>
 </Application>
