@@ -51,7 +51,7 @@ namespace MobileHRM.Views
             }
             else
             {
-                layout.BackgroundColor = Color.FromHex("a0000000");
+                layout.BackgroundColor = Color.FromHex("7B61FF");
                 SelectedItems.Add((Contact)gesture.CommandParameter);
             }
         }
