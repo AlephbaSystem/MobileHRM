@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:entryCustom="clr-namespace:MobileHRM.Controls" xmlns:local="clr-namespace:MobileHRM.Converter"
              BackgroundColor="#1A1C23"
              
@@ -42,7 +43,7 @@
                                HeightRequest="50"
                                Margin="10,20">
                 <Grid ColumnDefinitions="0.5*,8*,2*" VerticalOptions="CenterAndExpand">
-                    <entryCustom:CustomEntry  TextChanged="CustomEntry_TextChanged" x:Name="searchBar" Grid.Column="1" Placeholder="Search" FontFamily="quickSand"/>
+                    <entryCustom:CustomEntry  TextChanged="CustomEntry_TextChanged" x:Name="searchBar" Grid.Column="1" Placeholder="Search" FontFamily="quickSand" FontSize="12"/>
                     <ImageButton  Grid.Column="2" BackgroundColor="Transparent"
                                        Margin="10"
                                        Source="Search.png"/>
@@ -81,11 +82,11 @@
 
                                     <StackLayout Grid.Column="2"
                                          HorizontalOptions="Center">
-                                            <Label Text="{Binding lastMessageTime,StringFormat='{0:hh:mm:ss}'}" TextColor="#CCCCCC" VerticalOptions="Start"/>
+                                            <Label Text="{Binding lastMessageTime,StringFormat='{0:hh:mm}'}" TextColor="#CCCCCC" VerticalOptions="Start"/>
                                             <Frame Padding="10,5" HorizontalOptions="CenterAndExpand"
                                        BackgroundColor="#F07520"
                                        CornerRadius="44"  >
-                                                <Label Text="{Binding unSeenedMessages}"
+                                                <Label xct:ShadowEffect.Color="Black" xct:ShadowEffect.OffsetY="10"  Text="{Binding unSeenedMessages}"
                                                         TextColor="White" HorizontalOptions="Center">
                                                 </Label>
                                         </Frame>

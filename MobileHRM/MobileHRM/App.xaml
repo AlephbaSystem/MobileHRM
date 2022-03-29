@@ -19,5 +19,14 @@
                 Value="LightGreen" />
             <Setter Property="Shell.BackgroundColor" Value="#1A1C23"/>
         </Style>
+        <Style TargetType="Label" ApplyToDerivedTypes="True">
+            <Setter Property="FontFamily" Value="quickSand" />
+        </Style>
+        <Style TargetType="SearchBar" ApplyToDerivedTypes="True">
+            <Setter Property="FontFamily" Value="quickSand" />
+        </Style>
+        <Style TargetType="Entry" ApplyToDerivedTypes="True">
+            <Setter Property="FontFamily" Value="quickSand" />
+        </Style>
     </Application.Resources>
 </Application>
