@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -54,7 +55,7 @@ namespace MobileHRM.Helper
                 imageindex++;
                 if (File.Exists(path))
                 {
-                    return ImageSource.FromFile(path);
+                    File.Delete(path);
                 }
 
                 File.WriteAllBytes(path, imagebytes);

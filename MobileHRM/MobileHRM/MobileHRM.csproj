@@ -33,6 +33,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Fonts\Quicksand-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\Quicksand-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Plugin.AudioRecorder" Version="1.1.0" />
     <PackageReference Include="Sharpnado.Shadows" Version="1.2.0" />
 
