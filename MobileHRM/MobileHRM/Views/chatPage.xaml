@@ -29,7 +29,7 @@
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ImageButton_Clicked_2" />
                 </Frame.GestureRecognizers>
-                <Image Aspect="AspectFill" WidthRequest="37" HeightRequest="37" TranslationY="1" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="Plus.png" />
+                <Image Aspect="AspectFill" WidthRequest="37" HeightRequest="37" TranslationX="2" TranslationY="1" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="AddIcon.png" />
             </Frame>
             <ImageButton Aspect="AspectFill" WidthRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_Clicked_3" Source="arrow2.png"/>
         </StackLayout>
@@ -59,7 +59,7 @@
                     <entryCustom:CustomEntry  TextChanged="CustomEntry_TextChanged" x:Name="searchBar" Grid.Column="1" Placeholder="Search" FontFamily="quickSand" FontSize="12"/>
                     <ImageButton  Grid.Column="2" BackgroundColor="Transparent"
                                        Margin="10"
-                                       Source="Search.png"/>
+                                       Source="Search2.png"/>
                 </Grid>
             </Frame>
             <ActivityIndicator x:Name="loading" IsVisible="true" IsRunning="True" Color="LightBlue" />
