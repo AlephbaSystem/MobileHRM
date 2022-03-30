@@ -21,6 +21,7 @@ namespace MobileHRM.Views
             UsersList.ItemsSource = items;
             group.users = (from p in items select p.userId).ToList();
             group.users.Add(User.UserId);
+            group.image = new byte[0];
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -57,9 +58,9 @@ namespace MobileHRM.Views
         createGroup group = new createGroup();
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            IsBusy = true;
             if (!IsBusy)
             {
+                IsBusy = true;
                 group.name = GroupName.Text ?? "";
                 group.ownerId = User.UserId;
                 bool res = await request.CreateGroup(group);
