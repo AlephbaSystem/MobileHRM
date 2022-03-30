@@ -43,6 +43,8 @@ namespace MobileHRM.Views
             var photo = await MediaPicker.PickPhotoAsync();
             if (photo != null)
             {
+                GroupPicture.HorizontalOptions = LayoutOptions.FillAndExpand;
+                GroupPicture.VerticalOptions = LayoutOptions.FillAndExpand;
                 GroupPicture.Source = ImageSource.FromFile(photo.FullPath);
                 using (var stream = await photo.OpenReadAsync())
                 {
@@ -55,13 +57,18 @@ namespace MobileHRM.Views
         createGroup group = new createGroup();
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            group.name = GroupName.Text ?? "";
-            group.ownerId = User.UserId;
-            bool res=await request.CreateGroup(group);
-            if (res)
+            IsBusy = true;
+            if (!IsBusy)
             {
-                await Navigation.PopToRootAsync();
-            }                        
+                group.name = GroupName.Text ?? "";
+                group.ownerId = User.UserId;
+                bool res = await request.CreateGroup(group);
+                IsBusy = false;
+                if (res)
+                {
+                    await Navigation.PopToRootAsync();
+                }
+            }                                                
         }
     }
 }

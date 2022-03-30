@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:loacl="clr-namespace:MobileHRM.Controls"
              x:Class="MobileHRM.Views.CreateGroup"
+             x:Name="page"
              BackgroundColor="#1A1C23">
     <Shell.TitleView>
         <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" Margin="0,0,20,0">
@@ -23,17 +24,24 @@
     </Shell.TitleView>
     <ContentPage.Content>
         <Grid RowDefinitions="2*,*,3*">
-            <Frame HorizontalOptions="CenterAndExpand" Grid.Row="0" CornerRadius="90" VerticalOptions="CenterAndExpand" WidthRequest="150" HeightRequest="150" BackgroundColor="#fff" BorderColor="White" Padding="0">
+            <Frame HorizontalOptions="CenterAndExpand" Grid.Row="0" CornerRadius="90" VerticalOptions="CenterAndExpand" BackgroundColor="#CCCCCC"  Padding="2">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Browse_Group_Image" />
                 </Frame.GestureRecognizers>
-                <Frame Padding="0" BackgroundColor="#272B35" CornerRadius="90" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                    <Image x:Name="GroupPicture" Source="plus.png" Aspect="AspectFill" WidthRequest="140" HeightRequest="140" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Frame Padding="0" BackgroundColor="#272B35" CornerRadius="90" WidthRequest="180" HeightRequest="180" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Image x:Name="GroupPicture" Source="plus.png" Aspect="AspectFill"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                 </Frame>
             </Frame>
             <Frame Grid.Row="1" BackgroundColor="Transparent" Margin="10,0">
                 <Grid ColumnDefinitions="*,3*" >
-                    <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="#cccc"  Grid.Column="0" Text="Name" />
+                    <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="0" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Name" TextColor="#cccc"  />
+                                <Span Text=" *" TextColor="red" FontSize="8"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                     <Frame VerticalOptions="CenterAndExpand"  Grid.Column="1" CornerRadius="10" Padding="0" BackgroundColor="#CCCCCC" >
                         <Frame.Background>
                             <LinearGradientBrush EndPoint="1,1" StartPoint="1,0">
@@ -41,11 +49,12 @@
                                 <GradientStop Offset="1" Color="#1A1C23" />
                             </LinearGradientBrush>
                         </Frame.Background>
-                        <loacl:CustomEntry PlaceholderColor="Green" x:Name="GroupName" MaxLength="100"/>
+                        <Entry Placeholder="Name"  FontAttributes="Bold" PlaceholderColor="Black" x:Name="GroupName" MaxLength="100"/>
                     </Frame>
                 </Grid>
             </Frame>
-            <CollectionView x:Name="UsersList" Grid.Row="2">
+            <ActivityIndicator VerticalOptions="CenterAndExpand" IsRunning="{Binding IsBusy,Source={Reference page}}" Grid.RowSpan="3" />
+            <CollectionView x:Name="UsersList" Grid.Row="2" >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid ColumnDefinitions="2*,5*,2*" RowDefinitions="60" BackgroundColor="Transparent">
@@ -61,10 +70,10 @@
                                 <Image Aspect="Fill" Source="{Binding image}" />
                             </Frame>
                             <Label Grid.Column="1" Text="{Binding userName}" VerticalTextAlignment="Start" Margin="0,10,0,0" TextColor="#CCCCCC"/>
-                            <BoxView HeightRequest="1" Color="#F9FAFB"
+                            <BoxView HeightRequest="1" Color="#CCCCCC"
                                         VerticalOptions="EndAndExpand"
                                         Opacity="0.5"
-                                        TranslationY="10"
+                                        TranslationY="0"
                                         Margin="0,0,20,0"
                                         Grid.Column="1"
                                         Grid.ColumnSpan="2" />
@@ -72,9 +81,13 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <AbsoluteLayout Grid.Row="2">
-                <Button AbsoluteLayout.LayoutBounds="230,200" Text="Save" Clicked="Save_Clicked" TextColor="#EBEBEB" WidthRequest="120" BackgroundColor="#00A693" CornerRadius="5" />
-            </AbsoluteLayout>
+            <Button Grid.Row="2" WidthRequest="130" CornerRadius="5" TextColor="#EBEBEB" BackgroundColor="#00A693" Margin="0,0,20,20" Text="Next" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Clicked="Save_Clicked">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button"  Value="" Binding="{Binding Text,Source={Reference GroupName},TargetNullValue=''}">
+                        <Setter Property="IsEnabled" Value="False" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
