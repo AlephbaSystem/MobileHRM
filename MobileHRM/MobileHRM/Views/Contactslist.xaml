@@ -51,6 +51,13 @@
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" CommandParameter="{Binding .}" />
                                 </Grid.GestureRecognizers>
+                                <Frame VerticalOptions="Fill" 
+                                         BackgroundColor="Transparent"
+                                            Margin="10,0,10,0"
+                                            Opacity="0.9"
+                                            TranslationY="0"
+                                            Grid.ColumnSpan="3"
+                                             Padding="35"/>
                                 <Frame CornerRadius="50"
                                             HeightRequest="50"
                                             WidthRequest="50"
@@ -70,14 +77,6 @@
                                             TranslationY="0"
                                             Grid.Column="1"
                                             Grid.ColumnSpan="2"/>
-
-                                <Frame VerticalOptions="Fill" 
-                                         BackgroundColor="Transparent"
-                                            Margin="10,0,10,0"
-                                            Opacity="0.9"
-                                            TranslationY="0"
-                                            Grid.ColumnSpan="3"
-                                             Padding="35"/>
                             </Grid>
                         </Frame>
                     </DataTemplate>
