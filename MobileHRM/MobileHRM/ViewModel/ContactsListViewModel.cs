@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MobileHRM.ViewModel
@@ -33,7 +34,7 @@ namespace MobileHRM.ViewModel
             }
         }
         ChatApi request = new ChatApi();
-        public async void initialize()
+        public async Task initialize()
         {
             var items = await request.GetContacts();
             ByteToImage(items);
@@ -63,7 +64,7 @@ namespace MobileHRM.ViewModel
             }
             else
             {
-                var itms = AllUsers.Where(itm => itm.userName.Contains(name)).ToList();
+                var itms = AllUsers.Where(itm => itm.userName.ToLower().Contains(name.ToLower())).ToList();
                 user = new ObservableCollection<Contact>(itms);
             }
         }
