@@ -10,7 +10,8 @@ using System;
 
 [assembly: ExportRenderer(typeof(CustomEntry), typeof(CustomEntryRenderer))]
 namespace MobileHRM.Droid.Controls
-{ 
+{
+    [Obsolete]
     public class CustomEntryRenderer : EntryRenderer
     {
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
@@ -24,6 +25,7 @@ namespace MobileHRM.Droid.Controls
                 Control.SetBackgroundDrawable(gd);
                 Control.SetRawInputType(InputTypes.TextFlagNoSuggestions);
                 Control.SetHintTextColor(ColorStateList.ValueOf(Android.Graphics.Color.Black));
+                Control.SetTextCursorDrawable(Resource.Drawable.abc_text_cursor_material);
             }
         }
     }
