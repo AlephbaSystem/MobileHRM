@@ -14,11 +14,11 @@
                     <Image HorizontalOptions="FillAndExpand" WidthRequest="47" HeightRequest="47" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
                 </Frame>
             </Frame>
-            <Frame CornerRadius="40" Padding="0" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
+            <Frame CornerRadius="40" Padding="0" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" />
                 </Frame.GestureRecognizers>
-                <Image Aspect="AspectFill" WidthRequest="50" HeightRequest="50" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent"  Source="Notification2.png" />
+                <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
             </Frame>
         </StackLayout>
     </Shell.TitleView>
@@ -36,7 +36,7 @@
                 HeightRequest="50"
                 Margin="10,20">
                 <Grid ColumnDefinitions="0.5*,8*,2*" VerticalOptions="CenterAndExpand">
-                    <entryCustom:CustomEntry Grid.Column="1" FontFamily="quickSand" x:Name="Searchbar" Placeholder="Search" TextChanged="SearchBar_TextChanged" FontSize="15" HeightRequest="60"  />
+                        <entryCustom:CustomEntry Grid.Column="1" FontSize="12" FontFamily="quickSand" x:Name="Searchbar" Placeholder="Search" TextChanged="SearchBar_TextChanged" HeightRequest="60"  />
                     <ImageButton  Grid.Column="2" BackgroundColor="Transparent"
                                        Margin="10"
                                        Source="Search.png"/>
