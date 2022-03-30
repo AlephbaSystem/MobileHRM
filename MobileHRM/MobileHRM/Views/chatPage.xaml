@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:entryCustom="clr-namespace:MobileHRM.Controls" xmlns:local="clr-namespace:MobileHRM.Converter"
              BackgroundColor="#1A1C23"
              
@@ -9,20 +10,22 @@
     </ContentPage.Resources>
     <Shell.TitleView>
         <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal"  BackgroundColor="Transparent">
-            <Frame Padding="0" CornerRadius="40" VerticalOptions="CenterAndExpand" BorderColor="#7B61FF">
+            <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ImageButton_Clicked" />
                 </Frame.GestureRecognizers>
-                <Image HorizontalOptions="FillAndExpand" WidthRequest="47" HeightRequest="47" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                <Frame Padding="0" CornerRadius="40">
+                    <Image HorizontalOptions="FillAndExpand" WidthRequest="47" HeightRequest="47" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                </Frame>
             </Frame>
-            <Frame BackgroundColor="#1A1C23" CornerRadius="40" Padding="0" VerticalOptions="CenterAndExpand">
+            <Frame CornerRadius="40" Padding="0" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ImageButton_Clicked_1" />
                 </Frame.GestureRecognizers>
                 <Image Aspect="AspectFill" WidthRequest="50" HeightRequest="50" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent"  Source="Notification2.png" />
             </Frame>
 
-            <Frame BackgroundColor="#1A1C23" Padding="5" CornerRadius="40" VerticalOptions="CenterAndExpand">
+            <Frame Padding="5" CornerRadius="40" BackgroundColor="#272B35" VerticalOptions="CenterAndExpand">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ImageButton_Clicked_2" />
                 </Frame.GestureRecognizers>
@@ -42,7 +45,7 @@
                                HeightRequest="50"
                                Margin="10,20">
                 <Grid ColumnDefinitions="0.5*,8*,2*" VerticalOptions="CenterAndExpand">
-                    <entryCustom:CustomEntry  TextChanged="CustomEntry_TextChanged" x:Name="searchBar" Grid.Column="1" Placeholder="Search" FontFamily="quickSand"/>
+                    <entryCustom:CustomEntry  TextChanged="CustomEntry_TextChanged" x:Name="searchBar" Grid.Column="1" Placeholder="Search" FontFamily="quickSand" FontSize="12"/>
                     <ImageButton  Grid.Column="2" BackgroundColor="Transparent"
                                        Margin="10"
                                        Source="Search.png"/>
@@ -81,11 +84,11 @@
 
                                     <StackLayout Grid.Column="2"
                                          HorizontalOptions="Center">
-                                            <Label Text="{Binding lastMessageTime,StringFormat='{0:hh:mm:ss}'}" TextColor="#CCCCCC" VerticalOptions="Start"/>
+                                            <Label Text="{Binding lastMessageTime,StringFormat='{0:hh:mm}'}" TextColor="#CCCCCC" VerticalOptions="Start"/>
                                             <Frame Padding="10,5" HorizontalOptions="CenterAndExpand"
                                        BackgroundColor="#F07520"
                                        CornerRadius="44"  >
-                                                <Label Text="{Binding unSeenedMessages}"
+                                                <Label xct:ShadowEffect.Color="Black" xct:ShadowEffect.OffsetY="10"  Text="{Binding unSeenedMessages}"
                                                         TextColor="White" HorizontalOptions="Center">
                                                 </Label>
                                         </Frame>

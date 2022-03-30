@@ -6,6 +6,6 @@ using Xamarin.Forms;
 namespace MobileHRM.Controls
 {
     public class CustomEntry:Entry
-    {
+    { 
     }
 }

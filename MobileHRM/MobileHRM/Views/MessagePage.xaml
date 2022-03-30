@@ -7,7 +7,7 @@
     <Shell.TitleView>
         <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" >
             <Frame Margin="0,0,15,0" Padding="0" CornerRadius="40">
-                <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"   Source="{Binding Profileimage}" />
+                <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="Alephba" />  <!--Source="{Binding Profileimage}"-->
             </Frame>
             <Label x:Name="title" FontSize="Medium" VerticalTextAlignment="Center" TextColor="#CCCCCC" />
             <Frame Margin="0,0,15,0" Padding="0" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="Red">
@@ -28,48 +28,48 @@
                 </StackLayout>
             </ScrollView>
             <Frame Grid.Row="1" Padding="5"
-                   VerticalOptions="Center"
-                   CornerRadius="25"
-                   Margin="5,0"
-                   IsClippedToBounds="False"
-                   BackgroundColor="#1A1C23">
+                    VerticalOptions="Center"
+                    CornerRadius="25"
+                    Margin="5,0"
+                    IsClippedToBounds="False"
+                    BackgroundColor="#1A1C23">
                 <Grid ColumnDefinitions="*,*,4*,*" IsClippedToBounds="False">
-                    <Entry x:Name="messageEntry"  Grid.Column="2" 
+                    <Entry x:Name="messageEntry" Grid.Column="2" 
                             Placeholder="Type Somthing Here " 
                             PlaceholderColor="White" 
-                            FontSize="15"
+                            FontSize="15"   
                             TextColor="White"/>
                     <Frame Grid.Column="0" Padding="0"
-                           BackgroundColor="#272B35"
-                           CornerRadius="30">
+                            BackgroundColor="#272B35"
+                            CornerRadius="30">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                         </Frame.GestureRecognizers>
                         <Image Grid.Column="0" Source="finalCamera.png"
-                               HeightRequest="20"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center"
-                               Margin="10"/>
+                                HeightRequest="20"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                Margin="10" />
                     </Frame>
                     <Frame Grid.Column="1" Padding="0"
-                           BackgroundColor="#272B35"
-                           CornerRadius="30"
-                           x:Name="voicefrm">
+                            BackgroundColor="#272B35"
+                            CornerRadius="30"
+                            x:Name="voicefrm">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_recorder" />
                         </Frame.GestureRecognizers>
                         <Image x:Name="AudioImg" Grid.Column="1" Source="Vectormicro.png"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center"/>
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"/>
                     </Frame>
                     <Frame Grid.Column="3" Padding="0" BackgroundColor="#272B35" CornerRadius="30">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                         </Frame.GestureRecognizers>
                         <Image Grid.Column="3" Source="VectorarrowSend.png"
-                               Margin="5,0,0,0"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"/>
+                                Margin="5,0,0,0"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"/>
                     </Frame>
 
                 </Grid>
