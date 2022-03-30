@@ -244,7 +244,6 @@ namespace MobileHRM.Views
             if (await DisplayAlert("Warning!", "Group Will Delete Are You Sure?","Ok", "Cancel"))
             {
                 Vm.DeleteGroup();
-                await Task.Delay(1000);
                 await Navigation.PopAsync();
             }            
         }
