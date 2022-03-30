@@ -43,15 +43,18 @@ namespace MobileHRM.Views
         private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
         {
             var layout = (Grid)sender;
+            var child =(Frame) ((Grid)sender).Children[3];
             var gesture=(TapGestureRecognizer)layout.GestureRecognizers.First();
             if (SelectedItems.Contains((Contact)gesture.CommandParameter))
             {
-                layout.BackgroundColor = Color.Transparent;
+                child.CornerRadius = 0;
+                child.BackgroundColor = Color.Transparent;
                 SelectedItems.Remove((Contact)gesture.CommandParameter);
             }
             else
             {
-                layout.BackgroundColor = Color.FromHex("7B61FF");
+                child.BackgroundColor = Color.FromHex("ab7B61FF");
+                child.CornerRadius = 15;
                 SelectedItems.Add((Contact)gesture.CommandParameter);
             }
         }
