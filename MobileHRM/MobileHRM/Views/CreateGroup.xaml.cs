@@ -21,6 +21,7 @@ namespace MobileHRM.Views
             UsersList.ItemsSource = items;
             group.users = (from p in items select p.userId).ToList();
             group.users.Add(User.UserId);
+            group.image = new byte[0];
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -43,6 +44,8 @@ namespace MobileHRM.Views
             var photo = await MediaPicker.PickPhotoAsync();
             if (photo != null)
             {
+                GroupPicture.HorizontalOptions = LayoutOptions.FillAndExpand;
+                GroupPicture.VerticalOptions = LayoutOptions.FillAndExpand;
                 GroupPicture.Source = ImageSource.FromFile(photo.FullPath);
                 using (var stream = await photo.OpenReadAsync())
                 {
@@ -55,13 +58,18 @@ namespace MobileHRM.Views
         createGroup group = new createGroup();
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            group.name = GroupName.Text ?? "";
-            group.ownerId = User.UserId;
-            bool res=await request.CreateGroup(group);
-            if (res)
+            if (!IsBusy)
             {
-                await Navigation.PopToRootAsync();
-            }                        
+                IsBusy = true;
+                group.name = GroupName.Text ?? "";
+                group.ownerId = User.UserId;
+                bool res = await request.CreateGroup(group);
+                IsBusy = false;
+                if (res)
+                {
+                    await Navigation.PopToRootAsync();
+                }
+            }                                                
         }
     }
 }

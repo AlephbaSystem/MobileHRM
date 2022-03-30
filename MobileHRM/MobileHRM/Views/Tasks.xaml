@@ -13,12 +13,13 @@
                 </Frame.GestureRecognizers>
                 <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
             </Frame>
-            <Frame BackgroundColor="#272B35" CornerRadius="40" Padding="0" VerticalOptions="CenterAndExpand">
+            <Frame CornerRadius="40" Padding="0" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ImageButton_Clicked_1" />
                 </Frame.GestureRecognizers>
-                <Image Aspect="AspectFill" WidthRequest="50" HeightRequest="50" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent"  Source="Notification2.png" />
+                <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
             </Frame>
+
             <Frame BackgroundColor="#272B35" Padding="5" CornerRadius="40" VerticalOptions="CenterAndExpand">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ImageButton_Clicked_2" />
