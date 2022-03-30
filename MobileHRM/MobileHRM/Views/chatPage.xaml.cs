@@ -12,23 +12,25 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class chatPage : ContentPage
     {
-        ChatViewModel vm = new ChatViewModel();
+        readonly ChatViewModel vm = new ChatViewModel();
         public chatPage()
         {
             InitializeComponent();
             BindingContext = vm;
+            
         }
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
-            base.OnAppearing();
+            base.OnAppearing();            
             loading.IsVisible = loading.IsRunning = true;
-            vm.initialize();
+            await vm.Initialize();
             loading.IsVisible = loading.IsRunning = false;
         }
+        
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             var i = (TapGestureRecognizer)((Grid)sender).GestureRecognizers[0];
-            await Navigation.PushAsync(new MessagePage((Models.Entities.Group)i.CommandParameter));
+            await Navigation.PushAsync(new MessagePage((Models.Entities.GroupModel)i.CommandParameter));
         }
 
         private void ImageButton_Clicked(object sender, EventArgs e)
@@ -51,9 +53,9 @@ namespace MobileHRM.Views
 
         }
 
-        private void CustomEntry_TextChanged(object sender, TextChangedEventArgs e)
+        private async void CustomEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
-            vm.SearchByMessage(searchBar.Text);
+            await vm.SearchByMessage(searchBar.Text);
         }
     }
 }

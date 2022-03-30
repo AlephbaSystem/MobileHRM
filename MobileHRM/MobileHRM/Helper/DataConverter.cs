@@ -1,5 +1,4 @@
-﻿
-using Plugin.AudioRecorder;
+﻿using Plugin.AudioRecorder;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,6 +32,10 @@ namespace MobileHRM.Helper
         {
             try
             {
+                if (imagebytes.Length==0)
+                {
+                    return null;
+                }
                 var stream = new MemoryStream(imagebytes);
                 return ImageSource.FromStream(() => new MemoryStream(imagebytes));
             }

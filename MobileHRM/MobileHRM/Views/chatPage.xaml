@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:entryCustom="clr-namespace:MobileHRM.Controls" xmlns:local="clr-namespace:MobileHRM.Converter"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:entryCustom="clr-namespace:MobileHRM.Controls" 
+             xmlns:local="clr-namespace:MobileHRM.Converter"
              BackgroundColor="#1A1C23"
              xmlns:sharpnado="http://sharpnado.com"
              x:Class="MobileHRM.Views.chatPage">
+
     <ContentPage.Resources>
         <local:TextLenghConverter x:Key="TextLenghtConverter" />
     </ContentPage.Resources>
@@ -35,88 +38,119 @@
         </StackLayout>
     </Shell.TitleView>
     <ContentPage.Content>
+
         <StackLayout Padding="0"
                    Margin="10,0"
                     BackgroundColor="#1A1C23">
             <sharpnado:Shadows Grid.Row="0">
                 <sharpnado:Shadows.Shades>
                     <sharpnado:ImmutableShades>
-                        <sharpnado:Shade Offset="0,10"  Color="White" BlurRadius="5" />
+                        <sharpnado:Shade Offset="0,5"  Color="White" BlurRadius="5" />
                     </sharpnado:ImmutableShades>
                 </sharpnado:Shadows.Shades>
-            </sharpnado:Shadows>
-            <Frame Padding="0" HasShadow="False"
+                <Frame Padding="0" HasShadow="False"
                                CornerRadius="5"
                                HeightRequest="50"
                                Margin="10,20">
-                <Frame.Background>
-                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
-                        <GradientStop Offset="0.9" Color="#FFFFFF" />
-                        <GradientStop Offset="1" Color="#ccc" />
-                    </LinearGradientBrush>
-                </Frame.Background>
-                <Grid ColumnDefinitions="0.5*,8*,2*" VerticalOptions="CenterAndExpand">
-                    <entryCustom:CustomEntry  TextChanged="CustomEntry_TextChanged" x:Name="searchBar" Grid.Column="1" Placeholder="Search" FontFamily="quickSand" FontSize="12"/>
-                    <ImageButton  Grid.Column="2" BackgroundColor="Transparent"
+                    <Frame.Background>
+                        <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
+                            <GradientStop Offset="0.9" Color="#FFFFFF" />
+                            <GradientStop Offset="1" Color="#ccc" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <Grid ColumnDefinitions="0.5*,8*,2*" VerticalOptions="CenterAndExpand">
+                        <entryCustom:CustomEntry  TextChanged="CustomEntry_TextChanged" x:Name="searchBar" Grid.Column="1" Placeholder="Search" FontFamily="quickSand" FontSize="12"/>
+                        <ImageButton  Grid.Column="2" BackgroundColor="Transparent"
                                        Margin="10"
                                        Source="Search2.png"/>
                 </Grid>
             </Frame>
             <ActivityIndicator x:Name="loading" IsVisible="true" IsRunning="True" Color="LightBlue" />
+            
             <RefreshView Command="{Binding refresh}" IsRefreshing="{Binding Isrefreshing}">
-            <ScrollView>
+                <ScrollView>
                     <StackLayout BindableLayout.ItemsSource="{Binding Items}">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <Grid ColumnDefinitions="2*,5*,2*" >
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}" />
-                                    </Grid.GestureRecognizers>
-                                    <Frame CornerRadius="50"
-                                       HeightRequest="60"
-                                       WidthRequest="60"
-                                       VerticalOptions="Center"
-                                       Grid.Column="0"
-                                       HorizontalOptions="Center"
-                                       BackgroundColor="White"
-                                       Margin="0"
-                                       Padding="0">
-                                            <Image Source="{Binding image}"
-                                                />
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Grid ColumnDefinitions="2*,5*,2*" Margin="0,2" Padding="0,3,0,0">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}" />
+                                        </Grid.GestureRecognizers>
+                                        
+                                        <Frame CornerRadius="50"
+                                               HeightRequest="50"
+                                               WidthRequest="50"
+                                               VerticalOptions="Center"
+                                               Grid.Column="0"
+                                               HorizontalOptions="Center"
+                                               BackgroundColor="#272B35"
+                                               Margin="0"
+                                               Padding="0">
+                                            <Image Margin="2">
+                                                <Image.Source>
+                                                    <Binding Path="image" >
+                                                        <Binding.TargetNullValue>
+                                                            <ImageSource>Alephba.png</ImageSource>
+                                                        </Binding.TargetNullValue>
+                                                    </Binding>
+                                                </Image.Source>
+                                            </Image>
                                         </Frame>
-                                    <StackLayout Grid.Column="1"
-                                             HorizontalOptions="Start"
-                                             Spacing="0"
-                                             VerticalOptions="Center">
-                                        <Label Text="{Binding name}" TextColor="#CCCCCC"/>
-                                            <Label Text="{Binding lastMessage,Converter={StaticResource TextLenghtConverter},ConverterParameter='6'}" TextColor="#8D8D8D"/>
-                                    </StackLayout>
+                                        <StackLayout Grid.Column="1"
+                                             HorizontalOptions="StartAndExpand"
+                                             VerticalOptions="Center"
+                                             Spacing="0">
+                                            <Label Text="{Binding name}"
+                                                   FontFamily="quickSandSemiBold"
+                                                   TextColor="#CCCCCC"/>
+                                            <Label Text="{Binding lastMessage,Converter={StaticResource TextLenghtConverter},ConverterParameter='20'}"
+                                                   xct:ShadowEffect.Color="White"
+                                                   xct:ShadowEffect.Opacity="0.4"
+                                                       xct:ShadowEffect.OffsetY="10" 
+                                                   TextColor="#8D8D8D"/>
+                                        </StackLayout>
 
-                                    <StackLayout Grid.Column="2" Margin="0,4"
-                                         HorizontalOptions="Center">
-                                            <Label Text="{Binding lastMessageTime,StringFormat='{0:hh:mm}'}" FontSize="Micro" TextColor="#CCCCCC" VerticalOptions="StartAndExpand"/>
-                                            <Frame WidthRequest="25" HeightRequest="25" Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"
-                                                    BackgroundColor="#F07520"
-                                                    CornerRadius="50"  >
-                                                <Label FontSize="Micro" xct:ShadowEffect.Color="Black" xct:ShadowEffect.OffsetY="10" VerticalTextAlignment="Center" Text="{Binding unSeenedMessages}"
-                                                        TextColor="White"  HorizontalTextAlignment="Center"  />
+                                        <StackLayout Grid.Column="2"
+                                                     HorizontalOptions="Center">
+                                            <Label Text="{Binding lastMessageTime,StringFormat='{0:hh:mm}'}"
+                                                   FontFamily="quickSandLight"
+                                                   TextColor="#CCCCCC" 
+                                                   VerticalOptions="Start"/>
+                                            <Frame Padding="5,0"
+                                                   HorizontalOptions="CenterAndExpand"
+                                                   x:Name="FrameNumber"                                                   
+                                                   BackgroundColor="#F07520"
+                                                   CornerRadius="50">
+                                                <Frame.Triggers>
+                                                    <DataTrigger TargetType="Frame"  Value="0" Binding="{Binding Text,Source={Reference seenedMessage},TargetNullValue=''}">
+                                                        <Setter Property="IsVisible" Value="False" />
+                                                    </DataTrigger>
+                                                </Frame.Triggers>
+                                                <Label xct:ShadowEffect.Color="Black"
+                                                       xct:ShadowEffect.OffsetY="10"
+                                                       TextColor="White" 
+                                                       HorizontalOptions="Center"
+                                                       Text="{Binding unSeenedMessages}" x:Name="seenedMessage" >
+
+                                                </Label>
                                             </Frame>
-                                    </StackLayout>
-                                    <BoxView HeightRequest="1" Color="#F9FAFB"
-                                         VerticalOptions="EndAndExpand"
-                                             Opacity="0.5"
-                                             TranslationY="10"
-                                             Margin="0,0,20,0"
-                                         Grid.Column="1"
-                                         Grid.ColumnSpan="2"/>
-                                </Grid>
-                            </StackLayout>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
-            </ScrollView>
+                                        </StackLayout>
+                                        <BoxView HeightRequest="1" Color="#F9FAFB"
+                                                 VerticalOptions="EndAndExpand"
+                                                 Opacity="0.5"
+                                                 TranslationY="10"
+                                                 Margin="0,0,20,5"
+                                                 Grid.Column="1"
+                                                 Grid.ColumnSpan="2"/>
+                                    </Grid>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>                
             </RefreshView>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

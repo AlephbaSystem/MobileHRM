@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace MobileHRM.Models.Entities
 {
-    public class Group
+    public class GroupModel
     {
         public int id { get; set; }
         public string name { get; set; }
@@ -14,5 +14,6 @@ namespace MobileHRM.Models.Entities
         public string lastMessage { get; set; }
         public DateTime lastMessageTime { get; set; }
         public int unSeenedMessages { get; set; }
+        public bool ShowFrame { get; set; }
     }
 }
