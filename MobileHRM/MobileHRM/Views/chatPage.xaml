@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:entryCustom="clr-namespace:MobileHRM.Controls" xmlns:local="clr-namespace:MobileHRM.Converter"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:entryCustom="clr-namespace:MobileHRM.Controls" 
+             xmlns:local="clr-namespace:MobileHRM.Converter"
              BackgroundColor="#1A1C23"
              xmlns:sharpnado="http://sharpnado.com"
              x:Class="MobileHRM.Views.chatPage">
@@ -43,27 +45,27 @@
             <sharpnado:Shadows Grid.Row="0">
                 <sharpnado:Shadows.Shades>
                     <sharpnado:ImmutableShades>
-                        <sharpnado:Shade Offset="0,10"  Color="White" BlurRadius="5" />
+                        <sharpnado:Shade Offset="0,5"  Color="White" BlurRadius="5" />
                     </sharpnado:ImmutableShades>
                 </sharpnado:Shadows.Shades>
-            </sharpnado:Shadows>
-            <Frame Padding="0" HasShadow="False"
+                <Frame Padding="0" HasShadow="False"
                                CornerRadius="5"
                                HeightRequest="50"
                                Margin="10,20">
-                <Frame.Background>
-                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
-                        <GradientStop Offset="0.9" Color="#FFFFFF" />
-                        <GradientStop Offset="1" Color="#ccc" />
-                    </LinearGradientBrush>
-                </Frame.Background>
-                <Grid ColumnDefinitions="0.5*,8*,2*" VerticalOptions="CenterAndExpand">
-                    <entryCustom:CustomEntry  TextChanged="CustomEntry_TextChanged" x:Name="searchBar" Grid.Column="1" Placeholder="Search" FontFamily="quickSand" FontSize="12"/>
-                    <ImageButton  Grid.Column="2" BackgroundColor="Transparent"
+                    <Frame.Background>
+                        <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
+                            <GradientStop Offset="0.9" Color="#FFFFFF" />
+                            <GradientStop Offset="1" Color="#ccc" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <Grid ColumnDefinitions="0.5*,8*,2*" VerticalOptions="CenterAndExpand">
+                        <entryCustom:CustomEntry  TextChanged="CustomEntry_TextChanged" x:Name="searchBar" Grid.Column="1" Placeholder="Search" FontFamily="quickSand" FontSize="12"/>
+                        <ImageButton  Grid.Column="2" BackgroundColor="Transparent"
                                        Margin="10"
                                        Source="Search.png"/>
-                </Grid>
-            </Frame>
+                    </Grid>
+                </Frame>
+            </sharpnado:Shadows>
             <ActivityIndicator x:Name="loading" IsVisible="true" IsRunning="True" Color="LightBlue" />
             
             <RefreshView Command="{Binding refresh}" IsRefreshing="{Binding Isrefreshing}">
@@ -83,7 +85,7 @@
                                                VerticalOptions="Center"
                                                Grid.Column="0"
                                                HorizontalOptions="Center"
-                                               BackgroundColor="white"
+                                               BackgroundColor="#272B35"
                                                Margin="0"
                                                Padding="0">
                                             <Image Margin="2">
@@ -118,13 +120,20 @@
                                                    VerticalOptions="Start"/>
                                             <Frame Padding="5,0"
                                                    HorizontalOptions="CenterAndExpand"
+                                                   x:Name="FrameNumber"                                                   
                                                    BackgroundColor="#F07520"
                                                    CornerRadius="50">
+                                                <Frame.Triggers>
+                                                    <DataTrigger TargetType="Frame"  Value="0" Binding="{Binding Text,Source={Reference seenedMessage},TargetNullValue=''}">
+                                                        <Setter Property="IsVisible" Value="False" />
+                                                    </DataTrigger>
+                                                </Frame.Triggers>
                                                 <Label xct:ShadowEffect.Color="Black"
-                                                       xct:ShadowEffect.OffsetY="10"                                                       
-                                                       Text="{Binding unSeenedMessages}"
+                                                       xct:ShadowEffect.OffsetY="10"
                                                        TextColor="White" 
-                                                       HorizontalOptions="Center">
+                                                       HorizontalOptions="Center"
+                                                       Text="{Binding unSeenedMessages}" x:Name="seenedMessage" >
+
                                                 </Label>
                                             </Frame>
                                         </StackLayout>
