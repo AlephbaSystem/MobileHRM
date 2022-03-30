@@ -135,7 +135,7 @@ namespace MobileHRM.Api
                 {
                     return new List<Group>();
                 }
-                var items = JsonDataConverter<Group[]>.JsonStringToObject(jsonStr);
+                var items = JsonDataConverter<Group[]>.JsonStringToObject(jsonStr);                
                 return items.ToList();
             }
             catch (Exception e)

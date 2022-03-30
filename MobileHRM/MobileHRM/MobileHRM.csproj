@@ -93,6 +93,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\chatPage.xaml.cs">
+      <DependentUpon>chatPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\CreateGroup.xaml.cs">
       <DependentUpon>CreateGroup.xaml</DependentUpon>
     </Compile>

@@ -1,11 +1,9 @@
 ﻿using MobileHRM.Helper;
 using MobileHRM.Models;
-using MobileHRM.Models.Api;
+using MobileHRM.Models.Entities;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -15,17 +13,17 @@ namespace MobileHRM.ViewModel
     {
         public ChatViewModel()
         {
-            refresh = new Command(RefreshItems);
+            Refresh = new Command(RefreshItems);
         }
 
-        private ObservableCollection<MobileHRM.Models.Entities.Group> _items;
-        public ObservableCollection<MobileHRM.Models.Entities.Group> Items
+        private ObservableCollection<GroupModel> _items;
+        public ObservableCollection<GroupModel> Items
         {
             get
             {
                 if (_items == null)
                 {
-                    return new ObservableCollection<MobileHRM.Models.Entities.Group>();
+                    return new ObservableCollection<GroupModel>();
                 }
                 return _items;
             }
@@ -44,39 +42,50 @@ namespace MobileHRM.ViewModel
                 _Isrefreshing = Isrefreshing;
             }
         }
+
         private bool _Isrefreshing = false;
-        public void RefreshItems(object sender)
+        public async void RefreshItems(object sender)
         {
-            initialize();
+            await Initialize();
             Isrefreshing = false;
         }
-        Api.ChatApi api = new Api.ChatApi();
-        public async void initialize()
-        {
-            try
-            {
+        private readonly Api.ChatApi api = new Api.ChatApi();
+        private bool IsBusy = false;
 
-                if (!IsBusy)
+        public async Task Initialize()
+        {
+            if (!IsBusy)
+            {
+                try
                 {
                     IsBusy = true;
-                    Items = new ObservableCollection<Models.Entities.Group>();
+                    Items = new ObservableCollection<GroupModel>();
                     var items = await api.GetGroupsByUserd(User.UserId);
-                    foreach (var item in items)
+                    foreach (Models.Api.Group item in items)
                     {
-                        Items.Add(new Models.Entities.Group { name = item.name, image = DataConverter.ByteToImage(item.image), id = item.id, lastMessage = item.lastMessage ?? "", ownerId = item.ownerId, lastMessageTime = item.lastMessage == null ? new DateTime() : item.lastMessageTime, unSeenedMessages = item.unSeenedMessages });
+                        Items.Add(new GroupModel
+                        {
+                            id = item.id,
+                            name = item.name,
+                            ownerId = item.ownerId,
+                            unSeenedMessages = item.unSeenedMessages,
+                            image = DataConverter.ByteToImage(item.image),
+                            lastMessage = item.lastMessage ?? "Nothing to show here",
+                            lastMessageTime = item.lastMessage == null ? new DateTime() : item.lastMessageTime,
+                        });
                     }
                     Items = Items;
                     IsBusy = false;
                 }
-            }
-            catch (Exception e)
-            {
-                _ = e.Message;
-                throw;
+                catch (Exception e)
+                {
+                    _ = e.Message;
+                    throw;
+                }
             }
         }
-        private bool IsBusy { get; set; } = false;
-        public async void SearchByMessage(string message)
+
+        public async Task SearchByMessage(string message)
         {
             if (IsBusy)
             {
@@ -85,18 +94,26 @@ namespace MobileHRM.ViewModel
             IsBusy = true;
             if (string.IsNullOrEmpty(message))
             {
-                initialize();
+                await Initialize();
                 return;
             }
             var items = await api.GetAllChatsByMessage(message);
-            Items = new ObservableCollection<Models.Entities.Group>();
-            foreach (var item in items)
+            Items = new ObservableCollection<GroupModel>();
+            foreach (Models.Api.Group item in items)
             {
-                Items.Add(new Models.Entities.Group { name = item.name, image = DataConverter.ByteToImage(item.image), id = item.id, lastMessage = item.lastMessage, lastMessageTime = item.lastMessageTime, unSeenedMessages = item.unSeenedMessages });
+                Items.Add(new GroupModel
+                {
+                    id = item.id,
+                    name = item.name,
+                    lastMessage = item.lastMessage,
+                    lastMessageTime = item.lastMessageTime,
+                    unSeenedMessages = item.unSeenedMessages,
+                    image = DataConverter.ByteToImage(item.image),
+                });
             }
             Items = Items;
             IsBusy = false;
         }
-        public ICommand refresh { get; protected set; }
+        public ICommand Refresh { get; protected set; }
     }
 }

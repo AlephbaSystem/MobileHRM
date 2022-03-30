@@ -20,10 +20,10 @@ namespace MobileHRM.Views
     public partial class MessagePage : ContentPage
     {
         private MessagesVm Vm;
-        MobileHRM.Models.Entities.Group group;
+        MobileHRM.Models.Entities.GroupModel group;
         private readonly AudioRecorderService audioRecorderService = new AudioRecorderService();
         private AudioRecorderService ShowVoice;
-        public MessagePage(MobileHRM.Models.Entities.Group item)
+        public MessagePage(MobileHRM.Models.Entities.GroupModel item)
         {
             InitializeComponent();
             Vm = new MessagesVm(item.id, item.image,item.ownerId);
