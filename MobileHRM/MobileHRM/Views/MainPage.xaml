@@ -179,6 +179,10 @@
             <ShellContent 
                     ContentTemplate="{DataTemplate views:Knowledge}" />
         </Tab>
+        <Tab Title="Accounting">
+            <ShellContent 
+                    ContentTemplate="{DataTemplate views:Accounting}" />
+        </Tab>
         <Tab Title="Tasks"
                     Icon="Task.png">
             <ShellContent 

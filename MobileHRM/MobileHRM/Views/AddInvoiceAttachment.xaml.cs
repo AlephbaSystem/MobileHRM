@@ -1,9 +1,11 @@
-﻿using System;
+﻿using MobileHRM.ViewModel;
+using Plugin.FilePicker;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,9 +14,31 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddInvoiceAttachment : ContentPage
     {
-        public AddInvoiceAttachment()
+        AddInvoiceViewModel _vm;
+        public AddInvoiceAttachment(AddInvoiceViewModel vm)
         {
             InitializeComponent();
+            _vm = vm;
+        }
+
+        private async void New_Clicked(object sender, EventArgs e)
+        {
+            var pickedFile = await CrossFilePicker.Current.PickFile(new string[] { "application/pdf" });
+            if (pickedFile != null)
+            {
+                _vm.Attachments = _vm.Attachments ?? new System.Collections.ObjectModel.ObservableCollection<byte[]>();
+                _vm.Attachments.Add(pickedFile.DataArray);
+            }
+        }
+
+        private void Clear_Clicked(object sender, EventArgs e)
+        {
+            _vm.Attachments.Clear();
+        }
+
+        private async void Done_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
         }
     }
 }

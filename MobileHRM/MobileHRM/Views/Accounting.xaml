@@ -6,18 +6,45 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#1A1C23"
              x:Class="MobileHRM.Views.Accounting">
+    <Shell.TitleView>
+        <StackLayout FlowDirection="RightToLeft" Spacing="10" Orientation="Horizontal" BackgroundColor="Transparent" >
+            <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF" >
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" />
+                </Frame.GestureRecognizers>
+                <Frame Padding="0" CornerRadius="40">
+                    <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                </Frame>
+            </Frame>
+            <Frame CornerRadius="40" Padding="0" WidthRequest="49" HeightRequest="49" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" />
+                </Frame.GestureRecognizers>
+                <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
+            </Frame>
 
+            <Frame Padding="5" CornerRadius="40" BackgroundColor="#272B35" VerticalOptions="CenterAndExpand">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                </Frame.GestureRecognizers>
+                <Image Aspect="AspectFill" WidthRequest="37" HeightRequest="37" TranslationX="2" TranslationY="1" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="AddIcon.png" />
+            </Frame>
+            <ImageButton Aspect="AspectFill" WidthRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_Clicked" Source="arrow2.png"/>
+        </StackLayout>
+    </Shell.TitleView>
     <StackLayout VerticalOptions="StartAndExpand" Margin="20">
         <Label Margin="10,10" Text="Accounting" TextColor="#CCCCCC"
-                   HorizontalOptions="Start"
-                   ></Label>
-            <StackLayout  Spacing="20">
+                   HorizontalOptions="Start"/>
+        <StackLayout  Spacing="20">
                 <Grid ColumnDefinitions="*,*" ColumnSpacing="20"
                   RowDefinitions="*,*,*" RowSpacing="20">
                     <Frame Padding="0" Grid.Column="0"
                             CornerRadius="15"
                              BackgroundColor="#3C3E45"
                                HeightRequest="130">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AddInvoice_Tapped" />
+                    </Frame.GestureRecognizers>
                         <Grid RowDefinitions="*">
                         <Label Grid.Row="0" Text="Add Invoice" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
                             
@@ -27,14 +54,17 @@
                             CornerRadius="15"
                              BackgroundColor="#3C3E45"
                                HeightRequest="130">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Report_Tapped" />
+                    </Frame.GestureRecognizers>
                     <Label Grid.Row="0" Text="Reports" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
                     </Frame>
-                    <Frame Padding="0" Grid.Column="0"
+                <Frame Padding="0" Grid.Column="0"
                        Grid.Row="1"
                             CornerRadius="15"
                              BackgroundColor="#3C3E45"
                                HeightRequest="130">
-                        <Grid RowDefinitions="*">
+                    <Grid RowDefinitions="*">
                         <Label Grid.Row="0" Text="Categories" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
                             
                         </Grid>
@@ -44,14 +74,17 @@
                             CornerRadius="15"
                              BackgroundColor="#3C3E45"
                                HeightRequest="130">
-                    <Label Grid.Row="0" Text="Costumers" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Customers_Tapped" />
+                    </Frame.GestureRecognizers>
+                    <Label Grid.Row="0" Text="Customers" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
                     </Frame>
                     <Frame Padding="0"
-                       Grid.Row="2"
-                           Grid.ColumnSpan="2"
-                            CornerRadius="15"
-                             BackgroundColor="#3C3E45"
-                               HeightRequest="130">
+                           Grid.Row="2"
+                               Grid.ColumnSpan="2"
+                                CornerRadius="15"
+                                 BackgroundColor="#3C3E45"
+                                   HeightRequest="130">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                     </Frame.GestureRecognizers>

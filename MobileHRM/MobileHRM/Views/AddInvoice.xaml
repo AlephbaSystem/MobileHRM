@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:MobileHRM.Controls"
              x:Class="MobileHRM.Views.AddInvoice"
              BackgroundColor="#1A1C23" >
-    <ContentView.Content>
+    <ContentPage.Content>
         <Grid Margin="10,0" ColumnDefinitions="*,4*" RowDefinitions="*,*,*,*,*,*,*,*,1.5*,2*">
             <Label VerticalTextAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2"  TextColor="#CCCCCC" Text="Add Invoice" />
             <Label Grid.Row="1"  VerticalOptions="CenterAndExpand" TextColor="#CCCCCC" Grid.Column="0" Text="Number" />
@@ -51,9 +51,9 @@
             </Frame>
             <Grid Grid.Row="9" Grid.ColumnSpan="2" ColumnDefinitions="*,*,*" Margin="10,0">
                 <Button CornerRadius="5" TextColor="#FFFDFF" Grid.Column="0" FontAttributes="Bold" FontSize="Micro" VerticalOptions="CenterAndExpand" Text="Clear" BackgroundColor="#9A031E" />
-                <Button CornerRadius="5" TextColor="#FFFDFF" Grid.Column="1" FontAttributes="Bold" FontSize="Micro" VerticalOptions="CenterAndExpand" Text="Attachment" BackgroundColor="#7B61FF" />
+                <Button CornerRadius="5" TextColor="#FFFDFF" Grid.Column="1" FontAttributes="Bold" FontSize="Micro" VerticalOptions="CenterAndExpand" Text="Attachment" BackgroundColor="#7B61FF" Clicked="Attachment_Clicked" />
                 <Button CornerRadius="5" TextColor="#FFFDFF" Grid.Column="2" FontAttributes="Bold" FontSize="Micro" VerticalOptions="CenterAndExpand" Text="Save" BackgroundColor="#26AB5B" />
             </Grid>       
         </Grid>
-    </ContentView.Content>
-</ContentView>
+    </ContentPage.Content>
+</ContentPage>
