@@ -1,4 +1,5 @@
-﻿using MobileHRM.ViewModel;
+﻿using MobileHRM.Models.Entities;
+using MobileHRM.ViewModel;
 using Plugin.FilePicker;
 using System;
 using System.Collections.Generic;
@@ -26,14 +27,14 @@ namespace MobileHRM.Views
             var pickedFile = await CrossFilePicker.Current.PickFile(new string[] { "application/pdf" });
             if (pickedFile != null)
             {
-                _vm.Attachments = _vm.Attachments ?? new System.Collections.ObjectModel.ObservableCollection<byte[]>();
-                _vm.Attachments.Add(pickedFile.DataArray);
+                _vm.InvoiceDetail.attachments = _vm.InvoiceDetail.attachments ?? new System.Collections.ObjectModel.ObservableCollection<Attachment>();
+                _vm.InvoiceDetail.attachments.Add(new Attachment { media = pickedFile.DataArray, mediaType = "pdf" });
             }
         }
 
         private void Clear_Clicked(object sender, EventArgs e)
         {
-            _vm.Attachments.Clear();
+            _vm.InvoiceDetail.attachments.Clear();
         }
 
         private async void Done_Clicked(object sender, EventArgs e)

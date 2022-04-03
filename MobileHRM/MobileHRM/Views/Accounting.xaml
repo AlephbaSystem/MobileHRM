@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:sh="http://sharpnado.com"
              xmlns:customEntry="clr-namespace:MobileHRM.Controls" xmlns:vm="clr-namespace:MobileHRM.ViewModel"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#1A1C23"
@@ -36,21 +35,21 @@
         <Label Margin="10,10" Text="Accounting" TextColor="#CCCCCC"
                    HorizontalOptions="Start"/>
         <StackLayout  Spacing="20">
-                <Grid ColumnDefinitions="*,*" ColumnSpacing="20"
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="20"
                   RowDefinitions="*,*,*" RowSpacing="20">
-                    <Frame Padding="0" Grid.Column="0"
+                <Frame Padding="0" Grid.Column="0"
                             CornerRadius="15"
                              BackgroundColor="#3C3E45"
                                HeightRequest="130">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="AddInvoice_Tapped" />
                     </Frame.GestureRecognizers>
-                        <Grid RowDefinitions="*">
+                    <Grid RowDefinitions="*">
                         <Label Grid.Row="0" Text="Add Invoice" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
-                            
-                        </Grid>
-                    </Frame>
-                    <Frame Padding="0" Grid.Column="1"
+
+                    </Grid>
+                </Frame>
+                <Frame Padding="0" Grid.Column="1"
                             CornerRadius="15"
                              BackgroundColor="#3C3E45"
                                HeightRequest="130">
@@ -58,7 +57,7 @@
                         <TapGestureRecognizer Tapped="Report_Tapped" />
                     </Frame.GestureRecognizers>
                     <Label Grid.Row="0" Text="Reports" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
-                    </Frame>
+                </Frame>
                 <Frame Padding="0" Grid.Column="0"
                        Grid.Row="1"
                             CornerRadius="15"
@@ -66,20 +65,19 @@
                                HeightRequest="130">
                     <Grid RowDefinitions="*">
                         <Label Grid.Row="0" Text="Categories" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
-                            
-                        </Grid>
-                    </Frame>
-                    <Frame Padding="0" Grid.Column="1"
-                       Grid.Row="1"
-                            CornerRadius="15"
-                             BackgroundColor="#3C3E45"
-                               HeightRequest="130">
+                    </Grid>
+                </Frame>
+                <Frame Padding="0" Grid.Column="1"
+                        Grid.Row="1"
+                        CornerRadius="15"
+                        BackgroundColor="#3C3E45"
+                        HeightRequest="130">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Customers_Tapped" />
                     </Frame.GestureRecognizers>
-                    <Label Grid.Row="0" Text="Customers" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
-                    </Frame>
-                    <Frame Padding="0"
+                    <Label Grid.Row="0" Text="Add Business" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
+                </Frame>
+                <Frame Padding="0"
                            Grid.Row="2"
                                Grid.ColumnSpan="2"
                                 CornerRadius="15"
@@ -88,16 +86,16 @@
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                     </Frame.GestureRecognizers>
-                        <Grid RowDefinitions="*,*">
+                    <Grid RowDefinitions="*,*">
                         <Label Grid.Row="0" Text="{Binding Accounting,StringFormat='{0} Riyal'}" VerticalOptions="End" HorizontalOptions="Center" TextColor="#CCCCCC"/>
-                            <Label Grid.Row="1" Text="Refresh" VerticalOptions="Start" HorizontalOptions="Center" TextColor="#7B61FF"/>
-                        </Grid>
-                    </Frame>
-                    
+                        <Label Grid.Row="1" Text="Refresh" VerticalOptions="Start" HorizontalOptions="Center" TextColor="#7B61FF"/>
+                    </Grid>
+                </Frame>
 
-                </Grid>
-            </StackLayout>
 
+            </Grid>
         </StackLayout>
 
-    </ContentPage>
+    </StackLayout>
+
+</ContentPage>

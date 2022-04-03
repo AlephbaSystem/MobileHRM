@@ -74,7 +74,7 @@
     <EmbeddedResource Update="Views\Accounting.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\AccountingAddCustomer.xaml">
+    <EmbeddedResource Update="Views\AccountingAddBusiness.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Accounting_Report.xaml">
@@ -98,6 +98,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\AccountingAddBusiness.xaml.cs">
+      <DependentUpon>AccountingAddBusiness.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\chatPage.xaml.cs">
       <DependentUpon>chatPage.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Loan.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popup\BusinessPopup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popup\KnowledgeDetail.xaml">

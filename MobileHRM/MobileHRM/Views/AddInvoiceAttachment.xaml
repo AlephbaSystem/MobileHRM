@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <Grid Margin="10,0" RowDefinitions="0.5*,4*,1.5*">
             <Label VerticalTextAlignment="Center" TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="0" Text="Attachments" />
-            <StackLayout Spacing="5" Grid.Row="1" BindableLayout.ItemsSource="{Binding Attachments}" >
+            <StackLayout Spacing="5" Grid.Row="1" BindableLayout.ItemsSource="{Binding InvoiceDetail.attachments}" >
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Frame CornerRadius="5" HeightRequest="60" Padding="10,0">

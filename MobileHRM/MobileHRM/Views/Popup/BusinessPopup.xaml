@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="MobileHRM.Views.Popup.BusinessPopup"
+             x:Name="page">
+    <Frame Margin="20,100" >
+        <ScrollView>
+            <StackLayout BindableLayout.ItemsSource="{Binding BusinessList,Source={Reference page }}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame>
+                            <Grid ColumnDefinitions="*,4*">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Item_Tapped" CommandParameter="{Binding .}" />
+                                </Grid.GestureRecognizers>
+                                <Label HorizontalTextAlignment="Center" Grid.Column="0" Text="12" />
+                                <Label HorizontalTextAlignment="Center" Grid.Column="1" Text="Name" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </ScrollView>
+    </Frame>
+</popup:PopupPage>

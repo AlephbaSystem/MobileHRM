@@ -12,13 +12,9 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Accounting : ContentPage
     {
-        ViewModel.AccountingViewModel vm;
         public Accounting()
         {
             InitializeComponent();
-            vm = new ViewModel.AccountingViewModel();
-            BindingContext = vm;
-            vm.Accounting = "100";
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -38,7 +34,7 @@ namespace MobileHRM.Views
 
         private async void Customers_Tapped(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AccountingAddCustomer());
+            await Navigation.PushAsync(new AccountingAddBusiness());
         }
 
         private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
