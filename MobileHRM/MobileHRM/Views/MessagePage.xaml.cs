@@ -40,7 +40,7 @@ namespace MobileHRM.Views
                 messageEntry.Text = string.Empty;
                 await Vm.sendMessage(message);
                 await Vm.intialize();
-                addmessage();
+                await addmessage();
             }
             var lastchild = messagelayout.Children.LastOrDefault();
             if (lastchild != null)

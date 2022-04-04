@@ -63,8 +63,9 @@
                         <ImageButton  Grid.Column="2" BackgroundColor="Transparent"
                                        Margin="10"
                                        Source="Search2.png"/>
-                </Grid>
-            </Frame>
+                    </Grid>
+                </Frame>
+            </sharpnado:Shadows>
             <ActivityIndicator x:Name="loading" IsVisible="true" IsRunning="True" Color="LightBlue" />
             
             <RefreshView Command="{Binding refresh}" IsRefreshing="{Binding Isrefreshing}">

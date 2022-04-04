@@ -3,7 +3,7 @@
   <PropertyGroup>
     <SelectedDevice>Xiaomi Redmi Note 8 Pro</SelectedDevice>
     <ActiveDebugProfile>Xiaomi Redmi Note 8 Pro</ActiveDebugProfile>
-    <DefaultDevice>Pixel_2_API_31</DefaultDevice>
+    <DefaultDevice>pixel_5_-_api_30</DefaultDevice>
     <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
     <AndroidDesignerPreferredDevice>Nexus 4</AndroidDesignerPreferredDevice>
   </PropertyGroup>

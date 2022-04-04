@@ -2,6 +2,8 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MobileHRM.Views;
+using MobileHRM.Views.Popup;
+using MobileHRM.ViewModel;
 
 namespace MobileHRM
 { 
