@@ -7,55 +7,30 @@
     <ContentPage.Content>
         <Grid Margin="10,0" RowDefinitions="0.5*,4*,1.5*">
             <Label VerticalTextAlignment="Center" TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="0" Text="Attachments" />
-            <StackLayout Spacing="5" Grid.Row="1" >
-
-                <Frame CornerRadius="5" HeightRequest="60" Padding="10,0">
-                    <Frame.Background>
-                        <LinearGradientBrush EndPoint="0,1">
-                            <GradientStop Offset="0.96" Color="#CCCCCC" />
-                            <GradientStop Offset="0.1" Color="Silver" />
-                        </LinearGradientBrush>
-                    </Frame.Background>
-                    <Grid ColumnDefinitions="*,*">
-                        <Label Grid.Column="0" TextColor="Black" Text="File1" VerticalOptions="CenterAndExpand" />
-                        <Frame Grid.Column="1" CornerRadius="20" BackgroundColor="#9A031E" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Padding="10,8">
-                            <Label Text="delete" TextColor="#EBEBEB" />
+            <StackLayout Spacing="5" Grid.Row="1" BindableLayout.ItemsSource="{Binding InvoiceDetail.attachments}" >
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="5" HeightRequest="60" Padding="10,0">
+                            <Frame.Background>
+                                <LinearGradientBrush EndPoint="0,1">
+                                    <GradientStop Offset="0.96" Color="#CCCCCC" />
+                                    <GradientStop Offset="0.1" Color="Silver" />
+                                </LinearGradientBrush>
+                            </Frame.Background>
+                            <Grid ColumnDefinitions="*,*">
+                                <Label Grid.Column="0" TextColor="Black" Text="File1" VerticalOptions="CenterAndExpand" />
+                                <Frame Grid.Column="1" CornerRadius="20" BackgroundColor="#9A031E" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Padding="10,8">
+                                    <Label Text="delete" TextColor="#EBEBEB" />
+                                </Frame>
+                            </Grid>
                         </Frame>
-                    </Grid>
-                </Frame>
-                <Frame CornerRadius="5" HeightRequest="60" Padding="10,0">
-                    <Frame.Background>
-                        <LinearGradientBrush EndPoint="0,1">
-                            <GradientStop Offset="0.96" Color="#CCCCCC" />
-                            <GradientStop Offset="0.1" Color="Silver" />
-                        </LinearGradientBrush>
-                    </Frame.Background>
-                    <Grid ColumnDefinitions="*,*">
-                        <Label Grid.Column="0" Text="File2" TextColor="Black" VerticalOptions="CenterAndExpand" />
-                        <Frame Grid.Column="1" CornerRadius="20" BackgroundColor="#9A031E" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Padding="10,8">
-                            <Label Text="delete" TextColor="#EBEBEB" />
-                        </Frame>
-                    </Grid>
-                </Frame>
-                <Frame CornerRadius="5" HeightRequest="60" Padding="10,0">
-                <Frame.Background>
-                    <LinearGradientBrush EndPoint="0,1">
-                            <GradientStop Offset="0.96" Color="#CCCCCC" />
-                        <GradientStop Offset="0.1" Color="Silver" />
-                    </LinearGradientBrush>
-                </Frame.Background>
-                <Grid ColumnDefinitions="*,*">
-                    <Label Grid.Column="0" TextColor="Black" Text="File3" VerticalOptions="CenterAndExpand" />
-                        <Frame Grid.Column="1" CornerRadius="20" BackgroundColor="#9A031E" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Padding="10,8">
-                            <Label Text="delete" TextColor="#EBEBEB" />
-                    </Frame>
-                </Grid>
-                </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
             </StackLayout>
             <Grid Grid.Row="2" ColumnDefinitions="*,*,*" Margin="10,0">
-                <Button CornerRadius="5" TextColor="#FFFDFF" Grid.Column="0" FontAttributes="Bold" FontSize="Micro" VerticalOptions="CenterAndExpand" Text="Clear" BackgroundColor="#9A031E" />
-                <Button CornerRadius="5" TextColor="#FFFDFF" Grid.Column="1" FontAttributes="Bold" FontSize="Micro" VerticalOptions="CenterAndExpand" Text="Attachment" BackgroundColor="#7B61FF" />
-                <Button CornerRadius="5" TextColor="#FFFDFF" Grid.Column="2" FontAttributes="Bold" FontSize="Micro" VerticalOptions="CenterAndExpand" Text="Save" BackgroundColor="#26AB5B" />
+                <Button CornerRadius="5" TextColor="#FFFDFF" Grid.Column="0" FontAttributes="Bold" FontSize="Micro" VerticalOptions="CenterAndExpand" Text="Clear" BackgroundColor="#9A031E" Clicked="Clear_Clicked"/>
+                <Button CornerRadius="5" TextColor="#FFFDFF" Grid.Column="1" FontAttributes="Bold" FontSize="Micro" VerticalOptions="CenterAndExpand" Text="New" BackgroundColor="#7B61FF" Clicked="New_Clicked" />
+                <Button CornerRadius="5" TextColor="#FFFDFF" Grid.Column="2" FontAttributes="Bold" FontSize="Micro" VerticalOptions="CenterAndExpand" Text="Done" BackgroundColor="#26AB5B" Clicked="Done_Clicked" />
             </Grid>
         </Grid>
     </ContentPage.Content>

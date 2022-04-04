@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobileHRM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,14 @@ using Xamarin.Forms.Xaml;
 namespace MobileHRM.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AccountingAddCustomer : ContentPage
+    public partial class AccountingAddBusiness : ContentPage
     {
-        public AccountingAddCustomer()
+        AddBusinessViewModel Vm;
+        public AccountingAddBusiness()
         {
             InitializeComponent();
+            Vm = new AddBusinessViewModel();
+            BindingContext = Vm;
         }
     }
 }

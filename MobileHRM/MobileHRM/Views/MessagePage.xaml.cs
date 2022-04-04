@@ -26,7 +26,7 @@ namespace MobileHRM.Views
         public MessagePage(MobileHRM.Models.Entities.GroupModel item)
         {
             InitializeComponent();
-            Vm = new MessagesVm(item.id, item.image,item.ownerId);
+            Vm = new MessagesVm(item.id, item.image, item.ownerId);
             BindingContext = Vm;
             group = item;
             title.Text = group.name;
@@ -80,11 +80,27 @@ namespace MobileHRM.Views
             }
             return Task.CompletedTask;
         }
+
+
+        private string DateConveter(DateTime date)
+        {
+            DateTime CurentDate = DateTime.Now;
+            if (date.Year != CurentDate.Year)
+            {
+                return date.ToString("yy MMMM dd hh:mm");
+            }
+            if (date.Month != CurentDate.Month || date.Day != CurentDate.Day)
+            {
+                return date.ToString("dd MMMM hh:mm");
+            }
+            return date.ToString("hh:mm");
+        }
+
         private void MakeImageFrame(GroupMessage item) //MakeMessageFrame
         {
 
             Frame frm = new Frame();
-            var timelabel = new Label { Text = item.createdAt.ToString(), FontSize = 8, TextColor = Color.Silver, HorizontalTextAlignment = TextAlignment.Start };
+            var timelabel = new Label { Text = DateConveter(item.createdAt), FontSize = 8, TextColor = Color.Silver, HorizontalTextAlignment = TextAlignment.Start };
             var pad = timelabel.Padding;
             pad.Top += 2;
             timelabel.Padding = pad;
@@ -112,7 +128,7 @@ namespace MobileHRM.Views
         {
 
             Frame frm = new Frame();
-            var timelabel = new Label { Text = item.createdAt.ToString(), FontSize = 8, TextColor = Color.Silver, HorizontalTextAlignment = TextAlignment.Start };
+            var timelabel = new Label { Text = DateConveter(item.createdAt), FontSize = 8, TextColor = Color.Silver, HorizontalTextAlignment = TextAlignment.Start };
             var pad = timelabel.Padding;
             pad.Top += 2;
             timelabel.Padding = pad;
@@ -241,11 +257,11 @@ namespace MobileHRM.Views
 
         private async void DeleteGroip_Tapped_(object sender, EventArgs e)
         {
-            if (await DisplayAlert("Warning!", "Group Will Delete Are You Sure?","Ok", "Cancel"))
+            if (await DisplayAlert("Warning!", "Group Will Delete Are You Sure?", "Ok", "Cancel"))
             {
                 Vm.DeleteGroup();
                 await Navigation.PopAsync();
-            }            
+            }
         }
     }
 }

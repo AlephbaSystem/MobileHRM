@@ -2,7 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"             
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
              xmlns:views="clr-namespace:MobileHRM.Views" xmlns:entryCustom="clr-namespace:MobileHRM.Controls"
-       BackgroundColor="#fff"
+            BackgroundColor="#fff"
             Shell.BackgroundColor="#1A1C23"
             Shell.NavBarHasShadow="False"
              x:Class="MobileHRM.MainPage"
@@ -78,14 +78,14 @@
                                             </Grid>
                                             <Grid Grid.Row="3" ColumnDefinitions="3*,0*,10*">
                                                 <Frame CornerRadius="50"                                              
-                                               Grid.Column="0"
-                                               HeightRequest="50"
-                                               BackgroundColor="#1C1F26"
-                                               WidthRequest="50"
-                                               VerticalOptions="CenterAndExpand"
-                                               HorizontalOptions="End"
-                                               Margin="0"
-                                               Padding="0">
+                                                       Grid.Column="0"
+                                                       HeightRequest="50"
+                                                       BackgroundColor="#1C1F26"
+                                                       WidthRequest="50"
+                                                       VerticalOptions="CenterAndExpand"
+                                                       HorizontalOptions="End"
+                                                       Margin="0"
+                                                       Padding="0">
                                                     <Image BackgroundColor="#1C1F26"
                                                          Margin="10"
                                                          Source="punchOut.png"/>
@@ -103,11 +103,11 @@
                                CornerRadius="11">
                                         <Grid RowDefinitions="0.1*, *, 2*,0.3*">
                                             <Label Grid.Column="0"
-                                       Grid.Row="1"
-                                       Margin="23,0,0,0"
-                                       VerticalOptions="Center"
-                                       TextColor="#CCCCCC"
-                                       Text="Monthly time"/>
+                                                   Grid.Row="1"
+                                                   Margin="23,0,0,0"
+                                                   VerticalOptions="Center"
+                                                   TextColor="#CCCCCC"
+                                                   Text="Monthly time"/>
 
                                             <Grid Grid.Row="2" ColumnDefinitions="3*,0*,10*">
 
@@ -133,9 +133,9 @@
                                         </Grid>
                                     </Frame>
                                     <Frame Padding="0"
-                               Margin="1"
-                               BackgroundColor="#272B35"
-                               CornerRadius="11">
+                                           Margin="1"
+                                           BackgroundColor="#272B35"
+                                           CornerRadius="11">
                                         <Grid RowDefinitions="0.1*, *, 2*,0.3*">
                                             <Label Grid.Column="0"
                                        Grid.Row="1"
@@ -178,6 +178,10 @@
                     Icon="Vectorknowledge.webp">
             <ShellContent 
                     ContentTemplate="{DataTemplate views:Knowledge}" />
+        </Tab>
+        <Tab Title="Accounting">
+            <ShellContent 
+                    ContentTemplate="{DataTemplate views:Accounting}" />
         </Tab>
         <Tab Title="Tasks"
                     Icon="Task.png">

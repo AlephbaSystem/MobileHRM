@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:entryCustom="clr-namespace:MobileHRM.Controls" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:entryCustom="clr-namespace:MobileHRM.Controls"
              xmlns:local="clr-namespace:MobileHRM.Converter"
              BackgroundColor="#1A1C23"
              xmlns:sharpnado="http://sharpnado.com"
              x:Class="MobileHRM.Views.chatPage">
 
     <ContentPage.Resources>
+        <local:DateConvert x:Key="DateConverter" />
         <local:TextLenghConverter x:Key="TextLenghtConverter" />
     </ContentPage.Resources>
     <Shell.TitleView>
-        <StackLayout FlowDirection="RightToLeft" Spacing="10" Orientation="Horizontal"  BackgroundColor="Transparent" >
+        <StackLayout FlowDirection="RightToLeft" Spacing="10" Orientation="Horizontal" BackgroundColor="Transparent" >
             <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF" >
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ImageButton_Clicked" />
@@ -67,7 +68,7 @@
                 </Frame>
             </sharpnado:Shadows>
             <ActivityIndicator x:Name="loading" IsVisible="true" IsRunning="True" Color="LightBlue" />
-            
+
             <RefreshView Command="{Binding refresh}" IsRefreshing="{Binding Isrefreshing}">
                 <ScrollView>
                     <StackLayout BindableLayout.ItemsSource="{Binding Items}">
@@ -78,7 +79,7 @@
                                         <Grid.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}" />
                                         </Grid.GestureRecognizers>
-                                        
+
                                         <Frame CornerRadius="50"
                                                HeightRequest="50"
                                                WidthRequest="50"
@@ -86,9 +87,8 @@
                                                Grid.Column="0"
                                                HorizontalOptions="Center"
                                                BackgroundColor="#272B35"
-                                               Margin="0"
                                                Padding="0">
-                                            <Image Margin="2">
+                                            <Image Aspect="AspectFill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                                                 <Image.Source>
                                                     <Binding Path="image" >
                                                         <Binding.TargetNullValue>
@@ -99,32 +99,34 @@
                                             </Image>
                                         </Frame>
                                         <StackLayout Grid.Column="1"
-                                             HorizontalOptions="StartAndExpand"
-                                             VerticalOptions="Center"
-                                             Spacing="0">
+                                                 HorizontalOptions="StartAndExpand"
+                                                 VerticalOptions="Center"
+                                                 Spacing="0">
                                             <Label Text="{Binding name}"
                                                    FontFamily="quickSandSemiBold"
                                                    TextColor="#CCCCCC"/>
                                             <Label Text="{Binding lastMessage,Converter={StaticResource TextLenghtConverter},ConverterParameter='20'}"
                                                    xct:ShadowEffect.Color="White"
                                                    xct:ShadowEffect.Opacity="0.4"
-                                                       xct:ShadowEffect.OffsetY="10" 
+                                                   xct:ShadowEffect.OffsetY="5" 
                                                    TextColor="#8D8D8D"/>
                                         </StackLayout>
 
-                                        <StackLayout Grid.Column="2"
-                                                     HorizontalOptions="Center">
-                                            <Label Text="{Binding lastMessageTime,StringFormat='{0:hh:mm}'}"
+                                        <StackLayout Grid.Column="2">
+                                            <Label Text="{Binding lastMessageTime,Converter={StaticResource DateConverter}}"
                                                    FontFamily="quickSandLight"
                                                    TextColor="#CCCCCC" 
+                                                   FontSize="Micro"
+                                                   HorizontalOptions="End"
+                                                   TranslationX="-20"
                                                    VerticalOptions="Start"/>
                                             <Frame Padding="5,0"
                                                    HorizontalOptions="CenterAndExpand"
-                                                   x:Name="FrameNumber"                                                   
+                                                   x:Name="FrameNumber"                                               
                                                    BackgroundColor="#F07520"
                                                    CornerRadius="50">
                                                 <Frame.Triggers>
-                                                    <DataTrigger TargetType="Frame"  Value="0" Binding="{Binding Text,Source={Reference seenedMessage},TargetNullValue=''}">
+                                                    <DataTrigger TargetType="Frame"  Value="0" Binding="{Binding Text,Source={Reference seenedMessage},TargetNullValue='0'}">
                                                         <Setter Property="IsVisible" Value="False" />
                                                     </DataTrigger>
                                                 </Frame.Triggers>
@@ -149,9 +151,9 @@
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </StackLayout>
-                </ScrollView>                
+                </ScrollView>
             </RefreshView>
-            
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

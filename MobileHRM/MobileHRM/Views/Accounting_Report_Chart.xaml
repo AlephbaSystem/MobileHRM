@@ -8,7 +8,7 @@
              Title="Charts"
              >
 
-    <Grid RowDefinitions="*,3*,5*">
+    <Grid RowDefinitions="2*,3*,5*">
             <Grid Grid.Row="0" ColumnDefinitions="*,4*"  VerticalOptions="Start" Margin="0,30,0,0">
                 <Label Grid.Column="0" 
                        Text="From :"
@@ -16,32 +16,28 @@
                        HorizontalOptions="Center"
                        VerticalOptions="Center"/>
 
-                <Frame 
+            <Frame 
                     Padding="0"
                     Grid.Column="1"
                     BackgroundColor="#CCCCCC"
                     VerticalOptions="Center"
                     CornerRadius="10"
                     Margin="0,0,20,0">
-                    <Frame.Background>
-                        <LinearGradientBrush EndPoint="0,1">
-                            <GradientStop Color="#CCCCCC" Offset="0.8"/>
-                            <GradientStop Color="#CCCCCC" Offset="0.9"/>
-                            <GradientStop Color="#272B35" Offset="1.0"/>
-                        </LinearGradientBrush>
-                    </Frame.Background>
-                    <Grid ColumnDefinitions="*,*">
-                        <DatePicker Grid.Column="0"
-                         HorizontalOptions="Start"
-                         FontSize="Small" Format="MMMM yyyy">
-
-                        </DatePicker>
-                       
-                    </Grid>
-
-                </Frame>
-        
-            </Grid>
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#CCCCCC" Offset="0.8"/>
+                        <GradientStop Color="#CCCCCC" Offset="0.9"/>
+                        <GradientStop Color="#272B35" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <Grid ColumnDefinitions="*,*">
+                    <DatePicker Grid.Column="0"
+                                 HorizontalOptions="Start"
+                                 FontSize="Small" Format="MMMM yyyy">
+                    </DatePicker>
+                </Grid>
+            </Frame>
+        </Grid>
         <Frame Padding="0" CornerRadius="15" Grid.Row="1" Margin="10,15,10,10" VerticalOptions="Start">
             <StackLayout  VerticalOptions="FillAndExpand" x:Name="content">
                 <forms1:ChartView x:Name="charview" HeightRequest="200">

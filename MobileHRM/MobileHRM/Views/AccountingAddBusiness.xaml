@@ -5,7 +5,7 @@
              xmlns:customEntry="clr-namespace:MobileHRM.Controls" xmlns:vm="clr-namespace:MobileHRM.ViewModel"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#1A1C23"
-             x:Class="MobileHRM.Views.AccountingAddCustomer">
+             x:Class="MobileHRM.Views.AccountingAddBusiness">
 
     <StackLayout  Margin="20" Spacing="10">
         <Label Margin="5,20" Text="Add Customer" TextColor="#CCCCCC"
@@ -13,8 +13,6 @@
                    ></Label>
         <Grid ColumnDefinitions="*,3*"
               RowDefinitions="*,*,*,*,*" RowSpacing="20">
-
-
             <Label  Text="Name" TextColor="#CCCCCC"
                    HorizontalOptions="Start"
                 VerticalOptions="Center"
@@ -27,7 +25,7 @@
                CornerRadius="10"
                >
                 <customEntry:CustomEntry
-                   
+                   Text="{Binding business.name}"
                     Placeholder="Name"
                     PlaceholderColor="#1A1C23"
                     FontSize="13"/>
@@ -54,7 +52,7 @@
                CornerRadius="10"
                >
                 <customEntry:CustomEntry
-                   
+                                      Text="{Binding business.address}"
                     Placeholder="Address"
                     PlaceholderColor="#1A1C23"
                     FontSize="13">
@@ -82,7 +80,7 @@
                CornerRadius="10"
                >
                 <customEntry:CustomEntry
-                   
+                                      Text="{Binding business.email}"
                     Placeholder="Email"
                     PlaceholderColor="#1A1C23"
                     FontSize="13">
@@ -110,7 +108,7 @@
                CornerRadius="10"
                >
                 <customEntry:CustomEntry
-                   
+                                      Text="{Binding business.phoneNumber}"
                     Placeholder="Phone"
                     PlaceholderColor="#1A1C23"
                     FontSize="13">
@@ -138,7 +136,7 @@
                CornerRadius="10"
                >
                 <customEntry:CustomEntry
-                   
+                                      Text="{Binding business.city}"
                     Placeholder="City"
                     PlaceholderColor="#1A1C23"
                     FontSize="13">
@@ -152,9 +150,7 @@
                           Offset="0.1" />
                     </LinearGradientBrush>
                 </Frame.Background>
-
             </Frame>
-
         </Grid>
 
         <Grid ColumnDefinitions="*,*,*"
@@ -163,12 +159,13 @@
                    Grid.Column="0"
                    BackgroundColor="#9A031E"
                 Text="Clear"
+                Command="{Binding clear}"
                 TextColor="#EBEBEB"
                 CornerRadius="8"/>
 
 
             <Button 
-                   Grid.Column="2"
+                   Grid.Column="2" Command="{Binding save}"
                    BackgroundColor="#26AB5B"
                 Text="Save"
                  TextColor="#EBEBEB"
