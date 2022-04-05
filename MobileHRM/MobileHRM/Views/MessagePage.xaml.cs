@@ -321,5 +321,15 @@ namespace MobileHRM.Views
                 await Navigation.PopAsync();
             }
         }
-    }
+
+
+
+
+        //*****************************************************************
+
+       
+
+
+
+        }
 }

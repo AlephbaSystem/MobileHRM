@@ -64,18 +64,24 @@
                                    BackgroundColor="#1C1F26"
                                    TranslationX="+20"
                                    HorizontalOptions="Start"
-                                   Grid.RowSpan="2"
+                                   Grid.RowSpan="3"
+                                       TranslationY="5"
                                    CornerRadius="4">
                                     <Image Source="file_text.webp"/>
                                 </Frame>
                                 <Label Text="Todo"
                                        Grid.Row="0"
                                        Grid.Column="1"
-                                       TextColor="#8D8D8D"/>
+                                       TextColor="#8D8D8D"
+                                       TranslationX="4"
+                                       Grid.RowSpan="2"/>
                                 <Label Text="Todo 0"
-                                       Grid.Row="1"
+                                       Grid.Row="1"                                       
+                                       TranslationX="4"
                                        Grid.Column="1"
-                                       TextColor="#8D8D8D"/>
+                                       TextColor="#8D8D8D"
+                                       Grid.RowSpan="2"
+                                       TranslationY="5"/>
                             </Grid>
                             <Label Text="Add"
                                    TextColor="#8D8D8D"
@@ -114,18 +120,25 @@
                                    BackgroundColor="#1C1F26"
                                    TranslationX="+20"
                                    HorizontalOptions="Start"
-                                   Grid.RowSpan="2"
+                                   Grid.RowSpan="3"
+                                       TranslationY="5"
                                    CornerRadius="4">
                                     <Image Source="IssueTask.webp"/>
                                 </Frame>
                                 <Label Text="Issue"
                                        Grid.Row="0"
-                                       Grid.Column="1"
-                                       TextColor="#8D8D8D"/>
+                                       Grid.Column="1"                                       
+                                       TranslationX="6"
+                                       TextColor="#8D8D8D"
+                                       Grid.RowSpan="2"
+                                      />
                                 <Label Text="Todo 0"
                                        Grid.Row="1"
+                                       TranslationX="6"
                                        Grid.Column="1"
-                                       TextColor="#8D8D8D"/>
+                                       TextColor="#8D8D8D"
+                                       Grid.RowSpan="2"
+                                       TranslationY="5"/>
                             </Grid>
                             <Label Text="Add"
                                    TextColor="#8D8D8D"
