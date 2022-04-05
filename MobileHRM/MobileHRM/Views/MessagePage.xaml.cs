@@ -20,10 +20,11 @@ namespace MobileHRM.Views
     public partial class MessagePage : ContentPage
     {
         private MessagesVm Vm;
-        MobileHRM.Models.Entities.GroupModel group;
+        Models.Entities.GroupModel group;
         private readonly AudioRecorderService audioRecorderService = new AudioRecorderService();
         private AudioRecorderService ShowVoice;
-        public MessagePage(MobileHRM.Models.Entities.GroupModel item)
+
+        public MessagePage(Models.Entities.GroupModel item)
         {
             InitializeComponent();
             Vm = new MessagesVm(item.id, item.image, item.ownerId);
@@ -31,23 +32,7 @@ namespace MobileHRM.Views
             group = item;
             title.Text = group.name;
         }
-        //Make Frame for messagae and voice  *******************************//
-        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(messageEntry.Text))
-            {
-                var message = new Message { updateAt = DateTime.Now, createdAt = DateTime.Now, message = messageEntry.Text, userId = User.UserId, messagesGroupId = group.id, media = new byte[1], mediaType = "", };
-                messageEntry.Text = string.Empty;
-                await Vm.sendMessage(message);
-                await Vm.intialize();
-                await addmessage();
-            }
-            var lastchild = messagelayout.Children.LastOrDefault();
-            if (lastchild != null)
-            {
-                await scrollview.ScrollToAsync(lastchild, ScrollToPosition.MakeVisible, true);
-            }
-        }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -62,6 +47,36 @@ namespace MobileHRM.Views
             group.unSeenedMessages = 0;
             loading.IsVisible = loading.IsRunning = false;
         }
+
+
+        //Make Frame for messagae and voice  *******************************//
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(messageEntry.Text))
+            {
+                Message message = new Message
+                {
+                    updateAt = DateTime.Now,
+                    createdAt = DateTime.Now,
+                    message = messageEntry.Text,
+                    userId = User.UserId,
+                    messagesGroupId = group.id,
+                    media = new byte[1],
+                    mediaType = ""
+                };
+                messageEntry.Text = string.Empty;
+                await Vm.sendMessage(message);
+                await Vm.intialize();
+                await addmessage();
+            }
+            var lastchild = messagelayout.Children.LastOrDefault();
+            if (lastchild != null)
+            {
+                await scrollview.ScrollToAsync(lastchild, ScrollToPosition.MakeVisible, true);
+            }
+        }
+
+
         private Task addmessage()
         {
             messagelayout.Children.Clear();
@@ -84,51 +99,72 @@ namespace MobileHRM.Views
 
         private string DateConveter(DateTime date)
         {
-            DateTime CurentDate = DateTime.Now;
-            if (date.Year != CurentDate.Year)
+            if (date.Day != DateTime.Now.Day)
             {
-                return date.ToString("yy MMMM dd hh:mm");
+                return date.ToLocalTime().ToString("hh: mm");
             }
-            if (date.Month != CurentDate.Month || date.Day != CurentDate.Day)
+            else
             {
-                return date.ToString("dd MMMM hh:mm");
+                return date.ToLocalTime().ToString("dd MMMM yyyy");
             }
-            return date.ToString("hh:mm");
         }
 
-        private void MakeImageFrame(GroupMessage item) //MakeMessageFrame
-        {
 
-            Frame frm = new Frame();
-            var timelabel = new Label { Text = DateConveter(item.createdAt), FontSize = 8, TextColor = Color.Silver, HorizontalTextAlignment = TextAlignment.Start };
+        private void MakeImageFrame(GroupMessage item)
+        {
+            Frame frm = new Frame
+            {
+                Padding = new Thickness(0),
+                CornerRadius = 20
+            };
+            Label timelabel = new Label
+            {
+                Text = DateConveter(item.createdAt),
+                FontSize = 8,
+                TextColor = Color.Silver,
+                HorizontalTextAlignment = TextAlignment.Start,
+            };
             var pad = timelabel.Padding;
             pad.Top += 2;
             timelabel.Padding = pad;
             if (User.UserId == item.userId)
             {
+                frm.Margin = new Thickness(5, 15, 70, 15);
                 frm.BackgroundColor = Color.FromHex("#1A1C23");
-                frm.Margin = new Thickness(5, 0, 70, 0);
             }
             else
             {
                 timelabel.HorizontalTextAlignment = TextAlignment.End;
-                frm.Margin = new Thickness(70, 0, 5, 0);
+                frm.Margin = new Thickness(70, 15, 5, 15);
                 frm.BackgroundColor = Color.FromHex("#8D8D8D");
             }
-            frm.CornerRadius = 20;
+            
             var source = DataConverter.SaveImageByByte(item.media);
-            Image lbl = new Image { Aspect = Aspect.AspectFit, Source = source, HorizontalOptions = LayoutOptions.FillAndExpand };
-            var stack = new StackLayout();
-            stack.Children.Add(lbl);
+            Image imageFile = new Image
+            {
+                Aspect = Aspect.AspectFit,
+                Source = source,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+
+            StackLayout stack = new StackLayout();
+            stack.Children.Add(imageFile);
             stack.Children.Add(timelabel);
             frm.Content = stack;
             messagelayout.Children.Add(frm);
         }
-        private void MakeFrame(GroupMessage item) //MakeMessageFrame
-        {
 
+
+        private void MakeFrame(GroupMessage item)
+        {
             Frame frm = new Frame();
-            var timelabel = new Label { Text = DateConveter(item.createdAt), FontSize = 8, TextColor = Color.Silver, HorizontalTextAlignment = TextAlignment.Start };
+            var timelabel = new Label
+            {
+                Text = DateConveter(item.createdAt),
+                FontSize = 8,
+                TextColor = Color.Silver,
+                HorizontalTextAlignment = TextAlignment.Start
+            };
             var pad = timelabel.Padding;
             pad.Top += 2;
             timelabel.Padding = pad;
@@ -144,29 +180,40 @@ namespace MobileHRM.Views
                 frm.BackgroundColor = Color.FromHex("#8D8D8D");
             }
             frm.CornerRadius = 20;
-            Label lbl = new Label();
-            lbl.Text = item.message;
-            lbl.TextColor = Color.White;
-            lbl.FontSize = 14;
-            lbl.VerticalTextAlignment = TextAlignment.Center;
-            lbl.HorizontalTextAlignment = TextAlignment.Start;
+            Label lbl = new Label
+            {
+                Text = item.message,
+                TextColor = Color.White,
+                FontSize = 14,
+                VerticalTextAlignment = TextAlignment.Center,
+                HorizontalTextAlignment = TextAlignment.Start
+            };
             var stack = new StackLayout();
             stack.Children.Add(lbl);
             stack.Children.Add(timelabel);
             frm.Content = stack;
             messagelayout.Children.Add(frm);
         }
+
+
         //*****************************************************************//
 
         // Record the voice ***********************************************//
-
         private async void TapGestureRecognizer_Tapped_recorder(object sender, EventArgs e)
         {
             if (ShowVoice != null && ShowVoice.IsRecording)
             {
                 await voicefrm.ScaleTo(1);
                 await ShowVoice.StopRecording();
-                var message = new Message { updateAt = DateTime.Now, createdAt = DateTime.Now, message = "Voice", userId = User.UserId, messagesGroupId = group.id, mediaType = "Voice" };
+                var message = new Message
+                {
+                    updateAt = DateTime.Now,
+                    createdAt = DateTime.Now,
+                    message = "Voice",
+                    userId = User.UserId,
+                    messagesGroupId = group.id,
+                    mediaType = "Voice"
+                };
                 using (var stream = ShowVoice.GetAudioFileStream())
                 {
                     message.media = new byte[(int)stream.Length];
@@ -174,7 +221,7 @@ namespace MobileHRM.Views
                 }
                 await Vm.sendMessage(message);
                 await Vm.intialize();
-                addmessage();
+                await addmessage();
                 ShowVoice = null;
             }
             else
@@ -182,10 +229,11 @@ namespace MobileHRM.Views
                 await voicefrm.ScaleTo(1.3, 100);
                 voicefrm.BackgroundColor = Color.White;
                 ShowVoice = new AudioRecorderService();
-                string m = "s";
                 await ShowVoice.StartRecording();
             }
         }
+
+
         public async void makeVoiceFrame(GroupMessage msg)
         {
             var path = DataConverter.SaveAudioByByte(msg.media);
@@ -196,15 +244,17 @@ namespace MobileHRM.Views
             }
             voicefrm.BackgroundColor = Color.FromHex("272B35");
             Frame f = new Frame();
-            ImageButton ImgPlayer = new ImageButton();
-            ImgPlayer.Source = "playbuttonarrowhead.png";
-            ImgPlayer.Margin = new Thickness(15);
-            ImgPlayer.Padding = new Thickness(0);
-            ImgPlayer.VerticalOptions = LayoutOptions.CenterAndExpand;
-            ImgPlayer.HorizontalOptions = LayoutOptions.EndAndExpand;
-            ImgPlayer.BackgroundColor = Color.Transparent;
-            ImgPlayer.WidthRequest = 30;
-            ImgPlayer.HeightRequest = 30;
+            ImageButton ImgPlayer = new ImageButton
+            {
+                Source = "playbuttonarrowhead.png",
+                Margin = new Thickness(15),
+                Padding = new Thickness(0),
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                HorizontalOptions = LayoutOptions.EndAndExpand,
+                BackgroundColor = Color.Transparent,
+                WidthRequest = 30,
+                HeightRequest = 30
+            };
             f.CornerRadius = 10;
             f.Padding = new Thickness(0);
             ImgPlayer.Clicked += new EventHandler(Vm.PlayVoice);
@@ -220,12 +270,12 @@ namespace MobileHRM.Views
                 f.BackgroundColor = Color.FromHex("#8D8D8D");
             }
             messagelayout.Children.Add(f);
-
             ImgPlayer.CommandParameter = path;
         }
-        // *************************************************************************//
 
-        KnowledgeApi Reqest = new KnowledgeApi();
+
+        // *************************************************************************//
+        readonly KnowledgeApi Reqest = new KnowledgeApi();
         //***********************************************************************//
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
@@ -237,7 +287,15 @@ namespace MobileHRM.Views
                 {
                     return;
                 }
-                var message = new Message { updateAt = DateTime.Now, createdAt = DateTime.Now, message = "Photo", userId = User.UserId, messagesGroupId = group.id, mediaType = "Image" };
+                var message = new Message
+                {
+                    updateAt = DateTime.Now,
+                    createdAt = DateTime.Now,
+                    message = "Photo",
+                    userId = User.UserId,
+                    messagesGroupId = group.id,
+                    mediaType = "Image"
+                };
                 //byte[] fileBytes = File.ReadAllBytes(photo.FullPath);
                 using (Stream stream = await photo.OpenReadAsync())
                 {
@@ -246,14 +304,14 @@ namespace MobileHRM.Views
                 }
                 await Vm.sendMessage(message);
                 await Vm.intialize();
-                addmessage();
+                await addmessage();
             }
-
             catch (Exception ex)
             {
                 Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
             }
         }
+
 
         private async void DeleteGroip_Tapped_(object sender, EventArgs e)
         {
