@@ -113,7 +113,7 @@
                                         </StackLayout>
 
                                         <StackLayout Grid.Column="2">
-                                            <Label Text="{Binding lastMessageTime,Converter={StaticResource DateConverter}}"
+                                            <Label Text="{Binding lastMessageTime,Converter={StaticResource DateConverter},ConverterParameter={Binding Path=lastMessage}}"
                                                    FontFamily="quickSandLight"
                                                    TextColor="#CCCCCC" 
                                                    FontSize="Micro"
