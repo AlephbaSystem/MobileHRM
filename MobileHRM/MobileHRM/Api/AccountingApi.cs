@@ -10,7 +10,7 @@ namespace MobileHRM.Api
 {
     public class AccountingApi
     {
-        string requestUrl = "http://185.18.214.100:29173/api/Accounting/";
+        string requestUrl = "http://185.18.214.100:29177/api/Accounting/";
         public async Task<bool> PostInvoice(Invoice invoiceDetail)
         {
             try
@@ -21,7 +21,7 @@ namespace MobileHRM.Api
                 {
                     Content = content,
                     Method = HttpMethod.Post,
-                    RequestUri = new Uri(requestUrl + ""),  //Most Be Changed To Api Url
+                    RequestUri = new Uri(requestUrl + "AddInvoice"),  //Most Be Changed To Api Url
                 };
 
                 return await Base.Post(request);
@@ -35,7 +35,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string Uri = requestUrl + ""; //Most Be Changed To Api Url
+                string Uri = requestUrl + "GetAllBusiness"; //Most Be Changed To Api Url
                 string ContentStr = await Base.Get(Uri);
                 List<Models.Entities.Business> Items = JsonDataConverter<List<Models.Entities.Business>>.JsonStringToObject(ContentStr);
                 return Items ?? new List<Models.Entities.Business>();
@@ -50,7 +50,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string Uri = requestUrl + ""; //Most Be Changed To Api Url
+                string Uri = requestUrl + "GetInvoiceNumber"; //Most Be Changed To Api Url
                 string ContentStr = await Base.Get(Uri);
                 int number = JsonDataConverter<int>.JsonStringToObject(ContentStr);
                 return number;
@@ -70,7 +70,7 @@ namespace MobileHRM.Api
                 {
                     Content = content,
                     Method = HttpMethod.Post,
-                    RequestUri = new Uri(requestUrl + ""),  //Most Be Changed To Api Url
+                    RequestUri = new Uri(requestUrl + "AddBussines"),  //Most Be Changed To Api Url
                 };
 
                 return await Base.Post(request);

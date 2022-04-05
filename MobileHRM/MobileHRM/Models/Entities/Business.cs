@@ -11,7 +11,7 @@ namespace MobileHRM.Models.Entities
         public string employeeId { get; set; }
         public string address { get; set; }
         public string email { get; set; }
-        public int phoneNumber { get; set; }
+        public string phoneNumber { get; set; }
         public string city { get; set; }
     }
 }

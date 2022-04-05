@@ -11,6 +11,8 @@ namespace MobileHRM.ViewModel
 {
     public class AddInvoiceViewModel : Base
     {
+        private int _InvoiceNumber;
+        public int InvoiceNumber { get { return _InvoiceNumber; } set { _InvoiceNumber = value; OnPropertyChanged(nameof(InvoiceNumber)); } }
         public AddInvoiceViewModel()
         {
             InvoiceDetail = new Invoice();
@@ -23,7 +25,7 @@ namespace MobileHRM.ViewModel
         {
             get
             {
-                return _InvoiceDetail;
+                return _InvoiceDetail ?? new Invoice();
             }
             set
             {
@@ -31,14 +33,19 @@ namespace MobileHRM.ViewModel
                 OnPropertyChanged(nameof(InvoiceDetail));
             }
         }
-        AccountingApi request = new AccountingApi();
+        public async void GetInvoiceNumber()
+        {
+            InvoiceNumber = await Api.GetInvoiceNumber();
+        }
+        AccountingApi Api = new AccountingApi();
         private async void SaveInvoice(object sender)
         {
-            await request.PostInvoice(InvoiceDetail);
+            await Api.PostInvoice(InvoiceDetail);
         }
         private void clearInvoice(object sender)
         {
             InvoiceDetail = new Invoice();
+            InvoiceDetail.attachments = new ObservableCollection<Models.Entities.Attachment>();
         }
         public ICommand save { protected set; get; }
         public ICommand clear { protected set; get; }
