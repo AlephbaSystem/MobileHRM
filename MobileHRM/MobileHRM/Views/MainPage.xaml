@@ -72,7 +72,7 @@
                                          Source="punchIn.png"/>
                                                 </Frame>
                                                 <StackLayout Grid.Column="2" Padding="5" Spacing="0">
-                                                    <Label Text="Not yut" VerticalOptions="Start" TextColor="#CCCCCC"/>
+                                                    <Label Text="Not yet" VerticalOptions="Start" TextColor="#CCCCCC"/>
                                                     <Label Text="Punch in time" VerticalOptions="End" TextColor="#8D8D8D"/>
                                                 </StackLayout>
                                             </Grid>
@@ -91,8 +91,8 @@
                                                          Source="punchOut.png"/>
                                                 </Frame>
                                                 <StackLayout Grid.Column="2" Padding="5" Spacing="0">
-                                                    <Label Text="Not yut" VerticalOptions="Start" TextColor="#CCCCCC"/>
-                                                    <Label Text="Punch out time" VerticalOptions="End" TextColor="#8D8D8D"/>
+                                                    <Label Text="Not yet" VerticalOptions="Start" TextColor="#CCCCCC"/>
+                                                    <Label Text="Punch Out Time" VerticalOptions="End" TextColor="#8D8D8D"/>
                                                 </StackLayout>
                                             </Grid>
                                         </Grid>
@@ -194,4 +194,5 @@
                       ContentTemplate="{DataTemplate views:chatPage}" />
         </Tab>
     </TabBar>
+
 </Shell>

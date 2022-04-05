@@ -9,9 +9,9 @@ namespace MobileHRM.Converter
     public class DateConvert : IValueConverter
     {
 
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
+            if (value == null || ((BindingBase)parameter)==null)
                 return string.Empty;
 
             var datetime = (DateTime)value;
@@ -25,7 +25,7 @@ namespace MobileHRM.Converter
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

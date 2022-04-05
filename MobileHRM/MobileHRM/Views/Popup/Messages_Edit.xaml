@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileHRM.Views.Popup.Messages_Edit"
+             HasKeyboardOffset="False"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:animation="http://rotorgames.com" xmlns:controls="clr-namespace:MobileHRM.Controls">
+    <pages:PopupPage.Animation>
+        <animation:MoveAnimation
+        DurationIn="200"
+        DurationOut="200"
+        EasingIn="SinOut"
+        EasingOut="SinIn"
+        HasBackgroundAnimation="True" 
+        PositionIn="Right"
+        PositionOut="Right"
+        />
+    </pages:PopupPage.Animation>
+    <Frame BackgroundColor="#272B35" CornerRadius="27" Margin="40,100">
+        <Grid BackgroundColor="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.7*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="0.7*" />
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" Orientation="Horizontal">
+                <Label Margin="10,0,0,0" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" Text="Group details" TextColor="#CCCCCC" />
+                <ImageButton Clicked="Close_Imagebutton" BackgroundColor="Transparent" 
+                             Source="closeIcon.png" VerticalOptions="CenterAndExpand"
+                             HorizontalOptions="EndAndExpand" 
+                             Margin="0,0,10,0"/>
+            </StackLayout>
+            <Frame Grid.Row="1"
+                   BackgroundColor="#1A1C23" 
+                   Margin="-18,0">
+                <StackLayout>
+                    <Frame Padding="1"
+                           BackgroundColor="#7B61FF"
+                           CornerRadius="50"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Fill">
+                        <Image Source="PicPerson.png"/>
+                    </Frame>
+                    <Label Text="Name"
+                           FontSize="Micro"
+                           TextColor="#EBEBEB"/>
+                    <Frame Padding="1"
+                           CornerRadius="5"
+                           Margin="0,0,0,10"
+                           BackgroundColor="#272B35">
+                        <controls:CustomEntry Text="{Binding GroupName}"
+                                          FontSize="Micro"
+                                          Margin="10,0,0,0"
+                                          BackgroundColor="#272B35"
+                                          PlaceholderColor="#EBEBEB"
+                                          TextColor="#EBEBEB"/>
+                    </Frame>
+                    <ScrollView VerticalOptions="CenterAndExpand">
+                        <StackLayout BindableLayout.ItemsSource="{Binding MessageEdit}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Grid ColumnDefinitions="2*,5*,2*" Margin="0,2" Padding="0,3,0,0">
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="UserTapGestureRecognizer"/>
+                                            </Grid.GestureRecognizers>
+
+                                            <Frame CornerRadius="50"
+                                               HeightRequest="50"
+                                               WidthRequest="50"
+                                               VerticalOptions="Center"
+                                               Grid.Column="0"
+                                               HorizontalOptions="Center"
+                                               BackgroundColor="#272B35"
+                                               Margin="0"
+                                               Padding="0">
+                                                <Image Margin="2">
+                                                    <Image.Source>
+                                                        <Binding Path="ImageSource" >
+                                                            <Binding.TargetNullValue>
+                                                                <ImageSource>Alephba.png</ImageSource>
+                                                            </Binding.TargetNullValue>
+                                                        </Binding>
+                                                    </Image.Source>
+                                                </Image>
+                                            </Frame>
+                                            <Label Text="{Binding NameUser}"
+                                                   Grid.Column="1"
+                                                   Margin="10,0,0,0"
+                                                   VerticalOptions="Center"
+                                                   FontFamily="quickSandSemiBold"
+                                                   TextColor="#CCCCCC"/>
+                                            <Frame    Grid.Column="2"
+                                                     VerticalOptions="CenterAndExpand"
+                                                     HorizontalOptions="CenterAndExpand"
+                                                         HeightRequest="25"
+                                                         WidthRequest="25"
+                                                      CornerRadius="50"
+                                                      BackgroundColor="#A21441"
+                                                      Padding="0">
+                                                <Image BackgroundColor="#A21441"
+                                                   Margin="8"
+                                                         Source="Icon.png"/>
+                                            </Frame>
+                                            <BoxView HeightRequest="0.1"
+                                                     BackgroundColor="#C4C4C4"
+                                                     Opacity="0.5"
+                                                     Grid.Column="1"
+                                                     Grid.ColumnSpan="2"
+                                                     VerticalOptions="EndAndExpand"
+                                                     Margin="0,0,15,0"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+            </Frame>
+            <Button Clicked="Add_Clicked"
+                    HeightRequest="40"
+                    WidthRequest="120"
+                    Grid.Row="2" 
+                    HorizontalOptions="EndAndExpand" 
+                    VerticalOptions="CenterAndExpand"
+                    TextColor="#EBEBEB" Text="Save"
+                    BackgroundColor="#00A693"
+                    TranslationY="5"/>
+        </Grid>
+    </Frame>
+</pages:PopupPage>

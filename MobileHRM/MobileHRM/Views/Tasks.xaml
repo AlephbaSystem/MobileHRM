@@ -33,7 +33,7 @@
         <ScrollView>
             <StackLayout>
                 <Grid RowDefinitions="*,*"
-                  Margin="20,5">
+                      Margin="20,5">
                     <Frame Padding="0"
                        HeightRequest="130"
                        Grid.Row="0"
@@ -48,40 +48,48 @@
                                           Offset="1.0"/>
                             </LinearGradientBrush>
                         </Frame.Background>
-                        <Grid RowDefinitions="*,*,*" >
+                        <Grid RowDefinitions="*,*,*"
+                              ColumnDefinitions="Auto,Auto,Auto">
                             <Label Text="0 Task(s) are Remaining"
-                               TextColor="#CCCCCC"
-                               Grid.Row="0"
-                               TranslationX="+20"
-                               Grid.ColumnSpan="2"
-                               VerticalOptions="End"/>
+                                   TextColor="#CCCCCC"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   TranslationX="+20"
+                                   VerticalOptions="End"/>
                             <Grid RowDefinitions="*,*"
-                              Grid.Row="1"
-                              ColumnDefinitions="*,*">
+                                  Grid.Row="1"
+                                  ColumnDefinitions="*,*">
                                 <Frame Padding="5"
                                    BackgroundColor="#1C1F26"
                                    TranslationX="+20"
                                    HorizontalOptions="Start"
-                                   Grid.RowSpan="2"
+                                   Grid.RowSpan="3"
+                                       TranslationY="5"
                                    CornerRadius="4">
                                     <Image Source="file_text.webp"/>
                                 </Frame>
                                 <Label Text="Todo"
-                                   TextColor="#8D8D8D"
-                                   TranslationX="+70"
-                                   Grid.ColumnSpan="2"/>
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       TextColor="#8D8D8D"
+                                       TranslationX="4"
+                                       Grid.RowSpan="2"/>
                                 <Label Text="Todo 0"
-                                   TextColor="#8D8D8D"
-                                   Grid.Row="1"
-                                   TranslationX="+70"
-                                   Grid.ColumnSpan="2"/>
+                                       Grid.Row="1"                                       
+                                       TranslationX="4"
+                                       Grid.Column="1"
+                                       TextColor="#8D8D8D"
+                                       Grid.RowSpan="2"
+                                       TranslationY="5"/>
                             </Grid>
                             <Label Text="Add"
-                               TextColor="#8D8D8D"
-                               Grid.Row="2"
-                               HorizontalOptions="End"
-                               Grid.ColumnSpan="3"
-                               TranslationX="-20"/>
+                                   TextColor="#8D8D8D"
+                                   Grid.Row="2"
+                                   Grid.Column="2"
+                                   HorizontalOptions="End"
+                                   Grid.ColumnSpan="3"
+                                   TranslationX="-20"/>
                         </Grid>
                     </Frame>
                     <Frame Padding="0"
@@ -106,32 +114,38 @@
                                Grid.ColumnSpan="2"
                                VerticalOptions="End"/>
                             <Grid RowDefinitions="*,*"
-                              Grid.Row="1"
-                              ColumnDefinitions="*,*">
+                                  Grid.Row="1"
+                                  ColumnDefinitions="*,*">
                                 <Frame Padding="5"
                                    BackgroundColor="#1C1F26"
                                    TranslationX="+20"
                                    HorizontalOptions="Start"
-                                   Grid.RowSpan="2"
+                                   Grid.RowSpan="3"
+                                       TranslationY="5"
                                    CornerRadius="4">
                                     <Image Source="IssueTask.webp"/>
                                 </Frame>
                                 <Label Text="Issue"
-                                   TextColor="#8D8D8D"
-                                   TranslationX="+70"
-                                   Grid.ColumnSpan="2"/>
+                                       Grid.Row="0"
+                                       Grid.Column="1"                                       
+                                       TranslationX="6"
+                                       TextColor="#8D8D8D"
+                                       Grid.RowSpan="2"
+                                      />
                                 <Label Text="Todo 0"
-                                   TextColor="#8D8D8D"
-                                   Grid.Row="1"
-                                   TranslationX="+70"
-                                   Grid.ColumnSpan="2"/>
+                                       Grid.Row="1"
+                                       TranslationX="6"
+                                       Grid.Column="1"
+                                       TextColor="#8D8D8D"
+                                       Grid.RowSpan="2"
+                                       TranslationY="5"/>
                             </Grid>
                             <Label Text="Add"
-                               TextColor="#8D8D8D"
-                               Grid.Row="2"
-                               HorizontalOptions="End"
-                               Grid.ColumnSpan="3"
-                               TranslationX="-20"/>
+                                   TextColor="#8D8D8D"
+                                   Grid.Row="2"
+                                   HorizontalOptions="End"
+                                   Grid.ColumnSpan="3"
+                                   TranslationX="-20"/>
                         </Grid>
                     </Frame>
                 </Grid>

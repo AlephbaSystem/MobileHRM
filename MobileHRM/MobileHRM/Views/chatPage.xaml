@@ -112,16 +112,17 @@
                                                    TextColor="#8D8D8D"/>
                                         </StackLayout>
 
-                                        <StackLayout Grid.Column="2"
-                                                     HorizontalOptions="Center">
-                                            <Label Text="{Binding lastMessageTime,Converter={StaticResource DateConverter}}"
+                                        <StackLayout Grid.Column="2">
+                                            <Label Text="{Binding lastMessageTime,Converter={StaticResource DateConverter},ConverterParameter={Binding Path=lastMessage}}"
                                                    FontFamily="quickSandLight"
                                                    TextColor="#CCCCCC" 
                                                    FontSize="Micro"
+                                                   HorizontalOptions="End"
+                                                   TranslationX="-20"
                                                    VerticalOptions="Start"/>
                                             <Frame Padding="5,0"
                                                    HorizontalOptions="CenterAndExpand"
-                                                   x:Name="FrameNumber"                                                   
+                                                   x:Name="FrameNumber"                                               
                                                    BackgroundColor="#F07520"
                                                    CornerRadius="50">
                                                 <Frame.Triggers>

@@ -49,6 +49,7 @@
     <PackageReference Include="Sharpnado.Shadows" Version="1.2.0" />
     <PackageReference Include="Syncfusion.Xamarin.SfImageEditor" Version="16.1.0.37" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="19.4.0.56" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
 
     <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
 
@@ -109,6 +110,9 @@
     </Compile>
     <Compile Update="Views\LogInPage.xaml.cs">
       <DependentUpon>LogInPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Popup\Messages_Edit.xaml.cs">
+      <DependentUpon>Messages_Edit.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Popup\ShowMsgPopup.xaml.cs">
       <DependentUpon>ShowMsgPopup.xaml</DependentUpon>
