@@ -6,13 +6,30 @@
              Background="#272B35"
              Shell.TabBarIsVisible="False">
     <Shell.TitleView>
-        <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" >
-            <Label x:Name="title" FontSize="Medium" VerticalTextAlignment="Center" TextColor="#CCCCCC" VerticalOptions="CenterAndExpand"/>
-            <Frame Margin="0,0,15,0" Padding="0" CornerRadius="40" >
-                <Image HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="Alephba" />
+        <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
+            <Label x:Name="title"
+                   FontSize="Medium"
+                   TranslationY="-3"
+                   TextColor="#CCCCCC"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="End"/>
+            <Frame Margin="15,7"
+                   Padding="0"
+                   CornerRadius="50"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="EndAndExpand">
+                <Image HorizontalOptions="FillAndExpand"
+                       BackgroundColor="Transparent"
+                       Source="Alephba"/>
                 <!--Source="{Binding Profileimage}"-->
             </Frame>
-           
+            <ImageButton BackgroundColor="Transparent"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         TranslationY="3"
+                         Margin="0,0,10,0"
+                         Source="more.png"/>
+
         </StackLayout>
     </Shell.TitleView>
     <ContentPage.Content>

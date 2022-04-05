@@ -21,7 +21,7 @@ namespace MobileHRM.Views
     {
         private MessagesVm Vm;
         Models.Entities.GroupModel group;
-        private readonly AudioRecorderService audioRecorderService = new AudioRecorderService();
+        //private readonly AudioRecorderService audioRecorderService = new AudioRecorderService();
         private AudioRecorderService ShowVoice;
 
         public MessagePage(Models.Entities.GroupModel item)
@@ -122,7 +122,8 @@ namespace MobileHRM.Views
                 Text = DateConveter(item.createdAt),
                 FontSize = 8,
                 TextColor = Color.Silver,
-                HorizontalTextAlignment = TextAlignment.Start,
+                HorizontalTextAlignment = TextAlignment.End,
+                Margin=new Thickness(30,0,30,10)
             };
             var pad = timelabel.Padding;
             pad.Top += 2;
@@ -134,7 +135,7 @@ namespace MobileHRM.Views
             }
             else
             {
-                timelabel.HorizontalTextAlignment = TextAlignment.End;
+                //timelabel.HorizontalTextAlignment = TextAlignment.End;
                 frm.Margin = new Thickness(70, 15, 5, 15);
                 frm.BackgroundColor = Color.FromHex("#8D8D8D");
             }
@@ -163,7 +164,8 @@ namespace MobileHRM.Views
                 Text = DateConveter(item.createdAt),
                 FontSize = 8,
                 TextColor = Color.Silver,
-                HorizontalTextAlignment = TextAlignment.Start
+                HorizontalTextAlignment = TextAlignment.End,
+                Margin = new Thickness(30, 0, 30, 10)
             };
             var pad = timelabel.Padding;
             pad.Top += 2;
@@ -242,8 +244,7 @@ namespace MobileHRM.Views
                 await DisplayAlert("Error", "An Error Ocurred", "Back");
                 return;
             }
-            voicefrm.BackgroundColor = Color.FromHex("272B35");
-            Frame f = new Frame();
+            voicefrm.BackgroundColor = Color.FromHex("272B35");            
             ImageButton ImgPlayer = new ImageButton
             {
                 Source = "playbuttonarrowhead.png",
@@ -255,10 +256,14 @@ namespace MobileHRM.Views
                 WidthRequest = 30,
                 HeightRequest = 30
             };
-            f.CornerRadius = 10;
-            f.Padding = new Thickness(0);
             ImgPlayer.Clicked += new EventHandler(Vm.PlayVoice);
-            f.Content = ImgPlayer;
+            Frame f = new Frame
+            {
+                CornerRadius = 10,
+                Padding = new Thickness(0),
+                Content = ImgPlayer
+            };
+
             if (msg.userId == User.UserId)
             {
                 f.BackgroundColor = Color.FromHex("#1A1C23");
@@ -275,7 +280,7 @@ namespace MobileHRM.Views
 
 
         // *************************************************************************//
-        readonly KnowledgeApi Reqest = new KnowledgeApi();
+        KnowledgeApi Reqest = new KnowledgeApi();
         //***********************************************************************//
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
