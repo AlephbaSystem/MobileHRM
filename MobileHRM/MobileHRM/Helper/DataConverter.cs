@@ -56,11 +56,6 @@ namespace MobileHRM.Helper
             {
                 string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + $"Image-{imageindex}.jpg";
                 imageindex++;
-                if (File.Exists(path))
-                {
-                    File.Delete(path);
-                }
-
                 File.WriteAllBytes(path, imagebytes);
                 return ImageSource.FromFile(path);
             }

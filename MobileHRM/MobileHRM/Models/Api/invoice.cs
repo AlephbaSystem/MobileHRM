@@ -8,7 +8,14 @@ namespace MobileHRM.Models.Api
 {
     public class Invoice
     {
-        public invoice invoiceDetail { get; set; }
+        public string from { get; set; }
+        public string reciver { get; set; }
+        public int businessId { get; set; }
+        public DateTime date { get; set; }
+        public int type { get; set; }
+        public string details { get; set; }
         public ObservableCollection<Attachment> attachments { get; set; }
+        public decimal totality { get; set; } //Business Cost                     
+        public decimal amount { get; set; } //SubFactor Amount That User Payed
     }
 }
