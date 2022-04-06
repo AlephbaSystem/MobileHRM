@@ -8,7 +8,7 @@
     <Shell.TitleView>
         <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
             <Label x:Name="title"
-                   FontSize="Medium"
+                   FontSize="Small"
                    TranslationY="-3"
                    TextColor="#CCCCCC"
                    VerticalOptions="CenterAndExpand"/>

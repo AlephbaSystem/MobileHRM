@@ -13,12 +13,17 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Accounting_Report_OverView : ContentPage
     {
-        List<AccountingOverViewViewModel> Vm;
+        AccountingOverViewViewModel Vm;
         public Accounting_Report_OverView()
         {
             InitializeComponent();
-            Vm = new List<AccountingOverViewViewModel>();
+            Vm = new AccountingOverViewViewModel();
             BindingContext = Vm;
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Vm.initializa();
         }
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
