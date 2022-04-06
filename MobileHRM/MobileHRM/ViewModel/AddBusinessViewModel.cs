@@ -20,7 +20,7 @@ namespace MobileHRM.ViewModel
         private Models.Api.Business _business;
         public Models.Api.Business business
         {
-            get => _business;
+            get => _business ?? new Models.Api.Business();
             set
             {
                 _business = value;
@@ -36,7 +36,6 @@ namespace MobileHRM.ViewModel
         private void ClearBusiness()
         {
             business = new Models.Api.Business();
-
         }
         public ICommand save { get; protected set; }
         public ICommand clear { get; protected set; }

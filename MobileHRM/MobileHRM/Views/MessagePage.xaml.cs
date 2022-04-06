@@ -80,8 +80,30 @@ namespace MobileHRM.Views
         private Task addmessage()
         {
             messagelayout.Children.Clear();
+            if (Vm.Items.Count==0)
+            {
+                return Task.CompletedTask;
+            }
+            if (Vm.Items[0].createdAt.Day == DateTime.Now.Day)
+            {
+                messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = "Today" });
+            }
+            else
+            {
+                messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = Vm.Items[0].createdAt.ToString("dd mmmm") });
+            }
             for (int i = 0; i < Vm.Items.Count; i++)
             {
+                if (i > 0 && Vm.Items[i].createdAt.Day != Vm.Items[i - 1].createdAt.Day)
+                {
+                    if (Vm.Items[i].createdAt.Day == DateTime.Now.Day)
+                    {
+                        messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = "Today" });
+                    }
+                    else
+                        messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = Vm.Items[i].createdAt.ToString("dd mmmm") });
+                    
+                }
                 if (Vm.Items[i].mediaType == "Voice")
                 {
                     makeVoiceFrame(Vm.Items[i]);
@@ -123,7 +145,7 @@ namespace MobileHRM.Views
                 FontSize = 8,
                 TextColor = Color.Silver,
                 HorizontalTextAlignment = TextAlignment.End,
-                Margin=new Thickness(30,0,30,10)
+                Margin = new Thickness(30, 0, 30, 10)
             };
             var pad = timelabel.Padding;
             pad.Top += 2;
@@ -139,7 +161,7 @@ namespace MobileHRM.Views
                 frm.Margin = new Thickness(70, 15, 5, 15);
                 frm.BackgroundColor = Color.FromHex("#8D8D8D");
             }
-            
+
             var source = DataConverter.SaveImageByByte(item.media);
             Image imageFile = new Image
             {
@@ -244,7 +266,7 @@ namespace MobileHRM.Views
                 await DisplayAlert("Error", "An Error Ocurred", "Back");
                 return;
             }
-            voicefrm.BackgroundColor = Color.FromHex("272B35");            
+            voicefrm.BackgroundColor = Color.FromHex("272B35");
             ImageButton ImgPlayer = new ImageButton
             {
                 Source = "playbuttonarrowhead.png",
@@ -332,9 +354,9 @@ namespace MobileHRM.Views
 
         //*****************************************************************
 
-       
 
 
 
-        }
+
+    }
 }

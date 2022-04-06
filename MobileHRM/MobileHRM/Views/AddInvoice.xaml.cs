@@ -21,6 +21,7 @@ namespace MobileHRM.Views
             InitializeComponent();
             vm = new AddInvoiceViewModel();
             BindingContext = vm;
+            vm.GetInvoiceNumber();
         }
 
         private async void Attachment_Clicked(object sender, EventArgs e)
@@ -37,8 +38,8 @@ namespace MobileHRM.Views
         private void Business_Item(object sender, EventArgs e)
         {
             var item = ((Models.Entities.Business)sender);
-            vm.InvoiceDetail.invoiceDetail.invoiceNumber = item.id;
-            BusinessName.Text = item.name;
+            ((Label)BusinessGrid.Children[0]).Text = item.name;
+            ((Label)BusinessGrid.Children[1]).Text = item.id.ToString();
         }
     }
 }

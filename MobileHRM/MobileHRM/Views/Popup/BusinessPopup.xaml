@@ -6,16 +6,16 @@
              x:Name="page">
     <Frame Margin="20,100" >
         <ScrollView>
-            <StackLayout BindableLayout.ItemsSource="{Binding BusinessList,Source={Reference page }}">
+            <StackLayout x:Name="BusinessItems">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <Frame>
+                        <Frame BorderColor="Silver">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Item_Tapped" CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
                             <Grid ColumnDefinitions="*,4*">
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="Item_Tapped" CommandParameter="{Binding .}" />
-                                </Grid.GestureRecognizers>
-                                <Label HorizontalTextAlignment="Center" Grid.Column="0" Text="12" />
-                                <Label HorizontalTextAlignment="Center" Grid.Column="1" Text="Name" />
+                                <Label HorizontalTextAlignment="Center" Grid.Column="0" Text="{Binding id}" TextColor="Black" />
+                                <Label HorizontalTextAlignment="Center" Grid.Column="1" Text="{Binding name}" />
                             </Grid>
                         </Frame>
                     </DataTemplate>
