@@ -110,7 +110,6 @@ namespace MobileHRM.Api
                 throw;
             }
         }
-
         public async Task<bool> DeleteGroupByGroupId(int groupId)
         {
             try
@@ -125,6 +124,45 @@ namespace MobileHRM.Api
                 throw;
             }
         }
+
+        public async Task<bool> RemoveUserFromGroup(int groupId, int userId)
+        {
+            try
+            {
+                string url = requestUri + $"removeUserFromGroup?userId={userId}&groupId={groupId}";
+                var status = await Base.Delete(url);
+                return status;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw;
+            }
+        }
+
+        public async Task<bool> UpdateGroup(GroupUpdate group)
+        {
+            try
+            {
+                string url = requestUri + "UpdateGroup";
+                string contentStr = JsonDataConverter<GroupUpdate>.ObjectToJsonString(group);
+                StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
+                HttpRequestMessage request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Put,
+                    RequestUri = new Uri(url),
+                    Content = content
+                };
+
+                var status = await Base.Put(request); //if status false message not sended successfully
+
+                return status;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
         public async Task<List<Group>> GetGroupsByUserd(int userId)
         {
             try
@@ -135,7 +173,7 @@ namespace MobileHRM.Api
                 {
                     return new List<Group>();
                 }
-                var items = JsonDataConverter<Group[]>.JsonStringToObject(jsonStr);                
+                var items = JsonDataConverter<Group[]>.JsonStringToObject(jsonStr);
                 return items.ToList();
             }
             catch (Exception e)
@@ -170,6 +208,26 @@ namespace MobileHRM.Api
             try
             {
                 string url = requestUri + $"GetallUsers";
+                string jsonStr = await Base.Get(url);
+                if (jsonStr == null)
+                {
+                    return new List<UserProfile>();
+                }
+                List<UserProfile> items = JsonDataConverter<List<UserProfile>>.JsonStringToObject(jsonStr);
+                return items;
+            }
+            catch (Exception e)
+            {
+                _ = e.Message;
+                return new List<UserProfile>();
+                throw;
+            }
+        }
+        public async Task<List<UserProfile>> GetGroupUsersByGroupId(int groupId)
+        {
+            try
+            {
+                string url = requestUri + $"GetGroupUsersByGroupId?groupId={groupId}";
                 string jsonStr = await Base.Get(url);
                 if (jsonStr == null)
                 {

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileHRM.Views.Popup.Messages_Edit"
              HasKeyboardOffset="False"
+             x:Name="page"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:animation="http://rotorgames.com" xmlns:controls="clr-namespace:MobileHRM.Controls">
     <pages:PopupPage.Animation>
         <animation:MoveAnimation
@@ -35,10 +36,21 @@
                 <StackLayout>
                     <Frame Padding="1"
                            BackgroundColor="#7B61FF"
-                           CornerRadius="50"
+                           CornerRadius="50"                           
                            HorizontalOptions="Center"
                            VerticalOptions="Fill">
-                        <Image Source="PicPerson.png"/>
+                            <Frame Padding="0" CornerRadius="40">
+                            <Image HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="80"
+                               HeightRequest="80">
+                                <Image.Source>
+                                    <Binding Path="Group.image">
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>Alephba.png</ImageSource>
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                            </Image>
+                        </Frame>
                     </Frame>
                     <Label Text="Name"
                            FontSize="Micro"
@@ -47,7 +59,7 @@
                            CornerRadius="5"
                            Margin="0,0,0,10"
                            BackgroundColor="#272B35">
-                        <controls:CustomEntry Text="{Binding GroupName}"
+                        <controls:CustomEntry Text="{Binding Group.name}"
                                           FontSize="Micro"
                                           Margin="10,0,0,0"
                                           BackgroundColor="#272B35"
@@ -55,7 +67,7 @@
                                           TextColor="#EBEBEB"/>
                     </Frame>
                     <ScrollView VerticalOptions="CenterAndExpand">
-                        <StackLayout BindableLayout.ItemsSource="{Binding MessageEdit}">
+                        <StackLayout BindableLayout.ItemsSource="{Binding GroupUsers}">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
@@ -75,7 +87,7 @@
                                                Padding="0">
                                                 <Image Margin="2">
                                                     <Image.Source>
-                                                        <Binding Path="ImageSource" >
+                                                        <Binding Path="image" >
                                                             <Binding.TargetNullValue>
                                                                 <ImageSource>Alephba.png</ImageSource>
                                                             </Binding.TargetNullValue>
@@ -83,13 +95,14 @@
                                                     </Image.Source>
                                                 </Image>
                                             </Frame>
-                                            <Label Text="{Binding NameUser}"
+                                            <Label Text="{Binding userName}"
                                                    Grid.Column="1"
-                                                   Margin="10,0,0,0"
+                                                   Margin="10,0,0,0"                                                   
                                                    VerticalOptions="Center"
                                                    FontFamily="quickSandSemiBold"
                                                    TextColor="#CCCCCC"/>
-                                            <Frame    Grid.Column="2"
+
+                                            <Frame  Grid.Column="2"
                                                      VerticalOptions="CenterAndExpand"
                                                      HorizontalOptions="CenterAndExpand"
                                                          HeightRequest="25"
@@ -97,9 +110,13 @@
                                                       CornerRadius="50"
                                                       BackgroundColor="#A21441"
                                                       Padding="0">
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.removeUser,Source={x:Reference page}}" CommandParameter="{Binding .}" />
+                                                </Frame.GestureRecognizers>
+
                                                 <Image BackgroundColor="#A21441"
                                                    Margin="8"
-                                                         Source="Icon.png"/>
+                                                         Source="Icon.png" />
                                             </Frame>
                                             <BoxView HeightRequest="0.1"
                                                      BackgroundColor="#C4C4C4"
@@ -116,15 +133,26 @@
                     </ScrollView>
                 </StackLayout>
             </Frame>
+            <Button Command="{Binding GroupDelete}"
+                    HeightRequest="40"
+                    WidthRequest="120"
+                    Grid.Row="2" 
+                    HorizontalOptions="StartAndExpand" 
+                    VerticalOptions="CenterAndExpand"
+                    TextColor="#EBEBEB" Text="Delete"
+                    BackgroundColor="#A21441"
+                    TranslationY="5"/>
             <Button Clicked="Add_Clicked"
                     HeightRequest="40"
                     WidthRequest="120"
                     Grid.Row="2" 
+                    Command="{Binding SaveGroupChange}"
                     HorizontalOptions="EndAndExpand" 
                     VerticalOptions="CenterAndExpand"
                     TextColor="#EBEBEB" Text="Save"
                     BackgroundColor="#00A693"
                     TranslationY="5"/>
+
         </Grid>
     </Frame>
 </pages:PopupPage>

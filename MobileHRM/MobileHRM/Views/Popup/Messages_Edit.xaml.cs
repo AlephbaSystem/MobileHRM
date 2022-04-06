@@ -1,4 +1,6 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using MobileHRM.Models.Entities;
+using MobileHRM.Models.Entities.Request;
+using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Threading.Tasks;
@@ -9,11 +11,11 @@ namespace MobileHRM.Views.Popup
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Messages_Edit : PopupPage
     {
-        readonly ViewModel.MessageEditViewModel Vm = new ViewModel.MessageEditViewModel();
-        public Messages_Edit(ViewModel.MessageEditViewModel vm)
+        ViewModel.MessageEditViewModel Vm;
+        public Messages_Edit(Group group)
         {
             InitializeComponent();
-           Vm = vm;
+            Vm= new ViewModel.MessageEditViewModel(group);
             BindingContext = Vm;
         }
 

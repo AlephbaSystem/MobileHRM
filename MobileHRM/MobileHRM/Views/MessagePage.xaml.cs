@@ -13,6 +13,8 @@ using MobileHRM.Helper;
 using System.Reflection;
 using Xamarin.Essentials;
 using MobileHRM.Api;
+using MobileHRM.Views.Popup;
+using Rg.Plugins.Popup.Services;
 
 namespace MobileHRM.Views
 {
@@ -80,7 +82,7 @@ namespace MobileHRM.Views
         private Task addmessage()
         {
             messagelayout.Children.Clear();
-            if (Vm.Items.Count==0)
+            if (Vm.Items.Count == 0)
             {
                 return Task.CompletedTask;
             }
@@ -102,7 +104,7 @@ namespace MobileHRM.Views
                     }
                     else
                         messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = Vm.Items[i].createdAt.ToString("dd mmmm") });
-                    
+
                 }
                 if (Vm.Items[i].mediaType == "Voice")
                 {
@@ -349,14 +351,9 @@ namespace MobileHRM.Views
             }
         }
 
-
-
-
-        //*****************************************************************
-
-
-
-
-
+        private async void more_Clicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PushAsync(new Messages_Edit(new Models.Entities.Group { id = group.id, name = group.name, image = group.image, ownerId = group.ownerId }));
+        }
     }
 }

@@ -8,12 +8,14 @@
              Background="#000000">
 
     <Shell.TitleView>
-        <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" Margin="0,0,20,0">
-            <Frame Padding="0" CornerRadius="40">
+        <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent">
+            <Frame VerticalOptions="CenterAndExpand" Padding="1" CornerRadius="40" BackgroundColor="#7B61FF"  Margin="0,0,20,0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ImageButton_Clicked" />
                 </Frame.GestureRecognizers>
-                <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                <Frame Padding="0" CornerRadius="40">
+                    <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                </Frame>
             </Frame>
             <Frame CornerRadius="40" Padding="0" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
                 <Frame.GestureRecognizers>
@@ -26,7 +28,7 @@
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnNewFrameClicked" />
                 </Frame.GestureRecognizers>
-                <Image Aspect="AspectFill" WidthRequest="38" HeightRequest="38" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="Plus.png" />
+                <Image Aspect="AspectFill" WidthRequest="38" HeightRequest="38" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="AddIcon.png" />
             </Frame>
             <ImageButton Aspect="AspectFill" WidthRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_Clicked_3" Source="VectorArrow.png" />
         </StackLayout>
@@ -39,10 +41,10 @@
                                HeightRequest="70"
                                Margin="10,35,10,0">
                 <Grid ColumnDefinitions="0.5*,8*,2*">
-                    <entryCustom:CustomEntry Grid.Column="1" Placeholder="Search"/>
-                    <ImageButton Grid.Column="2" BackgroundColor="Transparent"
-                                       Margin="10"
-                                       Source="Search.png"/>
+                    <entryCustom:CustomEntry Grid.Column="1" FontSize="12" Placeholder="Search"/>
+                    <ImageButton  Grid.Column="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent"
+                                       WidthRequest="30" HeightRequest="30"
+                                       Source="Search2.png"/>
                 </Grid>
             </Frame>
             <Frame Grid.Row="1" Grid.RowSpan="2" VerticalOptions="Start" Padding="0" CornerRadius="20" BackgroundColor="Transparent" Margin="20,5">

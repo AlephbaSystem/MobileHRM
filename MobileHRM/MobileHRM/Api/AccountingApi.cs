@@ -43,7 +43,6 @@ namespace MobileHRM.Api
             catch (Exception e)
             {
                 return new List<Models.Entities.Business>();
-                throw;
             }
         }
         public async Task<int> GetInvoiceNumber()
@@ -70,7 +69,7 @@ namespace MobileHRM.Api
                 {
                     Content = content,
                     Method = HttpMethod.Post,
-                    RequestUri = new Uri(requestUrl + "AddBussines"),  //Most Be Changed To Api Url
+                    RequestUri = new Uri(requestUrl + "AddBussines"),
                 };
 
                 return await Base.Post(request);
@@ -78,21 +77,20 @@ namespace MobileHRM.Api
             catch (Exception e)
             {
                 return false;
-                throw;
             }
         }
-        public async Task<int> GetBalance()
+        public async Task<List<subInvoice>> GetAllSubInvoice()
         {
             try
             {
-                string Uri = requestUrl + ""; //Most Be Changed To Api Url
-                string ContentStr = await Base.Get(Uri);
-                int balance = JsonDataConverter<int>.JsonStringToObject(ContentStr);
-                return balance;
+                string uri = requestUrl + "GetAllSubInvoice";
+                string ContentStr = await Base.Get(uri);
+                var items = JsonDataConverter<List<subInvoice>>.JsonStringToObject(ContentStr);
+                return items ?? new List<subInvoice>();
             }
             catch (Exception e)
             {
-                return -1;
+                return new List<subInvoice>();
             }
         }
     }
