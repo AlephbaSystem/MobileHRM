@@ -11,9 +11,10 @@ namespace MobileHRM.Models.Api
         public int userId { get; set; }
         public string message { get; set; }
         public DateTime createdAt { get; set; }
-        public DateTime updateAt { get; set; }
+        public string updateAt { get; set; }
         public List<MessageSeen> messageSeens { get; set; }
+	    public int mediaId { get; set; }
 	    public byte[] media { get; set; }
-	    public string mediaType { get; set;}
+        public string mediaType { get; set;}
     }
 }

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileHRM.App"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-             android:Application.WindowSoftInputModeAdjust="Resize">
+             android:Application.WindowSoftInputModeAdjust="Unspecified">
     <Application.Resources>
         <Style x:Key="basic"
            TargetType="Shell">

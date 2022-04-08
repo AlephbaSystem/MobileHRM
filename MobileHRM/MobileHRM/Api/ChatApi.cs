@@ -10,6 +10,8 @@ using System.Net.Mime;
 using MobileHRM.Models;
 using System.Linq;
 using MobileHRM.Models.Entities.Request;
+using MobileHRM.Models.Entities;
+using Group = MobileHRM.Models.Api.Group;
 
 namespace MobileHRM.Api
 {
@@ -261,6 +263,20 @@ namespace MobileHRM.Api
                 _ = e.Message;
                 return new List<Group>();
                 throw;
+            }
+        }
+        public async Task<byte[]> GetMediaByMediaId(int mediaId)
+        {
+            try
+            {
+                string uri = requestUri + $"GetMediaByMediaId?mediaId={mediaId}";
+                string contentStr = await Base.Get(uri);
+                var items = JsonDataConverter<byte[]>.JsonStringToObject(contentStr);
+                return items ?? new byte[0];
+            }
+            catch (Exception e)
+            {
+                return new byte[0];
             }
         }
 

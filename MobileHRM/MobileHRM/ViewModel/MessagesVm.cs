@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Plugin.AudioRecorder;
+using MobileHRM.Helper;
 
 namespace MobileHRM.ViewModel
 {
@@ -43,7 +44,7 @@ namespace MobileHRM.ViewModel
         }
 
         AudioPlayer audioplayer = new AudioPlayer();
-        public MessagesVm(int _GroupId, ImageSource _image,int userId)
+        public MessagesVm(int _GroupId, ImageSource _image, int userId)
         {
             GroupId = _GroupId;
             if (userId == User.UserId)
@@ -89,7 +90,7 @@ namespace MobileHRM.ViewModel
         }
         private ObservableCollection<MessageItem> _myMessage { get; set; }
 
-        public void PlayVoice(object sender, EventArgs e)
+        public async void PlayVoice(object sender, EventArgs e)
         {
             if (IsPlaying)
             {
@@ -98,7 +99,13 @@ namespace MobileHRM.ViewModel
                 IsPlaying = false;
             }
             var t = sender as ImageButton;
-            var Audio = (string)t.CommandParameter;
+            var Audio = t.CommandParameter.ToString();
+            int mediaId;
+            if (int.TryParse(Audio, out mediaId))
+            {
+                var data = await GetMediaByMediaId(mediaId);
+                t.CommandParameter = DataConverter.SaveAudioByByte(data);
+            }
             if (Audio == currentAudio)
             {
                 currentAudio = string.Empty;
@@ -136,6 +143,10 @@ namespace MobileHRM.ViewModel
             {
                 await request.InsertMessageSeen(itms);
             }
+        }
+        public async Task<byte[]> GetMediaByMediaId(int mediaId)
+        {
+            return await request.GetMediaByMediaId(mediaId);
         }
     }
 }

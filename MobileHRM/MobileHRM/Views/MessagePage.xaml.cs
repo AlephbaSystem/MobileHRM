@@ -92,7 +92,7 @@ namespace MobileHRM.Views
             }
             else
             {
-                messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = Vm.Items[0].createdAt.ToString("dd mmmm") });
+                messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = Vm.Items[0].createdAt.ToString("dd MMMM") });
             }
             for (int i = 0; i < Vm.Items.Count; i++)
             {
@@ -103,7 +103,7 @@ namespace MobileHRM.Views
                         messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = "Today" });
                     }
                     else
-                        messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = Vm.Items[i].createdAt.ToString("dd mmmm") });
+                        messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = Vm.Items[i].createdAt.ToString("dd MMMM") });
 
                 }
                 if (Vm.Items[i].mediaType == "Voice")
@@ -149,6 +149,10 @@ namespace MobileHRM.Views
                 HorizontalTextAlignment = TextAlignment.End,
                 Margin = new Thickness(30, 0, 30, 10)
             };
+            var gesture = new TapGestureRecognizer();
+            gesture.Tapped += Message_Tapped;
+            gesture.CommandParameter = item;
+            frm.GestureRecognizers.Add(gesture);
             var pad = timelabel.Padding;
             pad.Top += 2;
             timelabel.Padding = pad;
@@ -163,12 +167,10 @@ namespace MobileHRM.Views
                 frm.Margin = new Thickness(70, 15, 5, 15);
                 frm.BackgroundColor = Color.FromHex("#8D8D8D");
             }
-
-            var source = DataConverter.SaveImageByByte(item.media);
             Image imageFile = new Image
             {
                 Aspect = Aspect.AspectFit,
-                Source = source,
+                Source = ImageSource.FromResource("Alephba.png"),
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
 
@@ -179,6 +181,24 @@ namespace MobileHRM.Views
             messagelayout.Children.Add(frm);
         }
 
+        private async void Message_Tapped(object sender, EventArgs e)
+        {
+            Frame Layout = (sender as Frame);
+            var data = (GroupMessage)(Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            if (data.media != null || data.media!=null && data.media.Length > 1)
+            {
+                return;
+            }
+            var imageByte=await Vm.GetMediaByMediaId(data.mediaId);
+            if (imageByte==null)
+            {
+                return;
+            }
+            data.media = imageByte;
+            (Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter = data;
+            var imageSource = DataConverter.SaveImageByByte(imageByte);
+            ((Layout.Content as StackLayout).Children[0] as Image).Source = imageSource;
+        }
 
         private void MakeFrame(GroupMessage item)
         {
@@ -260,14 +280,8 @@ namespace MobileHRM.Views
         }
 
 
-        public async void makeVoiceFrame(GroupMessage msg)
+        public void makeVoiceFrame(GroupMessage msg)
         {
-            var path = DataConverter.SaveAudioByByte(msg.media);
-            if (path == null)
-            {
-                await DisplayAlert("Error", "An Error Ocurred", "Back");
-                return;
-            }
             voicefrm.BackgroundColor = Color.FromHex("272B35");
             ImageButton ImgPlayer = new ImageButton
             {
@@ -287,21 +301,20 @@ namespace MobileHRM.Views
                 Padding = new Thickness(0),
                 Content = ImgPlayer
             };
-
             if (msg.userId == User.UserId)
             {
                 f.BackgroundColor = Color.FromHex("#1A1C23");
                 f.Margin = new Thickness(5, 0, 70, 0);
             }
+
             else
             {
                 f.Margin = new Thickness(70, 0, 5, 0);
                 f.BackgroundColor = Color.FromHex("#8D8D8D");
             }
             messagelayout.Children.Add(f);
-            ImgPlayer.CommandParameter = path;
+            ImgPlayer.CommandParameter = msg.mediaId;
         }
-
 
         // *************************************************************************//
         KnowledgeApi Reqest = new KnowledgeApi();
