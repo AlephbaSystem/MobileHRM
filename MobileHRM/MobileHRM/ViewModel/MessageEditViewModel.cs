@@ -60,9 +60,10 @@ namespace MobileHRM.ViewModel
             await Application.Current.MainPage.Navigation.PopAsync();
             await PopupNavigation.Instance.PopAsync();
         }
+
         public async void UpdateGroup()
         {
-            await request.UpdateGroup(new GroupUpdate { id = Group.id, name = Group.name, image =new byte[0] });
+            await request.UpdateGroup(new GroupUpdate { id = Group.id, name = Group.name, image = new byte[0] });
             await Application.Current.MainPage.Navigation.PopAsync();
             await PopupNavigation.Instance.PopAsync();
         }

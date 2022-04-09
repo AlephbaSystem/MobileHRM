@@ -144,9 +144,13 @@ namespace MobileHRM.ViewModel
                 await request.InsertMessageSeen(itms);
             }
         }
+        public bool IsBusy { get { return _Isbusy } set { _Isbusy = value; OnPropertyChanged(nameof(IsBusy)); } }
+        private bool _Isbusy;
         public async Task<byte[]> GetMediaByMediaId(int mediaId)
         {
+            IsBusy = true;
             return await request.GetMediaByMediaId(mediaId);
+            IsBusy = false;
         }
     }
 }

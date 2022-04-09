@@ -2,8 +2,10 @@
 using MobileHRM.Models.Entities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MobileHRM.ViewModel
 {
@@ -12,11 +14,11 @@ namespace MobileHRM.ViewModel
         public AccountingOverViewViewModel()
         {
             request = new AccountingApi();
-            Items = new List<AccountingOverView>();
+            Items = new ObservableCollection<AccountingOverView>();
             initializa();
         }
-        List<AccountingOverView> _items;
-        public List<AccountingOverView> Items
+        ObservableCollection<AccountingOverView> _items;
+        public ObservableCollection<AccountingOverView> Items
         {
             get
             {
@@ -31,30 +33,13 @@ namespace MobileHRM.ViewModel
         AccountingApi request;
         public async void initializa()
         {
+            Items = new ObservableCollection<AccountingOverView>();
             var collection = await request.GetAllSubInvoice();
-            for (int i = 0; i < collection.Count; i++)
-            {
-                if (i > 0 && collection[i].date != collection[i + 1].date)
-                {
-                    var itm = new AccountingOverView
-                    {
-                        Year = collection[i].date.Year.ToString()
-                    };
-                    decimal sum = 0;
-                    itm.Months = new System.Collections.ObjectModel.ObservableCollection<Accounting>();
-                    foreach (var col in collection)
-                    {
-                        if (col.date.Year == collection[i].date.Year)
-                        {
-                            sum += col.amount;
-                            itm.Months.Add(new Accounting { Spent = col.amount, Month = col.date.Month.ToString() });
-                            collection.Remove(col);
-                        }
-                    }
-                    itm.Spent = sum;
-                    Items.Add(itm);
-                }
-            }
+            Items = new ObservableCollection<AccountingOverView>(from p in collection
+                                                                 group p by p.date.Year into g
+                                                                 select new
+                                                                 AccountingOverView
+                                                                 { Year = g.Key.ToString(), Months = new ObservableCollection<Accounting>((from i in g select new Accounting { Month = i.date.ToString("MMMM"), Spent = i.amount }).ToList()), Spent = g.Sum(j => j.amount) });
         }
     }
 }

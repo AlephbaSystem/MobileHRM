@@ -92,33 +92,27 @@ namespace MobileHRM.Views
 
             List<ChartEntry> entries1 = new List<ChartEntry>()
             {
-                 new ChartEntry(60)
+                new ChartEntry(60)
                 {
 
                     Label = "",
                     ValueLabel = "",
                     Color = SKColor.Parse("#bfff00")
                 },
-                      new ChartEntry(2)
+                new ChartEntry(2)
                 {
                     Label = "",
                     ValueLabel = "",
                     Color = SKColor.Parse("#808080")
-
-
                 },
-                     new ChartEntry(2)
+                new ChartEntry(2)
                 {
                     Label = "",
                     TextColor = SKColor.Parse("#EBEBEB"),
                     ValueLabel = "",
                     Color = SKColor.Parse("#4d0000")
-
-
                 }
-
             };
-
 
             charview.Chart = new BarChart { Entries = entries, BackgroundColor = SKColor.Parse("#272B35"), LabelTextSize = 12 };
             charview1.Chart = new PieChart { Entries = entries1, BackgroundColor = SKColor.Parse("#272B35"), LabelTextSize = 12 };

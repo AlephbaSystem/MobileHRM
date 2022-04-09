@@ -14,8 +14,8 @@ namespace MobileHRM.ViewModel
         {
             Api = new AccountingApi();
             business = new Models.Api.Business();
-            save = new Command(ClearBusiness);
-            clear = new Command(SaveBusiness);
+            save = new Command(SaveBusiness);
+            clear = new Command(ClearBusiness);
         }
         private Models.Api.Business _business;
         public Models.Api.Business business
@@ -32,6 +32,7 @@ namespace MobileHRM.ViewModel
         {
             business.employeeId = User.UserId;
             await Api.PostBusiness(business);
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
         private void ClearBusiness()
         {

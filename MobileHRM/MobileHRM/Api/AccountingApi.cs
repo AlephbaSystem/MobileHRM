@@ -69,7 +69,7 @@ namespace MobileHRM.Api
                 {
                     Content = content,
                     Method = HttpMethod.Post,
-                    RequestUri = new Uri(requestUrl + "AddBussines"),
+                    RequestUri = new Uri(requestUrl + "AddBusiness"),
                 };
 
                 return await Base.Post(request);
@@ -83,7 +83,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string uri = requestUrl + "GetAllSubInvoice";
+                string uri = requestUrl + "GetAllInvoice";
                 string ContentStr = await Base.Get(uri);
                 var items = JsonDataConverter<List<subInvoice>>.JsonStringToObject(ContentStr);
                 return items ?? new List<subInvoice>();

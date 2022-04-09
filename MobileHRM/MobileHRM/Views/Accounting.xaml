@@ -34,7 +34,7 @@
     <StackLayout VerticalOptions="StartAndExpand" Margin="20">
         <Label Margin="10,10" Text="Accounting" TextColor="#CCCCCC"
                    HorizontalOptions="Start"/>
-        <StackLayout  Spacing="20">
+        <StackLayout Spacing="20">
             <Grid ColumnDefinitions="*,*" ColumnSpacing="20"
                   RowDefinitions="*,*,*" RowSpacing="20">
                 <Frame Padding="0" Grid.Column="0"
@@ -87,12 +87,10 @@
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                     </Frame.GestureRecognizers>
                     <Grid RowDefinitions="*,*">
-                        <Label Grid.Row="0" Text="{Binding Accounting,StringFormat='{0} Riyal'}" VerticalOptions="End" HorizontalOptions="Center" TextColor="#CCCCCC"/>
+                        <Label Grid.Row="0" Text="Balance: 1050 Riyal" VerticalOptions="End" HorizontalOptions="Center" TextColor="#CCCCCC"/>
                         <Label Grid.Row="1" Text="Refresh" VerticalOptions="Start" HorizontalOptions="Center" TextColor="#7B61FF"/>
                     </Grid>
                 </Frame>
-
-
             </Grid>
         </StackLayout>
 

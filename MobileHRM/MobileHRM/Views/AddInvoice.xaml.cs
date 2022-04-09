@@ -38,8 +38,18 @@ namespace MobileHRM.Views
         private void Business_Item(object sender, EventArgs e)
         {
             var item = ((Models.Entities.Business)sender);
-            ((Label)BusinessGrid.Children[0]).Text = item.name;
-            ((Label)BusinessGrid.Children[1]).Text = item.id.ToString();
+            ((Label)BusinessGrid.Children[1]).Text = item.name;
+            vm.InvoiceDetail.businessId = item.id;
+            ((Label)BusinessGrid.Children[0]).Text = item.id.ToString();
+        }
+
+        private async void Type_Tapped(object sender, EventArgs e)
+        {
+            string result = await DisplayActionSheet("Choose Type: ", "Back", null, "1", "2");
+            if (result == "1" || result == "2")
+            {
+                vm.InvoiceDetail.type = int.Parse(result);
+            }
         }
     }
 }
