@@ -1,12 +1,7 @@
 ﻿using Rg.Plugins.Popup.Pages;
-using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,15 +10,13 @@ namespace MobileHRM.Views.Popup
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ShowMsgPopup : PopupPage
     {
-        private bool isShow { get; set; }
-        private int showMeliSec { get; set; }
-       
+        private int showMeliSec = 3000;
 
-        public ShowMsgPopup(string msg, string type, int showForSec)
+
+        public ShowMsgPopup(string msg, string type)
         {
             InitializeComponent();
             errText.Text = msg;
-            showMeliSec = showForSec * 1000;
             switch (type)
             {
                 case "Warning":
@@ -45,41 +38,22 @@ namespace MobileHRM.Views.Popup
                     prgresbar.ProgressColor = Color.FromHex("#5296D5");
                     break;
             }
-            
-
         }
 
         public async Task ShowAsync()
         {
-            isShow = true;
+            prgresbar.ProgressTo(0, (uint)showMeliSec, Easing.Linear);
             await PopupNavigation.Instance.PushAsync(this);
-            await prgresbar.ProgressTo(0, (uint)showMeliSec, Easing.Linear);
-            if (isShow)
-                await PopupNavigation.Instance.PopAsync();
-           
         }
 
         private async void ExitButton_Clicked(object sender, EventArgs e)
         {
-            isShow = false;
-
             await PopupNavigation.Instance.PopAsync();
         }
-        
 
-        protected override bool OnBackgroundClicked()
+        private async void CloseClick(object sender, EventArgs e)
         {
-            isShow = false;
-            return base.OnBackgroundClicked();
+            await PopupNavigation.Instance.PopAsync();
         }
-
-        protected override bool OnBackButtonPressed()
-        {
-            isShow = false;
-            return base.OnBackButtonPressed();
-        }
-
-
-
     }
 }

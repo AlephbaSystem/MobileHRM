@@ -6,17 +6,15 @@
              x:Class="MobileHRM.Views.LogInPage"
              BackgroundImage="background.png">
 
-    <StackLayout >
-        <Grid VerticalOptions="FillAndExpand"
-              RowDefinitions="5*,*,2*,2*,2*,3*"
+    <Grid VerticalOptions="FillAndExpand"
+              RowDefinitions="*,*,*"
               HorizontalOptions="FillAndExpand">
-
+        <StackLayout>
             <ImageButton VerticalOptions="Start"
                          Margin="0,50,0,0"
                          BackgroundColor="Transparent"
                          Clicked="OnImageButtonClicked"
                          HorizontalOptions="Center"
-                         Grid.Row="0"
                          Source="Alephba.png"
                          WidthRequest="172"
                          HeightRequest="172"/>
@@ -26,34 +24,54 @@
                    TextColor="#CCCCCC"
                    Text="LOGIN TO YOUR DASHBOARD"
                    FontFamily="Roboto"
-                   FontSize="20"
-                   Grid.Row="1"/>
-            
-            <Frame Grid.Row="3"
-                   Margin="8"
+                   TranslationY="10"
+                   FontSize="20"/>
+        </StackLayout>
+
+        <StackLayout Grid.Row="1"                     
+                   VerticalOptions="Center">
+            <Frame 
                    Padding="0"
                    CornerRadius="10"
                    WidthRequest="250"                   
                    HeightRequest="50"
-                   MinimumHeightRequest="50"
                    HorizontalOptions="CenterAndExpand"
-                   VerticalOptions="EndAndExpand"
+                   VerticalOptions="Center"
                    BackgroundColor="#7F8D8D8D"
-                   BorderColor="#26AB5B">
+                   BorderColor="#00A693">
                 <coustomEntry:CustomEntry                    
-                    x:Name="email"
-                    Placeholder="Email"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand"
+                    x:Name="phone"
+                    Placeholder="Phone Number"
                     PlaceholderColor="White"
                     TextColor="#e9ecef"
-                    HorizontalTextAlignment="Center"
-                        />
+                    HorizontalTextAlignment="Center"/>
             </Frame>
+            
+            <Grid ColumnDefinitions="1.35*,*"
+                  Margin="0,5">
+                <Label Text="Resend OTP in :"
+                       Grid.Column="0"
+                       TextColor="#EBEBEB"
+                       HorizontalOptions="End"/>
+                <Label Text="00:00"
+                       Grid.Column="1"
+                       TextColor="#00A693"
+                       HorizontalOptions="Start"/>
+            </Grid>
 
-           
+            <Label Text="RESEND"
+                   TextColor="#7B61FF"
+                   HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ResendSmsTapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+       
 
-            <Frame Grid.Row="4"
+
+
+        <!--<Frame Grid.Row="4"
                    Margin="8"
                    Padding="0"
                    CornerRadius="10"
@@ -64,7 +82,7 @@
                    BackgroundColor="#7F8D8D8D"
                    BorderColor="#26AB5B"
                    IsVisible="false">
-                <coustomEntry:CustomEntry 
+            <coustomEntry:CustomEntry 
                     x:Name="pass"
                     Placeholder="Password"
                     HorizontalOptions="FillAndExpand"
@@ -73,20 +91,20 @@
                     TextColor="#e9ecef"
                     IsPassword="True"
                     HorizontalTextAlignment="Center"/>
-            </Frame>
+        </Frame>-->
 
-            <Button Grid.Row="6"
+        <Button Grid.Row="2"
                     BackgroundColor="#F07520"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                     WidthRequest="290"
                     HeightRequest="50"
+                    TranslationY="30"
                     Text="LogIn"
                     TextColor="White"
                     CornerRadius="10"
                     Clicked="LogIn_Btn_Clk"/>
 
-        </Grid>
-    </StackLayout>
+    </Grid>
 
 </ContentPage>

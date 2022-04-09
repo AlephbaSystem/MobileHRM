@@ -2,8 +2,8 @@
     
 <popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"  
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
-                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"  
-                 CloseWhenBackgroundIsClicked="True"  
+                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 BackgroundClicked="CloseClick"
                  x:Class="MobileHRM.Views.Popup.ShowMsgPopup">
     <popup:PopupPage.Content>
         
@@ -25,9 +25,9 @@
                        VerticalOptions="Center"
                        HorizontalOptions="Center"
                        HeightRequest="20"
-                       WidthRequest="20"
-                    />
-                <Label  x:Name="errText"
+                       WidthRequest="20"/>
+                
+                <Label x:Name="errText"
                         Grid.Column="1"
                        TextColor="#CCCCCC"
                     VerticalOptions="Center"   
@@ -41,8 +41,7 @@
                     HorizontalOptions="End"
                     WidthRequest="13"
                     HeightRequest="13"
-                    Clicked="ExitButton_Clicked"
-                    />
+                    Clicked="ExitButton_Clicked"/>
 
             </Grid>
             <ProgressBar x:Name="prgresbar" Progress="1" 

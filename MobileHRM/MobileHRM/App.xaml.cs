@@ -13,7 +13,7 @@ namespace MobileHRM
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            MainPage = new MainPage();
+            MainPage = new LogInPage();
         }
 
         protected override void OnStart()
