@@ -41,10 +41,11 @@ namespace MobileHRM.ViewModel
         private async void SaveInvoice(object sender)
         {
             await Api.PostInvoice(InvoiceDetail);
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
         private void clearInvoice(object sender)
         {
-            InvoiceDetail = new Invoice();
+            InvoiceDetail = new Invoice();            
             InvoiceDetail.attachments = new ObservableCollection<Models.Entities.Attachment>();
         }
         public ICommand save { protected set; get; }
