@@ -15,6 +15,8 @@ using Xamarin.Essentials;
 using MobileHRM.Api;
 using MobileHRM.Views.Popup;
 using Rg.Plugins.Popup.Services;
+using Grpc.Core;
+using System.Net;
 
 namespace MobileHRM.Views
 {
@@ -26,13 +28,22 @@ namespace MobileHRM.Views
         //private readonly AudioRecorderService audioRecorderService = new AudioRecorderService();
         private AudioRecorderService ShowVoice;
 
-        public MessagePage(Models.Entities.GroupModel item)
+        public MessagePage(Models.Entities.GroupModel item1)
         {
             InitializeComponent();
-            Vm = new MessagesVm(item.id, item.image, item.ownerId);
+            Vm = new MessagesVm(item1.id, item1.image, item1.ownerId);
             BindingContext = Vm;
-            group = item;
+            group = item1;
             title.Text = group.name;
+            Response = Task.Run(async () =>
+            {
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                await Vm.Streaming.StreamingCall.ResponseStream.MoveNext();
+                var item = Vm.Streaming.StreamingCall.ResponseStream.Current;
+                var itm = new GroupMessage { createdAt = DateTime.Parse(item.CreatedAt), id = item.Id, media = item.Media.ToByteArray(), mediaId = item.MediaId, mediaType = item.MediaType, message = item.Message, messagesGroupId = item.MessagesGroupId, updateAt = item.UpdateAt, userId = item.UserId };
+                Vm.Items.Add(itm);
+                MakeFrame(itm);
+            });
         }
 
         protected override async void OnAppearing()
@@ -120,19 +131,10 @@ namespace MobileHRM.Views
             return Task.CompletedTask;
         }
 
-
         private string DateConveter(DateTime date)
         {
-            if (date.Day != DateTime.Now.Day)
-            {
-                return date.ToLocalTime().ToString("hh: mm");
-            }
-            else
-            {
-                return date.ToLocalTime().ToString("dd MMMM yyyy");
-            }
+            return date.ToLocalTime().ToString("hh: mm");
         }
-
 
         private void MakeImageFrame(GroupMessage item)
         {
@@ -185,12 +187,12 @@ namespace MobileHRM.Views
         {
             Frame Layout = (sender as Frame);
             var data = (GroupMessage)(Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            if (data.media != null || data.media!=null && data.media.Length > 1)
+            if (data.media != null || data.media != null && data.media.Length > 1)
             {
                 return;
             }
-            var imageByte=await Vm.GetMediaByMediaId(data.mediaId);
-            if (imageByte==null)
+            var imageByte = await Vm.GetMediaByMediaId(data.mediaId);
+            if (imageByte == null)
             {
                 return;
             }
@@ -202,7 +204,7 @@ namespace MobileHRM.Views
 
         private void MakeFrame(GroupMessage item)
         {
-            Frame frm = new Frame();
+            Frame frm = new Frame { Padding = new Thickness(10, 5) };
             var timelabel = new Label
             {
                 Text = DateConveter(item.createdAt),
@@ -318,6 +320,9 @@ namespace MobileHRM.Views
 
         // *************************************************************************//
         KnowledgeApi Reqest = new KnowledgeApi();
+
+        public Task Response { get; }
+
         //***********************************************************************//
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {

@@ -1,9 +1,6 @@
-﻿using System;
+﻿
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using MobileHRM.Views;
-using MobileHRM.Views.Popup;
-using MobileHRM.ViewModel;
+
 
 namespace MobileHRM
 { 
@@ -13,7 +10,7 @@ namespace MobileHRM
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            MainPage = new LogInPage();
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()

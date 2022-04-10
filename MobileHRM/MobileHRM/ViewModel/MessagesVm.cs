@@ -10,6 +10,11 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Plugin.AudioRecorder;
 using MobileHRM.Helper;
+using Grpc.Net.Client;
+using GrpcService1.Protos;
+using Grpc.Core;
+using Google.Protobuf;
+using System.Net;
 
 namespace MobileHRM.ViewModel
 {
@@ -81,12 +86,30 @@ namespace MobileHRM.ViewModel
             catch (Exception e)
             {
                 Items = new List<GroupMessage>();
-                throw;
             }
         }
         public async Task<bool> sendMessage(Message msg)
         {
-            return await request.SendMessage(msg);
+            try
+            {
+                Streaming = new ServiceStream();
+                var item = new MessageRequest { CreatedAt = msg.createdAt.ToString(), MediaType = msg.mediaType, Message = msg.message, MessagesGroupId = msg.messagesGroupId, UpdateAt = msg.updateAt.ToString(), UserId = msg.userId };
+                if (msg.media != null)
+                {
+                    item.Media = ByteString.CopyFrom(msg.media);
+                }
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                await Streaming.StreamingCall.RequestStream.WriteAsync(item);
+                await Task.Delay(5000);
+                await Streaming.StreamingCall.RequestStream.CompleteAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            //return await request.SendMessage(msg);
         }
         private ObservableCollection<MessageItem> _myMessage { get; set; }
 
@@ -144,7 +167,7 @@ namespace MobileHRM.ViewModel
                 await request.InsertMessageSeen(itms);
             }
         }
-        public bool IsBusy { get { return _Isbusy } set { _Isbusy = value; OnPropertyChanged(nameof(IsBusy)); } }
+        public bool IsBusy { get { return _Isbusy; } set { _Isbusy = value; OnPropertyChanged(nameof(IsBusy)); } }
         private bool _Isbusy;
         public async Task<byte[]> GetMediaByMediaId(int mediaId)
         {
@@ -152,5 +175,19 @@ namespace MobileHRM.ViewModel
             return await request.GetMediaByMediaId(mediaId);
             IsBusy = false;
         }
+        public Task Response;
+        public ServiceStream Streaming;
+    }
+    public class ServiceStream
+    {
+        public ServiceStream()
+        {
+            Channel = GrpcChannel.ForAddress("http://185.18.214.100:29178");
+            Client = new StreamService.StreamServiceClient(Channel);
+            StreamingCall = Client.ChatStreaming();
+        }
+        public GrpcChannel Channel { get; }
+        public StreamService.StreamServiceClient Client { get; }
+        public AsyncDuplexStreamingCall<MessageRequest, MessageResponse> StreamingCall { get; set; }
     }
 }

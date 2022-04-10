@@ -30,8 +30,14 @@
                     <TapGestureRecognizer Tapped="Business_Tapped" />
                 </Frame.GestureRecognizers>
                 <Grid ColumnDefinitions="*,5*,*" x:Name="BusinessGrid">
-                    <Label Grid.Column="0" Text="{Binding InvoiceDetail.invoiceDetail.businessNumber,Mode=TwoWay}"  VerticalTextAlignment="Center" TextColor="#7B61FF" HorizontalTextAlignment="Center" />
-                    <Label Grid.Column="1"  VerticalTextAlignment="Center" TextColor="#7B61FF" HorizontalTextAlignment="Center" />
+                    <Label Grid.Column="0" x:Name="businessNumber" Text="{Binding InvoiceDetail.invoiceDetail.businessNumber,Mode=TwoWay}"  VerticalTextAlignment="Center" TextColor="#7B61FF" HorizontalTextAlignment="Center" />
+                    <Label Grid.Column="1"  VerticalTextAlignment="Center" TextColor="#7B61FF" HorizontalTextAlignment="Center">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding Text,Source={x:Reference businessNumber},TargetNullValue=''}" Value="">
+                                <Setter Property="Text" Value="" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
                     <Image Grid.Column="2" WidthRequest="10" HeightRequest="20" Source="vectordir.png" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Aspect="AspectFit" />
                 </Grid>
             </Frame>

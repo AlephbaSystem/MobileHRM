@@ -1,187 +1,198 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <ProduceAssemblyReference>true</ProduceAssemblyReference>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<ProduceAssemblyReference>true</ProduceAssemblyReference>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>pdbonly</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DebugType>pdbonly</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="ViewModels\**" />
-    <EmbeddedResource Remove="ViewModels\**" />
-    <None Remove="ViewModels\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="ViewModels\**" />
+		<EmbeddedResource Remove="ViewModels\**" />
+		<None Remove="ViewModels\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microcharts" Version="0.9.5.9" />
-    <PackageReference Include="Microcharts.Forms" Version="0.9.5.9" />
-    <PackageReference Include="Microsoft.Graph" Version="4.22.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Grpc.Core" Version="2.45.0" />
+		<PackageReference Include="Grpc.Tools" Version="2.45.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microcharts" Version="0.9.5.9" />
+		<PackageReference Include="Microcharts.Forms" Version="0.9.5.9" />
+		<PackageReference Include="Microsoft.Graph" Version="4.22.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Views\Chat.xaml.cs" />
-    <Compile Remove="Views\test.xaml.cs" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Views\Chat.xaml.cs" />
+		<Compile Remove="Views\test.xaml.cs" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Remove="Views\test.xaml" />
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Remove="Views\test.xaml" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Resources\Fonts\Quicksand-Regular.ttf" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Resources\Fonts\Quicksand-Regular.ttf" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Fonts\Quicksand-Regular.ttf" />
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\Fonts\Quicksand-Regular.ttf" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Plugin.AudioRecorder" Version="1.1.0" />
-    <PackageReference Include="Sharpnado.Shadows" Version="1.2.0" />
+	<ItemGroup>
+		<PackageReference Include="Plugin.AudioRecorder" Version="1.1.0" />
+		<PackageReference Include="protobuf-net" Version="3.0.101" />
+		<PackageReference Include="Sharpnado.Shadows" Version="1.2.0" />
+		<PackageReference Include="Google.Protobuf" Version="3.20.0" />		
+		<PackageReference Include="Grpc.Net.Client" Version="2.44.0" />				
+		<PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
+		<PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
+		<PackageReference Include="Sharpnado.Shadows" Version="1.2.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+		<PackageReference Include="Syncfusion.Xamarin.SfImageEditor" Version="16.1.0.37" />
+		<PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="19.4.0.56" />
+		<PackageReference Include="System.Collections" Version="4.3.0" />
 
-    <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
-    <PackageReference Include="Sharpnado.Shadows" Version="1.2.0" />
-    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
-    <PackageReference Include="Syncfusion.Xamarin.SfImageEditor" Version="16.1.0.37" />
-    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="19.4.0.56" />
-    <PackageReference Include="System.Collections" Version="4.3.0" />
+		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
 
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
 
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+		<PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
 
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+		<PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
+		<PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.41" />
+	</ItemGroup>
 
-    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
-    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.41" />
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="Mono.Android">
+			<HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v10.0\Mono.Android.dll</HintPath>
+		</Reference>
+		<Reference Include="System.Drawing.Common">
+			<HintPath>D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v1.0\Facades\System.Drawing.Common.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Mono.Android">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v10.0\Mono.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Drawing.Common">
-      <HintPath>D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v1.0\Facades\System.Drawing.Common.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Views\Accounting.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\AccountingAddBusiness.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Accounting_Report.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Accounting_Report_Chart.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Accounting_Report_OverView.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\AddInvoice.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\AddInvoiceAttachment.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Chat.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Views\Accounting.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\AccountingAddBusiness.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Accounting_Report.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Accounting_Report_Chart.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Accounting_Report_OverView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\AddInvoice.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\AddInvoiceAttachment.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Chat.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Views\AccountingAddBusiness.xaml.cs">
+			<DependentUpon>AccountingAddBusiness.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\chatPage.xaml.cs">
+			<DependentUpon>chatPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\CreateGroup.xaml.cs">
+			<DependentUpon>CreateGroup.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\LogInPage.xaml.cs">
+			<DependentUpon>LogInPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Popup\Messages_Edit.xaml.cs">
+			<DependentUpon>Messages_Edit.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Popup\ShowMsgPopup.xaml.cs">
+			<DependentUpon>ShowMsgPopup.xaml</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Views\AccountingAddBusiness.xaml.cs">
-      <DependentUpon>AccountingAddBusiness.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\chatPage.xaml.cs">
-      <DependentUpon>chatPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\CreateGroup.xaml.cs">
-      <DependentUpon>CreateGroup.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\LogInPage.xaml.cs">
-      <DependentUpon>LogInPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Popup\Messages_Edit.xaml.cs">
-      <DependentUpon>Messages_Edit.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Popup\ShowMsgPopup.xaml.cs">
-      <DependentUpon>ShowMsgPopup.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Views\Popup\Notifications.xaml.cs">
+			<DependentUpon>Notifications.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Popup\TasksCalendar.xaml.cs">
+			<DependentUpon>TasksCalendar.xaml</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Views\Popup\Notifications.xaml.cs">
-      <DependentUpon>Notifications.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Popup\TasksCalendar.xaml.cs">
-      <DependentUpon>TasksCalendar.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Views\chatPage.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Contactslist.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\CreateGroup.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\KnowledgeReferences.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\KnowledgeTags.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Loan.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Popup\BusinessPopup.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Popup\KnowledgeDetail.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Popup\NewReference.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Popup\NewTag.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\KnowledgeNew.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Popup\KnowledgeCommentsPopup.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Tasks.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\TasksCalendarPage.xaml"></EmbeddedResource>
+		<EmbeddedResource Update="Views\KnowledgePage.xaml"></EmbeddedResource>
+		<EmbeddedResource Update="Views\CameraViews.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\ImageEdit.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Knowledge.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Popup\ShowMsgPopup.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+		<Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Views\chatPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Contactslist.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\CreateGroup.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\KnowledgeReferences.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\KnowledgeTags.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Loan.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Popup\BusinessPopup.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Popup\KnowledgeDetail.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Popup\NewReference.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Popup\NewTag.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\KnowledgeNew.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Popup\KnowledgeCommentsPopup.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Tasks.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\TasksCalendarPage.xaml"></EmbeddedResource>
-    <EmbeddedResource Update="Views\KnowledgePage.xaml"></EmbeddedResource>
-    <EmbeddedResource Update="Views\CameraViews.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ImageEdit.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Knowledge.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Popup\ShowMsgPopup.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
 </Project>

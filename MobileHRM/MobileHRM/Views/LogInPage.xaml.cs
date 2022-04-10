@@ -38,7 +38,7 @@ namespace MobileHRM.Views
                     PhoneNumber = phone.Text,
                 };
                 var tc = await authenticationApi.Login(request);
-                await Navigation.PushAsync(new NavigationPage());
+                Application.Current.MainPage = new MainPage();
                 IsBusy = false;
             }
 
