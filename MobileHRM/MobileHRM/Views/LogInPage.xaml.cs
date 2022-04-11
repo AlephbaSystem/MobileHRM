@@ -3,6 +3,7 @@ using MobileHRM.Models.Request;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace MobileHRM.Views
@@ -11,37 +12,50 @@ namespace MobileHRM.Views
     public partial class LogInPage : ContentPage
     {
         AuthenticationApi authenticationApi = new AuthenticationApi();
+
         public LogInPage()
         {
             InitializeComponent();
         }
 
+
         private async void LogIn_Btn_Clk(object sender, EventArgs e)
         {
+            NetworkAccess current = Connectivity.NetworkAccess;
+
+            if (current != NetworkAccess.Internet)
+            {
+                await DisplayAlert("network", "cheak your internet connection", "ok");
+                return;
+            }
+
             if (!IsBusy)
             {
                 IsBusy = true;
-                if (string.IsNullOrEmpty(phone.Text))
+
+                if (string.IsNullOrEmpty(txtPhone.Text))
                 {
                     await new Popup.ShowMsgPopup("Please enter your PhoneNumber", "Error").ShowAsync();
                     IsBusy = false;
                     return;
                 }
-                if (!IsValidPhone(phone.Text))
+                if (!IsValidPhone(txtPhone.Text))
                 {
                     await new Popup.ShowMsgPopup("Please enter correct PhoneNumber", "Error").ShowAsync();
                     IsBusy = false;
-                    return ;
+                    return;
                 }
-                LoginRequest request = new LoginRequest()
+                LoginRequest Lrequest = new LoginRequest()
                 {
-                    PhoneNumber = phone.Text,
+                    phoneNumber = txtPhone.Text,
                 };
-                var tc = await authenticationApi.Login(request);
-                await Navigation.PushAsync(new NavigationPage());
+                if (await authenticationApi.Login(Lrequest))
+                {
+                    await Navigation.PushAsync(new VerifyPage(txtPhone.Text));
+                }
+                else await DisplayAlert("error", "check again", "ok");
                 IsBusy = false;
             }
-
         }
 
         //private bool IsValidEmail(string emailaddress)
@@ -64,23 +78,10 @@ namespace MobileHRM.Views
                 animation.Commit(imageButton, "animate", 20, 200, Easing.SinIn);
                 await imageButton.ScaleTo(1, 200, Easing.SinIn);
             }
-            
 
-            var TC = await authenticationApi.TestConnection();
+
+            bool TC = await authenticationApi.TestConnection();
             await DisplayAlert("", TC.ToString(), "cancel");
-            IsBusy = false;
-        }
-
-        private async void ResendSmsTapped(object sender, EventArgs e)
-        {
-            if (!IsBusy == true)
-            {
-                IsBusy = true;
-                Label label = (Label)sender;
-                Animation animation = new Animation(v => label.Scale = v, 0.8, 1.3, Easing.SinInOut);
-                animation.Commit(label, "animate", 20, 200, Easing.SinIn);
-                await label.ScaleTo(1, 200, Easing.SinIn);
-            }
             IsBusy = false;
         }
     }

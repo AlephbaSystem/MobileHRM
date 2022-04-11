@@ -6,6 +6,6 @@ namespace MobileHRM.Models.Request
 {
     public class LoginRequest
     {
-        public string PhoneNumber { get; set; }
+        public string phoneNumber { get; set; }
     }
 }

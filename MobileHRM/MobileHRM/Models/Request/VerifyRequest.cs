@@ -6,7 +6,7 @@ namespace MobileHRM.Models.Request
 {
     public class VerifyRequest
     {
-        public string PhoneNumber { get; set; } = string.Empty;
-        public string VerifyCode { get; set; } = string.Empty;
+        public string phoneNumber { get; set; } = string.Empty;
+        public string verifyCode { get; set; } = string.Empty;
     }
 }

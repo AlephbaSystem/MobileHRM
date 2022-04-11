@@ -6,14 +6,14 @@ using MobileHRM.Views.Popup;
 using MobileHRM.ViewModel;
 
 namespace MobileHRM
-{ 
+{
     public partial class App : Application
     {
         public App()
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            MainPage = new LogInPage();
+            MainPage = new NavigationPage(new LogInPage());
         }
 
         protected override void OnStart()

@@ -2,15 +2,24 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using MobileHRM.Helper;
 using MobileHRM.Models.Request;
+using Newtonsoft.Json;
 
 namespace MobileHRM.Api
 {
     public class AuthenticationApi
     {
         readonly string requestUri = "http://185.18.214.100:29172/";
+        HttpClient httpClient;
+
+        public AuthenticationApi()
+        {
+            httpClient = new HttpClient();
+        }
+
         //HttpClient client = new HttpClient();
         public async Task<bool> TestConnection()
         {
@@ -33,17 +42,15 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + "/User/Login";
-                string contentStr = JsonDataConverter<LoginRequest>.ObjectToJsonString(requestModel);
+                string url = requestUri + "User/Login";
+                string contentStr = JsonConvert.SerializeObject(requestModel);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
-                HttpRequestMessage request = new HttpRequestMessage()
+                HttpResponseMessage response = await httpClient.PostAsync(url, content);
+                if (response.IsSuccessStatusCode)
                 {
-                    Method = HttpMethod.Post,
-                    RequestUri = new Uri(url),
-                    Content = content,
-                };
-
-                return await Base.Post(request);
+                    return true;
+                }
+                return false;
             }
             catch (Exception)
             {
@@ -56,16 +63,15 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + "/User/Validate";
-                string contentStr = JsonDataConverter<VerifyRequest>.ObjectToJsonString(requestModel);
+                string url = requestUri + "User/Validate";
+                string contentStr = JsonConvert.SerializeObject(requestModel);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
-                HttpRequestMessage request = new HttpRequestMessage()
+                HttpResponseMessage response = await httpClient.PostAsync(url, content);
+                if (response.IsSuccessStatusCode)
                 {
-                    Method = HttpMethod.Post,
-                    RequestUri = new Uri(url),
-                    Content = content,
-                };
-                return await Base.Post(request);
+                    return true;
+                }
+                return false;
             }
             catch (Exception)
             {

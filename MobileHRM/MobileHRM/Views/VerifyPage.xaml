@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:MobileHRM"
-             xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
+             x:Class="MobileHRM.Views.VerifyPage"
              NavigationPage.HasNavigationBar="False"
-             x:Class="MobileHRM.Views.LogInPage"
              BackgroundImage="background.png">
-
+    
     <Grid VerticalOptions="FillAndExpand"
               RowDefinitions="*,*,*"
               HorizontalOptions="FillAndExpand">
@@ -29,8 +27,9 @@
                    FontSize="20"/>
         </StackLayout>
 
-        <Frame Padding="0"
-                   Grid.Row="1"
+        <StackLayout Grid.Row="1"                     
+                   VerticalOptions="Center">
+            <Frame Padding="0"
                    CornerRadius="10"
                    WidthRequest="250"                   
                    HeightRequest="50"
@@ -38,13 +37,37 @@
                    VerticalOptions="Center"
                    BackgroundColor="#7F8D8D8D"
                    BorderColor="#00A693">
-            <coustomEntry:CustomEntry Keyboard="Telephone"                  
-                                          x:Name="txtPhone"
-                                          Placeholder="Phone Number"
+                <coustomEntry:CustomEntry Keyboard="Telephone"                  
+                                          x:Name="txtCode"
+                                          Placeholder="CODE"
                                           PlaceholderColor="White"
                                           TextColor="#e9ecef"
                                           HorizontalTextAlignment="Center"/>
-        </Frame>
+            </Frame>
+
+            <Grid ColumnDefinitions="1.35*,*"
+                  Margin="0,5"
+                  x:Name="gridTime">
+                <Label Text="Resend OTP in :"
+                       Grid.Column="0"
+                       TextColor="#EBEBEB"
+                       HorizontalOptions="End"/>
+                <Label Text="00:00"
+                       x:Name="lblTime"
+                       Grid.Column="1"
+                       TextColor="#00A693"
+                       HorizontalOptions="Start"/>
+            </Grid>
+
+            <Label Text="RESEND"
+                   x:Name="lableResendSms"
+                   TextColor="#7B61FF"
+                   HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ResendSmsTapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
 
         <Button Grid.Row="2"
                     BackgroundColor="#F07520"
@@ -53,11 +76,10 @@
                     WidthRequest="290"
                     HeightRequest="50"
                     TranslationY="30"
-                    Text="LogIn"
+                    Text="Verify"
                     TextColor="White"
                     CornerRadius="10"
-                    Clicked="LogIn_Btn_Clk"/>
+                    Clicked="Verify_Btn_Clk"/>
 
     </Grid>
-
 </ContentPage>
