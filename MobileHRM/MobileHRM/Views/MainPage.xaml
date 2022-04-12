@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"             
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
-             xmlns:views="clr-namespace:MobileHRM.Views" xmlns:entryCustom="clr-namespace:MobileHRM.Controls"
-            BackgroundColor="#fff"
+             xmlns:views="clr-namespace:MobileHRM.Views" xmlns:entryCustom="clr-namespace:MobileHRM.Controls" xmlns:model="clr-namespace:MobileHRM.Models"
+       BackgroundColor="#fff"
             Shell.BackgroundColor="#1A1C23"
             Shell.NavBarHasShadow="False"
              x:Class="MobileHRM.MainPage"
@@ -29,7 +29,7 @@
                                 <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
                             </Frame>
 
-                            <Label HorizontalOptions="EndAndExpand" FontSize="Large" VerticalTextAlignment="Center" TextColor="#CCCCCC" Text="Hi User 01" />
+                            <Label HorizontalOptions="EndAndExpand" FontSize="Large" VerticalTextAlignment="Center" TextColor="#CCCCCC" Text="{Binding Source=MobileHRM.Models.User.UserName,StringFormat='Hi User{0}'}" />
                         </StackLayout>
                     </Shell.TitleView>
                     <StackLayout BackgroundColor="#1A1C23">

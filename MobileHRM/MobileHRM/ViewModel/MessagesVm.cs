@@ -13,6 +13,7 @@ using MobileHRM.Helper;
 using Grpc.Net.Client;
 using AlephbaGrpc.Protos;
 using Grpc.Core;
+using System.IO;
 
 namespace MobileHRM.ViewModel
 {
@@ -103,6 +104,7 @@ namespace MobileHRM.ViewModel
 
         public async void PlayVoice(object sender, EventArgs e)
         {
+            IsBusy = true;
             if (IsPlaying)
             {
                 audioplayer.Pause();
@@ -110,13 +112,14 @@ namespace MobileHRM.ViewModel
                 IsPlaying = false;
             }
             var t = sender as ImageButton;
-            var Audio = t.CommandParameter.ToString();
-            int mediaId;
-            if (int.TryParse(Audio, out mediaId))
+            var Audio = t.AutomationId.ToString();
+            if (!File.Exists(Audio))
             {
-                var data = await GetMediaByMediaId(mediaId);
-                t.CommandParameter = DataConverter.SaveAudioByByte(data);
+                var data = (GroupMessage)t.CommandParameter;
+                var Mediadata = await GetMediaByMediaId(data.mediaId);
+                DataConverter.SaveAudioByByte(Mediadata, data.createdAt);
             }
+
             if (Audio == currentAudio)
             {
                 currentAudio = string.Empty;
@@ -126,6 +129,7 @@ namespace MobileHRM.ViewModel
             audioplayer.FinishedPlaying += Audioplayer_FinishedPlaying;
             audioplayer.Play(Audio);
             IsPlaying = true;
+
         }
 
         private void Audioplayer_FinishedPlaying(object sender, EventArgs e)
