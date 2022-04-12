@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Plugin.AudioRecorder;
 using MobileHRM.Helper;
+using Grpc.Net.Client;
+using AlephbaGrpc.Protos;
+using Grpc.Core;
 
 namespace MobileHRM.ViewModel
 {
@@ -29,6 +32,7 @@ namespace MobileHRM.ViewModel
                 OnPropertyChanged(nameof(Profileimage));
             }
         }
+
         private bool _IsGroupOwner;
         public bool IsGroupOwner
         {
@@ -56,6 +60,7 @@ namespace MobileHRM.ViewModel
                 IsGroupOwner = false;
             }
             Profileimage = _image;
+            StreamService = new GrpcStreamService();
         }
         private List<GroupMessage> _items;
         public List<GroupMessage> Items
@@ -86,7 +91,18 @@ namespace MobileHRM.ViewModel
         }
         public async Task<bool> sendMessage(Message msg)
         {
-            return await request.SendMessage(msg);
+            try
+            {
+                var item = new MessageRequest { CreatedAt = msg.mediaType, MediaType = msg.mediaType, Message = msg.message, MessagesGroupId = msg.messagesGroupId, UpdateAt = msg.updateAt.ToString(), UserId = msg.userId };
+                var media = msg.media == null ? new byte[0] : msg.media;
+                item.Media = Google.Protobuf.ByteString.CopyFrom(media);
+                return await request.SendMessage(msg);
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
         }
         private ObservableCollection<MessageItem> _myMessage { get; set; }
 
@@ -152,5 +168,18 @@ namespace MobileHRM.ViewModel
             return await request.GetMediaByMediaId(mediaId);
             IsBusy = false;
         }
+        public GrpcStreamService StreamService;
+    }
+    public class GrpcStreamService
+    {
+        public GrpcStreamService()
+        {
+            Channel = GrpcChannel.ForAddress("https://185.18.214.100:29175");
+            Client = new ChatStreamService.ChatStreamServiceClient(Channel);
+            Stream = Client.joinRoom();
+        }
+        public GrpcChannel Channel { get; }
+        public ChatStreamService.ChatStreamServiceClient Client { get; }
+        public AsyncDuplexStreamingCall<MessageRequest, MessageResponse> Stream { get; set; }
     }
 }
