@@ -6,7 +6,24 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#1A1C23"
              x:Class="MobileHRM.Views.AccountingAddBusiness">
-
+    <Shell.TitleView>
+        <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent">
+            <Frame BackgroundColor="#7B61FF" VerticalOptions="CenterAndExpand" Padding="1" CornerRadius="40"  Margin="0,0,20,0">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Frame.GestureRecognizers>
+                <Frame Padding="0" CornerRadius="40">
+                    <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                </Frame>
+            </Frame>
+            <Frame CornerRadius="40" Padding="0" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                </Frame.GestureRecognizers>
+                <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
+            </Frame>
+        </StackLayout>
+    </Shell.TitleView>
     <StackLayout  Margin="20" Spacing="10">
         <Label Margin="5,20" Text="Add Customer" TextColor="#CCCCCC"
                    HorizontalOptions="Start"

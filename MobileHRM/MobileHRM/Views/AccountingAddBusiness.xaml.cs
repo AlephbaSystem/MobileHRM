@@ -20,5 +20,15 @@ namespace MobileHRM.Views
             Vm = new AddBusinessViewModel();
             BindingContext = Vm;
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -70,7 +70,7 @@ namespace MobileHRM.Views
 
         private async void OnImageButtonClicked(object sender, EventArgs e)
         {
-            if (IsBusy == true)
+            if (IsBusy != true)
             {
                 IsBusy = true;
                 ImageButton imageButton = (ImageButton)sender;
