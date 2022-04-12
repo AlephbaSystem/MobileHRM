@@ -14,11 +14,6 @@ namespace MobileHRM.Database
         public static readonly AsyncLazy<UserDatabase> Instance = new AsyncLazy<UserDatabase>(async () =>
         {
             UserDatabase instance = new UserDatabase();
-            List<SQLiteConnection.ColumnInfo> tableInfo = Database.GetConnection().GetTableInfo("UserEntitieModel");
-            if (tableInfo.Count > 0)
-            {
-                return instance;
-            }
             CreateTableResult result = await Database.CreateTableAsync<UserEntitieModel>();
             return instance;
         });
@@ -28,7 +23,6 @@ namespace MobileHRM.Database
         public UserDatabase()
         {
             Database = new SQLiteAsyncConnection(Constans.DatabasePath, Constans.Flags);
-            var q = Instance;
         }
 
         //Read All Items  

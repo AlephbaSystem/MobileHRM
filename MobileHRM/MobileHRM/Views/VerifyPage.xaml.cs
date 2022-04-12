@@ -1,5 +1,6 @@
 ﻿using MobileHRM.Api;
 using MobileHRM.Database;
+using MobileHRM.Models;
 using MobileHRM.Models.Entities;
 using MobileHRM.Models.Request;
 using System;
@@ -17,12 +18,11 @@ namespace MobileHRM.Views
     public partial class VerifyPage : ContentPage
     {
         private AuthenticationApi authenticationApi = new AuthenticationApi();
-        private UserDatabase userDatabase = new UserDatabase();
         private string _loginPhone;
         private bool isTimerRun = true;
         private int seconds = 600; //timer
 
-        
+
 
         public VerifyPage(string loginPhone)
         {
@@ -33,25 +33,31 @@ namespace MobileHRM.Views
 
         private async void Verify_Btn_Clk(object sender, EventArgs e)
         {
+            (sender as Button).IsEnabled = false;
             VerifyRequest Vrequest = new VerifyRequest()
             {
                 phoneNumber = _loginPhone,
                 verifyCode = txtCode.Text
             };
-            Models.Response.VerifyResponse q = await authenticationApi.Validate(Vrequest);
+            var q = await authenticationApi.Validate(Vrequest);
             if (q != null)
             {
                 var user = new UserEntitieModel()
                 {
-                    phone=_loginPhone,
-                    token=q.token,
-                    createdAt=DateTime.Now,
+                    phone = _loginPhone,
+                    token = q.token,
+                    createdAt = DateTime.Now,
+                    Id = q.userId,
                 };
+                User.UserId = user.Id;
+                var userDatabase = UserDatabase.Instance.GetAwaiter().GetResult();
                 await userDatabase.SaveUserAsync(user);
-                await Navigation.PushAsync(new NavigationPage());
+                Application.Current.MainPage = new MainPage();
             }
+
             else await DisplayAlert("error", "check again", "ok");
-            IsBusy = false;
+
+            (sender as Button).IsEnabled = true;
         }
 
         private async void ResendSmsTapped(object sender, EventArgs e)

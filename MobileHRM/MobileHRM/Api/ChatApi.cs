@@ -196,7 +196,7 @@ namespace MobileHRM.Api
                     return new List<GroupMessage>();
                 }
                 List<GroupMessage> items = JsonDataConverter<GroupMessage[]>.JsonStringToObject(jsonStr).ToList();
-                return items;
+                return items ?? new List<GroupMessage>();
             }
             catch (Exception e)
             {

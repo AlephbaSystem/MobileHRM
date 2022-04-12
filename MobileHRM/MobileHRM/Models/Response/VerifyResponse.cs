@@ -6,7 +6,8 @@ namespace MobileHRM.Models.Response
 {
     public class VerifyResponse
     {
-        public string token { get; set; }
-        public DateTime expiration { get; set; }
+        public  string token { get; set; }
+        public  DateTime expiration { get; set; }
+        public  int userId{ get; set; }
     }
 }

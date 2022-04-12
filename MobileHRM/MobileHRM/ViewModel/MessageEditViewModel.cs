@@ -7,6 +7,7 @@ using MobileHRM.Api;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
+using System.Threading.Tasks;
 
 namespace MobileHRM.ViewModel
 {
@@ -31,7 +32,7 @@ namespace MobileHRM.ViewModel
             GroupDelete = new Command(GroupDeleteCommand);
             SaveGroupChange = new Command(UpdateGroup);
             removeUser = new Command((sender) => RemoveGroupUser(sender));
-            initialize();
+            Task.Run(() => initialize());
         }
         List<UserProfile> _GroupUsers;
         public List<UserProfile> GroupUsers

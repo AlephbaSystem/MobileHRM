@@ -60,7 +60,6 @@ namespace MobileHRM.ViewModel
                 IsGroupOwner = false;
             }
             Profileimage = _image;
-            StreamService = new GrpcStreamService();
         }
         private List<GroupMessage> _items;
         public List<GroupMessage> Items
@@ -93,9 +92,6 @@ namespace MobileHRM.ViewModel
         {
             try
             {
-                var item = new MessageRequest { CreatedAt = msg.mediaType, MediaType = msg.mediaType, Message = msg.message, MessagesGroupId = msg.messagesGroupId, UpdateAt = msg.updateAt.ToString(), UserId = msg.userId };
-                var media = msg.media == null ? new byte[0] : msg.media;
-                item.Media = Google.Protobuf.ByteString.CopyFrom(media);
                 return await request.SendMessage(msg);
             }
             catch (Exception e)
@@ -167,28 +163,5 @@ namespace MobileHRM.ViewModel
             return await request.GetMediaByMediaId(mediaId);
             IsBusy = false;
         }
-        public GrpcStreamService StreamService;
-    }
-    public class GrpcStreamService
-    {
-        public GrpcStreamService()
-        {
-            Channel = GrpcChannel.ForAddress("https://185.18.214.100:29175");
-            Client = new ChatStreamService.ChatStreamServiceClient(Channel);
-            Stream = Client.joinRoom();
-            Response = Task.Run(async () =>
-            {
-                await foreach (var item in Stream.ResponseStream.ReadAllAsync())
-                {
-                    var itm = new GroupMessage { createdAt = DateTime.Parse(item.CreatedAt), id = item.Id, media = item.Media.ToByteArray(), mediaId = item.MediaId, mediaType = item.MediaType, message = item.Message, messagesGroupId = item.MessagesGroupId, updateAt = item.UpdateAt, userId = item.UserId };
-                    AddMessage.Invoke(itm, new EventArgs());
-                }
-            });
-        }
-        public EventHandler AddMessage;
-        public GrpcChannel Channel { get; }
-        public Task Response { get; }
-        public ChatStreamService.ChatStreamServiceClient Client { get; }
-        public AsyncDuplexStreamingCall<MessageRequest, MessageResponse> Stream { get; set; }
     }
 }

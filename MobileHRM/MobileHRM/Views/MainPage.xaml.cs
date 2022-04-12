@@ -19,7 +19,6 @@ namespace MobileHRM
         public MainPage()
         {
             InitializeComponent();            
-            User.UserId = 1;
         }
 
         private async void OnTabNotification(object sender, EventArgs e)
