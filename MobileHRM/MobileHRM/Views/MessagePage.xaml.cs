@@ -15,6 +15,8 @@ using Xamarin.Essentials;
 using MobileHRM.Api;
 using MobileHRM.Views.Popup;
 using Rg.Plugins.Popup.Services;
+using Grpc.Core;
+using System.Net;
 
 namespace MobileHRM.Views
 {
@@ -26,12 +28,13 @@ namespace MobileHRM.Views
         //private readonly AudioRecorderService audioRecorderService = new AudioRecorderService();
         private AudioRecorderService ShowVoice;
 
-        public MessagePage(Models.Entities.GroupModel item)
+        public MessagePage(Models.Entities.GroupModel item1)
         {
             InitializeComponent();
-            Vm = new MessagesVm(item.id, item.image, item.ownerId);
+            Vm = new MessagesVm(item1.id, item1.image, item1.ownerId);
+            Vm.StreamService.AddMessage += MessageRecived;
             BindingContext = Vm;
-            group = item;
+            group = item1;
             title.Text = group.name;
         }
 
@@ -49,7 +52,29 @@ namespace MobileHRM.Views
             group.unSeenedMessages = 0;
             loading.IsVisible = loading.IsRunning = false;
         }
-
+        private void MessageRecived(object sender, EventArgs e)
+        {
+            var item = (GroupMessage)sender;
+            if (item.createdAt.Day != Vm.Items[Vm.Items.Count - 2].createdAt.Day)
+            {
+                if (item.createdAt.Day == DateTime.Now.Day)
+                {
+                    messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = "Today" });
+                }
+                else
+                    messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = item.createdAt.ToString("dd MMMM") });
+            }
+            if (item.mediaType == "Voice")
+            {
+                makeVoiceFrame(item);
+            }
+            else if (item.mediaType == "Image")
+            {
+                MakeImageFrame(item);
+            }
+            else
+                MakeFrame(item);
+        }
 
         //Make Frame for messagae and voice  *******************************//
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -68,8 +93,8 @@ namespace MobileHRM.Views
                 };
                 messageEntry.Text = string.Empty;
                 await Vm.sendMessage(message);
-                await Vm.intialize();
-                await addmessage();
+                //await Vm.intialize();
+                //await addmessage();
             }
             var lastchild = messagelayout.Children.LastOrDefault();
             if (lastchild != null)
@@ -77,7 +102,6 @@ namespace MobileHRM.Views
                 await scrollview.ScrollToAsync(lastchild, ScrollToPosition.MakeVisible, true);
             }
         }
-
 
         private Task addmessage()
         {
@@ -120,19 +144,10 @@ namespace MobileHRM.Views
             return Task.CompletedTask;
         }
 
-
         private string DateConveter(DateTime date)
         {
-            if (date.Day != DateTime.Now.Day)
-            {
-                return date.ToLocalTime().ToString("hh: mm");
-            }
-            else
-            {
-                return date.ToLocalTime().ToString("dd MMMM yyyy");
-            }
+            return date.ToLocalTime().ToString("hh: mm");
         }
-
 
         private void MakeImageFrame(GroupMessage item)
         {
@@ -185,12 +200,12 @@ namespace MobileHRM.Views
         {
             Frame Layout = (sender as Frame);
             var data = (GroupMessage)(Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            if (data.media != null || data.media!=null && data.media.Length > 1)
+            if (data.media != null || data.media != null && data.media.Length > 1)
             {
                 return;
             }
-            var imageByte=await Vm.GetMediaByMediaId(data.mediaId);
-            if (imageByte==null)
+            var imageByte = await Vm.GetMediaByMediaId(data.mediaId);
+            if (imageByte == null)
             {
                 return;
             }
@@ -202,7 +217,7 @@ namespace MobileHRM.Views
 
         private void MakeFrame(GroupMessage item)
         {
-            Frame frm = new Frame();
+            Frame frm = new Frame { Padding = new Thickness(10, 5) };
             var timelabel = new Label
             {
                 Text = DateConveter(item.createdAt),
@@ -318,6 +333,9 @@ namespace MobileHRM.Views
 
         // *************************************************************************//
         KnowledgeApi Reqest = new KnowledgeApi();
+
+        public Task Response { get; }
+
         //***********************************************************************//
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {

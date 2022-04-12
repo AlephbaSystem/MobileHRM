@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-option csharp_namespace = "GrpcService1.Protos";
+option csharp_namespace = "AlephbaGrpc.Protos";
 package GrpcSreaming;
 import "google/protobuf/timestamp.proto";
-service StreamService
+service ChatStreamService
 {
-	rpc ChatStreaming(stream MessageRequest) returns (stream MessageResponse);
+	rpc joinRoom(stream MessageRequest) returns (stream MessageResponse);
 }
 
 message MessageRequest
