@@ -102,7 +102,6 @@ namespace MobileHRM.ViewModel
             {
                 return false;
             }
-            
         }
         private ObservableCollection<MessageItem> _myMessage { get; set; }
 
@@ -177,8 +176,18 @@ namespace MobileHRM.ViewModel
             Channel = GrpcChannel.ForAddress("https://185.18.214.100:29175");
             Client = new ChatStreamService.ChatStreamServiceClient(Channel);
             Stream = Client.joinRoom();
+            Response = Task.Run(async () =>
+            {
+                await foreach (var item in Stream.ResponseStream.ReadAllAsync())
+                {
+                    var itm = new GroupMessage { createdAt = DateTime.Parse(item.CreatedAt), id = item.Id, media = item.Media.ToByteArray(), mediaId = item.MediaId, mediaType = item.MediaType, message = item.Message, messagesGroupId = item.MessagesGroupId, updateAt = item.UpdateAt, userId = item.UserId };
+                    AddMessage.Invoke(itm, new EventArgs());
+                }
+            });
         }
+        public EventHandler AddMessage;
         public GrpcChannel Channel { get; }
+        public Task Response { get; }
         public ChatStreamService.ChatStreamServiceClient Client { get; }
         public AsyncDuplexStreamingCall<MessageRequest, MessageResponse> Stream { get; set; }
     }

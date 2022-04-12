@@ -32,18 +32,10 @@ namespace MobileHRM.Views
         {
             InitializeComponent();
             Vm = new MessagesVm(item1.id, item1.image, item1.ownerId);
+            Vm.StreamService.AddMessage += MessageRecived;
             BindingContext = Vm;
             group = item1;
             title.Text = group.name;
-            Response = Task.Run(async () =>
-            {
-                await foreach (var item in Vm.StreamService.Stream.ResponseStream.ReadAllAsync())
-                {
-                    var itm = new GroupMessage { createdAt = DateTime.Parse(item.CreatedAt), id = item.Id, media = item.Media.ToByteArray(), mediaId = item.MediaId, mediaType = item.MediaType, message = item.Message, messagesGroupId = item.MessagesGroupId, updateAt = item.UpdateAt, userId = item.UserId };
-                    Vm.Items.Add(itm);
-                    MakeFrame(itm);
-                }
-            });
         }
 
         protected override async void OnAppearing()
@@ -60,7 +52,29 @@ namespace MobileHRM.Views
             group.unSeenedMessages = 0;
             loading.IsVisible = loading.IsRunning = false;
         }
-
+        private void MessageRecived(object sender, EventArgs e)
+        {
+            var item = (GroupMessage)sender;
+            if (item.createdAt.Day != Vm.Items[Vm.Items.Count - 2].createdAt.Day)
+            {
+                if (item.createdAt.Day == DateTime.Now.Day)
+                {
+                    messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = "Today" });
+                }
+                else
+                    messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = item.createdAt.ToString("dd MMMM") });
+            }
+            if (item.mediaType == "Voice")
+            {
+                makeVoiceFrame(item);
+            }
+            else if (item.mediaType == "Image")
+            {
+                MakeImageFrame(item);
+            }
+            else
+                MakeFrame(item);
+        }
 
         //Make Frame for messagae and voice  *******************************//
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -79,8 +93,8 @@ namespace MobileHRM.Views
                 };
                 messageEntry.Text = string.Empty;
                 await Vm.sendMessage(message);
-                await Vm.intialize();
-                await addmessage();
+                //await Vm.intialize();
+                //await addmessage();
             }
             var lastchild = messagelayout.Children.LastOrDefault();
             if (lastchild != null)
@@ -88,7 +102,6 @@ namespace MobileHRM.Views
                 await scrollview.ScrollToAsync(lastchild, ScrollToPosition.MakeVisible, true);
             }
         }
-
 
         private Task addmessage()
         {
