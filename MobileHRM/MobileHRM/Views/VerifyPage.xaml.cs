@@ -1,4 +1,6 @@
 ﻿using MobileHRM.Api;
+using MobileHRM.Database;
+using MobileHRM.Models.Entities;
 using MobileHRM.Models.Request;
 using System;
 using System.Collections.Generic;
@@ -15,16 +17,18 @@ namespace MobileHRM.Views
     public partial class VerifyPage : ContentPage
     {
         private AuthenticationApi authenticationApi = new AuthenticationApi();
+        private UserDatabase userDatabase = new UserDatabase();
         private string _loginPhone;
-        private bool isTimerRun = false;
+        private bool isTimerRun = true;
         private int seconds = 600; //timer
 
-        //private Thread threadTime;
+        
 
         public VerifyPage(string loginPhone)
         {
             InitializeComponent();
             _loginPhone = loginPhone;
+            TimerSendSms();
         }
 
         private async void Verify_Btn_Clk(object sender, EventArgs e)
@@ -34,8 +38,16 @@ namespace MobileHRM.Views
                 phoneNumber = _loginPhone,
                 verifyCode = txtCode.Text
             };
-            if (await authenticationApi.Validate(Vrequest))
+            Models.Response.VerifyResponse q = await authenticationApi.Validate(Vrequest);
+            if (q != null)
             {
+                var user = new UserEntitieModel()
+                {
+                    phone=_loginPhone,
+                    token=q.token,
+                    createdAt=DateTime.Now,
+                };
+                await userDatabase.SaveUserAsync(user);
                 await Navigation.PushAsync(new NavigationPage());
             }
             else await DisplayAlert("error", "check again", "ok");
@@ -66,8 +78,6 @@ namespace MobileHRM.Views
         }
 
 
-
-        //DateTime seconds = new DateTime(0,0,0,0,0,600);
         private async Task TimerSendSms()
         {
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>

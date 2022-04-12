@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using MobileHRM.Helper;
 using MobileHRM.Models.Request;
+using MobileHRM.Models.Response;
 using Newtonsoft.Json;
 
 namespace MobileHRM.Api
@@ -59,7 +60,7 @@ namespace MobileHRM.Api
             }
         }
 
-        public async Task<bool> Validate(VerifyRequest requestModel)
+        public async Task<VerifyResponse> Validate(VerifyRequest requestModel)
         {
             try
             {
@@ -69,13 +70,15 @@ namespace MobileHRM.Api
                 HttpResponseMessage response = await httpClient.PostAsync(url, content);
                 if (response.IsSuccessStatusCode)
                 {
-                    return true;
+                    string con = await response.Content.ReadAsStringAsync();
+                    VerifyResponse Token = JsonConvert.DeserializeObject<VerifyResponse>(con);
+                    return Token;
                 }
-                return false;
+                return null;
             }
             catch (Exception)
             {
-                return false;
+                return null;
                 throw;
             }
         }

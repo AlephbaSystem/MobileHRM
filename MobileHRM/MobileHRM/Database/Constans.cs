@@ -21,8 +21,8 @@ namespace MobileHRM.Database
         {
             get
             {
-                var basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                return Path.Combine(basePath, DatabaseFilename);
+                var basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DatabaseFilename);
+                return basePath;
             }
         }
     }
