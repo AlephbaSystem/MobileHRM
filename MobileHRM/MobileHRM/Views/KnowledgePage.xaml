@@ -7,25 +7,30 @@
         <local:CommentReactionConverter x:Key="reactionconverter" />
     </ContentPage.Resources>
     <Shell.TitleView>
-        <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" Margin="0,0,20,0">
-            <Frame Padding="0" CornerRadius="40">
+        <StackLayout FlowDirection="RightToLeft" Spacing="10" Orientation="Horizontal" BackgroundColor="Transparent" >
+            <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF" Margin="0,0,20,0">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnProfileClicked" />
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                 </Frame.GestureRecognizers>
-                <Image HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                <Frame Padding="0" CornerRadius="40">
+                    <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                </Frame>
             </Frame>
-            <Frame BackgroundColor="#272B35" CornerRadius="40" Padding="0" VerticalOptions="CenterAndExpand">
+            <Frame CornerRadius="40" Padding="0" WidthRequest="49" HeightRequest="49" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnNotificationClicked" />
+                    <TapGestureRecognizer Tapped="OnNewFrameClicked"/>
                 </Frame.GestureRecognizers>
-                <Image Aspect="AspectFill" WidthRequest="50" HeightRequest="50" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="Notification2.png" />
+                <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
+                
             </Frame>
-            <Frame BackgroundColor="#272B35" Padding="5" CornerRadius="40" VerticalOptions="CenterAndExpand">
+
+            <Frame Padding="5" CornerRadius="40" BackgroundColor="#272B35" VerticalOptions="CenterAndExpand">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnNewFrameClicked" />
+                    <TapGestureRecognizer Tapped="OnNewFrameClicked"/>
                 </Frame.GestureRecognizers>
-                <Image Aspect="AspectFill" WidthRequest="38" HeightRequest="38" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="Plus.png" />
+                <Image Aspect="AspectFill" WidthRequest="37" HeightRequest="37" TranslationX="2" TranslationY="1" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="AddIcon.png" />
             </Frame>
+
         </StackLayout>
     </Shell.TitleView>
     <ContentPage.Content>
@@ -33,6 +38,7 @@
             BackgroundColor="#1A1C23">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="0.9"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <StackLayout
@@ -50,7 +56,7 @@
                        Text="{Binding Item.title}"/>
                 <Label
                        x:Name="Author"
-                       Margin="10"
+                       Margin="10,10,10,10"
                        VerticalOptions="Start"
                        HorizontalOptions="StartAndExpand"
                        FontSize="12"
@@ -62,8 +68,10 @@
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <Frame
-                                CornerRadius="15"
-                                BackgroundColor="Red"
+                                CornerRadius="20"
+                                  Margin="10,0,0,0"
+                                    Padding="25,10"
+                                BackgroundColor="{Binding color}"
                                 >
                                     <Label Text="{Binding tagName}"
                                         FontSize="9"
@@ -76,41 +84,75 @@
                     </StackLayout>
                 </ScrollView>
             </StackLayout>
-            <Frame Grid.Row="1"  BackgroundColor="#26AB5B" Padding="5" >
-                <Frame BackgroundColor="#272B35" >
-                    <ScrollView>
+            <BoxView 
+                BackgroundColor="#00A693"
+                 Grid.Row="1"
+                Grid.RowSpan="2"
+                HeightRequest="5"
+                VerticalOptions="Start"
+                TranslationY="2"
+                />
+
+
+            <Frame Grid.Row="2"  Padding="0" >
+                <Frame BackgroundColor="#272B35" Padding="0">
+                    <ScrollView Padding="20,0">
                         <StackLayout>
                             <Label
                                 Text="Details"
                                 TextColor="#CCCCCC"
-                                    />
+                                   Margin="10,15,5,5"
+                                FontSize="Medium"/>
                             <Label TextColor="#8D8D8D" Text="{Binding Item.detail}" />
-                            <Line BackgroundColor="#26AB5B" HeightRequest="1"/>
+                            <Line  HeightRequest="10"
+                                  X1="700"
+                                   Y1="10"
+                                   Y2="10"
+                                  X2="2"
+                                  Stroke="#00A693"
+                                  StrokeDashArray="1,1"
+                                  StrokeDashOffset="1"
+                                   StrokeThickness="6"/>
+
                             <Label
                                 Text="References"
                                 TextColor="#CCCCCC"
+                                Margin="10,20,10,10"
+                                FontSize="Medium"
                                     />
                             <StackLayout BindableLayout.ItemsSource="{Binding Item.references}">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
                                         <StackLayout Orientation="Horizontal">
                                             <Label TextColor="#8D8D8D" Text="{Binding referencesName}" HorizontalOptions="Start" />
-                                            <Label TextColor="LightBlue" Text="{Binding link}" TextDecorations="Underline"  HorizontalOptions="EndAndExpand"  HorizontalTextAlignment="End"/>
+                                            <Label TextColor="#7B61FF" Text="{Binding link}" TextDecorations="Underline"  HorizontalOptions="EndAndExpand"  HorizontalTextAlignment="End"/>
                                         </StackLayout>
                                     </DataTemplate>
                                 </BindableLayout.ItemTemplate>
                             </StackLayout>
-                            <Line BackgroundColor="#26AB5B" HeightRequest="1"/>
+                            <Line  HeightRequest="10"
+                                  X1="700"
+                                  X2="2"
+                                   Y1="10"
+                                   Y2="10"
+                                  Stroke="#00A693"
+                                  StrokeDashArray="1,1"
+                                  StrokeDashOffset="1"
+                                   StrokeThickness="6"/>
                             <Label
                                 Text="Comments"
                                 TextColor="#CCCCCC"
+                                Margin="10,20,10,10"
+                                FontSize="Medium"
                                     />
-                            <StackLayout BindableLayout.ItemsSource="{Binding Comments}">
+                            <StackLayout BindableLayout.ItemsSource="{Binding Comments}" Margin="0,5,0,20"
+                                         Spacing="10">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
-                                        <Frame Padding="0" CornerRadius="10" BackgroundColor="#1A1C23" >
+                                        <Frame Padding="0" CornerRadius="10" BackgroundColor="#1A1C23">
                                             <Grid ColumnDefinitions="2.5*,*,*" RowDefinitions="1*,2*">
-                                                <Frame x:Name="smile" Grid.Column="1" Grid.Row="0" CornerRadius="40" IsEnabled="{Binding isLike,Converter={StaticResource Key=reactionconverter},ConverterParameter={Binding reactionId}}" Margin="0,10,0,0" BackgroundColor="#272B35" Padding="0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Frame x:Name="smile" Grid.Column="2" Grid.Row="0"
+                                                       CornerRadius="40" IsEnabled="{Binding isLike,Converter={StaticResource Key=reactionconverter},ConverterParameter={Binding reactionId}}" Margin="0,10,0,0" BackgroundColor="Transparent" Padding="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
                                                     <Frame.Triggers>
                                                         <DataTrigger TargetType="Frame" Binding="{Binding IsEnabled,Source={x:Reference frown}}" Value="false">
                                                             <Setter Property="BackgroundColor" Value="Silver" />
@@ -121,7 +163,9 @@
                                                     </Frame.GestureRecognizers>
                                                     <Image WidthRequest="40" HeightRequest="40" VerticalOptions="CenterAndExpand"  Aspect="AspectFit" Source="smile.png"  />
                                                 </Frame>
-                                                <Frame Grid.Column="2" Grid.Row="0" x:Name="frown" CornerRadius="40" IsEnabled="{Binding Path=IsEnabled,Source={x:Reference smile}}" BackgroundColor="#272B35" Padding="5" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Frame Grid.Column="2" Grid.Row="0" x:Name="frown" CornerRadius="40" IsEnabled="{Binding Path=IsEnabled,Source={x:Reference smile}}" BackgroundColor="#272B35" Padding="0" 
+                                                       HorizontalOptions="End" VerticalOptions="CenterAndExpand"
+                                                       Margin="0,0,10,0">
                                                     <Frame.Triggers>
                                                         <DataTrigger TargetType="Frame" Binding="{Binding IsEnabled,Source={x:Reference smile}}" Value="false">
                                                             <Setter Property="BackgroundColor" Value="Silver" />
@@ -132,11 +176,14 @@
                                                     </Frame.GestureRecognizers>
                                                     <Image WidthRequest="27" HeightRequest="27" VerticalOptions="FillAndExpand"  Aspect="AspectFit" Source="frown.png" />
                                                 </Frame>
-                                                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"  >
-                                                    <Frame  WidthRequest="40" HeightRequest="40"  CornerRadius="20" Padding="0" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"  >
+                                                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand">
+                                                    <Frame  WidthRequest="40" HeightRequest="40"
+                                                            CornerRadius="20" Padding="0" VerticalOptions="CenterAndExpand"
+                                                            HorizontalOptions="Start"
+                                                            TranslationY="5">
                                                         <Image Source="imageUser.png" VerticalOptions="CenterAndExpand" Aspect="AspectFit" />
                                                     </Frame>
-                                                    <StackLayout Orientation="Vertical">
+                                                    <StackLayout Padding="0">
                                                         <Label
                                                             FontSize="Small"
                                                             Text="{Binding userId,StringFormat='user {0}'}"
@@ -144,8 +191,8 @@
                                                             />
                                                         <Label
                                                             FontSize="Micro"
-                                                            Text="{Binding createAt}"
-                                                            VerticalTextAlignment="Center"
+                                                            Text="{Binding createAt,StringFormat='{0:yy-MM-dd-hh:mm}'}"
+                                                            VerticalTextAlignment="Start"
                                                             HorizontalTextAlignment="End"
                                                             TextColor="#8D8D8D"
                                                             />
