@@ -5,6 +5,7 @@ using MobileHRM.Models.Entities.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,6 +19,7 @@ namespace MobileHRM.Views
         public CreateGroup(List<Models.Entities.Request.Contact> items)
         {
             InitializeComponent();
+            Task.Run(() => { });
             UsersList.ItemsSource = items;
             group.users = (from p in items select p.userId).ToList();
             group.users.Add(User.UserId);

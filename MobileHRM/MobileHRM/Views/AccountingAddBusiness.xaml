@@ -6,7 +6,24 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#1A1C23"
              x:Class="MobileHRM.Views.AccountingAddBusiness">
-
+    <Shell.TitleView>
+        <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent">
+            <Frame BackgroundColor="#7B61FF" VerticalOptions="CenterAndExpand" Padding="1" CornerRadius="40"  Margin="0,0,20,0">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Frame.GestureRecognizers>
+                <Frame Padding="0" CornerRadius="40">
+                    <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                </Frame>
+            </Frame>
+            <Frame CornerRadius="40" Padding="0" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                </Frame.GestureRecognizers>
+                <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
+            </Frame>
+        </StackLayout>
+    </Shell.TitleView>
     <StackLayout  Margin="20" Spacing="10">
         <Label Margin="5,20" Text="Add Customer" TextColor="#CCCCCC"
                    HorizontalOptions="Start"
@@ -24,7 +41,7 @@
                BackgroundColor="#CCCCCC"
                CornerRadius="10"
                >
-                <customEntry:CustomEntry
+                <customEntry:CustomEntry FontAttributes="Bold"
                    Text="{Binding business.name}"
                     Placeholder="Name"
                     PlaceholderColor="#1A1C23"
@@ -51,7 +68,7 @@
                BackgroundColor="#CCCCCC"
                CornerRadius="10"
                >
-                <customEntry:CustomEntry
+                <customEntry:CustomEntry FontAttributes="Bold"
                                       Text="{Binding business.address}"
                     Placeholder="Address"
                     PlaceholderColor="#1A1C23"
@@ -79,7 +96,7 @@
                BackgroundColor="#CCCCCC"
                CornerRadius="10"
                >
-                <customEntry:CustomEntry
+                <customEntry:CustomEntry FontAttributes="Bold"
                                       Text="{Binding business.email}"
                     Placeholder="Email"
                     PlaceholderColor="#1A1C23"
@@ -110,6 +127,7 @@
                 <customEntry:CustomEntry
                                       Text="{Binding business.phoneNumber}"
                     Placeholder="Phone"
+                    FontAttributes="Bold"
                     PlaceholderColor="#1A1C23"
                     FontSize="13">
 
@@ -134,13 +152,18 @@
                BackgroundColor="#CCCCCC"
                CornerRadius="10"
                >
-                <customEntry:CustomEntry
-                                      Text="{Binding business.city}"
-                    Placeholder="City"
-                    PlaceholderColor="#1A1C23"
-                    FontSize="13">
-
-                </customEntry:CustomEntry>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="City_Tapped" />
+                </Frame.GestureRecognizers>
+                <Grid ColumnDefinitions="5*,*">
+                <Label VerticalOptions="CenterAndExpand"
+                    Grid.Column="0"
+                    Text="{Binding business.city}"                    
+                    TextColor="#1A1C23"
+                    FontAttributes="Bold"
+                    FontSize="13"/>
+                    <Image Grid.Column="1" Source="Vectordir.png" VerticalOptions="CenterAndExpand" Margin="10" /> 
+                </Grid>
                 <Frame.Background>
                     <LinearGradientBrush EndPoint="0,1">
                         <GradientStop Color="#CCCCCC"
@@ -151,24 +174,26 @@
                 </Frame.Background>
             </Frame>
         </Grid>
-
+        <Label Text="* Name Is Required." VerticalOptions="EndAndExpand" TextColor="Red" IsVisible="{Binding !IsEnabled}"/>
         <Grid ColumnDefinitions="*,*,*"
                   VerticalOptions="EndAndExpand">
             <Button 
-                   Grid.Column="0"
-                   BackgroundColor="#9A031E"
-                Text="Clear"
-                Command="{Binding clear}"
-                TextColor="#EBEBEB"
-                CornerRadius="8"/>
+                     Grid.Column="0"
+                    BackgroundColor="#9A031E"
+                    Text="Clear"
+                    Command="{Binding clear}"
+                    TextColor="#EBEBEB"
+                    CornerRadius="8"
+
+                />
 
 
             <Button 
-                   Grid.Column="2" Command="{Binding save}"
-                   BackgroundColor="#26AB5B"
-                Text="Save"
-                 TextColor="#EBEBEB"
-                CornerRadius="8"/>
+                     Grid.Column="2" Command="{Binding save}"
+                    BackgroundColor="#26AB5B"
+                    Text="Save"
+                    TextColor="#EBEBEB"
+                    CornerRadius="8"/>
 
 
 

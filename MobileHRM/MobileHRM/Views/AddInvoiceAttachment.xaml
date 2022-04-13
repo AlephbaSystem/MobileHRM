@@ -11,6 +11,7 @@
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Frame CornerRadius="5" HeightRequest="60" Padding="10,0">
+ 
                             <Frame.Background>
                                 <LinearGradientBrush EndPoint="0,1">
                                     <GradientStop Offset="0.96" Color="#CCCCCC" />
@@ -18,8 +19,11 @@
                                 </LinearGradientBrush>
                             </Frame.Background>
                             <Grid ColumnDefinitions="*,*">
-                                <Label Grid.Column="0" TextColor="Black" Text="File1" VerticalOptions="CenterAndExpand" />
+                                <Label Grid.Column="0" TextColor="Black" Text="File" VerticalOptions="CenterAndExpand" />
                                 <Frame Grid.Column="1" CornerRadius="20" BackgroundColor="#9A031E" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Padding="10,8">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ItemRemove_Tapped" CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
                                     <Label Text="delete" TextColor="#EBEBEB" />
                                 </Frame>
                             </Grid>

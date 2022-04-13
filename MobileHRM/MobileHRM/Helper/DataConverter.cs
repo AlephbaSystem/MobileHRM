@@ -32,7 +32,7 @@ namespace MobileHRM.Helper
         {
             try
             {
-                if (imagebytes.Length==0)
+                if (imagebytes.Length == 0)
                 {
                     return null;
                 }
@@ -50,12 +50,11 @@ namespace MobileHRM.Helper
         /// </summary>
         /// <param name="imagebytes"></param>
         /// <returns>آدرس آن را برمیگرداند</returns>
-        public static ImageSource SaveImageByByte(byte[] imagebytes)
+        public static ImageSource SaveImageByByte(byte[] imagebytes, DateTime dateTime)
         {
             try
             {
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + $"Image-{imageindex}.jpg";
-                imageindex++;
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + $"Image-{dateTime.ToString("yyyy_MM_dd__HH_mm_ss")}.jpg";
                 File.WriteAllBytes(path, imagebytes);
                 return ImageSource.FromFile(path);
             }
@@ -65,18 +64,15 @@ namespace MobileHRM.Helper
                 throw;
             }
         }
-        private static int imageindex { get; set; } = 0;
-        private static int voiceindex { get; set; } = 0;
-        public static string SaveAudioByByte(byte[] Audiobytes)
+        public static string SaveAudioByByte(byte[] Audiobytes, DateTime dateTime)
         {
             try
             {
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + $"Audio-{voiceindex}.wav";
-                voiceindex++;
-                //if(File.Exists(path))
-                //{
-                //    return path;
-                //}
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + $"Audio-{dateTime.ToString("yyyy_MM_dd__HH_mm_ss")}.wav";
+                if (File.Exists(path))
+                {
+                    return path;
+                }
                 File.WriteAllBytes(path, Audiobytes);
                 return path;
             }

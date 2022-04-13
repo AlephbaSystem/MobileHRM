@@ -49,6 +49,7 @@ namespace MobileHRM.Views
             if (result == "1" || result == "2")
             {
                 vm.InvoiceDetail.type = int.Parse(result);
+                vm.InvoiceDetail = vm.InvoiceDetail;
             }
         }
     }

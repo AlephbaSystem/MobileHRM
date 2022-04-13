@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
              x:Class="MobileHRM.Views.VerifyPage"
              NavigationPage.HasNavigationBar="False"
-             BackgroundImage="background.png">
+             BackgroundImage="background.png"
+             x:Name="page">
     
     <Grid VerticalOptions="FillAndExpand"
               RowDefinitions="*,*,*"
               HorizontalOptions="FillAndExpand">
+
         <StackLayout>
             <ImageButton VerticalOptions="Start"
                          Margin="0,50,0,0"
@@ -16,7 +18,7 @@
                          HorizontalOptions="Center"
                          Source="Alephba.png"
                          WidthRequest="172"
-                         HeightRequest="172"/>
+                         HeightRequest="172" />
 
             <Label HorizontalOptions="Center"
                    VerticalOptions="End"
@@ -80,6 +82,8 @@
                     TextColor="White"
                     CornerRadius="10"
                     Clicked="Verify_Btn_Clk"/>
-
+        <Frame Grid.RowSpan="3" IsVisible="{Binding IsBusy,Source={x:Reference page}}" BackgroundColor="#9d000000">
+            <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsRunning="{Binding IsBusy,Source={x:Reference page}}" />
+        </Frame>
     </Grid>
 </ContentPage>

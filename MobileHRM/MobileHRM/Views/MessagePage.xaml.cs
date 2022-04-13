@@ -69,8 +69,8 @@ namespace MobileHRM.Views
                 };
                 messageEntry.Text = string.Empty;
                 await Vm.sendMessage(message);
-                //await Vm.intialize();
-                //await addmessage();
+                await Vm.intialize();
+                await addmessage();
             }
             var lastchild = messagelayout.Children.LastOrDefault();
             if (lastchild != null)
@@ -130,41 +130,52 @@ namespace MobileHRM.Views
             Frame frm = new Frame
             {
                 Padding = new Thickness(0),
-                CornerRadius = 20
+                CornerRadius = 20,
             };
             Label timelabel = new Label
             {
                 Text = DateConveter(item.createdAt),
                 FontSize = 8,
                 TextColor = Color.Silver,
-                HorizontalTextAlignment = TextAlignment.End,
+                HorizontalOptions = LayoutOptions.EndAndExpand,
                 Margin = new Thickness(30, 0, 30, 10)
             };
             var gesture = new TapGestureRecognizer();
             gesture.Tapped += Message_Tapped;
             gesture.CommandParameter = item;
             frm.GestureRecognizers.Add(gesture);
-            var pad = timelabel.Padding;
-            pad.Top += 2;
-            timelabel.Padding = pad;
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + $"Image-{item.createdAt.ToString("yyyy_MM_dd__HH_mm_ss")}.jpg"; //ImagePath
+            frm.AutomationId = path;
+            Image imageFile = new Image
+            {
+                Aspect = Aspect.AspectFill,
+                HorizontalOptions = LayoutOptions.EndAndExpand,
+                VerticalOptions = LayoutOptions.EndAndExpand,
+                HeightRequest = 80,
+                WidthRequest = 80,               
+                Margin=new Thickness(4,4,0,0),
+            };
             if (User.UserId == item.userId)
             {
                 frm.Margin = new Thickness(5, 15, 70, 15);
                 frm.BackgroundColor = Color.FromHex("#1A1C23");
+                imageFile.HorizontalOptions = LayoutOptions.StartAndExpand;
+                imageFile.VerticalOptions = LayoutOptions.StartAndExpand;
             }
             else
             {
-                //timelabel.HorizontalTextAlignment = TextAlignment.End;
                 frm.Margin = new Thickness(70, 15, 5, 15);
                 frm.BackgroundColor = Color.FromHex("#8D8D8D");
-            }
-            Image imageFile = new Image
-            {
-                Aspect = Aspect.AspectFit,
-                Source = ImageSource.FromResource("Alephba.png"),
-                HorizontalOptions = LayoutOptions.FillAndExpand
-            };
+            }            
 
+            if (File.Exists(path))
+            {
+                imageFile.Source = ImageSource.FromFile(path);
+            }
+            else
+            {
+                imageFile.Source = "ChessBoard.png";
+            }
             StackLayout stack = new StackLayout();
             stack.Children.Add(imageFile);
             stack.Children.Add(timelabel);
@@ -176,19 +187,13 @@ namespace MobileHRM.Views
         {
             Frame Layout = (sender as Frame);
             var data = (GroupMessage)(Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            if (data.media != null || data.media != null && data.media.Length > 1)
+            if (!File.Exists(Layout.AutomationId))
             {
-                return;
+                data.media = await Vm.GetMediaByMediaId(data.mediaId);
+                (Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter = data;
+                var imageSource = DataConverter.SaveImageByByte(data.media, data.createdAt);
+                ((Layout.Content as StackLayout).Children[0] as Image).Source = imageSource;
             }
-            var imageByte = await Vm.GetMediaByMediaId(data.mediaId);
-            if (imageByte == null)
-            {
-                return;
-            }
-            data.media = imageByte;
-            (Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter = data;
-            var imageSource = DataConverter.SaveImageByByte(imageByte);
-            ((Layout.Content as StackLayout).Children[0] as Image).Source = imageSource;
         }
 
         private void MakeFrame(GroupMessage item)
@@ -304,7 +309,8 @@ namespace MobileHRM.Views
                 f.BackgroundColor = Color.FromHex("#8D8D8D");
             }
             messagelayout.Children.Add(f);
-            ImgPlayer.CommandParameter = msg.mediaId;
+            ImgPlayer.CommandParameter = msg;
+            ImgPlayer.AutomationId = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + $"Audio-{msg.createdAt.ToString("yyyy_MM_dd__HH_mm_ss")}.wav";
         }
 
         // *************************************************************************//

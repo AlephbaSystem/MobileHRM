@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"             
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
-             xmlns:views="clr-namespace:MobileHRM.Views" xmlns:entryCustom="clr-namespace:MobileHRM.Controls"
+             xmlns:views="clr-namespace:MobileHRM.Views" xmlns:entryCustom="clr-namespace:MobileHRM.Controls" xmlns:model="clr-namespace:MobileHRM.Models"
             BackgroundColor="#fff"
+            xmlns:local="clr-namespace:MobileHRM.Models"
             Shell.BackgroundColor="#1A1C23"
             Shell.NavBarHasShadow="False"
              x:Class="MobileHRM.MainPage"
@@ -21,6 +22,7 @@
                                 <Frame Padding="0" CornerRadius="40">
                                     <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
                                 </Frame>
+                                
                             </Frame>
                             <Frame CornerRadius="40" Padding="0" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
                                 <Frame.GestureRecognizers>
@@ -28,8 +30,7 @@
                                 </Frame.GestureRecognizers>
                                 <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
                             </Frame>
-
-                            <Label HorizontalOptions="EndAndExpand" FontSize="Large" VerticalTextAlignment="Center" TextColor="#CCCCCC" Text="Hi User 01" />
+                            <Label HorizontalOptions="EndAndExpand" FontSize="Large" VerticalTextAlignment="Center" TextColor="#CCCCCC" Text="{Binding Source={x:Static local:User.UserName},StringFormat='Hi {0}'}" />
                         </StackLayout>
                     </Shell.TitleView>
                     <StackLayout BackgroundColor="#1A1C23">
@@ -51,26 +52,25 @@
                                Margin="10,0,10,40">
                             <ScrollView Padding="0">
                                 <StackLayout Spacing="10">
-
                                     <Frame Padding="0"
-                               Margin="1"
-                               BackgroundColor="#272B35"
-                               CornerRadius="11">
+                                           Margin="1"
+                                           BackgroundColor="#272B35"
+                                           CornerRadius="11">
                                         <Grid RowDefinitions="0.5*, 2*, 0.2*, 2*, 0.5*">
                                             <Grid Grid.Row="1" ColumnDefinitions="3*,0*,10*" 
                                           x:Name="PunchInGrid">
                                                 <Frame CornerRadius="50"
-                                       Grid.Column="0"
-                                       HeightRequest="50"
-                                       BackgroundColor="#1C1F26"
-                                       WidthRequest="50"
-                                       VerticalOptions="CenterAndExpand"
-                                       HorizontalOptions="End"
-                                       Margin="0"
-                                       Padding="0">
+                                                       Grid.Column="0"
+                                                       HeightRequest="50"
+                                                       BackgroundColor="#1C1F26"
+                                                       WidthRequest="50"
+                                                       VerticalOptions="CenterAndExpand"
+                                                       HorizontalOptions="End"
+                                                       Margin="0"
+                                                       Padding="0">
                                                     <Image BackgroundColor="#1C1F26"
-                                             Margin="10"
-                                         Source="punchIn.png"/>
+                                                           Margin="10"
+                                                            Source="punchIn.png"/>
                                                 </Frame>
                                                 <StackLayout Grid.Column="2" Padding="5" Spacing="0">
                                                     <Label Text="Not yet" VerticalOptions="Start" TextColor="#CCCCCC"/>

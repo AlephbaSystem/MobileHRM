@@ -5,7 +5,8 @@
              xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
              NavigationPage.HasNavigationBar="False"
              x:Class="MobileHRM.Views.LogInPage"
-             BackgroundImage="background.png">
+             BackgroundImage="background.png"
+             x:Name="page">
 
     <Grid VerticalOptions="FillAndExpand"
               RowDefinitions="*,*,*"
@@ -57,7 +58,9 @@
                     TextColor="White"
                     CornerRadius="10"
                     Clicked="LogIn_Btn_Clk"/>
-
+        <Frame Grid.RowSpan="3" IsVisible="{Binding IsBusy,Source={x:Reference page}}" BackgroundColor="#9d000000">
+            <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsRunning="{Binding IsBusy,Source={x:Reference page}}" />
+        </Frame>
     </Grid>
 
 </ContentPage>

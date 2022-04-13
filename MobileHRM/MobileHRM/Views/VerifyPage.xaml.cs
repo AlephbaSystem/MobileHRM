@@ -33,31 +33,34 @@ namespace MobileHRM.Views
 
         private async void Verify_Btn_Clk(object sender, EventArgs e)
         {
-            (sender as Button).IsEnabled = false;
-            VerifyRequest Vrequest = new VerifyRequest()
+            if (!IsBusy)
             {
-                phoneNumber = _loginPhone,
-                verifyCode = txtCode.Text
-            };
-            var q = await authenticationApi.Validate(Vrequest);
-            if (q != null)
-            {
-                var user = new UserEntitieModel()
+                IsBusy = true;
+                VerifyRequest Vrequest = new VerifyRequest()
                 {
-                    phone = _loginPhone,
-                    token = q.token,
-                    createdAt = DateTime.Now,
-                    Id = q.userId,
+                    phoneNumber = _loginPhone,
+                    verifyCode = txtCode.Text
                 };
-                User.UserId = user.Id;
-                var userDatabase = UserDatabase.Instance.GetAwaiter().GetResult();
-                await userDatabase.SaveUserAsync(user);
-                Application.Current.MainPage = new MainPage();
+                var q = await authenticationApi.Validate(Vrequest);
+                if (q != null)
+                {
+                    var user = new UserEntitieModel()
+                    {
+                        phone = _loginPhone,
+                        token = q.token,
+                        createdAt = DateTime.Now,
+                        Id = q.userId,
+                    };
+                    User.UserId = user.Id;
+                    var userDatabase = UserDatabase.Instance.GetAwaiter().GetResult();
+                    await userDatabase.SaveUserAsync(user);
+                    Application.Current.MainPage = new MainPage();
+                }
+
+                else await DisplayAlert("error", "check again", "ok");
+                IsBusy = false;
             }
 
-            else await DisplayAlert("error", "check again", "ok");
-
-            (sender as Button).IsEnabled = true;
         }
 
         private async void ResendSmsTapped(object sender, EventArgs e)

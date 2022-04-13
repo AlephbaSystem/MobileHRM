@@ -40,15 +40,33 @@ namespace MobileHRM.ViewModel
         AccountingApi Api = new AccountingApi();
         private async void SaveInvoice(object sender)
         {
+            if (InvoiceDetail.type==0 || InvoiceDetail.businessId==0 || InvoiceDetail.attachments==null || InvoiceDetail.attachments.Count==0)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error!","Please Fill All Information \nThen try Again!","Back");
+                return;
+            }
             await Api.PostInvoice(InvoiceDetail);
             await Application.Current.MainPage.Navigation.PopAsync();
         }
         private void clearInvoice(object sender)
         {
-            InvoiceDetail = new Invoice();            
+            InvoiceDetail = new Invoice();
             InvoiceDetail.attachments = new ObservableCollection<Models.Entities.Attachment>();
         }
         public ICommand save { protected set; get; }
         public ICommand clear { protected set; get; }
+        private bool _isEnabled;
+        public bool IsEnabled
+        {
+            get
+            {
+                return _isEnabled;
+            }
+            set
+            {
+                _isEnabled = value;
+                OnPropertyChanged(nameof(IsEnabled));
+            }
+        }
     }
 }
