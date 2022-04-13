@@ -105,7 +105,12 @@ namespace MobileHRM.Views
         private async void Refresh_Tapped(object sender, EventArgs e)
         {
             IsBusy = true;
-            Balance.Text = $"Balance: {await request.GetBalance()} Riyal";
+            var res = await request.GetBalance();
+            if (res==-1)
+            {
+                Balance.Text = "Sorry \nFailed To Load Balance Try Again Later! ";
+            }
+            Balance.Text = $"Balance: {res} Riyal";
             IsBusy = false;
         }
         public async void Animate(View label)

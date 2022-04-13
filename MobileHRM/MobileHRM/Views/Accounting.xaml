@@ -26,6 +26,7 @@
             <ImageButton Aspect="AspectFill" WidthRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_Clicked" Source="arrow2.png"/>
         </StackLayout>
     </Shell.TitleView>
+    <ScrollView>
     <StackLayout VerticalOptions="StartAndExpand" Margin="20">
         <sharpnado:Shadows>
             <sharpnado:Shadows.Shades>
@@ -129,8 +130,8 @@
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                     </Frame.GestureRecognizers>
                     <Grid RowDefinitions="*,*">
-                        <Label Grid.Row="0" x:Name="Balance" VerticalOptions="End" HorizontalOptions="Center" TextColor="#CCCCCC"/>
-                        <Label Grid.Row="1" Text="Refresh" VerticalOptions="Start" HorizontalOptions="Center" TextColor="#7B61FF">
+                            <Label Grid.Row="0" x:Name="Balance" VerticalOptions="End" HorizontalOptions="Center" TextColor="#CCCCCC"/>
+                            <Label Grid.Row="1" Text="Refresh" VerticalOptions="Start" HorizontalOptions="Center" TextColor="#7B61FF">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Refresh_Tapped" />
                             </Label.GestureRecognizers>
@@ -143,5 +144,5 @@
             </Grid>
         </StackLayout>
     </StackLayout>
-
+    </ScrollView>
 </ContentPage>

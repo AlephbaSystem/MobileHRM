@@ -46,6 +46,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="PersianDate" Version="3.5.5" />
 		<PackageReference Include="Plugin.AudioRecorder" Version="1.1.0" />
 		<PackageReference Include="protobuf-net" Version="3.0.101" />
 		<PackageReference Include="Sharpnado.Shadows" Version="1.2.0" />
@@ -58,7 +59,7 @@
 		<PackageReference Include="Syncfusion.Xamarin.SfImageEditor" Version="16.1.0.37" />
 		<PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="19.4.0.56" />
 		<PackageReference Include="System.Collections" Version="4.3.0" />
-
+		<PackageReference Include="Vapolia.WheelPicker.Forms" Version="4.7.2" />
 		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
 
 		<PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
@@ -67,6 +68,7 @@
 
 		<PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
 		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
+		<PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
 		<PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.41" />
 	</ItemGroup>
 
@@ -157,6 +159,9 @@
 		</EmbeddedResource>
 		<EmbeddedResource Update="Views\Popup\BusinessPopup.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Popup\IRPicker.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Views\Popup\KnowledgeDetail.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>

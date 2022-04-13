@@ -30,7 +30,6 @@ namespace MobileHRM.Droid.Controls
                 Control.SetBackgroundDrawable(gd);
                 //Control.SetHintTextColor(Android.Graphics.Color.Transparent);
                 Control.SetRawInputType(InputTypes.TextFlagNoSuggestions);                
-                Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.Black));
             }
         }
     }

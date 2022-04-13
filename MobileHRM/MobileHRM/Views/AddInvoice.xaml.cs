@@ -45,12 +45,25 @@ namespace MobileHRM.Views
 
         private async void Type_Tapped(object sender, EventArgs e)
         {
-            string result = await DisplayActionSheet("Choose Type: ", "Back", null, "1", "2");
-            if (result == "1" || result == "2")
-            {
-                vm.InvoiceDetail.type = int.Parse(result);
-                vm.InvoiceDetail = vm.InvoiceDetail;
-            }
+            string result = await DisplayActionSheet("Choose Type: ", "Back", null, "خرج", "درآمد");
+            if (result == "خرج")
+                vm.InvoiceDetail.type = 0;
+            else if (result == "درآمد")
+                vm.InvoiceDetail.type = 1;
+            vm.InvoiceDetail = vm.InvoiceDetail;
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            var popup = new IRPicker();
+            popup.OnItemSelected += Date_Selected;
+            await PopupNavigation.Instance.PushAsync(popup);
+        }
+
+        private void Date_Selected(object sender, EventArgs e)
+        {
+            vm.InvoiceDetail.date = DateTime.Parse(sender.ToString());
+            vm.InvoiceDetail = vm.InvoiceDetail;
         }
     }
 }
