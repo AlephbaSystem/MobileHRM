@@ -93,5 +93,19 @@ namespace MobileHRM.Api
                 return new List<subInvoice>();
             }
         }
+        public async Task<decimal> GetBalance()
+        {
+            try
+            {
+                string uri = requestUrl + "GetBalance";
+                string ContentStr = await Base.Get(uri);
+                decimal balance = JsonDataConverter<decimal>.JsonStringToObject(ContentStr);
+                return balance;
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
     }
 }

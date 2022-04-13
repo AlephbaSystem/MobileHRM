@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobileHRM.Api;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,14 @@ namespace MobileHRM.Views
         public Accounting()
         {
             InitializeComponent();
+            request = new AccountingApi();
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
-            loading.IsVisible = loading.IsRunning = true;
-            Task.Delay(5000);
-            loading.IsVisible = loading.IsRunning = false;
+
+            Balance.Text = $"Balance: {await request.GetBalance()} Riyal";
         }
 
         private async void Balance_Tapped(object sender, EventArgs e)
@@ -30,7 +31,6 @@ namespace MobileHRM.Views
             if (!IsBusy)
             {
                 IsBusy = true;
-                await anime(sender);
             }
             IsBusy = false;
         }
@@ -40,12 +40,7 @@ namespace MobileHRM.Views
             if (!IsBusy)
             {
                 IsBusy = true;
-                await anime(sender);
-                //Frame frm = (Frame)sender;
-                //Animation animation = new Animation(v => frm.Scale = v, 0.8, 1.3, Easing.SinInOut);
-                //animation.Commit(frm, "animate", 20, 200, Easing.SinIn);
-                //await frm.ScaleTo(1, 200, Easing.SinIn);
-                //await Navigation.PushAsync(new AddInvoice());
+                await Navigation.PushAsync(new AddInvoice());
             }
             IsBusy = false;
         }
@@ -55,8 +50,7 @@ namespace MobileHRM.Views
             if (!IsBusy)
             {
                 IsBusy = true;
-                await anime(sender);
-                //await Navigation.PushAsync(new Accounting_Report());
+                await Navigation.PushAsync(new Accounting_Report());
             }
             IsBusy = false;
         }
@@ -66,8 +60,8 @@ namespace MobileHRM.Views
             if (!IsBusy)
             {
                 IsBusy = true;
-                await anime(sender);
-                //await Navigation.PushAsync(new AccountingAddBusiness());
+
+                await Navigation.PushAsync(new AccountingAddBusiness());
             }
             IsBusy = false;
         }
@@ -75,9 +69,8 @@ namespace MobileHRM.Views
         {
             if (!IsBusy)
             {
-                IsBusy = true;
-                await anime(sender);
-                //await Navigation.PushAsync(new AccountingAddBusiness());
+                IsBusy = true;;
+                await Navigation.PushAsync(new AccountingAddBusiness());
             }
             IsBusy = false;
         }
@@ -93,15 +86,6 @@ namespace MobileHRM.Views
 
         }
 
-
-        async Task anime(object sender)
-        {
-            Frame frm = (Frame)sender;
-            Animation animation = new Animation(v => frm.Scale = v, 0.8, 1.3, Easing.SinInOut);
-            animation.Commit(frm, "animate", 20, 200, Easing.SinIn);
-            await frm.ScaleTo(1, 200, Easing.SinIn);
-        }
-
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
 
@@ -115,6 +99,20 @@ namespace MobileHRM.Views
         private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
         {
 
+        }
+
+        AccountingApi request;
+        private async void Refresh_Tapped(object sender, EventArgs e)
+        {
+            IsBusy = true;
+            Balance.Text = $"Balance: {await request.GetBalance()} Riyal";
+            IsBusy = false;
+        }
+        public async void Animate(View label)
+        {
+            await label.ScaleTo(0.8, 0);
+            await label.ScaleTo(1.2, 100, Easing.SpringOut);
+            await label.ScaleTo(1, 100, Easing.SpringIn);
         }
     }
 }
