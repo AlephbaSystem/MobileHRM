@@ -68,10 +68,10 @@
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="AddInvoice_Tapped" />
                     </Frame.GestureRecognizers>
-                    <Grid RowDefinitions="*">
-                        <Label Grid.Row="0" Text="Add Invoice" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
+                </Frame>
+                <Label Grid.Row="0" Text="Add Invoice" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
 
-                        <Frame Padding="0" Grid.Column="1"
+                <Frame Padding="0" Grid.Column="1"
                             CornerRadius="15"
                                HeightRequest="130">
                     <Frame.Background>
@@ -110,7 +110,7 @@
                         </LinearGradientBrush>
                     </Frame.Background>
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Customers_Tapped" />
+                        <TapGestureRecognizer Tapped="Business_Tapped" />
                     </Frame.GestureRecognizers>
                     <Label Grid.Row="0" Text="Add Business" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
                 </Frame>
@@ -129,7 +129,7 @@
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                     </Frame.GestureRecognizers>
                     <Grid RowDefinitions="*,*">
-                        <Label Grid.Row="0" x:Name="Balance" Text="" VerticalOptions="End" HorizontalOptions="Center" TextColor="#CCCCCC"/>
+                        <Label Grid.Row="0" x:Name="Balance" VerticalOptions="End" HorizontalOptions="Center" TextColor="#CCCCCC"/>
                         <Label Grid.Row="1" Text="Refresh" VerticalOptions="Start" HorizontalOptions="Center" TextColor="#7B61FF">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Refresh_Tapped" />
