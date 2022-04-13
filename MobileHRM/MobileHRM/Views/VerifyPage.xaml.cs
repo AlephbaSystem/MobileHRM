@@ -71,9 +71,16 @@ namespace MobileHRM.Views
                 {
                     isTimerRun = true;
                     await Task.Run(async () =>
-                    {
-                        seconds = 600;
-                        await TimerSendSms();
+                    {                        
+                        LoginRequest Lrequest = new LoginRequest()
+                        {
+                            phoneNumber = _loginPhone,
+                        };
+                        if (await authenticationApi.Login(Lrequest))
+                        {
+                            seconds = 600;
+                            await TimerSendSms();
+                        }
                     });
                 }
 
