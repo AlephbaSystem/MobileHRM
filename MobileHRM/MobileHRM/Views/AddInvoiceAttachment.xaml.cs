@@ -9,17 +9,19 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Linq;
 
 namespace MobileHRM.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddInvoiceAttachment : ContentPage
     {
-        AddInvoiceViewModel _vm;
+        public AddInvoiceViewModel _vm;
         public AddInvoiceAttachment(AddInvoiceViewModel vm)
         {
             InitializeComponent();
             _vm = vm;
+            BindingContext = _vm;
         }
 
         private async void New_Clicked(object sender, EventArgs e)
@@ -29,6 +31,7 @@ namespace MobileHRM.Views
             {
                 _vm.InvoiceDetail.attachments = _vm.InvoiceDetail.attachments ?? new System.Collections.ObjectModel.ObservableCollection<Attachment>();
                 _vm.InvoiceDetail.attachments.Add(new Attachment { media = pickedFile.DataArray, mediaType = "pdf" });
+                _vm.InvoiceDetail.attachments = _vm.InvoiceDetail.attachments;
             }
         }
 
@@ -40,6 +43,13 @@ namespace MobileHRM.Views
         private async void Done_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
+        }
+
+        private void ItemRemove_Tapped(object sender, EventArgs e)
+        {
+            var data = (Attachment)((TapGestureRecognizer)(sender as Frame).GestureRecognizers[0]).CommandParameter;
+            bool res = _vm.InvoiceDetail.attachments.Remove(data);
+            _vm.InvoiceDetail.attachments = _vm.InvoiceDetail.attachments;
         }
     }
 }

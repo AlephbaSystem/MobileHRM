@@ -20,16 +20,25 @@ namespace MobileHRM.ViewModel
         private Models.Api.Business _business;
         public Models.Api.Business business
         {
-            get => _business ?? new Models.Api.Business();
+            get
+            {
+
+                return _business ?? new Models.Api.Business();
+            }
             set
             {
                 _business = value;
-                OnPropertyChanged(nameof(business));
+                OnPropertyChanged(nameof(business));                
             }
         }
         AccountingApi Api;
         private async void SaveBusiness()
         {
+            IsEnabled = !string.IsNullOrEmpty(business.name);
+            if (!IsEnabled)
+            {
+                return;
+            }
             business.employeeId = User.UserId;
             await Api.PostBusiness(business);
             await Application.Current.MainPage.Navigation.PopAsync();
@@ -40,5 +49,18 @@ namespace MobileHRM.ViewModel
         }
         public ICommand save { get; protected set; }
         public ICommand clear { get; protected set; }
+        private bool _isEnabled = true;
+        public bool IsEnabled
+        {
+            get
+            {
+                return _isEnabled;
+            }
+            set
+            {
+                _isEnabled = value;
+                OnPropertyChanged(nameof(IsEnabled));
+            }
+        }
     }
 }

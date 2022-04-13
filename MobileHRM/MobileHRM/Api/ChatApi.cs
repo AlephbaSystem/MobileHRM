@@ -245,11 +245,11 @@ namespace MobileHRM.Api
                 throw;
             }
         }
-        public async Task<List<Group>> GetAllChatsByMessage(string Message)
+        public async Task<List<Group>> GetAllChatsByMessage(string Message,int userId)
         {
             try
             {
-                string url = requestUri + $"GetChatsByMessage?Message={Message}";
+                string url = requestUri + $"GetChatsByMessage?Message={Message}&userId={userId}";
                 string jsonStr = await Base.Get(url);
                 if (jsonStr == null)
                 {

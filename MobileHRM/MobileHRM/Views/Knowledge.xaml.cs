@@ -51,6 +51,16 @@ namespace MobileHRM.Views
         {
 
         }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ImageButton_Clicked_2(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

@@ -30,5 +30,15 @@ namespace MobileHRM.Views
         {
 
         }
+
+        private async void City_Tapped(object sender, EventArgs e)
+        {
+            string result = await DisplayActionSheet("Choose City: ", "Back", null, new string[] { "Mashhad", "Tehran", "Neishabor", "Esfahan", "Yazd" });
+            if (result != "Back")
+            {
+                Vm.business.city = result;
+                Vm.business = Vm.business;
+            }
+        }
     }
 }
