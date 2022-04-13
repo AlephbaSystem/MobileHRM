@@ -87,17 +87,12 @@ namespace MobileHRM.ViewModel
 
         public async Task SearchByMessage(string message)
         {
-            if (IsBusy)
-            {
-                return;
-            }
-            IsBusy = true;
             if (string.IsNullOrEmpty(message))
             {
                 await Initialize();
                 return;
             }
-            var items = await api.GetAllChatsByMessage(message);
+            var items = await api.GetAllChatsByMessage(message,User.UserId);
             Items = new ObservableCollection<GroupModel>();
             foreach (Models.Api.Group item in items)
             {
@@ -112,7 +107,6 @@ namespace MobileHRM.ViewModel
                 });
             }
             Items = Items;
-            IsBusy = false;
         }
         public ICommand Refresh { get; protected set; }
     }
