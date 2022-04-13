@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobileHRM.Api;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace MobileHRM.Views
         public Accounting()
         {
             InitializeComponent();
+            request = new AccountingApi();
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -55,6 +57,20 @@ namespace MobileHRM.Views
         private void ImageButton_Clicked(object sender, EventArgs e)
         {
 
+        }
+
+        AccountingApi request;
+        private async void Refresh_Tapped(object sender, EventArgs e)
+        {
+            IsBusy = true;
+            Balance.Text = $"Balance: {await request.GetBalance()} Riyal";
+            IsBusy = false;
+        }
+        public async void Animate(View label)
+        {
+            await label.ScaleTo(0.8, 0);
+            await label.ScaleTo(1.2, 100, Easing.SpringOut);
+            await label.ScaleTo(1, 100, Easing.SpringIn);
         }
     }
 }
