@@ -43,7 +43,7 @@
         <StackLayout Padding="0"
                    Margin="10,0"
                     BackgroundColor="#1A1C23">
-            <sharpnado:Shadows Grid.Row="0">
+            <sharpnado:Shadows>
                 <sharpnado:Shadows.Shades>
                     <sharpnado:ImmutableShades>
                         <sharpnado:Shade Offset="0,5"  Color="White" BlurRadius="5" />

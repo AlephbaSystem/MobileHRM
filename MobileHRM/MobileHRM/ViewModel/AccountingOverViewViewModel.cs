@@ -35,11 +35,21 @@ namespace MobileHRM.ViewModel
         {
             Items = new ObservableCollection<AccountingOverView>();
             var collection = await request.GetAllSubInvoice();
-            Items = new ObservableCollection<AccountingOverView>(from p in collection
-                                                                 group p by p.date.Year into g
-                                                                 select new
-                                                                 AccountingOverView
-                                                                 { Year = g.Key.ToString(), Months = new ObservableCollection<Accounting>((from i in g select new Accounting { Month = i.date.ToString("MMMM"), Spent = i.amount }).ToList()), Spent = g.Sum(j => j.amount) });
+            Items = new ObservableCollection<AccountingOverView>(
+                from p in collection
+                group p by p.date.Year into g
+                select new
+                AccountingOverView
+                {
+                    Year = g.Key.ToString(),
+                    Months = new ObservableCollection<Accounting>((from i in g
+                                                                   select new Accounting
+                                                                   {
+                                                                       Month = i.date.ToString("MMMM"),
+                                                                       Spent = i.amount
+                                                                   }).ToList()),
+                    Spent = g.Sum(j => j.amount)
+                });
         }
     }
 }
