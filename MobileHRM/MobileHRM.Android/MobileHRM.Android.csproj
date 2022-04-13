@@ -141,6 +141,7 @@
     <AndroidResource Include="Resources\drawable\file_text.webp" />
     <AndroidResource Include="Resources\drawable\IssueTask.webp" />
     <AndroidResource Include="Resources\drawable\Vectorknowledge.webp" />
+    <AndroidResource Include="Resources\drawable\chatBackground.webp" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Alephba.png" />

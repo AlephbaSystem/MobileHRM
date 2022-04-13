@@ -46,7 +46,7 @@ namespace MobileHRM.Api
                 string url = requestUri + "User/Login";
                 string contentStr = JsonConvert.SerializeObject(requestModel);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await httpClient.PostAsync(url, content);
+                var response = await httpClient.PostAsync(url, content);
                 if (response.IsSuccessStatusCode)
                 {
                     return true;
