@@ -12,8 +12,12 @@
         <local:DateConvert x:Key="DateConverter" />
         <local:TextLenghConverter x:Key="TextLenghtConverter" />
     </ContentPage.Resources>
+    
     <Shell.TitleView>
-        <StackLayout FlowDirection="RightToLeft" Spacing="10" Orientation="Horizontal" BackgroundColor="Transparent" >
+        <StackLayout FlowDirection="RightToLeft"
+                     Spacing="10"
+                     Orientation="Horizontal" 
+                     BackgroundColor="Transparent" >
             <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF" Margin="0,0,20,0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ImageButton_Clicked" />
@@ -27,23 +31,17 @@
                     <TapGestureRecognizer Tapped="ImageButton_Clicked_1" />
                 </Frame.GestureRecognizers>
                 <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
-            </Frame>
-
-            <Frame Padding="5" CornerRadius="40" BackgroundColor="#272B35" VerticalOptions="CenterAndExpand">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ImageButton_Clicked_2" />
-                </Frame.GestureRecognizers>
-                <Image Aspect="AspectFill" WidthRequest="37" HeightRequest="37" TranslationX="2" TranslationY="1" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="AddIcon.png" />
-            </Frame>
+            </Frame>            
             <ImageButton Aspect="AspectFill" WidthRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_Clicked_3" Source="arrow2.png"/>
         </StackLayout>
     </Shell.TitleView>
+    
     <ContentPage.Content>
 
-        <StackLayout Padding="0"
-                   Margin="10,0"
+        <Grid Margin="10,0">
+        <StackLayout Padding="0"                   
                     BackgroundColor="#1A1C23">
-            <sharpnado:Shadows Grid.Row="0">
+            <sharpnado:Shadows>
                 <sharpnado:Shadows.Shades>
                     <sharpnado:ImmutableShades>
                         <sharpnado:Shade Offset="0,5"  Color="White" BlurRadius="5" />
@@ -155,5 +153,20 @@
             </RefreshView>
 
         </StackLayout>
+            <Frame Padding="5" 
+                   CornerRadius="50"
+                   HeightRequest="40"
+                   WidthRequest="40"
+                   TranslationX="-20"
+                   TranslationY="-30"
+                   BackgroundColor="#272B35"
+                   VerticalOptions="End"
+                   HorizontalOptions="End">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ImageButton_Clicked_2" />
+                </Frame.GestureRecognizers>
+                <Image Aspect="AspectFill" WidthRequest="37" HeightRequest="37" TranslationX="2" TranslationY="1" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="AddIcon.png" />
+            </Frame>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

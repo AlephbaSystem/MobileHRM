@@ -153,7 +153,7 @@ namespace MobileHRM.Views
                 VerticalOptions = LayoutOptions.EndAndExpand,
                 HeightRequest = 80,
                 WidthRequest = 80,               
-                Margin=new Thickness(4,4,0,0),
+                Margin=new Thickness(0),
             };
             if (User.UserId == item.userId)
             {
@@ -291,6 +291,8 @@ namespace MobileHRM.Views
                 HeightRequest = 30
             };
             ImgPlayer.Clicked += new EventHandler(Vm.PlayVoice);
+            Grid grid = new Grid();
+            grid.ColumnDefinitions = new ColumnDefinitionCollection() {new ColumnDefinition(),new ColumnDefinition(),new ColumnDefinition() };
             Frame f = new Frame
             {
                 CornerRadius = 10,

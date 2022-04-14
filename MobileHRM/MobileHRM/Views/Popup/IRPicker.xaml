@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage   xmlns="http://xamarin.com/schemas/2014/forms" 
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+                     x:Class="MobileHRM.Views.Popup.IRPicker"
+                     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" 
+                     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+                     xmlns:wp="clr-namespace:Vapolia.WheelPickerForms;assembly=Vapolia.WheelPickerForms"
+                     FlowDirection="RightToLeft"
+                     HasKeyboardOffset="False" 
+                     BackgroundColor="#a03D3A4B">
+    <pages:PopupPage.Animation>
+        <animations:MoveAnimation  
+        PositionIn="Bottom"
+        PositionOut="Bottom" 
+        DurationIn="400"
+        DurationOut="300"
+        EasingIn="SinOut"
+        EasingOut="SinIn"
+        HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <ContentPage.Content>
+        <yummy:PancakeView BackgroundColor="#cfcfcf" CornerRadius="60,60,0,0" Margin="0" Padding="10" VerticalOptions="CenterAndExpand">
+            <StackLayout Orientation="Vertical">
+                <Label Margin="10" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding SelectedDate}" />
+                <Grid Margin="10" >
+                    <wp:WheelPicker SelectionLinesColor="Navy" 
+                        HorizontalSpaceBetweenWheels="40" 
+                        ItemsSourceMulti="{Binding ItemsSource}"  
+                        SelectedItemsIndex="{Binding SelectedItemsIndex,Mode=TwoWay}" 
+                        Command="{Binding ItemSelectedCommand}"
+                        HorizontalOptions="Fill">
+                        <wp:WheelDefinition Width="*" HorizontalOptions="Right" />
+                        <wp:WheelDefinition Width="Auto" HorizontalOptions="Left"  />
+                        <wp:WheelDefinition Width="*" HorizontalOptions="Left"  />
+                    </wp:WheelPicker>
+                </Grid>
+                <Grid Margin="10">
+                    <Label HorizontalOptions="Center" Text="امروز" TextColor="RoyalBlue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label HorizontalOptions="End" Text="انتخاب" TextColor="RoyalBlue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectedDate_ItemSelected" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label HorizontalOptions="Start" Text="لغو" TextColor="RoyalBlue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </StackLayout>
+        </yummy:PancakeView>
+    </ContentPage.Content>
+</pages:PopupPage>

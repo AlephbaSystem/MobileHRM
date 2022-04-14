@@ -18,6 +18,10 @@ namespace MobileHRM.Views
         public Knowledge()
         {
             InitializeComponent();
+            Describtion.ItemsLayout = new LinearItemsLayout(ItemsLayoutOrientation.Vertical)
+            {
+                ItemSpacing = 15
+            };
             vm = new KnowledgeViewModel();
             BindingContext = vm;
         }
