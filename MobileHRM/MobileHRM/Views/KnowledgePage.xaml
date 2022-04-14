@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:MobileHRM.Converter"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MobileHRM.Converter"
+             xmlns:sh1="http://sharpnado.com"
              x:Class="MobileHRM.Views.KnowledgePage"
              BackgroundColor="#1A1C23" x:Name="page">
     <ContentPage.Resources>
         <local:CommentReactionConverter x:Key="reactionconverter" />
     </ContentPage.Resources>
     <Shell.TitleView>
+
         <StackLayout FlowDirection="RightToLeft" Spacing="10" Orientation="Horizontal" BackgroundColor="Transparent" >
             <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF" Margin="0,0,20,0">
                 <Frame.GestureRecognizers>
@@ -21,7 +25,7 @@
                     <TapGestureRecognizer Tapped="OnNewFrameClicked"/>
                 </Frame.GestureRecognizers>
                 <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
-                
+
             </Frame>
 
             <Frame Padding="5" CornerRadius="40" BackgroundColor="#272B35" VerticalOptions="CenterAndExpand">
@@ -43,14 +47,15 @@
             </Grid.RowDefinitions>
             <StackLayout
                 Grid.Row="0"
-                BackgroundColor="#1A1C23">
+                BackgroundColor="#1A1C23"
+                Margin="10,10,0,0">
 
                 <Label
                        x:Name="Title"
                        Margin="10"
-                       VerticalOptions="Start"
+                       VerticalOptions="Center"
                        HorizontalOptions="StartAndExpand"
-                       FontSize="24"
+                       FontSize="25"
                        FontAttributes="Bold"
                        TextColor="#CCCCCC"
                        Text="{Binding Item.title}"/>
@@ -63,7 +68,8 @@
                        TextColor="#8D8D8D"
                        Text="Amir Shafie - 19.02.2022 - 13:13 PM"
                     />
-                <ScrollView Orientation="Horizontal">
+                <ScrollView Orientation="Horizontal"
+                            HorizontalScrollBarVisibility="Never">
                     <StackLayout BindableLayout.ItemsSource="{Binding Item.tags}" Orientation="Horizontal" x:Name="Technologys">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
@@ -71,13 +77,19 @@
                                 CornerRadius="20"
                                   Margin="10,0,0,0"
                                     Padding="25,10"
-                                BackgroundColor="{Binding color}"
-                                >
+                                BackgroundColor="{Binding color}">
+
                                     <Label Text="{Binding tagName}"
                                         FontSize="9"
+                                          xct:ShadowEffect.OffsetX="1"
+                                               xct:ShadowEffect.OffsetY="3"
+                                               xct:ShadowEffect.Color="Black"
+                                               Opacity="1"
                                         TextColor="#FFFFFF"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"/>
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center">
+                                    </Label>
+                                    
                                 </Frame>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
@@ -103,7 +115,9 @@
                                 TextColor="#CCCCCC"
                                    Margin="10,15,5,5"
                                 FontSize="Medium"/>
-                            <Label TextColor="#8D8D8D" Text="{Binding Item.detail}" />
+                            <Label TextColor="#8D8D8D" Text="{Binding Item.detail}"
+                                   Margin="10,0,0,0"
+                                   />
                             <Line  HeightRequest="10"
                                   X1="700"
                                    Y1="10"
@@ -125,7 +139,9 @@
                                     <DataTemplate>
                                         <StackLayout Orientation="Horizontal">
                                             <Label TextColor="#8D8D8D" Text="{Binding referencesName}" HorizontalOptions="Start" />
-                                            <Label TextColor="#7B61FF" Text="{Binding link}" TextDecorations="Underline"  HorizontalOptions="EndAndExpand"  HorizontalTextAlignment="End"/>
+                                            <Label TextColor="#7B61FF" Text="{Binding link}" TextDecorations="Underline"
+                                                   HorizontalOptions="EndAndExpand"
+                                                   HorizontalTextAlignment="End"/>
                                         </StackLayout>
                                     </DataTemplate>
                                 </BindableLayout.ItemTemplate>
@@ -198,7 +214,13 @@
                                                             />
                                                     </StackLayout>
                                                 </StackLayout>
-                                                <Label Margin="10,0" Grid.Row="1" VerticalTextAlignment="Start" Grid.ColumnSpan="3" HorizontalTextAlignment="Start" TextColor="#CCCCCC" Text="{Binding message}" />
+                                                <Label Margin="10,0" Grid.Row="1"
+                                                       VerticalTextAlignment="Start"
+                                                       Grid.ColumnSpan="3"
+                                                       HorizontalTextAlignment="Start" 
+                                                       TextColor="#CCCCCC"
+                                                       Text="{Binding message}"
+                                                       FontSize="15"/>
                                             </Grid>
                                         </Frame>
                                     </DataTemplate>
