@@ -65,7 +65,7 @@ namespace MobileHRM.ViewModel
                     {
                         if (item.lastMessage == null)
                         {
-                            item.lastMessage = null;
+                            item.lastMessageTime = null;
                         }
                         Items.Add(new GroupModel
                         {
@@ -77,7 +77,6 @@ namespace MobileHRM.ViewModel
                             lastMessageTime = item.lastMessageTime,
                             lastMessage = item.lastMessage ?? "Nothing to show here",
                         });
-
                     }
                     Items = Items;
                     IsBusy = false;
