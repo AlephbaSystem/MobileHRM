@@ -157,14 +157,14 @@ namespace MobileHRM.Views
             };
             if (User.UserId == item.userId)
             {
-                frm.Margin = new Thickness(5, 15, 70, 15);
+                frm.Margin = new Thickness(5, 5, 70, 5);
                 frm.BackgroundColor = Color.FromHex("#1A1C23");
                 imageFile.HorizontalOptions = LayoutOptions.StartAndExpand;
                 imageFile.VerticalOptions = LayoutOptions.StartAndExpand;
             }
             else
             {
-                frm.Margin = new Thickness(70, 15, 5, 15);
+                frm.Margin = new Thickness(70, 5, 5, 5);
                 frm.BackgroundColor = Color.FromHex("#8D8D8D");
             }            
 
