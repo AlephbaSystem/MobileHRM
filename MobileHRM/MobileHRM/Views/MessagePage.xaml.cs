@@ -275,7 +275,6 @@ namespace MobileHRM.Views
             }
         }
 
-
         public void makeVoiceFrame(GroupMessage msg)
         {
             voicefrm.BackgroundColor = Color.FromHex("272B35");

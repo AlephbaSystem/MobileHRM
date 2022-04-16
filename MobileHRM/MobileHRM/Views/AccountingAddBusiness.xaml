@@ -161,6 +161,7 @@
                     Text="{Binding business.city}"                    
                     TextColor="#1A1C23"
                     FontAttributes="Bold"
+                       Margin="5,0,0,0"
                     FontSize="13"/>
                     <Image Grid.Column="1" Source="Vectordir.png" VerticalOptions="CenterAndExpand" Margin="10" /> 
                 </Grid>

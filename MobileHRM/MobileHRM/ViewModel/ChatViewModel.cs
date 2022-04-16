@@ -63,6 +63,10 @@ namespace MobileHRM.ViewModel
                     var items = await api.GetGroupsByUserd(User.UserId);
                     foreach (Models.Api.Group item in items)
                     {
+                        if (item.lastMessage == null)
+                        {
+                            item.lastMessage = null;
+                        }
                         Items.Add(new GroupModel
                         {
                             id = item.id,
@@ -70,9 +74,10 @@ namespace MobileHRM.ViewModel
                             ownerId = item.ownerId,
                             unSeenedMessages = item.unSeenedMessages,
                             image = DataConverter.ByteToImage(item.image),
+                            lastMessageTime = item.lastMessageTime,
                             lastMessage = item.lastMessage ?? "Nothing to show here",
-                            lastMessageTime = item.lastMessage == null ? new DateTime() : item.lastMessageTime,
                         });
+
                     }
                     Items = Items;
                     IsBusy = false;
