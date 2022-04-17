@@ -6,7 +6,8 @@ using Xamarin.Forms.Platform.Android;
 using MobileHRM.Controls;
 using MobileHRM.Droid.Controls;
 using System;
-
+using Android.OS;
+using Android.Views.InputMethods;
 
 [assembly: ExportRenderer(typeof(CustomEntry), typeof(CustomEntryRenderer))]
 namespace MobileHRM.Droid.Controls

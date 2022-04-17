@@ -149,11 +149,17 @@ namespace MobileHRM.Views
             Image imageFile = new Image
             {
                 Aspect = Aspect.AspectFill,
-                HorizontalOptions = LayoutOptions.EndAndExpand,
-                VerticalOptions = LayoutOptions.EndAndExpand,
+                HorizontalOptions = LayoutOptions.StartAndExpand,
+                VerticalOptions = LayoutOptions.StartAndExpand,
                 HeightRequest = 80,
-                WidthRequest = 80,               
-                Margin=new Thickness(0),
+                WidthRequest = 80,
+                Margin = new Thickness(0),
+            };
+            ActivityIndicator Downloadactivate = new ActivityIndicator
+            {
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                IsRunning = false
             };
             if (User.UserId == item.userId)
             {
@@ -165,8 +171,9 @@ namespace MobileHRM.Views
             else
             {
                 frm.Margin = new Thickness(70, 5, 5, 5);
-                frm.BackgroundColor = Color.FromHex("#8D8D8D");
-            }            
+                frm.BackgroundColor = Color.FromHex("#EBEBEB");
+                timelabel.TextColor = Color.Black;
+            }
 
             if (File.Exists(path))
             {
@@ -177,7 +184,12 @@ namespace MobileHRM.Views
                 imageFile.Source = "ChessBoard.png";
             }
             StackLayout stack = new StackLayout();
-            stack.Children.Add(imageFile);
+            var layout = new Grid { ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }, new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }, new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) } } };
+            Grid.SetColumn(imageFile, 0);
+            Grid.SetColumn(Downloadactivate, 0);
+            layout.Children.Add(imageFile);
+            layout.Children.Add(Downloadactivate);
+            stack.Children.Add(layout);
             stack.Children.Add(timelabel);
             frm.Content = stack;
             messagelayout.Children.Add(frm);
@@ -185,14 +197,23 @@ namespace MobileHRM.Views
 
         private async void Message_Tapped(object sender, EventArgs e)
         {
-            Frame Layout = (sender as Frame);
-            var data = (GroupMessage)(Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
-            if (!File.Exists(Layout.AutomationId))
+
+            if (!IsBusy)
             {
-                data.media = await Vm.GetMediaByMediaId(data.mediaId);
-                (Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter = data;
-                var imageSource = DataConverter.SaveImageByByte(data.media, data.createdAt);
-                ((Layout.Content as StackLayout).Children[0] as Image).Source = imageSource;
+                IsBusy = true;
+                Frame Layout = (sender as Frame);
+                var data = (GroupMessage)(Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+                if (!File.Exists(Layout.AutomationId))
+                {
+                    var downloadindicator = (((Layout.Content as StackLayout).Children[0] as Grid).Children[1] as ActivityIndicator);
+                    downloadindicator.IsRunning = true;
+                    data.media = await Vm.GetMediaByMediaId(data.mediaId);
+                    (Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter = data;
+                    var imageSource = DataConverter.SaveImageByByte(data.media, data.createdAt);
+                    (((Layout.Content as StackLayout).Children[0] as Grid).Children[0] as Image).Source = imageSource;
+                    downloadindicator.IsRunning = false;
+                }
+                IsBusy = false;
             }
         }
 
@@ -210,17 +231,6 @@ namespace MobileHRM.Views
             var pad = timelabel.Padding;
             pad.Top += 2;
             timelabel.Padding = pad;
-            if (User.UserId == item.userId)
-            {
-                frm.BackgroundColor = Color.FromHex("#1A1C23");
-                frm.Margin = new Thickness(5, 0, 70, 0);
-            }
-            else
-            {
-                timelabel.HorizontalTextAlignment = TextAlignment.End;
-                frm.Margin = new Thickness(70, 0, 5, 0);
-                frm.BackgroundColor = Color.FromHex("#8D8D8D");
-            }
             frm.CornerRadius = 20;
             Label lbl = new Label
             {
@@ -230,6 +240,20 @@ namespace MobileHRM.Views
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalTextAlignment = TextAlignment.Start
             };
+            if (User.UserId == item.userId)
+            {
+                frm.BackgroundColor = Color.FromHex("#1A1C23");
+                frm.Margin = new Thickness(5, 0, 70, 0);
+            }
+            else
+            {
+                timelabel.HorizontalTextAlignment = TextAlignment.End;
+                frm.Margin = new Thickness(70, 0, 5, 0);
+                frm.BackgroundColor = Color.FromHex("#EBEBEB");
+                timelabel.TextColor = Color.Black;
+                lbl.TextColor = Color.Black;
+            }
+
             var stack = new StackLayout();
             stack.Children.Add(lbl);
             stack.Children.Add(timelabel);
@@ -245,6 +269,7 @@ namespace MobileHRM.Views
         {
             if (ShowVoice != null && ShowVoice.IsRecording)
             {
+                voicefrm.BackgroundColor = Color.FromHex("272B35");
                 await voicefrm.ScaleTo(1);
                 await ShowVoice.StopRecording();
                 var message = new Message
@@ -268,6 +293,12 @@ namespace MobileHRM.Views
             }
             else
             {
+                if (await Permissions.CheckStatusAsync<Permissions.Microphone>() != PermissionStatus.Granted)
+                {
+                    var status = await Permissions.RequestAsync<Permissions.Microphone>();
+                    if (status == PermissionStatus.Denied)
+                        return;
+                }
                 await voicefrm.ScaleTo(1.3, 100);
                 voicefrm.BackgroundColor = Color.White;
                 ShowVoice = new AudioRecorderService();
@@ -277,7 +308,6 @@ namespace MobileHRM.Views
 
         public void makeVoiceFrame(GroupMessage msg)
         {
-            voicefrm.BackgroundColor = Color.FromHex("272B35");
             ImageButton ImgPlayer = new ImageButton
             {
                 Source = "playbuttonarrowhead.png",
@@ -289,41 +319,53 @@ namespace MobileHRM.Views
                 WidthRequest = 30,
                 HeightRequest = 30
             };
-            ImgPlayer.Clicked += new EventHandler(Vm.PlayVoice);
-            Grid grid = new Grid();
-            grid.ColumnDefinitions = new ColumnDefinitionCollection() {new ColumnDefinition(),new ColumnDefinition(),new ColumnDefinition() };
             Frame f = new Frame
             {
                 CornerRadius = 10,
                 Padding = new Thickness(0),
                 Content = ImgPlayer
             };
+            Label timelabel = new Label
+            {
+                Text = DateConveter(msg.createdAt),
+                FontSize = 8,
+                TextColor = Color.Silver,
+                VerticalOptions = LayoutOptions.EndAndExpand,
+                HorizontalOptions = LayoutOptions.EndAndExpand,
+                Margin = new Thickness(30, 0, 30, 10)
+            };
+            var stack = new StackLayout();
+            stack.Children.Add(ImgPlayer);
+            stack.Children.Add(timelabel);
+            stack.Children.Add(new Slider { BackgroundColor = Color.FromHex("00A693"),VerticalOptions=LayoutOptions.CenterAndExpand,HorizontalOptions=LayoutOptions.StartAndExpand });
+            f.Content = stack;
             if (msg.userId == User.UserId)
             {
                 f.BackgroundColor = Color.FromHex("#1A1C23");
                 f.Margin = new Thickness(5, 0, 70, 0);
             }
-
             else
             {
                 f.Margin = new Thickness(70, 0, 5, 0);
-                f.BackgroundColor = Color.FromHex("#8D8D8D");
+                f.BackgroundColor = Color.FromHex("#EBEBEB");
+                timelabel.TextColor = Color.Black;
             }
             messagelayout.Children.Add(f);
             ImgPlayer.CommandParameter = msg;
             ImgPlayer.AutomationId = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + $"Audio-{msg.createdAt.ToString("yyyy_MM_dd__HH_mm_ss")}.wav";
         }
 
-        // *************************************************************************//
-        KnowledgeApi Reqest = new KnowledgeApi();
-
-        public Task Response { get; }
-
         //***********************************************************************//
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
             try
             {
+                if (await Permissions.CheckStatusAsync<Permissions.Camera>() != PermissionStatus.Granted)
+                {
+                    var status = await Permissions.RequestAsync<Permissions.Camera>();
+                    if (status == PermissionStatus.Denied)
+                        return;
+                }
                 var photo = await MediaPicker.CapturePhotoAsync();
                 // canceled
                 if (photo == null)
