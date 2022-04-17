@@ -171,8 +171,8 @@ namespace MobileHRM.Views
             {
                 Aspect = Aspect.AspectFill,
                 HorizontalOptions = LayoutOptions.StartAndExpand,
+                VerticalOptions = LayoutOptions.FillAndExpand,
                 WidthRequest = 80,
-                HeightRequest = 100,
                 Margin = new Thickness(0),
             };
             ActivityIndicator Downloadactivate = new ActivityIndicator
@@ -265,14 +265,7 @@ namespace MobileHRM.Views
                 lbl.TextColor = Color.Black;
             }
             frm.CornerRadius = 20;
-            Label lbl = new Label
-            {
-                Text = item.message,
-                TextColor = Color.White,
-                FontSize = 14,
-                VerticalTextAlignment = TextAlignment.Center,
-                HorizontalTextAlignment = TextAlignment.Start
-            };
+
             var stack = new StackLayout();
             stack.Children.Add(lbl);
             stack.Children.Add(timelabel);
@@ -340,13 +333,13 @@ namespace MobileHRM.Views
             };
             ImgPlayer.Clicked += new EventHandler(Vm.PlayVoice);
             Grid grid = new Grid();
-            grid.ColumnDefinitions = new ColumnDefinitionCollection() {new ColumnDefinition(),new ColumnDefinition(),new ColumnDefinition() };
+            grid.ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition(), new ColumnDefinition(), new ColumnDefinition() };
             Frame f = new Frame
             {
                 CornerRadius = 30,
                 Padding = new Thickness(0),
                 Content = ImgPlayer,
-                HeightRequest=70
+                HeightRequest = 70
             };
             Label timelabel = new Label
             {
@@ -357,7 +350,7 @@ namespace MobileHRM.Views
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Margin = new Thickness(5, 0, 0, 10)
             };
-            var Grid = new Grid { ColumnDefinitions = new ColumnDefinitionCollection() {new ColumnDefinition { Width = new GridLength(4, GridUnitType.Star) }, new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) } }};
+            var Grid = new Grid { ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition { Width = new GridLength(4, GridUnitType.Star) }, new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) } } };
             var slider = new Slider { ThumbColor = Color.FromHex("00A693"), VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
             Grid.SetColumn(ImgPlayer, 1);
             Grid.SetColumn(timelabel, 1);
