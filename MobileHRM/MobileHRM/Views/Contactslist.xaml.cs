@@ -24,6 +24,7 @@ namespace MobileHRM.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            SelectedItems = new List<Contact>();
             vm.initialize();
         }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

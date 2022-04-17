@@ -16,6 +16,19 @@ namespace MobileHRM.ViewModel
             Refresh = new Command(RefreshItems);
         }
 
+        public bool _isEmpty = true;
+        public bool IsEmpty
+        {
+            get
+            {
+                return _isEmpty;
+            }
+            set
+            {
+                _isEmpty = value;
+                OnPropertyChanged(nameof(IsEmpty));
+            }
+        }
         private ObservableCollection<GroupModel> _items;
         public ObservableCollection<GroupModel> Items
         {
@@ -31,6 +44,7 @@ namespace MobileHRM.ViewModel
             {
                 _items = value;
                 OnPropertyChanged(nameof(Items));
+                IsEmpty = !Convert.ToBoolean(Items.Count);
             }
         }
         public bool Isrefreshing
@@ -96,7 +110,7 @@ namespace MobileHRM.ViewModel
                 await Initialize();
                 return;
             }
-            var items = await api.GetAllChatsByMessage(message,User.UserId);
+            var items = await api.GetAllChatsByMessage(message, User.UserId);
             Items = new ObservableCollection<GroupModel>();
             foreach (Models.Api.Group item in items)
             {

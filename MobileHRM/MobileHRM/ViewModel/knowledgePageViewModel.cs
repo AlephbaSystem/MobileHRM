@@ -78,7 +78,7 @@ namespace MobileHRM.ViewModel
         {
             var param = (Comment)sender;
             bool res = false;
-            if (param.reactionId == null)
+            if (param.reactionId ==0)
             {
                 res = await request.SendReaction(new Reaction() { commentId = param.commentId, isLike = !param.isLike, userId = User.UserId });
             }

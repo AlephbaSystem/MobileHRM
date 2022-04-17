@@ -41,6 +41,7 @@
                     <ActivityIndicator Grid.Row="1" Color="LightBlue" IsRunning="True" x:Name="loading"  VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"/>
                 </StackLayout>
             </ScrollView>
+            <Image Grid.Row="0" Source="EmptyMesssage.png"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Aspect="AspectFill" />
             <Frame Grid.Row="1" Padding="5"
                     VerticalOptions="Center"
                     CornerRadius="25"
