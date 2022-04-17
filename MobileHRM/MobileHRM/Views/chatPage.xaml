@@ -115,23 +115,24 @@
                                                    FontFamily="quickSandLight"
                                                    TextColor="#CCCCCC" 
                                                    FontSize="Micro"
-                                                   HorizontalOptions="End"
+                                                   HorizontalOptions="EndAndExpand"
                                                    TranslationX="-20"
-                                                   VerticalOptions="Start"/>
-                                            <Frame Padding="5,0"
-                                                   HorizontalOptions="CenterAndExpand"
+                                                   VerticalOptions="Center"/>
+                                            <Frame Padding="9,0"
+                                                   HorizontalOptions="Center"
                                                    x:Name="FrameNumber"                                               
                                                    BackgroundColor="#F07520"
-                                                   CornerRadius="50">
+                                                   CornerRadius="40">
                                                 <Frame.Triggers>
-                                                    <DataTrigger TargetType="Frame"  Value="0" Binding="{Binding Text,Source={Reference seenedMessage},TargetNullValue='0'}">
+                                                    <DataTrigger TargetType="Frame"   Value="0" Binding="{Binding Text,Source={Reference seenedMessage},TargetNullValue='0'}">
                                                         <Setter Property="IsVisible" Value="False" />
                                                     </DataTrigger>
                                                 </Frame.Triggers>
                                                 <Label xct:ShadowEffect.Color="Black"
                                                        xct:ShadowEffect.OffsetY="10"
-                                                       TextColor="White" 
-                                                       HorizontalOptions="Center"
+                                                       TextColor="White"
+                                                       TranslationY="-3"
+                                                       HorizontalOptions="CenterAndExpand"
                                                        Text="{Binding unSeenedMessages}" x:Name="seenedMessage" >
 
                                                 </Label>

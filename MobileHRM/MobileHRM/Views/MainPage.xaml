@@ -22,7 +22,7 @@
                                 <Frame Padding="0" CornerRadius="40">
                                     <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
                                 </Frame>
-                                
+
                             </Frame>
                             <Frame CornerRadius="40" Padding="0" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
                                 <Frame.GestureRecognizers>
@@ -30,7 +30,7 @@
                                 </Frame.GestureRecognizers>
                                 <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
                             </Frame>
-                            <Label HorizontalOptions="EndAndExpand" FontSize="Large" VerticalTextAlignment="Center" TextColor="#CCCCCC" Text="{Binding Source={x:Static local:User.UserName},StringFormat='Hi {0}'}" />
+                            <Label HorizontalOptions="EndAndExpand" FontSize="Large" VerticalTextAlignment="Center" TextColor="#CCCCCC" Text="{Binding Source={x:Static local:User.UserName},StringFormat='Hi {0} ,'}" />
                         </StackLayout>
                     </Shell.TitleView>
                     <StackLayout BackgroundColor="#1A1C23">
@@ -46,11 +46,13 @@
                                        Source="Search2.png"/>
                             </Grid>
                         </Frame>
-                        <Frame Padding="0"
+                        <ScrollView Padding="0">
+                            <StackLayout>
+                            <Frame Padding="0"
                                CornerRadius="11"
                                BackgroundColor="Transparent"
                                Margin="10,0,10,40">
-                            <ScrollView Padding="0">
+
                                 <StackLayout Spacing="10">
                                     <Frame Padding="0"
                                            Margin="1"
@@ -169,8 +171,9 @@
                                         </Grid>
                                     </Frame>
                                 </StackLayout>
-                            </ScrollView>
-                        </Frame>
+                            </Frame>
+                            </StackLayout>
+                        </ScrollView>
                     </StackLayout>
                 </ContentPage>
             </ShellContent>

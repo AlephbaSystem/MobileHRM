@@ -77,15 +77,19 @@ namespace MobileHRM.ViewModel
         private async void insertReaction(object sender)
         {
             var param = (Comment)sender;
-            if (param.reactionId > 0)
+            bool res = false;
+            if (param.reactionId == null)
             {
-                await request.UpdateReaction(new Models.Entities.Request.Reaction { commentId = param.commentId, userId = User.UserId, isLike = !param.isLike });
+                res = await request.SendReaction(new Reaction() { commentId = param.commentId, isLike = !param.isLike, userId = User.UserId });
             }
             else
             {
-                await request.SendReaction(new Reaction { commentId = param.commentId, userId = User.UserId, isLike = true });
+                res = await request.UpdateReaction(new Models.Entities.Request.Reaction { reactionId = param.reactionId, commentId = param.commentId, isLike = !param.isLike, userId = User.UserId });
             }
-            initialize();
+            if (res)
+            {
+                initialize();
+            }
         }
         public ICommand SendReaction { get; protected set; }
     }

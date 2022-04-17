@@ -10,6 +10,7 @@ using MobileHRM.ViewModel;
 using MobileHRM.Models.Entities;
 using Rg.Plugins.Popup.Services;
 using MobileHRM.Views.Popup;
+using Xamarin.Essentials;
 
 namespace MobileHRM.Views
 {
@@ -67,5 +68,25 @@ namespace MobileHRM.Views
         {
 
         }
+
+        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        {
+          var url=  (sender as Label).Text;
+            try
+            {
+                await Browser.OpenAsync("https://www.google.com/", BrowserLaunchMode.SystemPreferred);
+            }
+            catch (Exception errore)
+            {
+
+                // An unexpected error occured. No browser may be installed on the device.
+            }
+        }
     }
+    
 }
