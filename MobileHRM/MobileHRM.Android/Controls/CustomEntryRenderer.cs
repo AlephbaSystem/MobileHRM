@@ -25,7 +25,7 @@ namespace MobileHRM.Droid.Controls
                 Control.SetBackgroundDrawable(gd);
                 Control.SetRawInputType(InputTypes.TextFlagNoSuggestions);
                 //Control.SetHintTextColor(ColorStateList.ValueOf(Android.Graphics.Color.Black));
-               // Control.SetTextCursorDrawable(Resource.Drawable.abc_text_cursor_material);
+                // Control.SetTextCursorDrawable(Resource.Drawable.abc_text_cursor_material);
             }
         }
     }

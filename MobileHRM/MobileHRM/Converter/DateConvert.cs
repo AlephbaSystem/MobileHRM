@@ -11,7 +11,7 @@ namespace MobileHRM.Converter
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null || ((BindingBase)parameter)==null)
+            if (value == null || parameter == null)
                 return string.Empty;
 
             var datetime = (DateTime)value;

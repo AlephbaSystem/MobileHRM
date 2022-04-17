@@ -12,7 +12,7 @@ namespace MobileHRM.Models.Api
         public byte[] image { get; set; }
         public int ownerId { get; set; }
         public string lastMessage { get; set; }
-        public DateTime lastMessageTime { get; set; }
+        public DateTime? lastMessageTime { get; set; }
         public int unSeenedMessages { get; set; }
     }
 }

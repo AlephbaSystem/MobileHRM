@@ -16,8 +16,7 @@ namespace MobileHRM.Views
         public chatPage()
         {
             InitializeComponent();
-            BindingContext = vm;
-            
+            BindingContext = vm;            
         }
         protected override async void OnAppearing()
         {
