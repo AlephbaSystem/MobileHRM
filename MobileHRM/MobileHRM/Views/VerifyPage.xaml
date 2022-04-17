@@ -5,13 +5,14 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundImage="background.png"
              x:Name="page">
-    
-    <Grid VerticalOptions="FillAndExpand"
+
+    <StackLayout>
+        <Grid VerticalOptions="FillAndExpand"
               RowDefinitions="*,*,*"
               HorizontalOptions="FillAndExpand">
 
-        <StackLayout>
-            <ImageButton VerticalOptions="Start"
+            <StackLayout>
+                <ImageButton VerticalOptions="Start"
                          Margin="0,50,0,0"
                          BackgroundColor="Transparent"
                          Clicked="OnImageButtonClicked"
@@ -20,18 +21,18 @@
                          WidthRequest="172"
                          HeightRequest="172" />
 
-            <Label HorizontalOptions="Center"
+                <Label HorizontalOptions="Center"
                    VerticalOptions="End"
                    TextColor="#CCCCCC"
                    Text="LOGIN TO YOUR DASHBOARD"
                    FontFamily="Roboto"
                    TranslationY="10"
                    FontSize="20"/>
-        </StackLayout>
+            </StackLayout>
 
-        <StackLayout Grid.Row="1"                     
+            <StackLayout Grid.Row="1"                     
                    VerticalOptions="Center">
-            <Frame Padding="0"
+                <Frame Padding="0"
                    CornerRadius="10"
                    WidthRequest="250"                   
                    HeightRequest="50"
@@ -39,39 +40,39 @@
                    VerticalOptions="Center"
                    BackgroundColor="#7F8D8D8D"
                    BorderColor="#00A693">
-                <coustomEntry:CustomEntry Keyboard="Telephone"                  
+                    <coustomEntry:CustomEntry Keyboard="Telephone"                  
                                           x:Name="txtCode"
                                           Placeholder="CODE"
                                           PlaceholderColor="White"
                                           TextColor="#e9ecef"
                                           HorizontalTextAlignment="Center"/>
-            </Frame>
+                </Frame>
 
-            <Grid ColumnDefinitions="1.35*,*"
+                <Grid ColumnDefinitions="1.35*,*"
                   Margin="0,5"
                   x:Name="gridTime">
-                <Label Text="Resend OTP in :"
+                    <Label Text="Resend OTP in :"
                        Grid.Column="0"
                        TextColor="#EBEBEB"
                        HorizontalOptions="End"/>
-                <Label Text="00:00"
+                    <Label Text="00:00"
                        x:Name="lblTime"
                        Grid.Column="1"
                        TextColor="#00A693"
                        HorizontalOptions="Start"/>
-            </Grid>
+                </Grid>
 
-            <Label Text="RESEND"
+                <Label Text="RESEND"
                    x:Name="lableResendSms"
                    TextColor="#7B61FF"
                    HorizontalOptions="Center">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ResendSmsTapped"/>
-                </Label.GestureRecognizers>
-            </Label>
-        </StackLayout>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ResendSmsTapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
 
-        <Button Grid.Row="2"
+            <Button Grid.Row="2"
                     BackgroundColor="#F07520"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
@@ -82,8 +83,10 @@
                     TextColor="White"
                     CornerRadius="10"
                     Clicked="Verify_Btn_Clk"/>
-        <Frame Grid.RowSpan="3" IsVisible="{Binding IsBusy,Source={x:Reference page}}" BackgroundColor="#9d000000">
-            <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsRunning="{Binding IsBusy,Source={x:Reference page}}" />
-        </Frame>
-    </Grid>
+            <Frame Grid.RowSpan="3" IsVisible="{Binding IsBusy,Source={x:Reference page}}" BackgroundColor="#9d000000">
+                <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsRunning="{Binding IsBusy,Source={x:Reference page}}" />
+            </Frame>
+        </Grid>
+    </StackLayout>
+
 </ContentPage>

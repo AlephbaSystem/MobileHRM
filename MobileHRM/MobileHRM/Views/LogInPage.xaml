@@ -8,11 +8,12 @@
              BackgroundImage="background.png"
              x:Name="page">
 
-    <Grid VerticalOptions="FillAndExpand"
+    <StackLayout>
+        <Grid VerticalOptions="FillAndExpand"
               RowDefinitions="*,*,*"
               HorizontalOptions="FillAndExpand">
-        <StackLayout>
-            <ImageButton VerticalOptions="Start"
+            <StackLayout>
+                <ImageButton VerticalOptions="Start"
                          Margin="0,50,0,0"
                          BackgroundColor="Transparent"
                          Clicked="OnImageButtonClicked"
@@ -21,16 +22,16 @@
                          WidthRequest="172"
                          HeightRequest="172"/>
 
-            <Label HorizontalOptions="Center"
+                <Label HorizontalOptions="Center"
                    VerticalOptions="End"
                    TextColor="#CCCCCC"
                    Text="LOGIN TO YOUR DASHBOARD"
                    FontFamily="Roboto"
                    TranslationY="10"
                    FontSize="20"/>
-        </StackLayout>
+            </StackLayout>
 
-        <Frame Padding="0"
+            <Frame Padding="0"
                    Grid.Row="1"
                    CornerRadius="10"
                    WidthRequest="250"                   
@@ -39,15 +40,15 @@
                    VerticalOptions="Center"
                    BackgroundColor="#7F8D8D8D"
                    BorderColor="#00A693">
-            <coustomEntry:CustomEntry Keyboard="Telephone"                  
+                <coustomEntry:CustomEntry Keyboard="Telephone"                  
                                           x:Name="txtPhone"
                                           Placeholder="Phone Number"
                                           PlaceholderColor="White"
                                           TextColor="#e9ecef"
                                           HorizontalTextAlignment="Center"/>
-        </Frame>
+            </Frame>
 
-        <Button Grid.Row="2"
+            <Button Grid.Row="2"
                     BackgroundColor="#F07520"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
@@ -58,9 +59,10 @@
                     TextColor="White"
                     CornerRadius="10"
                     Clicked="LogIn_Btn_Clk"/>
-        <Frame Grid.RowSpan="3" IsVisible="{Binding IsBusy,Source={x:Reference page}}" BackgroundColor="#9d000000">
-            <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsRunning="{Binding IsBusy,Source={x:Reference page}}" />
-        </Frame>
-    </Grid>
+            <Frame Grid.RowSpan="3" IsVisible="{Binding IsBusy,Source={x:Reference page}}" BackgroundColor="#9d000000">
+                <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsRunning="{Binding IsBusy,Source={x:Reference page}}" />
+            </Frame>
+        </Grid>
+    </StackLayout>
 
 </ContentPage>

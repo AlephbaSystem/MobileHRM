@@ -5,6 +5,7 @@ using MobileHRM.Models.Entities;
 using MobileHRM.Models.Request;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -17,12 +18,10 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VerifyPage : ContentPage
     {
-        private AuthenticationApi authenticationApi = new AuthenticationApi();
-        private string _loginPhone;
+        private readonly AuthenticationApi authenticationApi = new AuthenticationApi();
+        private readonly string _loginPhone;
         private bool isTimerRun = true;
-        private int seconds = 600; //timer
-
-
+        private int seconds = 181; //timer       
 
         public VerifyPage(string loginPhone)
         {
@@ -41,44 +40,43 @@ namespace MobileHRM.Views
                     phoneNumber = _loginPhone,
                     verifyCode = txtCode.Text
                 };
-                var q = await authenticationApi.Validate(Vrequest);
-                if (q != null)
+                Models.Response.VerifyResponse Vresponse = await authenticationApi.Validate(Vrequest);
+                if (Vresponse != null)
                 {
-                    var user = new UserEntitieModel()
+                    UserEntitieModel user = new UserEntitieModel()
                     {
                         phone = _loginPhone,
-                        token = q.token,
+                        token = Vresponse.token,
                         createdAt = DateTime.Now,
-                        Id = q.userId,
+                        Id = Vresponse.userId,
                     };
                     User.UserId = user.Id;
-                    var userDatabase = UserDatabase.Instance.GetAwaiter().GetResult();
+                    UserDatabase userDatabase = UserDatabase.Instance.GetAwaiter().GetResult();
                     await userDatabase.SaveUserAsync(user);
                     Application.Current.MainPage = new MainPage();
                 }
-
-                else await DisplayAlert("error", "check again", "ok");
+                else
+                    await DisplayAlert("error", "check again", "ok");
                 IsBusy = false;
             }
-
         }
 
         private async void ResendSmsTapped(object sender, EventArgs e)
         {
-            if (!IsBusy == true)
+            if (!IsBusy)
             {
                 if (!isTimerRun)
                 {
                     isTimerRun = true;
                     await Task.Run(async () =>
-                    {                        
+                    {
                         LoginRequest Lrequest = new LoginRequest()
                         {
                             phoneNumber = _loginPhone,
                         };
                         if (await authenticationApi.Login(Lrequest))
                         {
-                            seconds = 600;
+                            seconds = 181;
                             await TimerSendSms();
                         }
                     });
@@ -93,13 +91,12 @@ namespace MobileHRM.Views
             IsBusy = false;
         }
 
-
         private async Task TimerSendSms()
         {
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
                 seconds--;
-                lblTime.Text = seconds.ToString();
+                lblTime.Text = $"{seconds / 60}:{seconds % 60}";
                 if (seconds == 0)
                 {
                     isTimerRun = false;

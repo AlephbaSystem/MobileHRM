@@ -46,12 +46,13 @@ namespace MobileHRM.Api
                 string url = requestUri + "User/Login";
                 string contentStr = JsonConvert.SerializeObject(requestModel);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync(url, content);
+                HttpResponseMessage response = await httpClient.PostAsync(url, content);
                 if (response.IsSuccessStatusCode)
                 {
                     return true;
                 }
-                return false;
+                else
+                    return false;
             }
             catch (Exception)
             {
@@ -74,7 +75,8 @@ namespace MobileHRM.Api
                     VerifyResponse Token = JsonConvert.DeserializeObject<VerifyResponse>(con);
                     return Token;
                 }
-                return null;
+                else
+                    return null;
             }
             catch (Exception)
             {
