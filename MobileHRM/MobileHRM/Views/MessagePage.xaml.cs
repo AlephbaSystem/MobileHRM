@@ -23,8 +23,8 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MessagePage : ContentPage
     {
-        private MessagesVm Vm;
-        Models.Entities.GroupModel group;
+        private readonly MessagesVm Vm;
+        private readonly Models.Entities.GroupModel group;
         //private readonly AudioRecorderService audioRecorderService = new AudioRecorderService();
         private AudioRecorderService ShowVoice;
 
@@ -42,7 +42,7 @@ namespace MobileHRM.Views
             base.OnAppearing();
             loading.IsVisible = loading.IsRunning = true;
             await Vm.intialize();
-            var itm = Vm.Items;
+            List<GroupMessage> itm = Vm.Items;
             if (itm != null)
             {
                 await addmessage();
@@ -72,7 +72,7 @@ namespace MobileHRM.Views
                 await Vm.intialize();
                 await addmessage();
             }
-            var lastchild = messagelayout.Children.LastOrDefault();
+            View lastchild = messagelayout.Children.LastOrDefault();
             if (lastchild != null)
             {
                 await scrollview.ScrollToAsync(lastchild, ScrollToPosition.MakeVisible, true);
@@ -88,11 +88,21 @@ namespace MobileHRM.Views
             }
             if (Vm.Items[0].createdAt.Day == DateTime.Now.Day)
             {
-                messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = "Today" });
+                messagelayout.Children.Add(new Label
+                {
+                    TextColor = Color.Silver,
+                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                    Text = "Today"
+                });
             }
             else
             {
-                messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = Vm.Items[0].createdAt.ToString("dd MMMM") });
+                messagelayout.Children.Add(new Label
+                {
+                    TextColor = Color.Silver,
+                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                    Text = Vm.Items[0].createdAt.ToString("dd MMMM")
+                });
             }
             for (int i = 0; i < Vm.Items.Count; i++)
             {
@@ -100,11 +110,22 @@ namespace MobileHRM.Views
                 {
                     if (Vm.Items[i].createdAt.Day == DateTime.Now.Day)
                     {
-                        messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = "Today" });
+                        messagelayout.Children.Add(new Label
+                        {
+                            TextColor = Color.Silver,
+                            HorizontalOptions = LayoutOptions.CenterAndExpand,
+                            Text = "Today"
+                        });
                     }
                     else
-                        messagelayout.Children.Add(new Label { TextColor = Color.Silver, HorizontalOptions = LayoutOptions.CenterAndExpand, Text = Vm.Items[i].createdAt.ToString("dd MMMM") });
-
+                    {
+                        messagelayout.Children.Add(new Label
+                        {
+                            TextColor = Color.Silver,
+                            HorizontalOptions = LayoutOptions.CenterAndExpand,
+                            Text = Vm.Items[i].createdAt.ToString("dd MMMM")
+                        });
+                    }
                 }
                 if (Vm.Items[i].mediaType == "Voice")
                 {
@@ -140,7 +161,7 @@ namespace MobileHRM.Views
                 HorizontalOptions = LayoutOptions.EndAndExpand,
                 Margin = new Thickness(30, 0, 30, 10)
             };
-            var gesture = new TapGestureRecognizer();
+            TapGestureRecognizer gesture = new TapGestureRecognizer();
             gesture.Tapped += Message_Tapped;
             gesture.CommandParameter = item;
             frm.GestureRecognizers.Add(gesture);
@@ -152,8 +173,8 @@ namespace MobileHRM.Views
                 HorizontalOptions = LayoutOptions.EndAndExpand,
                 VerticalOptions = LayoutOptions.EndAndExpand,
                 HeightRequest = 80,
-                WidthRequest = 80,               
-                Margin=new Thickness(0),
+                WidthRequest = 80,
+                Margin = new Thickness(0),
             };
             if (User.UserId == item.userId)
             {
@@ -166,7 +187,7 @@ namespace MobileHRM.Views
             {
                 frm.Margin = new Thickness(70, 15, 5, 15);
                 frm.BackgroundColor = Color.FromHex("#8D8D8D");
-            }            
+            }
 
             if (File.Exists(path))
             {
@@ -186,12 +207,12 @@ namespace MobileHRM.Views
         private async void Message_Tapped(object sender, EventArgs e)
         {
             Frame Layout = (sender as Frame);
-            var data = (GroupMessage)(Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
+            GroupMessage data = (GroupMessage)(Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
             if (!File.Exists(Layout.AutomationId))
             {
                 data.media = await Vm.GetMediaByMediaId(data.mediaId);
                 (Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter = data;
-                var imageSource = DataConverter.SaveImageByByte(data.media, data.createdAt);
+                ImageSource imageSource = DataConverter.SaveImageByByte(data.media, data.createdAt);
                 ((Layout.Content as StackLayout).Children[0] as Image).Source = imageSource;
             }
         }
@@ -199,7 +220,7 @@ namespace MobileHRM.Views
         private void MakeFrame(GroupMessage item)
         {
             Frame frm = new Frame { Padding = new Thickness(10, 5) };
-            var timelabel = new Label
+            Label timelabel = new Label
             {
                 Text = DateConveter(item.createdAt),
                 FontSize = 8,
@@ -207,7 +228,7 @@ namespace MobileHRM.Views
                 HorizontalTextAlignment = TextAlignment.End,
                 Margin = new Thickness(30, 0, 30, 10)
             };
-            var pad = timelabel.Padding;
+            Thickness pad = timelabel.Padding;
             pad.Top += 2;
             timelabel.Padding = pad;
             if (User.UserId == item.userId)
@@ -230,7 +251,7 @@ namespace MobileHRM.Views
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalTextAlignment = TextAlignment.Start
             };
-            var stack = new StackLayout();
+            StackLayout stack = new StackLayout();
             stack.Children.Add(lbl);
             stack.Children.Add(timelabel);
             frm.Content = stack;
@@ -247,7 +268,7 @@ namespace MobileHRM.Views
             {
                 await voicefrm.ScaleTo(1);
                 await ShowVoice.StopRecording();
-                var message = new Message
+                Message message = new Message
                 {
                     updateAt = DateTime.Now,
                     createdAt = DateTime.Now,
@@ -292,7 +313,7 @@ namespace MobileHRM.Views
             };
             ImgPlayer.Clicked += new EventHandler(Vm.PlayVoice);
             Grid grid = new Grid();
-            grid.ColumnDefinitions = new ColumnDefinitionCollection() {new ColumnDefinition(),new ColumnDefinition(),new ColumnDefinition() };
+            grid.ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition(), new ColumnDefinition(), new ColumnDefinition() };
             Frame f = new Frame
             {
                 CornerRadius = 10,
@@ -325,13 +346,13 @@ namespace MobileHRM.Views
         {
             try
             {
-                var photo = await MediaPicker.CapturePhotoAsync();
+                FileResult photo = await MediaPicker.CapturePhotoAsync();
                 // canceled
                 if (photo == null)
                 {
                     return;
                 }
-                var message = new Message
+                Message message = new Message
                 {
                     updateAt = DateTime.Now,
                     createdAt = DateTime.Now,

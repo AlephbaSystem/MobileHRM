@@ -11,11 +11,12 @@ namespace MobileHRM.Views
     [DesignTimeVisible(true)]
     public partial class LogInPage : ContentPage
     {
-        AuthenticationApi authenticationApi = new AuthenticationApi();
+        AuthenticationApi authenticationApi;
 
         public LogInPage()
         {
             InitializeComponent();
+            authenticationApi = new AuthenticationApi();
         }
 
 
@@ -45,15 +46,20 @@ namespace MobileHRM.Views
                     IsBusy = false;
                     return;
                 }
+
                 LoginRequest Lrequest = new LoginRequest()
                 {
                     phoneNumber = txtPhone.Text,
                 };
-                if (await authenticationApi.Login(Lrequest))
+
+                bool q = await authenticationApi.Login(Lrequest);
+                if (q)
                 {
                     await Navigation.PushAsync(new VerifyPage(txtPhone.Text));
                 }
-                else await DisplayAlert("error", "check again", "ok");
+                else
+                    await DisplayAlert("error", "check again", "ok");
+
                 IsBusy = false;
             }
         }
