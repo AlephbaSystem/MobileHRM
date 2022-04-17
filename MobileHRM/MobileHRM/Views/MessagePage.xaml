@@ -48,7 +48,7 @@
                     IsClippedToBounds="False"
                     BackgroundColor="#1A1C23">
                 <Grid ColumnDefinitions="*,*,4*,*" IsClippedToBounds="False">
-                    <Entry x:Name="messageEntry" Grid.Column="2" 
+                    <customentry:CustomEntry x:Name="messageEntry" Grid.Column="2" 
                             Placeholder="Type Somthing Here " 
                             PlaceholderColor="White" 
                             FontSize="15"   

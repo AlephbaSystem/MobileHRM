@@ -6,13 +6,10 @@
              xmlns:sh1="http://sharpnado.com"
              x:Class="MobileHRM.Views.KnowledgePage"
              BackgroundColor="#1A1C23" x:Name="page">
-    <ContentPage.Resources>
-        <local:CommentReactionConverter x:Key="reactionconverter" />
-    </ContentPage.Resources>
     <Shell.TitleView>
 
         <StackLayout FlowDirection="RightToLeft" Spacing="10" Orientation="Horizontal" BackgroundColor="Transparent" >
-            <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF" Margin="0,0,20,0">
+            <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                 </Frame.GestureRecognizers>
@@ -89,7 +86,7 @@
                                         VerticalOptions="Center"
                                         HorizontalOptions="Center">
                                     </Label>
-                                    
+
                                 </Frame>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
@@ -138,10 +135,17 @@
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
                                         <StackLayout Orientation="Horizontal">
-                                            <Label TextColor="#8D8D8D" Text="{Binding referencesName}" HorizontalOptions="Start" />
+                                            
+                                            <Label TextColor="#8D8D8D" Text="{Binding referencesName}" HorizontalOptions="Start"/>
+
                                             <Label TextColor="#7B61FF" Text="{Binding link}" TextDecorations="Underline"
                                                    HorizontalOptions="EndAndExpand"
-                                                   HorizontalTextAlignment="End"/>
+                                                   HorizontalTextAlignment="End">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Tapped="TapGestureRecognizer_Tapped_3"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
                                         </StackLayout>
                                     </DataTemplate>
                                 </BindableLayout.ItemTemplate>
@@ -168,9 +172,9 @@
                                         <Frame Padding="0" CornerRadius="10" BackgroundColor="#1A1C23">
                                             <Grid ColumnDefinitions="2.5*,*,*" RowDefinitions="1*,2*">
                                                 <Frame x:Name="smile" Grid.Column="2" Grid.Row="0"
-                                                       CornerRadius="40" IsEnabled="{Binding isLike,Converter={StaticResource Key=reactionconverter},ConverterParameter={Binding reactionId}}" Margin="0,10,0,0" BackgroundColor="Transparent" Padding="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                                                       CornerRadius="40" IsEnabled="{Binding isLike}" Margin="0,10,0,0" BackgroundColor="Transparent" Padding="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
                                                     <Frame.Triggers>
-                                                        <DataTrigger TargetType="Frame" Binding="{Binding IsEnabled,Source={x:Reference frown}}" Value="false">
+                                                        <DataTrigger TargetType="Frame" Binding="{Binding IsEnabled,Source={x:Reference frown}}" Value="true">
                                                             <Setter Property="BackgroundColor" Value="Silver" />
                                                         </DataTrigger>
                                                     </Frame.Triggers>
@@ -179,16 +183,16 @@
                                                     </Frame.GestureRecognizers>
                                                     <Image WidthRequest="40" HeightRequest="40" VerticalOptions="CenterAndExpand"  Aspect="AspectFit" Source="smile.png"  />
                                                 </Frame>
-                                                <Frame Grid.Column="2" Grid.Row="0" x:Name="frown" CornerRadius="40" IsEnabled="{Binding Path=IsEnabled,Source={x:Reference smile}}" BackgroundColor="#272B35" Padding="0" 
+                                                <Frame Grid.Column="2" Grid.Row="0" x:Name="frown" CornerRadius="40" IsEnabled="{Binding !isLike}" BackgroundColor="#272B35" Padding="0" 
                                                        HorizontalOptions="End" VerticalOptions="CenterAndExpand"
                                                        Margin="0,0,10,0">
                                                     <Frame.Triggers>
-                                                        <DataTrigger TargetType="Frame" Binding="{Binding IsEnabled,Source={x:Reference smile}}" Value="false">
+                                                        <DataTrigger TargetType="Frame" Binding="{Binding isLike}" Value="false">
                                                             <Setter Property="BackgroundColor" Value="Silver" />
                                                         </DataTrigger>
                                                     </Frame.Triggers>
                                                     <Frame.GestureRecognizers>
-                                                        <TapGestureRecognizer Command="{Binding BindingContext.SendReaction, Source={x:Reference page},ConverterParameter={Binding reactionId}}" CommandParameter="{Binding .}" />
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.SendReaction, Source={x:Reference page}}" CommandParameter="{Binding .}" />
                                                     </Frame.GestureRecognizers>
                                                     <Image WidthRequest="27" HeightRequest="27" VerticalOptions="FillAndExpand"  Aspect="AspectFit" Source="frown.png" />
                                                 </Frame>
