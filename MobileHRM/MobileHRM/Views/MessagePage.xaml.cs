@@ -265,7 +265,7 @@ namespace MobileHRM.Views
                 lbl.TextColor = Color.Black;
             }
             frm.CornerRadius = 20;
-            Label lbl = new Label
+            Label label = new Label
             {
                 Text = item.message,
                 TextColor = Color.White,
@@ -274,7 +274,7 @@ namespace MobileHRM.Views
                 HorizontalTextAlignment = TextAlignment.Start
             };
             var stack = new StackLayout();
-            stack.Children.Add(lbl);
+            stack.Children.Add(label);
             stack.Children.Add(timelabel);
             frm.Content = stack;
             messagelayout.Children.Add(frm);
