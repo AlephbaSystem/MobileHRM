@@ -177,7 +177,9 @@
                                                              BackgroundColor="#1A1C23"
                                                              HorizontalOptions="End">
                                                     <Frame x:Name="smile" 
-                                                       CornerRadius="40" IsEnabled="{Binding isLike}" Padding="0" 
+                                                           WidthRequest="30" HeightRequest="30"
+                                                       CornerRadius="40" IsEnabled="{Binding $isLike}" 
+                                                           Padding="5" 
                                                            BackgroundColor="#272B35" HorizontalOptions="StartAndExpand" 
                                                            VerticalOptions="CenterAndExpand"
                                                            TranslationY="5">
@@ -192,13 +194,14 @@
                                                             <TapGestureRecognizer Command="{Binding BindingContext.SendReaction, Source={x:Reference page}}"
                                                                                   CommandParameter="{Binding .}"/>
                                                         </Frame.GestureRecognizers>
-                                                        <Image WidthRequest="30" HeightRequest="30"
-                                                               Source="smile.png"
-                                                               Background="#272B35" />
+                                                        <Image Source="smile.png"
+                                                               BackgroundColor="Transparent"
+                                                               xct:CornerRadiusEffect.CornerRadius="20"/>
                                                     </Frame>
                                                     <Frame  x:Name="frown" CornerRadius="40"
+                                                             WidthRequest="30" HeightRequest="30"
                                                             IsEnabled="{Binding !$isLike}" BackgroundColor="#272B35" 
-                                                            Padding="0"
+                                                            Padding="5"
                                                        TranslationY="5"
                                                        HorizontalOptions="End" VerticalOptions="CenterAndExpand"
                                                        Margin="0,0,10,0">
@@ -206,7 +209,8 @@
                                                             <DataTrigger TargetType="Frame"
                                                                          Binding="{Binding IsEnabled,Source={x:Reference smile}}"
                                                                          Value="true">
-                                                                <Setter Property="BackgroundColor" Value="Silver" />
+                                                                <Setter Property="BackgroundColor"
+                                                                        Value="Silver" />
                                                             </DataTrigger>
                                                         </Frame.Triggers>
                                                         <Frame.GestureRecognizers>
@@ -214,9 +218,9 @@
                                                                 Source={x:Reference page}}"
                                                                 CommandParameter="{Binding .}" />
                                                         </Frame.GestureRecognizers>
-                                                        <Image WidthRequest="30" HeightRequest="30"
-                                                               Source="frown.png"
-                                                               Background="#272B35" />
+                                                        <Image Source="frown.png"
+                                                               BackgroundColor="Transparent"
+                                                               xct:CornerRadiusEffect.CornerRadius="20"/>
                                                     </Frame>
                                                 </StackLayout>
                                                 <StackLayout Orientation="Horizontal" 
