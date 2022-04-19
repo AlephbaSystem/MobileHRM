@@ -27,10 +27,24 @@ namespace MobileHRM.ViewModel
                 OnPropertyChanged(nameof(Items));
             }
         }
+        public bool _isEmpty = true;
+        public bool IsEmpty
+        {
+            get
+            {
+                return _isEmpty;
+            }
+            set
+            {
+                _isEmpty = value;
+                OnPropertyChanged(nameof(IsEmpty));
+            }
+        }
         KnowledgeApi request = new KnowledgeApi();
         public async void initialize()
         {
             Items = await request.GetAllKnowledges(0, 20);
+            IsEmpty = Convert.ToBoolean(Items.Count);
             await Task.Run(async () =>
             {
                 for (int i = 0; i < Items.Count; i++)

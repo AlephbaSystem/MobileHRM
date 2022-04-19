@@ -1,4 +1,6 @@
-﻿using MobileHRM.Models.Request;
+﻿using MobileHRM.Helper;
+using MobileHRM.Models.Entities;
+using MobileHRM.Models.Request;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -21,41 +23,37 @@ namespace MobileHRM.Api
                 string url = requestUri + "Summary/InsertPunch";
                 string contentStr = JsonConvert.SerializeObject(Saitama);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await Client.PostAsync(url, content);
-                if (response.IsSuccessStatusCode)
+                HttpRequestMessage request = new HttpRequestMessage()
                 {
-                    return true;
-                }
-                return false;
+                    Content = content,
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(url)
+                };
+
+                return await Base.Post(request);
 
             }
             catch (Exception e)
             {
                 return false;
-                
+
             }
         }
 
 
-        public async Task<bool> GetPunchByUserId(int userId)
+        public async Task<List<Punch>> GetPunchByUserId(int userId)
         {
             try
             {
-                string url = requestUri + "Summary/GetPunchByUserId";
+                string url = requestUri + $"Summary/GetPunchByUserId?userId{userId}";
                 string contentStr = JsonConvert.SerializeObject(userId);
-                StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await Client.PostAsync(url, content);
-                if (response.IsSuccessStatusCode)
-                {
-                    return true;
-                }
-                return false;
-
+                string ContenStr = await Base.Get(url);
+                var items = JsonDataConverter<List<Punch>>.JsonStringToObject(contentStr);
+                return items;
             }
             catch (Exception e)
             {
-                return false;
-
+                return new List<Punch>();
             }
         }
 

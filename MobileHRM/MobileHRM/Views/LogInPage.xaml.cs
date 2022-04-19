@@ -52,13 +52,13 @@ namespace MobileHRM.Views
                     phoneNumber = txtPhone.Text,
                 };
 
-                bool q = await authenticationApi.Login(Lrequest);
-                if (q)
+                RMessage q = await authenticationApi.Login(Lrequest);
+                if (q.IsSuccess)
                 {
                     await Navigation.PushAsync(new VerifyPage(txtPhone.Text));
                 }
                 else
-                    await DisplayAlert("error", "check again", "ok");
+                    await new Popup.ShowMsgPopup(q.Content, "Warning").ShowAsync();
 
                 IsBusy = false;
             }

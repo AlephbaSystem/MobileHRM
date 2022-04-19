@@ -8,6 +8,7 @@ namespace MobileHRM.Database
     public class Constans
     {
         public const string DatabaseFilename = "UserDb.db3";
+        public const string DatabaseFilename1 = "PunchDb.db3";
 
         public const SQLite.SQLiteOpenFlags Flags =
             // open the database in read/write mode
@@ -22,6 +23,14 @@ namespace MobileHRM.Database
             get
             {
                 var basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DatabaseFilename);
+                return basePath;
+            }
+        }
+        public static string DatabasePath1
+        {
+            get
+            {
+                var basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DatabaseFilename1);
                 return basePath;
             }
         }

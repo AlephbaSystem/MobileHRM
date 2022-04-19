@@ -36,10 +36,10 @@
                 <Grid RowDefinitions="2*,3*" Grid.Row="1" BackgroundColor="#1A1C23" VerticalOptions="FillAndExpand">
                     <Grid ColumnDefinitions="2*,8*" Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="20,0">
                         <Frame Padding="0" Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" CornerRadius="50" BackgroundColor="#272B35">
-                            <Image Source="punchIn.png" BackgroundColor="Transparent" Margin="20"/>
+                            <Image x:Name="ImageType" Source="punchIn.png" BackgroundColor="Transparent" Margin="20"/>
                         </Frame>
 
-                        <Grid VerticalOptions="Center" Grid.Column="1" RowDefinitions="*,*,*">
+                        <Grid x:Name="PunchDetail" VerticalOptions="Center" Grid.Column="1" RowDefinitions="*,*,*">
                             <Label TextColor="#8D8D8D" HorizontalTextAlignment="Start" Grid.Row="0" Text="Punch In date And Time" />
                             <Label TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="1" Text="Today(9:11 AM)" />
                             <Label TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="2" Text="09-02-2022" />
@@ -48,7 +48,7 @@
                     <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand" Margin="27,0" BackgroundColor="#1A1C23">
                         <Label TextColor="#CCCCCC" Text="Punch In Note"/>
                         <Frame VerticalOptions="FillAndExpand" Margin="0,0,0,20" Padding="0" CornerRadius="5" BackgroundColor="Transparent">
-                            <Custom:CustomEditor BackgroundColor="#272B35" PlaceholderColor="#535458" Placeholder="Type Something here" TextColor="#CCCCCC"/>
+                            <Custom:CustomEditor x:Name="CommentEntry" BackgroundColor="#272B35" PlaceholderColor="#535458" Placeholder="Type Something here" TextColor="#CCCCCC"/>
                         </Frame>
                     </StackLayout>
                 </Grid>
@@ -57,7 +57,7 @@
                     <Grid ColumnDefinitions="*,1.65*,*" RowDefinitions="2*,4*,2*">
                         <Button CornerRadius="5" BackgroundColor="#8D8D8D" TextColor="#FFFFFF" Text="Cancel" VerticalOptions="Center"
                                      Grid.Column="1" Grid.Row="1" HorizontalOptions="End"/>
-                        <Button CornerRadius="5" Text="Punch In" BackgroundColor="#26AB5B" TextColor="#FFFFFF" VerticalOptions="Center"
+                        <Button CornerRadius="5" x:Name="TextType" Text="Punch In" BackgroundColor="#26AB5B" TextColor="#FFFFFF" VerticalOptions="Center" Clicked="Punch_Clicked"
                                      Grid.Column="2" Grid.Row="1" HorizontalOptions="End"/>
                     </Grid>
 
