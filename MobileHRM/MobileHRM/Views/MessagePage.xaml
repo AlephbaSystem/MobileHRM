@@ -41,7 +41,7 @@
                     <ActivityIndicator Grid.Row="1" Color="LightBlue" IsRunning="True" x:Name="loading"  VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"/>
                 </StackLayout>
             </ScrollView>
-            <Image Grid.Row="0" Source="EmptyMesssage.png"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Aspect="AspectFill" />
+            <Image Grid.Row="0" Source="EmptyMesssage.png" IsVisible="{Binding IsEmpty}"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Aspect="AspectFill" />
             <Frame Grid.Row="1" Padding="5"
                     VerticalOptions="Center"
                     CornerRadius="25"
@@ -77,11 +77,11 @@
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center"/>
                     </Frame>
-                    <Frame Grid.Column="3" Padding="0" BackgroundColor="#272B35" CornerRadius="30">
+                    <Frame Grid.Column="3" Padding="0" BackgroundColor="Transparent" CornerRadius="30">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                         </Frame.GestureRecognizers>
-                        <Image Grid.Column="3" Source="VectorarrowSend.png"
+                        <Image Grid.Column="3" Source="MessageSendIcon.png"
                                 Margin="5,0,0,0"
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center"/>
