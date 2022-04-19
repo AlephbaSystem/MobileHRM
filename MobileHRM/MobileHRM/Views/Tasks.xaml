@@ -2,38 +2,37 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:sharpnado="http://sharpnado.com" xmlns:entryCustom="clr-namespace:MobileHRM.Controls"
              x:Class="MobileHRM.Views.Tasks"
+             Shell.NavBarIsVisible="False"
              Shell.BackgroundColor="#1A1C23"
              BackgroundColor="#1A1C23">
 
-    <Shell.TitleView>
-        <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" >
-            <Frame Margin="0,0,20,0" Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ImageButton_Clicked" />
-                </Frame.GestureRecognizers>
-                <Frame Padding="0" CornerRadius="40">
-                <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
-                </Frame>
-            </Frame>
-            <Frame CornerRadius="40" Padding="0" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ImageButton_Clicked_1" />
-                </Frame.GestureRecognizers>
-                <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
-            </Frame>
-
-            <Frame BackgroundColor="#272B35" Padding="5" CornerRadius="40" VerticalOptions="CenterAndExpand">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ImageButton_Clicked_2" />
-                </Frame.GestureRecognizers>
-                <Image Aspect="AspectFill" WidthRequest="38" HeightRequest="38" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="AddIcon.png" />
-            </Frame>
-            <ImageButton Aspect="AspectFill" WidthRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_Clicked_3" Source="VectorArrow.png" />
-        </StackLayout>
-    </Shell.TitleView>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
+                <StackLayout Margin="0,20,0,0" FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" >
+                    <Frame Margin="0,0,20,0" Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ImageButton_Clicked" />
+                        </Frame.GestureRecognizers>
+                        <Frame Padding="0" CornerRadius="40">
+                            <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                        </Frame>
+                    </Frame>
+                    <Frame CornerRadius="40" Padding="0" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ImageButton_Clicked_1" />
+                        </Frame.GestureRecognizers>
+                        <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
+                    </Frame>
+
+                    <Frame BackgroundColor="#272B35" Padding="5" CornerRadius="40" VerticalOptions="CenterAndExpand">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ImageButton_Clicked_2" />
+                        </Frame.GestureRecognizers>
+                        <Image Aspect="AspectFill" WidthRequest="38" HeightRequest="38" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="AddIcon.png" />
+                    </Frame>
+                    <ImageButton Aspect="AspectFill" WidthRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_Clicked_3" Source="VectorArrow.png" />
+                </StackLayout>
                 <sharpnado:Shadows>
                     <sharpnado:Shadows.Shades>
                         <sharpnado:ImmutableShades>

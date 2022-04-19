@@ -11,48 +11,25 @@
        x:Class="MobileHRM.MainPage"
        Style="{StaticResource basic}">
 
-    
-    <Shell.Resources>
-        <ResourceDictionary>
-            <Color x:Key="NavigationPrimary">#fefefe</Color>
-            <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="Shell.ForegroundColor" Value="#3d83ff" />
-                <Setter Property="Shell.TitleColor" Value="#3d83ff" />
-                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="#3d83ff"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="Gray"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="#3d83ff"/>
-            </Style>
-            <Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />
-        </ResourceDictionary>
-    </Shell.Resources>
-    
+    <TabBar >
 
-    <c:CustomTabbar Style="{StaticResource BaseStyle}">
-        <c:CustomTabbar.LargeTab>
-            <Tab Title="Accounting">
-                <ShellContent 
-                    ContentTemplate="{DataTemplate views:Accounting}" />
-            </Tab>
-        </c:CustomTabbar.LargeTab>
-        
         <Tab Title="Dashboard"
                     Icon="Dashboard.png">
-            <ShellContent 
+            <ShellContent
                     ContentTemplate="{DataTemplate views:DashBoard}" />
         </Tab>
         <Tab Title="Knowledge"
                     Icon="Vectorknowledge.webp">
-            <ShellContent 
+            <ShellContent
                     ContentTemplate="{DataTemplate views:Knowledge}" />
         </Tab>
-
+        <Tab Title="Accounting">
+            <ShellContent 
+                    ContentTemplate="{DataTemplate views:Accounting}" />
+        </Tab>
         <Tab Title="Tasks"
                     Icon="Task.png">
-            <ShellContent 
+            <ShellContent
                       ContentTemplate="{DataTemplate views:Tasks}" />
         </Tab>
         <Tab Title="Chats"
@@ -60,6 +37,6 @@
             <ShellContent
                       ContentTemplate="{DataTemplate views:chatPage}" />
         </Tab>
-    </c:CustomTabbar>
+    </TabBar>
 
 </Shell>

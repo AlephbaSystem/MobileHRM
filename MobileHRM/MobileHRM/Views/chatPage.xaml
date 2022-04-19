@@ -5,6 +5,7 @@
              xmlns:entryCustom="clr-namespace:MobileHRM.Controls"
              xmlns:local="clr-namespace:MobileHRM.Converter"
              BackgroundColor="#1A1C23"
+             Shell.NavBarIsVisible="False"
              xmlns:sharpnado="http://sharpnado.com"
              x:Class="MobileHRM.Views.chatPage">
 
@@ -12,36 +13,36 @@
         <local:DateConvert x:Key="DateConverter" />
         <local:TextLenghConverter x:Key="TextLenghtConverter" />
     </ContentPage.Resources>
-    
-    <Shell.TitleView>
-        <StackLayout FlowDirection="RightToLeft"
+
+
+
+    <ContentPage.Content>
+
+        <Grid Margin="10,0" RowDefinitions="*,6*">
+            <StackLayout FlowDirection="RightToLeft" Grid.Row="0"
                      Spacing="10"
                      Orientation="Horizontal" 
                      BackgroundColor="Transparent" >
-            <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF" Margin="0,0,20,0">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ImageButton_Clicked" />
-                </Frame.GestureRecognizers>
-                <Frame Padding="0" CornerRadius="40">
-                    <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF" Margin="0,0,20,0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ImageButton_Clicked" />
+                    </Frame.GestureRecognizers>
+                    <Frame Padding="0" CornerRadius="40">
+                        <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                    </Frame>
                 </Frame>
-            </Frame>
-            <Frame CornerRadius="40" Padding="0" WidthRequest="49" HeightRequest="49" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ImageButton_Clicked_1" />
-                </Frame.GestureRecognizers>
-                <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
-            </Frame>            
-            <ImageButton Aspect="AspectFill" WidthRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_Clicked_3" Source="arrow2.png"/>
-        </StackLayout>
-    </Shell.TitleView>
-    
-    <ContentPage.Content>
-
-        <Grid Margin="10,0">
-        <StackLayout Padding="0"                   
+                <Frame CornerRadius="40" Padding="0" WidthRequest="49" HeightRequest="49" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ImageButton_Clicked_1" />
+                    </Frame.GestureRecognizers>
+                    <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
+                </Frame>
+                <ImageButton Aspect="AspectFill" WidthRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_Clicked_3" Source="arrow2.png"/>
+            </StackLayout>
+            <StackLayout Padding="0"    Grid.Row="1"                         
                     BackgroundColor="#1A1C23">
-            <sharpnado:Shadows>
+
+                <sharpnado:Shadows>
                 <sharpnado:Shadows.Shades>
                     <sharpnado:ImmutableShades>
                         <sharpnado:Shade Offset="0,5"  Color="White" BlurRadius="5" />
@@ -154,7 +155,7 @@
             </RefreshView>
                 <Image Source="EmptyChat.png" IsVisible="{Binding IsEmpty}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Aspect="AspectFill" />
             </StackLayout>
-            <Frame Padding="5" 
+            <Frame Padding="5" Grid.Row="2"
                    CornerRadius="50"
                    HeightRequest="40"
                    WidthRequest="40"
