@@ -45,8 +45,8 @@ namespace MobileHRM.Views
             var item1 = await database.GetLastPunch("PunchOut", "restOut");
             if (item1!=null)
             {
-                (PunchInDetail.Children[0] as Label).Text = "PunchOut";
-                (PunchInDetail.Children[1] as Label).Text = item.date.ToString("HH:mm");
+                (PunchOutDetail.Children[0] as Label).Text = "PunchOut";
+                (PunchOutDetail.Children[1] as Label).Text = item1.date.ToString("HH:mm");
             }
         }
         private void ImageButton_Clicked_1(object sender, EventArgs e)

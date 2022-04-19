@@ -26,12 +26,8 @@
                     </Frame.GestureRecognizers>
                     <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
                 </Frame>
-                <Label HorizontalOptions="EndAndExpand" FontSize="Large" VerticalTextAlignment="Center" TextColor="#CCCCCC" Text="{Binding Source={x:Static local:User.UserName},StringFormat='Hi {0} ,'}" />
+                <Label Margin="10,0,0,0" HorizontalOptions="EndAndExpand" FontSize="Large" VerticalTextAlignment="Center" TextColor="#CCCCCC" Text="{Binding Source={x:Static local:User.UserName},StringFormat='Hi {0} ,'}" />
             </StackLayout>
-
-
-
-            <Label Margin="10,0,0,0" Text="Good afternoon!" FontSize="Large" TextColor="#CCCCCC" />
             <Frame Padding="0" Grid.Row="0"
                                 BackgroundColor="#FFFFFF"
                                 CornerRadius="5"
@@ -48,7 +44,7 @@
                     <Frame Padding="0"
                                CornerRadius="11"
                                BackgroundColor="Transparent"
-                               Margin="10,0,10,40">
+                               Margin="10,0,10,5">
 
                         <StackLayout Spacing="10">
                             <Frame Padding="0"

@@ -70,7 +70,7 @@ namespace MobileHRM.Views.Popup
                 (PunchDetail.Children[1] as Label).Text = "Today" + $"({item.date.ToString("hh:mm")})";
                 (PunchDetail.Children[2] as Label).Text = $"{item.date.ToString("dd-MM-yyyy")}";
             }
-            else if ((item.type == "PunchOut" && DateTime.Now.Hour <= 3 && DateTime.Now.Minute < 40))
+            else if (item.type == "PunchOut" && DateTime.Now.Hour <= 3 && DateTime.Now.Minute < 40)
             {
                 IsEnabled = false;
                 (PunchDetail.Children[0] as Label).Text = "PuncOut " + "date And Time";
