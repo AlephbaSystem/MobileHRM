@@ -1,14 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"             
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
-             xmlns:views="clr-namespace:MobileHRM.Views" xmlns:entryCustom="clr-namespace:MobileHRM.Controls" xmlns:model="clr-namespace:MobileHRM.Models"
-            BackgroundColor="#fff"
-  
-            Shell.BackgroundColor="#1A1C23"
-            Shell.NavBarHasShadow="False"
-             x:Class="MobileHRM.MainPage"
-            Style="{StaticResource basic}">
-    <TabBar>
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+       xmlns:views="clr-namespace:MobileHRM.Views" 
+       xmlns:entryCustom="clr-namespace:MobileHRM.Controls"       
+       xmlns:c="clr-namespace:MobileHRM.Controls"
+       xmlns:model="clr-namespace:MobileHRM.Models"
+       BackgroundColor="#fff"  
+       Shell.BackgroundColor="#1A1C23"
+       Shell.NavBarHasShadow="False"
+       x:Class="MobileHRM.MainPage"
+       Style="{StaticResource basic}">
+
+    
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NavigationPrimary">#fefefe</Color>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.ForegroundColor" Value="#3d83ff" />
+                <Setter Property="Shell.TitleColor" Value="#3d83ff" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="#3d83ff"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="Gray"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="#3d83ff"/>
+            </Style>
+            <Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+    
+
+    <c:CustomTabbar Style="{StaticResource BaseStyle}">
+        <c:CustomTabbar.LargeTab>
+            <Tab Title="Accounting">
+                <ShellContent 
+                    ContentTemplate="{DataTemplate views:Accounting}" />
+            </Tab>
+        </c:CustomTabbar.LargeTab>
+        
         <Tab Title="Dashboard"
                     Icon="Dashboard.png">
             <ShellContent 
@@ -19,10 +49,7 @@
             <ShellContent 
                     ContentTemplate="{DataTemplate views:Knowledge}" />
         </Tab>
-        <Tab Title="Accounting">
-            <ShellContent 
-                    ContentTemplate="{DataTemplate views:Accounting}" />
-        </Tab>
+
         <Tab Title="Tasks"
                     Icon="Task.png">
             <ShellContent 
@@ -33,6 +60,6 @@
             <ShellContent
                       ContentTemplate="{DataTemplate views:chatPage}" />
         </Tab>
-    </TabBar>
+    </c:CustomTabbar>
 
 </Shell>
