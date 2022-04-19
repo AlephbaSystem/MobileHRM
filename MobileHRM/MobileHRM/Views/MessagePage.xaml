@@ -20,7 +20,6 @@
                 <Image HorizontalOptions="FillAndExpand"
                        BackgroundColor="Transparent"
                        Source="Alephba"/>
-                <!--Source="{Binding Profileimage}"-->
             </Frame>
             <ImageButton BackgroundColor="Transparent"
                          HorizontalOptions="End"
@@ -52,7 +51,7 @@
                     <customentry:CustomEntry x:Name="messageEntry" Grid.Column="2" 
                             Placeholder="Type Somthing Here " 
                             PlaceholderColor="White" 
-                            FontSize="15"   
+                            FontSize="15"
                             TextColor="White"/>
                     <Frame Grid.Column="0" Padding="0"
                             BackgroundColor="#272B35"
@@ -81,7 +80,8 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                         </Frame.GestureRecognizers>
-                        <Image Grid.Column="3" Source="MessageSendIcon.png"
+                        <Image Grid.Column="3" 
+                                Source="MessageSendIcon.png"
                                 Margin="5,0,0,0"
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center"/>

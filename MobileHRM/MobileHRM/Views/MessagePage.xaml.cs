@@ -266,7 +266,7 @@ namespace MobileHRM.Views
             }
             frm.CornerRadius = 20;
             var stack = new StackLayout();
-            stack.Children.Add(label);
+            stack.Children.Add(lbl);
             stack.Children.Add(timelabel);
             frm.Content = stack;
             messagelayout.Children.Add(frm);

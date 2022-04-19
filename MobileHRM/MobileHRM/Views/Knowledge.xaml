@@ -116,6 +116,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Frame>
+        <Image Source="EmptyKnowledge.png" IsVisible="{Binding IsEmpty}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Aspect="AspectFill" />
     </StackLayout>
 
 </ContentPage>
