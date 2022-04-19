@@ -58,5 +58,10 @@ namespace MobileHRM.Views
         {
             await PopupNavigation.Instance.PushAsync(new PunchIn());
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+
+        }
     }
 }

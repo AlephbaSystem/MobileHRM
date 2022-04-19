@@ -2,30 +2,35 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:entryCustom="clr-namespace:MobileHRM.Controls"
              x:Class="MobileHRM.Views.DashBoard" 
-             xmlns:local="clr-namespace:MobileHRM.Models"
+             xmlns:local="clr-namespace:MobileHRM.Models" Shell.NavBarIsVisible="False"
              Shell.BackgroundColor="#1A1C23">
-    <Shell.TitleView>
-        <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent">
-            <Frame BackgroundColor="#7B61FF" VerticalOptions="CenterAndExpand" Padding="1" CornerRadius="40"  Margin="0,0,20,0">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ImageButton_Clicked_1" />
-                </Frame.GestureRecognizers>
-                <Frame Padding="0" CornerRadius="40">
-                    <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
-                </Frame>
-            </Frame>
-            <Frame CornerRadius="40" Padding="0" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnTabNotification" />
-                </Frame.GestureRecognizers>
-                <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
-            </Frame>
-            <Label HorizontalOptions="EndAndExpand" FontSize="Large" VerticalTextAlignment="Center" TextColor="#CCCCCC" Text="{Binding Source={x:Static local:User.UserName},StringFormat='Hi {0} ,'}" />
-        </StackLayout>
-    </Shell.TitleView>
+    
+       
+    
     <ContentPage.Content>
 
         <StackLayout BackgroundColor="#1A1C23">
+
+            <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" Margin="0,20,20,10" Spacing="20">
+                <Frame BackgroundColor="#7B61FF" VerticalOptions="CenterAndExpand" Padding="1" CornerRadius="40" >
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ImageButton_Clicked_1" />
+                    </Frame.GestureRecognizers>
+                    <Frame Padding="0" CornerRadius="40">
+                        <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                    </Frame>
+                </Frame>
+                <Frame CornerRadius="40" Padding="0" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTabNotification" />
+                    </Frame.GestureRecognizers>
+                    <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
+                </Frame>
+                <Label HorizontalOptions="EndAndExpand" FontSize="Large" VerticalTextAlignment="Center" TextColor="#CCCCCC" Text="{Binding Source={x:Static local:User.UserName},StringFormat='Hi {0} ,'}" />
+            </StackLayout>
+
+
+
             <Label Margin="10,0,0,0" Text="Good afternoon!" FontSize="Large" TextColor="#CCCCCC" />
             <Frame Padding="0" Grid.Row="0"
                                 BackgroundColor="#FFFFFF"
