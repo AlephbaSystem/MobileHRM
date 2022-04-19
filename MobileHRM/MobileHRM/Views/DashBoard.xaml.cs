@@ -36,19 +36,17 @@ namespace MobileHRM.Views
         {
             base.OnAppearing();
             var database = PunchDataBase.Instance.GetAwaiter().GetResult();
-            var item = await database.GetLastPunch();
+            var item = await database.GetLastPunch("PunchIn", "restIn");
             if (item != null)
             {
-                if (item.type == "restIn" || item.type == "PunchIn")
-                {
                     (PunchInDetail.Children[0] as Label).Text = "PunchIn";
-                    (PunchInDetail.Children[1] as Label).Text = item.date.ToString("HH:mm");
-                }
-                else
-                {
-                    (PunchOutDetail.Children[0] as Label).Text = "PunchOut";
-                    (PunchOutDetail.Children[1] as Label).Text = item.date.ToString("HH:mm");
-                }
+                (PunchInDetail.Children[1] as Label).Text = item.date.ToString("HH:mm");
+            }
+            var item1 = await database.GetLastPunch("PunchOut", "restOut");
+            if (item1!=null)
+            {
+                (PunchInDetail.Children[0] as Label).Text = "PunchOut";
+                (PunchInDetail.Children[1] as Label).Text = item.date.ToString("HH:mm");
             }
         }
         private void ImageButton_Clicked_1(object sender, EventArgs e)

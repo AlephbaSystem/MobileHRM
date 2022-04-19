@@ -173,6 +173,7 @@ namespace MobileHRM.Views
                 HorizontalOptions = LayoutOptions.StartAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 WidthRequest = 80,
+                HeightRequest = 80,
                 Margin = new Thickness(0),
             };
             ActivityIndicator Downloadactivate = new ActivityIndicator
@@ -221,10 +222,12 @@ namespace MobileHRM.Views
             var data = (GroupMessage)(Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter;
             if (!File.Exists(Layout.AutomationId))
             {
+                ((ActivityIndicator)((Layout.Content as StackLayout).Children[0] as Grid).Children[1]).IsRunning = true;
                 data.media = await Vm.GetMediaByMediaId(data.mediaId);
                 (Layout.GestureRecognizers[0] as TapGestureRecognizer).CommandParameter = data;
                 var imageSource = DataConverter.SaveImageByByte(data.media, data.createdAt);
-                ((Layout.Content as StackLayout).Children[0] as Image).Source = imageSource;
+                ((Image)((Layout.Content as StackLayout).Children[0] as Grid).Children[0]).Source = imageSource;
+                ((ActivityIndicator)((Layout.Content as StackLayout).Children[0] as Grid).Children[1]).IsRunning = false;
             }
         }
 

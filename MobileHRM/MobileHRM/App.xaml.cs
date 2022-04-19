@@ -14,7 +14,7 @@ namespace MobileHRM
             User.UserName = "Test";
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            MainPage = new NavigationPage(new LogInPage());
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()

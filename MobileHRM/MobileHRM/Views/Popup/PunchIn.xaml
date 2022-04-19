@@ -8,7 +8,8 @@
     HasKeyboardOffset="False"
     BackgroundColor="#44ffffff"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-    xmlns:Custom="clr-namespace:MobileHRM.Controls">
+    xmlns:Custom="clr-namespace:MobileHRM.Controls"
+    x:Name="page">
     
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation
@@ -40,9 +41,9 @@
                         </Frame>
 
                         <Grid x:Name="PunchDetail" VerticalOptions="Center" Grid.Column="1" RowDefinitions="*,*,*">
-                            <Label TextColor="#8D8D8D" HorizontalTextAlignment="Start" Grid.Row="0" Text="Punch In date And Time" />
-                            <Label TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="1" Text="Today(9:11 AM)" />
-                            <Label TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="2" Text="09-02-2022" />
+                            <Label TextColor="#8D8D8D" HorizontalTextAlignment="Start" Grid.Row="0" Text="" />
+                            <Label TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="1" Text="" />
+                            <Label TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="2" Text="" />
                         </Grid>
                     </Grid>
                     <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand" Margin="27,0" BackgroundColor="#1A1C23">
@@ -57,7 +58,7 @@
                     <Grid ColumnDefinitions="*,1.65*,*" RowDefinitions="2*,4*,2*">
                         <Button CornerRadius="5" BackgroundColor="#8D8D8D" TextColor="#FFFFFF" Text="Cancel" VerticalOptions="Center"
                                      Grid.Column="1" Grid.Row="1" HorizontalOptions="End"/>
-                        <Button CornerRadius="5" x:Name="TextType" Text="Punch In" BackgroundColor="#26AB5B" TextColor="#FFFFFF" VerticalOptions="Center" Clicked="Punch_Clicked"
+                        <Button CornerRadius="5" IsEnabled="{Binding IsEnabled,Source={x:Reference page}}" x:Name="TextType" Text="Punch In" BackgroundColor="#26AB5B" TextColor="#FFFFFF" VerticalOptions="Center" Clicked="Punch_Clicked"
                                      Grid.Column="2" Grid.Row="1" HorizontalOptions="End"/>
                     </Grid>
 

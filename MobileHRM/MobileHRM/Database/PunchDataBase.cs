@@ -28,6 +28,16 @@ namespace MobileHRM.Database
             result = result ?? new List<Punch>();
             return (from p in result where p.date.Day == DateTime.Now.Day select p).FirstOrDefault();
         }
+        public async Task<Punch> GetLastPunch(string type, string type1)
+        {
+            var result = await Database.QueryAsync<Punch>("select * from [Punch] where type='" + type + "' or type='" + type1 + "' order by date desc ");
+            return (from p in result where p.date.Day == DateTime.Now.Day && p.date.Year== DateTime.Now.Year && p.date.Month==DateTime.Now.Month select p).FirstOrDefault();
+        }
+        public async Task<Punch> GetLastPunch(string type)
+        {
+            var result = await Database.QueryAsync<Punch>("select * from [Punch] where type='" + type + "' order by date desc ");
+            return (from p in result where p.date.Day == DateTime.Now.Day select p).FirstOrDefault();
+        }
         public async Task InsertPunch(Punch item)
         {
             await Database.InsertAsync(item);

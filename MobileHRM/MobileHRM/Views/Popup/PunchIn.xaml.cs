@@ -16,11 +16,10 @@ namespace MobileHRM.Views.Popup
     {
         public PunchIn()
         {
-            InitializeComponent(); 
+            InitializeComponent();
             CheckTime();
 
-            (PunchDetail.Children[1] as Label).Text = "";
-            (PunchDetail.Children[2] as Label).Text = "";
+
         }
         private async void OnExitImageButtonClicked(object sender, EventArgs e)
         {
@@ -41,7 +40,7 @@ namespace MobileHRM.Views.Popup
         Punch localDatabaseobj;
         private async void CheckTime()
         {
-             var database = PunchDataBase.Instance.GetAwaiter().GetResult();
+            var database = PunchDataBase.Instance.GetAwaiter().GetResult();
             var item = await database.GetLastPunch();
             DataObj = new punchInRequest { type = "PunchOut", comment = CommentEntry.Text, date = DateTime.Now, userId = User.UserId };
             if (item == null)
@@ -58,14 +57,25 @@ namespace MobileHRM.Views.Popup
                 localDatabaseobj = new Punch { type = "RestOut", comment = CommentEntry.Text, date = DateTime.Now, userId = User.UserId };
                 ImageType.Source = "PunchOut.png";
                 TextType.Text = "PunchOut";
-                (PunchDetail.Children[0] as Label).Text = $"PunchOut date And Time";
+                (PunchDetail.Children[0] as Label).Text = "PuncIn " + "date And Time";
+                (PunchDetail.Children[1] as Label).Text = "Today" + $"({item.date.ToString("hh:mm")})";
+                (PunchDetail.Children[2] as Label).Text = $"{item.date.ToString("dd-MM-yyyy")}";
             }
             else if (item.type == "RestOut" && DateTime.Now.Hour <= 3 && DateTime.Now.Minute < 40)
             {
                 DataObj = new punchInRequest { type = "RestIn", comment = CommentEntry.Text, date = DateTime.Now, userId = User.UserId };
                 localDatabaseobj = new Punch { type = "RestIn", comment = CommentEntry.Text, date = DateTime.Now, userId = User.UserId };
                 ImageType.Source = "PunchIn.png";
-                (PunchDetail.Children[0] as Label).Text = $"PunchIn date And Time";
+                (PunchDetail.Children[0] as Label).Text = "PunchIn " + "date And Time";
+                (PunchDetail.Children[1] as Label).Text = "Today" + $"({item.date.ToString("hh:mm")})";
+                (PunchDetail.Children[2] as Label).Text = $"{item.date.ToString("dd-MM-yyyy")}";
+            }
+            else if ((item.type == "PunchOut" && DateTime.Now.Hour <= 3 && DateTime.Now.Minute < 40))
+            {
+                IsEnabled = false;
+                (PunchDetail.Children[0] as Label).Text = "PuncOut " + "date And Time";
+                (PunchDetail.Children[1] as Label).Text = "Today" + $"({item.date.ToString("hh:mm")})";
+                (PunchDetail.Children[2] as Label).Text = $"{item.date.ToString("dd-MM-yyyy")}";
             }
             else
             {
@@ -74,6 +84,9 @@ namespace MobileHRM.Views.Popup
                 ImageType.Source = "PunchOut.png";
                 TextType.Text = "PunchOut";
                 (PunchDetail.Children[0] as Label).Text = $"PunchOut date And Time";
+                (PunchDetail.Children[0] as Label).Text = "PuncOut " + "date And Time";
+                (PunchDetail.Children[1] as Label).Text = "Today" + $"({item.date.ToString("hh:mm")})";
+                (PunchDetail.Children[2] as Label).Text = $"{item.date.ToString("dd-MM-yyyy")}";
             }
         }
     }
