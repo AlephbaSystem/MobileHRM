@@ -26,8 +26,8 @@ namespace MobileHRM.Views
         public VerifyPage(string loginPhone)
         {
             InitializeComponent();
-            _loginPhone = loginPhone;
             TimerSendSms();
+            _loginPhone = loginPhone;
         }
 
         private async void Verify_Btn_Clk(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace MobileHRM.Views
                     verifyCode = txtCode.Text
                 };
                 Models.Response.VerifyResponse Vresponse = await authenticationApi.Validate(Vrequest);
-                if (Vresponse != null)
+                if (Vresponse.token != null)
                 {
                     UserEntitieModel user = new UserEntitieModel()
                     {
@@ -56,7 +56,7 @@ namespace MobileHRM.Views
                     Application.Current.MainPage = new MainPage();
                 }
                 else
-                    await DisplayAlert("error", "check again", "ok");
+                    await new Popup.ShowMsgPopup(Vresponse.Content, "").ShowAsync();
                 IsBusy = false;
             }
         }
@@ -74,10 +74,15 @@ namespace MobileHRM.Views
                         {
                             phoneNumber = _loginPhone,
                         };
-                        if (await authenticationApi.Login(Lrequest))
+                        RMessage q = await authenticationApi.Login(Lrequest);
+                        if (q.IsSuccess)
                         {
                             seconds = 181;
                             await TimerSendSms();
+                        }
+                        else
+                        {
+                            await new Popup.ShowMsgPopup(q.Content, "Warning").ShowAsync();
                         }
                     });
                 }

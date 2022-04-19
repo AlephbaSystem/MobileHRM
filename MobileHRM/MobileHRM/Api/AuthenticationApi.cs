@@ -39,7 +39,7 @@ namespace MobileHRM.Api
             }
         }
 
-        public async Task<bool> Login(LoginRequest requestModel)
+        public async Task<RMessage> Login(LoginRequest requestModel)
         {
             try
             {
@@ -49,14 +49,28 @@ namespace MobileHRM.Api
                 HttpResponseMessage response = await httpClient.PostAsync(url, content);
                 if (response.IsSuccessStatusCode)
                 {
-                    return true;
+                    return new RMessage
+                    {
+                        IsSuccess = true
+                    };
                 }
                 else
-                    return false;
+                {
+                    var errorMessage = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                    return new RMessage
+                    {
+                        IsSuccess = false,
+                        Content = errorMessage
+                    };
+                }
             }
             catch (Exception)
             {
-                return false;
+                return new RMessage
+                {
+                    IsSuccess = false,
+                    Content = "check again"
+                };
                 throw;
             }
         }
@@ -76,11 +90,20 @@ namespace MobileHRM.Api
                     return Token;
                 }
                 else
-                    return null;
+                {
+                    var errorMessage = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                    return new VerifyResponse
+                    {
+                        Content = errorMessage
+                    };
+                }                    
             }
             catch (Exception)
             {
-                return null;
+                return new VerifyResponse
+                {
+                    Content= "check again"
+                };
                 throw;
             }
         }

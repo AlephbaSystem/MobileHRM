@@ -42,7 +42,7 @@
                    BorderColor="#00A693">
                 <coustomEntry:CustomEntry Keyboard="Telephone"                  
                                           x:Name="txtPhone"
-                                          Placeholder="Phone Number"
+                                          Placeholder="Phone number"
                                           PlaceholderColor="White"
                                           TextColor="#e9ecef"
                                           HorizontalTextAlignment="Center"/>
