@@ -266,14 +266,14 @@ namespace MobileHRM.Views
                 lbl.TextColor = Color.Black;
             }
             frm.CornerRadius = 20;
-            Label lbl = new Label
-            {
-                Text = item.message,
-                TextColor = Color.White,
-                FontSize = 14,
-                VerticalTextAlignment = TextAlignment.Center,
-                HorizontalTextAlignment = TextAlignment.Start
-            };
+            //Label lbl = new Label
+            //{
+            //    Text = item.message,
+            //    TextColor = Color.White,
+            //    FontSize = 14,
+            //    VerticalTextAlignment = TextAlignment.Center,
+            //    HorizontalTextAlignment = TextAlignment.Start
+            //};
             var stack = new StackLayout();
             stack.Children.Add(lbl);
             stack.Children.Add(timelabel);

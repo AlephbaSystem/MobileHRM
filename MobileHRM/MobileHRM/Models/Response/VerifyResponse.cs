@@ -9,5 +9,6 @@ namespace MobileHRM.Models.Response
         public  string token { get; set; }
         public  DateTime expiration { get; set; }
         public  int userId{ get; set; }
+        public string Content { get; set; }
     }
 }
