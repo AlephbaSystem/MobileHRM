@@ -151,7 +151,7 @@ namespace MobileHRM.Views
             Frame frm = new Frame
             {
                 Padding = new Thickness(0),
-                CornerRadius = 20,
+                CornerRadius = 30,
             };
             Label timelabel = new Label
             {
@@ -171,8 +171,7 @@ namespace MobileHRM.Views
             {
                 Aspect = Aspect.AspectFill,
                 HorizontalOptions = LayoutOptions.StartAndExpand,
-                VerticalOptions = LayoutOptions.StartAndExpand,
-                HeightRequest = 80,
+                VerticalOptions = LayoutOptions.FillAndExpand,
                 WidthRequest = 80,
                 Margin = new Thickness(0),
             };
@@ -186,14 +185,14 @@ namespace MobileHRM.Views
             {
                 frm.Margin = new Thickness(5, 5, 70, 5);
                 frm.BackgroundColor = Color.FromHex("#1A1C23");
-                imageFile.HorizontalOptions = LayoutOptions.StartAndExpand;
-                imageFile.VerticalOptions = LayoutOptions.StartAndExpand;
             }
             else
             {
                 frm.Margin = new Thickness(70, 5, 5, 5);
                 frm.BackgroundColor = Color.FromHex("#EBEBEB");
                 timelabel.TextColor = Color.Black;
+
+                imageFile.HorizontalOptions = LayoutOptions.EndAndExpand;
             }
 
             if (File.Exists(path))
@@ -243,7 +242,7 @@ namespace MobileHRM.Views
             Thickness pad = timelabel.Padding;
             pad.Top += 2;
             timelabel.Padding = pad;
-            frm.CornerRadius = 20;
+            frm.CornerRadius = 30;
             Label lbl = new Label
             {
                 Text = item.message,
@@ -266,16 +265,8 @@ namespace MobileHRM.Views
                 lbl.TextColor = Color.Black;
             }
             frm.CornerRadius = 20;
-            //Label lbl = new Label
-            //{
-            //    Text = item.message,
-            //    TextColor = Color.White,
-            //    FontSize = 14,
-            //    VerticalTextAlignment = TextAlignment.Center,
-            //    HorizontalTextAlignment = TextAlignment.Start
-            //};
             var stack = new StackLayout();
-            stack.Children.Add(lbl);
+            stack.Children.Add(label);
             stack.Children.Add(timelabel);
             frm.Content = stack;
             messagelayout.Children.Add(frm);
@@ -336,17 +327,18 @@ namespace MobileHRM.Views
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.EndAndExpand,
                 BackgroundColor = Color.Transparent,
-                WidthRequest = 30,
-                HeightRequest = 30
+                WidthRequest = 25,
+                HeightRequest = 25
             };
             ImgPlayer.Clicked += new EventHandler(Vm.PlayVoice);
             Grid grid = new Grid();
-            grid.ColumnDefinitions = new ColumnDefinitionCollection() {new ColumnDefinition(),new ColumnDefinition(),new ColumnDefinition() };
+            grid.ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition(), new ColumnDefinition(), new ColumnDefinition() };
             Frame f = new Frame
             {
-                CornerRadius = 10,
+                CornerRadius = 30,
                 Padding = new Thickness(0),
-                Content = ImgPlayer
+                Content = ImgPlayer,
+                HeightRequest = 70
             };
             Label timelabel = new Label
             {
@@ -354,14 +346,18 @@ namespace MobileHRM.Views
                 FontSize = 8,
                 TextColor = Color.Silver,
                 VerticalOptions = LayoutOptions.EndAndExpand,
-                HorizontalOptions = LayoutOptions.EndAndExpand,
-                Margin = new Thickness(30, 0, 30, 10)
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Margin = new Thickness(5, 0, 0, 10)
             };
-            var stack = new StackLayout();
-            stack.Children.Add(ImgPlayer);
-            stack.Children.Add(timelabel);
-            stack.Children.Add(new Slider { BackgroundColor = Color.FromHex("00A693"),VerticalOptions=LayoutOptions.CenterAndExpand,HorizontalOptions=LayoutOptions.StartAndExpand });
-            f.Content = stack;
+            var Grid = new Grid { ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition { Width = new GridLength(4, GridUnitType.Star) }, new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) } } };
+            var slider = new Slider { ThumbColor = Color.FromHex("00A693"), VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
+            Grid.SetColumn(ImgPlayer, 1);
+            Grid.SetColumn(timelabel, 1);
+            Grid.SetColumn(slider, 0);
+            Grid.Children.Add(ImgPlayer);
+            Grid.Children.Add(timelabel);
+            Grid.Children.Add(slider);
+            f.Content = Grid;
             if (msg.userId == User.UserId)
             {
                 f.BackgroundColor = Color.FromHex("#1A1C23");
@@ -374,6 +370,7 @@ namespace MobileHRM.Views
                 timelabel.TextColor = Color.Black;
             }
             messagelayout.Children.Add(f);
+            ImgPlayer.Clicked += Vm.PlayVoice;
             ImgPlayer.CommandParameter = msg;
             ImgPlayer.AutomationId = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + $"Audio-{msg.createdAt.ToString("yyyy_MM_dd__HH_mm_ss")}.wav";
         }

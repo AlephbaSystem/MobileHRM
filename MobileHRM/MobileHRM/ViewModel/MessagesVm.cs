@@ -47,7 +47,19 @@ namespace MobileHRM.ViewModel
                 OnPropertyChanged(nameof(IsGroupOwner));
             }
         }
-
+        public bool _isEmpty = true;
+        public bool IsEmpty
+        {
+            get
+            {
+                return _isEmpty;
+            }
+            set
+            {
+                _isEmpty = value;
+                OnPropertyChanged(nameof(IsEmpty));
+            }
+        }
         AudioPlayer audioplayer = new AudioPlayer();
         public MessagesVm(int _GroupId, ImageSource _image, int userId)
         {
@@ -82,6 +94,7 @@ namespace MobileHRM.ViewModel
             {
                 var item = await request.GetMessageByGroupId(GroupId, 0, 20);
                 Items = item ?? new List<GroupMessage>();
+                IsEmpty = !Convert.ToBoolean(Items.Count);
             }
             catch (Exception e)
             {

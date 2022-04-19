@@ -39,7 +39,7 @@
                            CornerRadius="50"                           
                            HorizontalOptions="Center"
                            VerticalOptions="Fill">
-                            <Frame Padding="0" CornerRadius="40">
+                        <Frame Padding="0" CornerRadius="40">
                             <Image HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="80"
                                HeightRequest="80">
                                 <Image.Source>
@@ -52,16 +52,14 @@
                             </Image>
                         </Frame>
                     </Frame>
-                    <Label Text="Name"
-                           FontSize="Micro"
-                           TextColor="#EBEBEB"/>
-                    <Frame Padding="1"
+                    <Frame Padding="1" HorizontalOptions="FillAndExpand"
                            CornerRadius="5"
                            Margin="0,0,0,10"
                            BackgroundColor="#272B35">
-                        <controls:CustomEntry Text="{Binding Group.name}"
+                        <controls:CustomEntry Text="{Binding Group.name}" HorizontalTextAlignment="Center"
                                           FontSize="Micro"
                                           Margin="10,0,0,0"
+                                          WidthRequest="200"
                                           BackgroundColor="#272B35"
                                           PlaceholderColor="#EBEBEB"
                                           TextColor="#EBEBEB"/>

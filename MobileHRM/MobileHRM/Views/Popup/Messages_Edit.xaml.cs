@@ -18,7 +18,15 @@ namespace MobileHRM.Views.Popup
             Vm= new ViewModel.MessageEditViewModel(group);
             BindingContext = Vm;
         }
-
+        protected override bool OnBackButtonPressed()
+        {
+            pop();
+            return base.OnBackButtonPressed();            
+        }
+        private async void pop()
+        {
+            await PopupNavigation.Instance.PopAsync();
+        }
         private async void Close_Imagebutton(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PopAsync();
