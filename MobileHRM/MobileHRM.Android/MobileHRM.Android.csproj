@@ -139,6 +139,9 @@
   <ItemGroup>
     <Compile Include="Controls\CustomEditorRenderer.cs" />
     <Compile Include="Controls\CustomEntryRenderer.cs" />
+    <Compile Include="Controls\CustomShellItemRenderer.cs" />
+    <Compile Include="Controls\CustomShellRenderer.cs" />
+    <Compile Include="Extensions\ImageSourceExtensions.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -369,6 +372,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\MessageSendIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\BottomTabLayout.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
