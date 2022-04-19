@@ -4,10 +4,11 @@
     <SelectedDevice>Samsung SM-G965U1</SelectedDevice>
     <ActiveDebugProfile>Samsung SM-G965U1</ActiveDebugProfile>
     <DefaultDevice>Android_Emulator_30</DefaultDevice>
-    <AndroidDesignerPreferredTheme>Theme.DeviceDefault.Light.NoActionBar.Fullscreen</AndroidDesignerPreferredTheme>
-    <SelectedDevice>Pixel_2_API_31</SelectedDevice>
-    <ActiveDebugProfile>Pixel_2_API_31</ActiveDebugProfile>
+    <AndroidDesignerPreferredTheme>Theme.DeviceDefault</AndroidDesignerPreferredTheme>
+    <SelectedDevice>Samsung SM-G965U1</SelectedDevice>
+    <ActiveDebugProfile>Samsung SM-G965U1</ActiveDebugProfile>
     <DefaultDevice>Pixel_2_API_31</DefaultDevice>
-    <SelectedPlatformGroup>Emulator</SelectedPlatformGroup>
+    <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
+    <AndroidDesignerPreferredDevice>Nexus 4</AndroidDesignerPreferredDevice>
   </PropertyGroup>
 </Project>
