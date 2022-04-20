@@ -30,7 +30,7 @@
                         </Frame.GestureRecognizers>
                         <Image Aspect="AspectFit"  HorizontalOptions="FillAndExpand" HeightRequest="30" WidthRequest="40" BackgroundColor="Transparent" Source="AddIcon.png" VerticalOptions="CenterAndExpand"/>
                     </Frame>
-                    <ImageButton Aspect="AspectFit" WidthRequest="50" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_Clicked_4" Source="arrow2.png"/>
+                   
                 </StackLayout>
                 <sharpnado:Shadows>
                     <sharpnado:Shadows.Shades>
