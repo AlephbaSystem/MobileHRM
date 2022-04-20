@@ -6,6 +6,7 @@ using MobileHRM.Api;
 using System.Windows.Input;
 using Xamarin.Forms;
 using MobileHRM.Models;
+using System.Linq;
 
 namespace MobileHRM.ViewModel
 {
@@ -77,7 +78,12 @@ namespace MobileHRM.ViewModel
         }
         private async void insertReaction(object sender)
         {
-            var param = (Comment)sender;
+            var layout = (sender as Frame);            
+            var gesture = layout.GestureRecognizers[0] as TapGestureRecognizer;
+            int commentId = int.Parse(layout.AutomationId);
+            var param = Comments.Where(p => p.commentId == commentId).FirstOrDefault();
+            layout.BackgroundColor = Color.FromHex("#abcccccc");
+            layout.IsEnabled = false;
             bool res = false;
             if (param.reactionId == 0)
             {
@@ -94,7 +100,12 @@ namespace MobileHRM.ViewModel
         }
         private async void insertReaction1(object sender)
         {
-            var param = (Comment)sender;
+            var layout = (sender as Frame);
+            var gesture = layout.GestureRecognizers[0] as TapGestureRecognizer;
+            int commentId = int.Parse(layout.AutomationId);
+            var param = Comments.Where(p => p.commentId == commentId).FirstOrDefault();
+            layout.BackgroundColor = Color.FromHex("#abcccccc");
+            layout.IsEnabled = false;
             bool res = false;
             if (param.reactionId == 0)
             {
