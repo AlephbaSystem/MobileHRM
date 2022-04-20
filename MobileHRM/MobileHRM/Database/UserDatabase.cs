@@ -1,4 +1,5 @@
-﻿using MobileHRM.Models;
+﻿using System.Linq;
+using MobileHRM.Models;
 using MobileHRM.Models.Entities;
 using SQLite;
 using System;
@@ -15,6 +16,7 @@ namespace MobileHRM.Database
         {
             UserDatabase instance = new UserDatabase();
             CreateTableResult result = await Database.CreateTableAsync<UserEntitieModel>();
+            //CreateTableResult res = await Database.CreateTableAsync<UserAutentication>();
             return instance;
         });
 
@@ -30,12 +32,7 @@ namespace MobileHRM.Database
         {
             return await Database.Table<UserEntitieModel>().ToListAsync();
         }
-
-        //Read Item
-        public async Task<UserEntitieModel> GetUserAsync()
-        {
-            return await Database.Table<UserEntitieModel>().FirstOrDefaultAsync();
-        }
+        
 
         //Get a specific user.
         public async Task<UserEntitieModel> GetUserAsync(int id)
@@ -75,9 +72,23 @@ namespace MobileHRM.Database
 
 
         ////Insert and Update new user  
-        //public async Task<int> SaveUserAsync(User user)
+        //public async Task SaveUserAutAsync(UserAutentication user)
         //{
-        //    return string.IsNullOrEmpty(user.token) ? await Database.InsertAsync(user) : await Database.UpdateAsync(user);
+        //    if (string.IsNullOrEmpty(user.token))
+        //    {
+        //        await Database.InsertAsync(user);
+        //    }
+        //    else
+        //    {
+        //        await Database.UpdateAsync(user);
+        //    }
+        //}
+
+        ////Read Item
+        //public async Task<UserAutentication> GetUserAsync()
+        //{
+        //    var q = await Database.QueryAsync<UserAutentication>("select * from UserAutentication limit 1 offset 0");
+        //    return q.FirstOrDefault() ;
         //}
     }
 }

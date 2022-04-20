@@ -5,6 +5,7 @@ using SQLite;
 
 namespace MobileHRM.Models.Entities
 {
+    [Table("UserEntitieModel")]
     public class UserEntitieModel
     {
         [PrimaryKey, AutoIncrement]
@@ -17,8 +18,5 @@ namespace MobileHRM.Models.Entities
         public bool inactive { get; set; }
         public DateTime createdAt { get; set; }
         public DateTime updateAt { get; set; }
-        public string token { get; set; }
-        public int UserId { get; set; }
-        public string UserName { get; set; }
     }
 }

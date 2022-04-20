@@ -1,6 +1,7 @@
 ﻿using MobileHRM.Database;
 using MobileHRM.Models;
 using MobileHRM.Views;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -9,7 +10,7 @@ namespace MobileHRM
 {
     public partial class App : Application
     {
-        UserDatabase userDb;
+        UserAuthDatabase userDb;
         public App()
         {
             InitializeComponent();
@@ -18,18 +19,33 @@ namespace MobileHRM
         }
         private async void check()
         {
-                userDb= UserDatabase.Instance.GetAwaiter().GetResult();
-                var q=await userDb.GetUserAsync();
-                if (string.IsNullOrEmpty(q.token))
+            userDb = UserAuthDatabase.Instance.GetAwaiter().GetResult();
+            Models.Entities.UserAutentication q = await userDb.GetUserAsync();
+            if (q != null)
+            {
+                TimeSpan time = DateTime.Now - q.tokenExpire;
+                if (time.Days <= 30)
                 {
-                    MainPage = new NavigationPage(new LogInPage());
+                    User.UserId = q.userId;
+                    if (string.IsNullOrEmpty(q.userName))
+                    {
+                        User.UserName = "alephba";
+                    }
+                    else
+                    {
+                        User.UserName = q.userName;
+                    }
+                    MainPage = new MainPage();
                 }
                 else
                 {
-                    User.UserId = q.UserId;
-                    User.UserName = "alephba";
-                    MainPage = new MainPage();
+                    MainPage = new NavigationPage(new LogInPage());
                 }
+            }
+            else
+            {
+                MainPage = new NavigationPage(new LogInPage());
+            }
         }
         protected override void OnStart()
         {

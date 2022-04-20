@@ -3,6 +3,7 @@ using MobileHRM.Database;
 using MobileHRM.Models;
 using MobileHRM.Models.Entities;
 using MobileHRM.Models.Request;
+using MobileHRM.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -40,25 +41,36 @@ namespace MobileHRM.Views
                     phoneNumber = _loginPhone,
                     verifyCode = txtCode.Text
                 };
-                Models.Response.VerifyResponse Vresponse = await authenticationApi.Validate(Vrequest);
+                VerifyResponse Vresponse = await authenticationApi.Validate(Vrequest);
                 if (Vresponse.token != null)
                 {
-                    UserEntitieModel user = new UserEntitieModel()
-                    {
-                        phone = _loginPhone,
-                        token = Vresponse.token,
-                        createdAt = DateTime.Now,
-                        UserId = Vresponse.userId,
-                    };
-                    User.UserId = user.Id;
-                    UserDatabase userDatabase = UserDatabase.Instance.GetAwaiter().GetResult();
-                    await userDatabase.SaveUserAsync(user);
+                    await SaveToDatabase(Vresponse);
                     Application.Current.MainPage = new MainPage();
                 }
                 else
                     await new Popup.ShowMsgPopup(Vresponse.Content, "").ShowAsync();
                 IsBusy = false;
             }
+        }
+
+        private async Task SaveToDatabase(VerifyResponse Vresponse)
+        {
+            UserEntitieModel user = new UserEntitieModel()
+            {
+                phone = _loginPhone,
+                createdAt = DateTime.Now,
+            };
+            UserAutentication userAuth = new UserAutentication()
+            {
+                token = Vresponse.token,
+                tokenExpire = DateTime.Now,
+                userId = Vresponse.userId,
+                userName = Vresponse.UserName
+            };
+            UserDatabase userDatabase = UserDatabase.Instance.GetAwaiter().GetResult();
+            await userDatabase.SaveUserAsync(user);
+            UserAuthDatabase userAuthDatabase = UserAuthDatabase.Instance.GetAwaiter().GetResult();
+            await userAuthDatabase.SaveUserAutAsync(userAuth);
         }
 
         private async void ResendSmsTapped(object sender, EventArgs e)
