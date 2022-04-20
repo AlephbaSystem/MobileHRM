@@ -23,12 +23,12 @@
                      Spacing="10"
                      Orientation="Horizontal" 
                      BackgroundColor="Transparent" >
-                <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF" Margin="0,0,20,0">
+                <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF" Margin="5,0,10,0">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="ImageButton_Clicked" />
                     </Frame.GestureRecognizers>
                     <Frame Padding="0" CornerRadius="40">
-                        <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                        <Image HorizontalOptions="FillAndExpand" WidthRequest="52" HeightRequest="52" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
                     </Frame>
                 </Frame>
                 <Frame CornerRadius="40" Padding="0" WidthRequest="49" HeightRequest="49" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
