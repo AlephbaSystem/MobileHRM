@@ -32,7 +32,6 @@ namespace MobileHRM.Views
             vm.initialize();
             if (_Knowledge == null)
             {
-                await Task.Delay(1000);
                 await Navigation.PopAsync();
             }
         }

@@ -181,16 +181,10 @@
                                                            WidthRequest="30" HeightRequest="30"
                                                        CornerRadius="40" IsEnabled="{Binding isLike}" 
                                                            Padding="5" 
-                                                           BackgroundColor="#ccc" HorizontalOptions="StartAndExpand" 
+                                                           BackgroundColor="#9bcccccc" HorizontalOptions="StartAndExpand" 
                                                            VerticalOptions="CenterAndExpand"
                                                            TranslationY="5">
                                                         <Frame.Triggers>
-                                                            <DataTrigger TargetType="Frame" Binding="{Binding reactionId,TargetNullValue=''}" Value="">
-                                                                <Setter Property="BackgroundColor"
-                                                                        Value="#ccc" />
-                                                                <Setter Property="IsEnabled"
-                                                                        Value="True" />
-                                                            </DataTrigger>
                                                             <DataTrigger TargetType="Frame" Binding="{Binding IsEnabled,Source={x:Reference frown}}"
                                                                          Value="false">
                                                                 <Setter Property="BackgroundColor"
@@ -209,18 +203,12 @@
                                                     <Frame  x:Name="frown" CornerRadius="40"
                                                             AutomationId="frown"
                                                              WidthRequest="30" HeightRequest="30"
-                                                            IsEnabled="{Binding !$isLike}" BackgroundColor="#ccc" 
+                                                            IsEnabled="{Binding !$isLike}" BackgroundColor="#9bcccccc" 
                                                             Padding="5"
                                                        TranslationY="5"
                                                        HorizontalOptions="End" VerticalOptions="CenterAndExpand"
                                                        Margin="0,0,10,0">
                                                         <Frame.Triggers>
-                                                            <DataTrigger TargetType="Frame" Binding="{Binding reactionId,TargetNullValue=''}" Value="">
-                                                                <Setter Property="BackgroundColor"
-                                                                        Value="#ccc" />
-                                                                <Setter Property="IsEnabled"
-                                                                        Value="True" />
-                                                            </DataTrigger>
                                                             <DataTrigger TargetType="Frame"
                                                                          Binding="{Binding IsEnabled,Source={x:Reference smile}}"
                                                                          Value="false">

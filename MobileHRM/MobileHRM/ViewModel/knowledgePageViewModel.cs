@@ -72,7 +72,7 @@ namespace MobileHRM.ViewModel
         KnowledgeApi request = new KnowledgeApi();
         public async void initialize()
         {
-            var i = await request.GetCommentsByKnowledgeId(User.UserId,Item.id);
+            var i = await request.GetCommentsByKnowledgeId(User.UserId, Item.id);
             Comments = i ?? new List<Comment>();
         }
         private async void insertReaction(object sender)
