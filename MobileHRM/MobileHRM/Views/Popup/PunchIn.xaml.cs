@@ -70,7 +70,8 @@ namespace MobileHRM.Views.Popup
             }
             else if (item.type == "PunchOut")
             {
-                IsBusy = false;
+                TextType.IsEnabled = false;
+                CommentEntry.IsVisible = false;
                 PunchNote.Text = "You are PunchOut!";
                 ImageType.Source = "PunchOut.png";
                 TextType.Text = "PunchOut";
