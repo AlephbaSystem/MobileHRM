@@ -47,11 +47,10 @@ namespace MobileHRM.Views
             await Navigation.PushAsync(new Contactslist());
         }
 
-        private void ImageButton_Clicked_3(object sender, EventArgs e)
+        private async void ImageButton_Clicked_3(object sender, EventArgs e)
         {
 
         }
-
         private async void CustomEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
             await vm.SearchByMessage(searchBar.Text);

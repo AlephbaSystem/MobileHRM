@@ -22,7 +22,7 @@ namespace MobileHRM.Database
         {
             get
             {
-                var basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DatabaseFilename);
+                string basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DatabaseFilename);
                 return basePath;
             }
         }
@@ -30,7 +30,7 @@ namespace MobileHRM.Database
         {
             get
             {
-                var basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DatabaseFilename1);
+                string basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DatabaseFilename1);
                 return basePath;
             }
         }
