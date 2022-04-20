@@ -44,7 +44,7 @@ namespace MobileHRM.ViewModel
         public async void initialize()
         {
             Items = await request.GetAllKnowledges(0, 20);
-            IsEmpty = Convert.ToBoolean(Items.Count);
+            IsEmpty = !Convert.ToBoolean(Items.Count);
             await Task.Run(async () =>
             {
                 for (int i = 0; i < Items.Count; i++)

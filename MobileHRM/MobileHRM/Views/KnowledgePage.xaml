@@ -177,21 +177,23 @@
                                                              BackgroundColor="#1A1C23"
                                                              HorizontalOptions="End">
                                                     <Frame x:Name="smile" 
+                                                           AutomationId="smile"
                                                            WidthRequest="30" HeightRequest="30"
-                                                       CornerRadius="40" IsEnabled="{Binding $isLike}" 
+                                                       CornerRadius="40" IsEnabled="{Binding isLike}" 
                                                            Padding="5" 
-                                                           BackgroundColor="#272B35" HorizontalOptions="StartAndExpand" 
+                                                           BackgroundColor="#9bcccccc" HorizontalOptions="StartAndExpand" 
                                                            VerticalOptions="CenterAndExpand"
                                                            TranslationY="5">
                                                         <Frame.Triggers>
                                                             <DataTrigger TargetType="Frame" Binding="{Binding IsEnabled,Source={x:Reference frown}}"
-                                                                         Value="true">
+                                                                         Value="false">
                                                                 <Setter Property="BackgroundColor"
-                                                                        Value="Silver" />
+                                                                        Value="#272B35" />
                                                             </DataTrigger>
+
                                                         </Frame.Triggers>
                                                         <Frame.GestureRecognizers>
-                                                            <TapGestureRecognizer Command="{Binding BindingContext.SendReaction, Source={x:Reference page}}"
+                                                            <TapGestureRecognizer Command="{Binding BindingContext.Smile, Source={x:Reference page}}"
                                                                                   CommandParameter="{Binding .}"/>
                                                         </Frame.GestureRecognizers>
                                                         <Image Source="smile.png"
@@ -199,8 +201,9 @@
                                                                xct:CornerRadiusEffect.CornerRadius="20"/>
                                                     </Frame>
                                                     <Frame  x:Name="frown" CornerRadius="40"
+                                                            AutomationId="frown"
                                                              WidthRequest="30" HeightRequest="30"
-                                                            IsEnabled="{Binding !$isLike}" BackgroundColor="#272B35" 
+                                                            IsEnabled="{Binding !$isLike}" BackgroundColor="#9bcccccc" 
                                                             Padding="5"
                                                        TranslationY="5"
                                                        HorizontalOptions="End" VerticalOptions="CenterAndExpand"
@@ -208,13 +211,13 @@
                                                         <Frame.Triggers>
                                                             <DataTrigger TargetType="Frame"
                                                                          Binding="{Binding IsEnabled,Source={x:Reference smile}}"
-                                                                         Value="true">
+                                                                         Value="false">
                                                                 <Setter Property="BackgroundColor"
-                                                                        Value="Silver" />
+                                                                        Value="#272B35" />
                                                             </DataTrigger>
                                                         </Frame.Triggers>
                                                         <Frame.GestureRecognizers>
-                                                            <TapGestureRecognizer Command="{Binding BindingContext.SendReaction, 
+                                                            <TapGestureRecognizer Command="{Binding BindingContext.Frown, 
                                                                 Source={x:Reference page}}"
                                                                 CommandParameter="{Binding .}" />
                                                         </Frame.GestureRecognizers>
@@ -242,7 +245,7 @@
                                                             />
                                                         <Label
                                                             FontSize="Micro"
-                                                            Text="{Binding createAt,StringFormat='{0:yy-MM-dd-hh:mm}'}"
+                                                            Text="{Binding createAt,StringFormat='{0:yyyy-MM-dd hh:mm}'}"
                                                             VerticalTextAlignment="Start"
                                                             HorizontalTextAlignment="End"
                                                             TextColor="#8D8D8D"

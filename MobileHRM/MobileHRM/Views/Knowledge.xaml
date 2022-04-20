@@ -33,7 +33,7 @@
             <ImageButton Aspect="AspectFit" WidthRequest="50" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_Clicked_2" Source="arrow2.png"/>
             </StackLayout>
 
-                <Frame Padding="0"
+        <Frame Padding="0"
             BackgroundColor="#FFFFFF"
             CornerRadius="5"
             HeightRequest="70"
@@ -45,7 +45,6 @@
                 Source="Search2.png"/>
             </Grid>
         </Frame>
-
         <Frame VerticalOptions="Start" 
                Padding="0" 
                CornerRadius="20"
