@@ -37,7 +37,6 @@
                     </Frame.GestureRecognizers>
                     <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
                 </Frame>
-                <ImageButton Aspect="AspectFill" WidthRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_Clicked_3" Source="arrow2.png"/>
             </StackLayout>
             <StackLayout Padding="0"    Grid.Row="1"                         
                     BackgroundColor="#1A1C23">
