@@ -10,7 +10,7 @@
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:Custom="clr-namespace:MobileHRM.Controls"
     x:Name="page">
-    
+
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation
             PositionIn="Center"
@@ -47,21 +47,20 @@
                         </Grid>
                     </Grid>
                     <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand" Margin="27,0" BackgroundColor="#1A1C23">
-                        <Label TextColor="#CCCCCC" Text="Punch In Note"/>
+                        <Label x:Name="PunchNote" TextColor="#CCCCCC" Text="Punch In Note"/>
                         <Frame VerticalOptions="FillAndExpand" Margin="0,0,0,20" Padding="0" CornerRadius="5" BackgroundColor="Transparent">
-                            <Custom:CustomEditor x:Name="CommentEntry" BackgroundColor="#272B35" PlaceholderColor="#535458" Placeholder="Type Something here" TextColor="#CCCCCC"/>
+                            <Custom:CustomEditor IsVisible="{Binding IsBusy,Source={x:Reference page}}"  x:Name="CommentEntry" BackgroundColor="#272B35" PlaceholderColor="#535458" Placeholder="Type Something here" TextColor="#CCCCCC"/>
                         </Frame>
                     </StackLayout>
                 </Grid>
 
                 <StackLayout Orientation="Horizontal" Grid.Row="2" Margin="0,0,0,0">
-                    <Grid ColumnDefinitions="*,1.65*,*" RowDefinitions="2*,4*,2*">
-                        <Button CornerRadius="5" BackgroundColor="#8D8D8D" TextColor="#FFFFFF" Text="Cancel" VerticalOptions="Center"
+                    <Grid ColumnDefinitions="*,*,*" RowDefinitions="2*,4*,2*">
+                        <Button CornerRadius="5" BackgroundColor="#8D8D8D" TextColor="#FFFFFF" Text="Cancel" VerticalOptions="Center" Clicked="Cancel_Clicked"
                                      Grid.Column="1" Grid.Row="1" HorizontalOptions="End"/>
-                        <Button CornerRadius="5" IsEnabled="{Binding IsEnabled,Source={x:Reference page}}" x:Name="TextType" Text="Punch In" BackgroundColor="#26AB5B" TextColor="#FFFFFF" VerticalOptions="Center" Clicked="Punch_Clicked"
-                                     Grid.Column="2" Grid.Row="1" HorizontalOptions="End"/>
+                        <Button CornerRadius="5" IsEnabled="{Binding IsBusy,Source={x:Reference page}}" x:Name="TextType" Text="Punch In" BackgroundColor="#26AB5B" TextColor="#FFFFFF" VerticalOptions="Center" Clicked="Punch_Clicked"
+                                     Grid.Column="2" Grid.Row="1" HorizontalOptions="CenterAndExpand"/>
                     </Grid>
-
                 </StackLayout>
             </Grid>
         </Frame>

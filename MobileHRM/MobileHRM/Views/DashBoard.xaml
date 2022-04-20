@@ -26,7 +26,7 @@
                     </Frame.GestureRecognizers>
                     <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
                 </Frame>
-                <Label Margin="10,0,0,0" HorizontalOptions="EndAndExpand" FontSize="Large" VerticalTextAlignment="Center" TextColor="#CCCCCC" Text="{Binding Source={x:Static local:User.UserName},StringFormat='Hi {0} ,'}" />
+                <Label Margin="10,0,0,0" HorizontalOptions="EndAndExpand" FontSize="Large" VerticalTextAlignment="Center" TextColor="#CCCCCC" Text="{Binding Source={x:Static local:User.UserName},StringFormat='Hi {0}'}" />
             </StackLayout>
             <Frame Padding="0" Grid.Row="0"
                                 BackgroundColor="#FFFFFF"

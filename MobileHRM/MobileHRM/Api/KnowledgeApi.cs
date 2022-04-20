@@ -116,7 +116,7 @@ namespace MobileHRM.Api
             {
                 string uri = requestUri + $"GetKnowledgesByTag?tagName={tagName}&offset={offset}&pagination={pagination}";
                 string jsondata = await Base.Get(uri);
-                jsondata = jsondata ?? "";
+                jsondata ??= "";
                 List<KnowledgeDetail> items = JsonDataConverter<KnowledgeDetail[]>.JsonStringToObject(jsondata).ToList();
                 return items;
             }
@@ -126,11 +126,11 @@ namespace MobileHRM.Api
                 throw;
             }
         }
-        public async Task<List<Comment>> GetCommentsByKnowledgeId(int KnowledgeId)
+        public async Task<List<Comment>> GetCommentsByKnowledgeId(int userId, int KnowledgeId)
         {
             try
             {
-                string uri = requestUri + $"GetCommentsByKnowledgeId?knowledgeId={KnowledgeId}";
+                string uri = requestUri + $"GetCommentsByKnowledgeId?knowledgeId={KnowledgeId}&userId={userId}";
                 string jsondata = await Base.Get(uri);
                 jsondata = jsondata ?? "";
                 List<Comment> items = JsonDataConverter<Comment[]>.JsonStringToObject(jsondata).ToList();
