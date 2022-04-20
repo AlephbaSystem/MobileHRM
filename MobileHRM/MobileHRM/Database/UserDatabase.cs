@@ -26,9 +26,15 @@ namespace MobileHRM.Database
         }
 
         //Read All Items  
-        public async Task<List<UserEntitieModel>> GetUserAsync()
+        public async Task<List<UserEntitieModel>> GetUsersAsync()
         {
             return await Database.Table<UserEntitieModel>().ToListAsync();
+        }
+
+        //Read Item
+        public async Task<UserEntitieModel> GetUserAsync()
+        {
+            return await Database.Table<UserEntitieModel>().FirstOrDefaultAsync();
         }
 
         //Get a specific user.
@@ -39,13 +45,39 @@ namespace MobileHRM.Database
                             .FirstOrDefaultAsync();
         }
 
-        //Insert and Update new user  
-        public async Task<int> SaveUserAsync(UserEntitieModel user)
+        //Get a specific user.
+        public async Task<UserEntitieModel> GetUserAsync(string phone)
         {
-            return string.IsNullOrEmpty(user.token) ? await Database.InsertAsync(user) : await Database.UpdateAsync(user);
+            return await Database.Table<UserEntitieModel>()
+                            .Where(i => i.phone == phone)
+                            .FirstOrDefaultAsync();
+        }
+
+        //Insert new user  
+        public async Task SaveUserAsync(UserEntitieModel user)
+        {
+            //return string.IsNullOrEmpty(user.token) ? await Database.InsertAsync(user) : await Database.UpdateAsync(user);
+            if (!string.IsNullOrEmpty(user.phone))
+            {
+                if (await GetUserAsync(user.phone) == null)
+                {
+                    await Database.InsertAsync(user);
+                }
+                else
+                {
+                    await Database.UpdateAsync(user);
+                }
+            }
         }
 
         //Delete a user.
         public async Task<int> DeleteUserAsync(UserEntitieModel user) => await Database.DeleteAsync(user);
+
+
+        ////Insert and Update new user  
+        //public async Task<int> SaveUserAsync(User user)
+        //{
+        //    return string.IsNullOrEmpty(user.token) ? await Database.InsertAsync(user) : await Database.UpdateAsync(user);
+        //}
     }
 }

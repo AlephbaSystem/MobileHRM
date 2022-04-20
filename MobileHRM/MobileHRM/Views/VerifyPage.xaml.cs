@@ -48,7 +48,7 @@ namespace MobileHRM.Views
                         phone = _loginPhone,
                         token = Vresponse.token,
                         createdAt = DateTime.Now,
-                        Id = Vresponse.userId,
+                        UserId = Vresponse.userId,
                     };
                     User.UserId = user.Id;
                     UserDatabase userDatabase = UserDatabase.Instance.GetAwaiter().GetResult();
