@@ -142,7 +142,6 @@ namespace MobileHRM.ViewModel
             audioplayer.FinishedPlaying += Audioplayer_FinishedPlaying;
             audioplayer.Play(Audio);
             IsPlaying = true;
-
         }
 
         private void Audioplayer_FinishedPlaying(object sender, EventArgs e)

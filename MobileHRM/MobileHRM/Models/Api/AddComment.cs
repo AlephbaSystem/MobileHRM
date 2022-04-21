@@ -9,6 +9,6 @@ namespace MobileHRM.Models.Api
         public DateTime createAt { get; set; }
         public string message { get; set; }
         public int knowledgeId { get; set; }
-        public int userId { get; set; }
+        public int userID { get; set; }
     }
 }
