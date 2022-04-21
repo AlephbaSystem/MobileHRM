@@ -19,7 +19,7 @@ namespace MobileHRM.Api
             {
                 string uri = requestUri + $"GetAllKnowledges?offset={offset}&pagination={pagination}";
                 string jsondata = await Base.Get(uri);
-                jsondata = jsondata ?? "";
+                jsondata ??= "";
                 List<KnowledgeDetail> items = JsonDataConverter<KnowledgeDetail[]>.JsonStringToObject(jsondata).ToList();
                 return items;
             }
@@ -57,7 +57,7 @@ namespace MobileHRM.Api
             {
                 string url = requestUri + $"GetKnowledgeCommentsUser?knowledgId={knowledgeId}";
                 string jsonstr = await Base.Get(url);
-                var items = JsonDataConverter<UserProfile[]>.JsonStringToObject(jsonstr).ToList();
+                List<UserProfile> items = JsonDataConverter<UserProfile[]>.JsonStringToObject(jsonstr).ToList();
                 return items ?? new List<UserProfile>();
             }
             catch (Exception e)
@@ -132,7 +132,7 @@ namespace MobileHRM.Api
             {
                 string uri = requestUri + $"GetCommentsByKnowledgeId?knowledgeId={KnowledgeId}&userId={userId}";
                 string jsondata = await Base.Get(uri);
-                jsondata = jsondata ?? "";
+                jsondata ??= "";
                 List<Comment> items = JsonDataConverter<Comment[]>.JsonStringToObject(jsondata).ToList();
                 return items;
             }

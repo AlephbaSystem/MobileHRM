@@ -2,11 +2,10 @@
 using MobileHRM.Models;
 using MobileHRM.Models.Api;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using MobileHRM.Models.Entities.Request;
 
 namespace MobileHRM.ViewModel
 {
@@ -15,8 +14,18 @@ namespace MobileHRM.ViewModel
         public KnowledgeNewViewModel()
         {
             OnSave = new Command((sender) => OnSaveClicked(sender));
-            KnowledgeDetail = new PostKnoweldgeDetail { knowledge = new Models.Entities.Request.knowledge(), references = new ObservableCollection<Models.Entities.Request.reference>(), tags = new ObservableCollection<Models.Entities.Request.tag>() };
-            KnowledgeDetail.knowledge.userId = User.UserId;
+            KnowledgeDetail = new PostKnoweldgeDetail
+            {
+                knowledge = new knowledge()
+                {
+                    userId = User.UserId,
+                    date = DateTime.Now.ToString()
+                },
+                references = new ObservableCollection<reference>(),
+                tags = new ObservableCollection<tag>()
+            };
+            //KnowledgeDetail.knowledge.userId = User.UserId;
+            //KnowledgeDetail.knowledge.date = DateTime.Now.ToString();
         }
         private bool _Tagcheck { get; set; }
         public bool Tagcheck
@@ -65,7 +74,7 @@ namespace MobileHRM.ViewModel
             }
         }
 
-        KnowledgeApi request = new KnowledgeApi();
+        private readonly KnowledgeApi request = new KnowledgeApi();
         public ICommand OnSave { get; protected set; }
         private async void OnSaveClicked(object sender)
         {
