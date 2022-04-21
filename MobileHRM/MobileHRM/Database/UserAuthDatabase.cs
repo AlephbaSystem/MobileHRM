@@ -20,23 +20,13 @@ namespace MobileHRM.Database
             return instance;
         });
 
-        public UserAuthDatabase()
-        {
-            Database = new SQLiteAsyncConnection(Constans.DatabasePath, Constans.Flags);
-        }
+        public UserAuthDatabase() => Database = new SQLiteAsyncConnection(Constans.DatabasePath, Constans.Flags);
 
 
         //Insert and Update new user  
-        public async Task<int> SaveUserAutAsync(UserAutentication user)
-        {
-            return await Database.InsertOrReplaceAsync(user);
-        }
+        public async Task<int> SaveUserAutAsync(UserAutentication user) => await Database.InsertOrReplaceAsync(user);
 
         //Read Item
-        public async Task<UserAutentication> GetUserAsync()
-        {
-            var q = await Database.QueryAsync<UserAutentication>("select * from UserAutentication ");
-            return q.FirstOrDefault();
-        }
+        public async Task<UserAutentication> GetUserAsync() => (await Database.QueryAsync<UserAutentication>("select * from UserAutentication")).FirstOrDefault();
     }
 }

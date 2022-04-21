@@ -1,6 +1,7 @@
 ﻿using MobileHRM.Database;
 using MobileHRM.Models;
 using MobileHRM.Views;
+using MobileHRM.Views.Popup;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -10,11 +11,12 @@ namespace MobileHRM
 {
     public partial class App : Application
     {
-        UserAuthDatabase userDb;
+        private UserAuthDatabase userDb;
         public App()
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
+            //MainPage = new PunchIn();
             check();
         }
         private async void check()

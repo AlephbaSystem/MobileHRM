@@ -25,45 +25,79 @@
     </pages:PopupPage.Animation>
 
     <ContentPage.Content>
-        <Frame Padding="0" CornerRadius="27" Margin="25,100" BackgroundColor="Transparent">
-            <Grid RowDefinitions="1*,4*,1*" BackgroundColor="#272B35">
-                <Grid RowDefinitions="*,2*,*" Grid.Row="0">
-                    <Label Grid.Row="1" VerticalOptions="Center" TextColor="#CCCCCC" FontSize="Large" Text="Punch In" HorizontalOptions="StartAndExpand" Margin="30,0,0,0"/>
-                    <ImageButton Grid.Row="1" VerticalOptions="Center" HorizontalOptions="End"
-                                 Source="close.png" BackgroundColor="Transparent"
-                                 Margin="0,5,20,5" Clicked="OnExitImageButtonClicked"
+        <ScrollView>
+            <Frame Padding="0" CornerRadius="30" Margin="25,0"
+               BackgroundColor="Transparent"
+                   BorderColor="#7B61FF"
+               VerticalOptions="CenterAndExpand"
+               HeightRequest="500">
+                <Grid RowDefinitions="*,5*,*" BackgroundColor="#272B35">
+                    <Grid Grid.Row="0"
+                      Margin="30,10">
+                        <Label VerticalOptions="Center"
+                           TextColor="#CCCCCC" 
+                           FontSize="Large" 
+                           Text="Punch In" 
+                           HorizontalOptions="StartAndExpand"/>
+                        <ImageButton VerticalOptions="Center" 
+                                 WidthRequest="25"
+                                 HeightRequest="25"
+                                 HorizontalOptions="End"
+                                 Source="close.png" 
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnExitImageButtonClicked"
                                  x:Name="ImageExitPunchIn"/>
-                </Grid>
-                <Grid RowDefinitions="2*,3*" Grid.Row="1" BackgroundColor="#1A1C23" VerticalOptions="FillAndExpand">
-                    <Grid ColumnDefinitions="2*,8*" Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="20,0">
-                        <Frame Padding="0" Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" CornerRadius="50" BackgroundColor="#272B35">
-                            <Image x:Name="ImageType" Source="punchIn.png" BackgroundColor="Transparent" Margin="20"/>
-                        </Frame>
+                    </Grid>
+                    <Grid RowDefinitions="2*,3*" Grid.Row="1" BackgroundColor="#1A1C23" VerticalOptions="FillAndExpand">
+                        <Grid ColumnDefinitions="2*,8*" Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="20,0">
+                            <Frame Padding="0" Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" CornerRadius="50" BackgroundColor="#272B35">
+                                <Image x:Name="ImageType" Source="punchIn.png" BackgroundColor="Transparent" Margin="20"/>
+                            </Frame>
 
-                        <Grid x:Name="PunchDetail" VerticalOptions="Center" Grid.Column="1" RowDefinitions="*,*,*">
-                            <Label TextColor="#8D8D8D" HorizontalTextAlignment="Start" Grid.Row="0" Text="" />
-                            <Label TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="1" Text="" />
-                            <Label TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="2" Text="" />
+                            <Grid x:Name="PunchDetail" VerticalOptions="Center" Grid.Column="1" RowDefinitions="*,*,*">
+                                <Label TextColor="#8D8D8D" HorizontalTextAlignment="Start" Grid.Row="0" Text="" />
+                                <Label TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="1" Text="" />
+                                <Label TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="2" Text="" />
+                            </Grid>
                         </Grid>
+                        <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand" Margin="27,0" BackgroundColor="#1A1C23">
+                            <Label x:Name="PunchNote" TextColor="#CCCCCC" Text="Punch In Note"/>
+                            <Frame VerticalOptions="FillAndExpand" Margin="0,0,0,20" Padding="0" CornerRadius="5" BackgroundColor="Transparent">
+                                <Custom:CustomEditor  x:Name="CommentEntry"
+                                                      BackgroundColor="#272B35"
+                                                      PlaceholderColor="#535458"
+                                                      MaxLength="250"
+                                                      FontSize="Small"
+                                                      Placeholder="Type Something here"
+                                                      TextColor="#CCCCCC"/>
+                            </Frame>
+                        </StackLayout>
                     </Grid>
-                    <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand" Margin="27,0" BackgroundColor="#1A1C23">
-                        <Label x:Name="PunchNote" TextColor="#CCCCCC" Text="Punch In Note"/>
-                        <Frame VerticalOptions="FillAndExpand" Margin="0,0,0,20" Padding="0" CornerRadius="5" BackgroundColor="Transparent">
-                            <Custom:CustomEditor  x:Name="CommentEntry" BackgroundColor="#272B35" PlaceholderColor="#535458" Placeholder="Type Something here" TextColor="#CCCCCC"/>
-                        </Frame>
-                    </StackLayout>
-                </Grid>
 
-                <StackLayout Orientation="Horizontal" Grid.Row="2" Margin="0,0,0,0">
-                    <Grid ColumnDefinitions="*,*,*" RowDefinitions="2*,4*,2*">
-                        <Button CornerRadius="5" BackgroundColor="#8D8D8D" TextColor="#FFFFFF" Text="Cancel" VerticalOptions="Center" Clicked="Cancel_Clicked"
-                                     Grid.Column="1" Grid.Row="1" HorizontalOptions="End"/>
-                        <Button CornerRadius="5" x:Name="TextType" Text="Punch In" BackgroundColor="#26AB5B" TextColor="#FFFFFF" VerticalOptions="Center" Clicked="Punch_Clicked"
-                                     Grid.Column="2" Grid.Row="1" HorizontalOptions="CenterAndExpand"/>
+
+                    <Grid Grid.Row="2"
+                          TranslationY="-5"
+                      ColumnDefinitions="*,*,*"
+                      Margin="30,0"
+                      Padding="0,15"
+                      VerticalOptions="Center">
+                        <Button CornerRadius="5"
+                            Grid.Column="1"
+                            BackgroundColor="#8D8D8D"
+                            TextColor="#FFFFFF"
+                            Text="Cancel"
+                            Clicked="Cancel_Clicked"/>
+                        <Button CornerRadius="5"
+                            Grid.Column="2"
+                            x:Name="TextType" 
+                            Text="Punch In" 
+                            BackgroundColor="#26AB5B" 
+                            TextColor="#FFFFFF"
+                            Clicked="Punch_Clicked"/>
                     </Grid>
-                </StackLayout>
-            </Grid>
-        </Frame>
+                </Grid>
+            </Frame>
+        </ScrollView>
     </ContentPage.Content>
 
 </pages:PopupPage>
