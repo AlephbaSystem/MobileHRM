@@ -7,7 +7,7 @@ namespace MobileHRM.Models.Entities.Request
     public class knowledge
     {
         public int userId { get; set; }
-        public string date { get; set; } = string.Empty;
+        public DateTime date { get; set; }
         public string title { get; set; } = string.Empty;
         public string detail { get; set; } = string.Empty;
     }

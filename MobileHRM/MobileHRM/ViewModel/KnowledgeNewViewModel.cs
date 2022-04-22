@@ -19,7 +19,7 @@ namespace MobileHRM.ViewModel
                 knowledge = new knowledge()
                 {
                     userId = User.UserId,
-                    date = DateTime.Now.ToString()
+
                 },
                 references = new ObservableCollection<reference>(),
                 tags = new ObservableCollection<tag>()
@@ -76,12 +76,14 @@ namespace MobileHRM.ViewModel
 
         private readonly KnowledgeApi request = new KnowledgeApi();
         public ICommand OnSave { get; protected set; }
+
         private async void OnSaveClicked(object sender)
         {
             if (KnowledgeDetail.tags == null || KnowledgeDetail.references == null)
             {
                 return;
             }
+            KnowledgeDetail.knowledge.date = DateTime.Now;
             bool res = await request.PostKnowledge(KnowledgeDetail);
             if (res)
             {

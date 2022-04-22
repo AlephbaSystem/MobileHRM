@@ -62,9 +62,15 @@
                        VerticalOptions="Start"
                        HorizontalOptions="StartAndExpand"
                        FontSize="12"
-                       TextColor="#8D8D8D"
-                       Text="Amir Shafie - 19.02.2022 - 13:13 PM"
-                    />
+                       TextColor="#8D8D8D"                       
+                    >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Item.userName,StringFormat='{0} - '}"/>
+                            <Span Text="{Binding Item.date,StringFormat='{0:dd.MM,yyyy - hh:mm}'}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
                 <ScrollView Orientation="Horizontal"
                             HorizontalScrollBarVisibility="Never">
                     <StackLayout BindableLayout.ItemsSource="{Binding Item.tags}" Orientation="Horizontal" x:Name="Technologys">
