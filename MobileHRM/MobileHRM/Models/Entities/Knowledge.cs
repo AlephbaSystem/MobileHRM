@@ -10,5 +10,6 @@ namespace MobileHRM.Models.Entities
         public int userId { get; set; }
         public string title { get; set; }
         public string detail { get; set; }
+
     }
 }
