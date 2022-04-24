@@ -80,15 +80,13 @@ namespace MobileHRM.ViewModel
         private async void OnSaveClicked(object sender)
         {
             if (KnowledgeDetail.tags == null || KnowledgeDetail.references == null)
-            {
                 return;
-            }
+
             KnowledgeDetail.knowledge.date = DateTime.Now;
             bool res = await request.PostKnowledge(KnowledgeDetail);
+
             if (res)
-            {
                 await Application.Current.MainPage.Navigation.PopAsync();
-            }
         }
     }
 }

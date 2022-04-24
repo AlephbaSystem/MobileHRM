@@ -26,7 +26,7 @@ namespace MobileHRM.Views
 
             if (current != NetworkAccess.Internet)
             {
-                await DisplayAlert("network", "cheak your internet connection", "ok");
+                await new Popup.ShowMsgPopup("cheak your internet connection", "Error").ShowAsync();
                 return;
             }
 

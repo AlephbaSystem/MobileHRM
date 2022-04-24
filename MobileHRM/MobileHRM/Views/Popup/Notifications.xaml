@@ -15,8 +15,8 @@
             PositionOut="Center"
             ScaleIn="1.2"
             ScaleOut="0.8"
-            DurationIn="200"
-            DurationOut="200"
+            DurationIn="100"
+            DurationOut="100"
             EasingIn="SinOut"
             EasingOut="SinIn"
             HasBackgroundAnimation="True"/>
@@ -26,7 +26,7 @@
         <Frame Padding="0" CornerRadius="27" Margin="25,100" BackgroundColor="Transparent">
             <Grid RowDefinitions="1*,Auto,5*" BackgroundColor="#272B35">
                 <Grid RowDefinitions="*,2*,*" Grid.Row="0">
-                    <Label Grid.Row="1" VerticalOptions="Center" TextColor="#CCCCCC" FontSize="Large" Text="Punch In" HorizontalOptions="StartAndExpand" Margin="30,0,0,0"/>
+                    <Label Grid.Row="1" VerticalOptions="Center" TextColor="#CCCCCC" FontSize="Large" Text="Notifications" HorizontalOptions="StartAndExpand" Margin="30,0,0,0"/>
                     <ImageButton Grid.Row="1" 
                                  x:Name="ImageExitNotification"
                                  VerticalOptions="Center"

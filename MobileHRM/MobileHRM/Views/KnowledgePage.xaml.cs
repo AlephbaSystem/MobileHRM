@@ -75,7 +75,7 @@ namespace MobileHRM.Views
 
         private async void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
         {
-          var url=  (sender as Label).Text;
+            var url = (sender as Label).Text;
             try
             {
                 await Browser.OpenAsync("https://www.google.com/", BrowserLaunchMode.SystemPreferred);
@@ -86,6 +86,11 @@ namespace MobileHRM.Views
                 // An unexpected error occured. No browser may be installed on the device.
             }
         }
+
+        private async void BackButtonClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PopAsync();
+        }
     }
-    
+
 }

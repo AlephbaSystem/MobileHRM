@@ -62,5 +62,10 @@ namespace MobileHRM.Views
         {
 
         }
+
+        private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        {
+
+        }
     }
 }

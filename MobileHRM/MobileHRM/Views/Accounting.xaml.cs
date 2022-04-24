@@ -69,7 +69,7 @@ namespace MobileHRM.Views
         {
             if (!IsBusy)
             {
-                IsBusy = true;;
+                IsBusy = true; ;
                 await Navigation.PushAsync(new AccountingAddBusiness());
             }
             IsBusy = false;
@@ -101,12 +101,12 @@ namespace MobileHRM.Views
 
         }
 
-        AccountingApi request;
+        private readonly AccountingApi request;
         private async void Refresh_Tapped(object sender, EventArgs e)
         {
             IsBusy = true;
-            var res = await request.GetBalance();
-            if (res==-1)
+            decimal res = await request.GetBalance();
+            if (res == -1)
             {
                 Balance.Text = "Sorry \nFailed To Load Balance Try Again Later! ";
             }

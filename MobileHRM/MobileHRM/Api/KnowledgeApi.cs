@@ -7,6 +7,7 @@ using MobileHRM.Models.Api;
 using MobileHRM.Helper;
 using System.Net.Http;
 using MobileHRM.Models.Entities.Request;
+using Newtonsoft.Json;
 
 namespace MobileHRM.Api
 {
@@ -71,7 +72,7 @@ namespace MobileHRM.Api
             try
             {
                 string url = requestUri + "insertKnowledge";
-                string jsnoStr = JsonDataConverter<PostKnoweldgeDetail>.ObjectToJsonString(item);
+                string jsnoStr = JsonConvert.SerializeObject(item);
                 StringContent content = new StringContent(jsnoStr, Encoding.UTF8, "application/json");
                 HttpRequestMessage request = new HttpRequestMessage()
                 {
@@ -88,6 +89,25 @@ namespace MobileHRM.Api
                 throw;
             }
         }
+
+        //public async Task<bool> PostKnowledge(PostKnoweldgeDetail item)
+        //{
+        //    try
+        //    {
+        //        string url = requestUri + "insertKnowledge";
+        //        string jsnoStr = JsonConvert.SerializeObject(item);
+        //        StringContent content = new StringContent(jsnoStr, Encoding.UTF8, "application/json");
+        //        HttpResponseMessage request = await httpClient.PostAsync(url, content);
+        //        return request.IsSuccessStatusCode;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return false;
+        //        throw;
+        //    }
+        //}
+
+
         public async Task<bool> PostComment(AddComment item)
         {
             try

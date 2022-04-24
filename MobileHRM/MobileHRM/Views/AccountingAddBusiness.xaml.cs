@@ -13,7 +13,7 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AccountingAddBusiness : ContentPage
     {
-        AddBusinessViewModel Vm;
+        private readonly AddBusinessViewModel Vm;
         public AccountingAddBusiness()
         {
             InitializeComponent();

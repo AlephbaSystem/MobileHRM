@@ -9,7 +9,7 @@ namespace MobileHRM.Views.Popup
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewReference : PopupPage
     {
-        MobileHRM.ViewModel.KnowledgeNewViewModel _vm = new ViewModel.KnowledgeNewViewModel();
+        private readonly ViewModel.KnowledgeNewViewModel _vm = new ViewModel.KnowledgeNewViewModel();
         public NewReference(ViewModel.KnowledgeNewViewModel vm)
         {
             InitializeComponent();

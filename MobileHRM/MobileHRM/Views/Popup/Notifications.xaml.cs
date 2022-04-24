@@ -47,8 +47,8 @@ namespace MobileHRM.Views.Popup
         private async void OnCloseImageButtonClicked(object sender, EventArgs e)
         {
             Animation animation = new Animation(v => ImageExitNotification.Scale = v, 0.8, 1.3, Easing.SinInOut);
-            animation.Commit(ImageExitNotification, "animate", 20, 200, Easing.SinIn);
-            await ImageExitNotification.ScaleTo(1, 200, Easing.SinIn);
+            animation.Commit(ImageExitNotification, "animate", 20, 100, Easing.SinIn);
+            await ImageExitNotification.ScaleTo(1, 100, Easing.SinIn);
             await PopupNavigation.Instance.PopAsync();
         }
     }
