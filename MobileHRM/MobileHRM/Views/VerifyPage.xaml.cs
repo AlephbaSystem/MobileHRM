@@ -1,15 +1,9 @@
 ﻿using MobileHRM.Api;
 using MobileHRM.Database;
-using MobileHRM.Models;
 using MobileHRM.Models.Entities;
 using MobileHRM.Models.Request;
 using MobileHRM.Models.Response;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

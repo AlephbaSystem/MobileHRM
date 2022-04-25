@@ -1,68 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:MobileHRM"
              xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
              NavigationPage.HasNavigationBar="False"
              x:Class="MobileHRM.Views.LogInPage"
              BackgroundImage="background.png"
              x:Name="page">
 
-    <StackLayout>
-        <Grid VerticalOptions="FillAndExpand"
-              RowDefinitions="*,*,*"
+    <Grid>
+        <StackLayout VerticalOptions="FillAndExpand"
               HorizontalOptions="FillAndExpand">
-            <StackLayout>
-                <ImageButton VerticalOptions="Start"
-                         Margin="0,50,0,0"
-                         BackgroundColor="Transparent"
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <ImageButton BackgroundColor="Transparent"
                          Clicked="OnImageButtonClicked"
                          HorizontalOptions="Center"
-                         Source="Alephba.png"
-                         WidthRequest="172"
-                         HeightRequest="172"/>
+                         Source="Alephba.png"/>
 
                 <Label HorizontalOptions="Center"
-                   VerticalOptions="End"
                    TextColor="#CCCCCC"
                    Text="LOGIN TO YOUR DASHBOARD"
                    FontFamily="Roboto"
-                   TranslationY="10"
-                   FontSize="20"/>
+                   FontSize="20"/>                
             </StackLayout>
 
             <Frame Padding="0"
-                   Grid.Row="1"
                    CornerRadius="10"
                    WidthRequest="250"                   
                    HeightRequest="50"
                    HorizontalOptions="CenterAndExpand"
-                   VerticalOptions="Center"
+                   VerticalOptions="StartAndExpand"
                    BackgroundColor="#7F8D8D8D"
                    BorderColor="#00A693">
                 <coustomEntry:CustomEntry Keyboard="Telephone"                  
                                           x:Name="txtPhone"
+                                          MaxLength="14"
                                           Placeholder="Phone number"
                                           PlaceholderColor="White"
                                           TextColor="#e9ecef"
                                           HorizontalTextAlignment="Center"/>
             </Frame>
 
-            <Button Grid.Row="2"
-                    BackgroundColor="#F07520"
+
+            <Button BackgroundColor="#F07520"
                     HorizontalOptions="Center"
-                    VerticalOptions="Center"
+                    VerticalOptions="CenterAndExpand"
                     WidthRequest="290"
                     HeightRequest="50"
-                    TranslationY="30"
                     Text="LogIn"
                     TextColor="White"
                     CornerRadius="10"
                     Clicked="LogIn_Btn_Clk"/>
-            <Frame Grid.RowSpan="3" IsVisible="{Binding IsBusy,Source={x:Reference page}}" BackgroundColor="#9d000000">
-                <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsRunning="{Binding IsBusy,Source={x:Reference page}}" />
-            </Frame>
-        </Grid>
-    </StackLayout>
+        </StackLayout>
+
+        <Frame IsVisible="{Binding IsBusy,Source={x:Reference page}}" BackgroundColor="#9d000000">
+            <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsRunning="{Binding IsBusy,Source={x:Reference page}}" />
+        </Frame>
+    </Grid>
 
 </ContentPage>

@@ -65,6 +65,11 @@ namespace MobileHRM.Views
         {
 
         }
+
+        private void LoadItem_Scrolled(object sender, ItemsViewScrolledEventArgs e)
+        {
+
+        }
     }
 }
 

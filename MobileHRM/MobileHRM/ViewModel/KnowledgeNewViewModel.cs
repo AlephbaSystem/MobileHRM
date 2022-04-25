@@ -13,13 +13,12 @@ namespace MobileHRM.ViewModel
     {
         public KnowledgeNewViewModel()
         {
-            OnSave = new Command((sender) => OnSaveClicked(sender));
+            OnSave = new Command((sender) => OnSaveClicked(sender));            
             KnowledgeDetail = new PostKnoweldgeDetail
             {
                 knowledge = new knowledge()
                 {
                     userId = User.UserId,
-
                 },
                 references = new ObservableCollection<reference>(),
                 tags = new ObservableCollection<tag>()
@@ -37,6 +36,7 @@ namespace MobileHRM.ViewModel
                 OnPropertyChanged(nameof(Tagcheck));
             }
         }
+
         private bool _ReferenceCheck { get; set; }
         public bool ReferenceCheck
         {
@@ -47,6 +47,8 @@ namespace MobileHRM.ViewModel
                 OnPropertyChanged(nameof(ReferenceCheck));
             }
         }
+
+        private bool _SaveEnabled { get; set; }
         public bool SaveEnabled
         {
             get { return _SaveEnabled; }
@@ -56,7 +58,7 @@ namespace MobileHRM.ViewModel
                 OnPropertyChanged(nameof(SaveEnabled));
             }
         }
-        private bool _SaveEnabled { get; set; }
+
         private PostKnoweldgeDetail _KnowledgeDetail;
         public PostKnoweldgeDetail KnowledgeDetail
         {
