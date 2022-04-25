@@ -27,21 +27,30 @@ namespace MobileHRM.Views
         }
         private async void OnReferenceClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new KnowledgeReferences(vm));
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                await Navigation.PushAsync(new KnowledgeReferences(vm));
+            });
         }
 
         private async void OnClearClicked(object sender, EventArgs e)
         {
+            await vm.RunIsBusyTaskAsync(async () =>
+            { 
             bool res = await DisplayAlert("Warning!", "The Data Will Be Lose \n Are you Continue?", "Accept", "Cancel");
             if (res)
             {
                 vm.KnowledgeDetail = new Models.Api.PostKnoweldgeDetail();
             }
+        });
         }
 
         private async void On_TagsTapped(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new KnowledgeTags(vm));
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                await Navigation.PushAsync(new KnowledgeTags(vm));
+            });
         }
     }
 

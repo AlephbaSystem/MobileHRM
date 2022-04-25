@@ -4,19 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using MobileHRM.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Rg.Plugins.Popup.Services;
 
 namespace MobileHRM.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Accounting : ContentPage
     {
+        ViewModel.Base vm;
         public Accounting()
         {
             InitializeComponent();
+            vm = new ViewModel.Base();
             request = new AccountingApi();
+
         }
 
         protected async override void OnAppearing()
@@ -37,42 +41,39 @@ namespace MobileHRM.Views
 
         private async void AddInvoice_Tapped(object sender, EventArgs e)
         {
-            if (!IsBusy)
+            await vm.RunIsBusyTaskAsync(async () =>
             {
-                IsBusy = true;
                 await Navigation.PushAsync(new AddInvoice());
-            }
-            IsBusy = false;
+            });
+            
         }
 
         private async void Report_Tapped(object sender, EventArgs e)
         {
-            if (!IsBusy)
+            await vm.RunIsBusyTaskAsync(async () =>
             {
-                IsBusy = true;
                 await Navigation.PushAsync(new Accounting_Report());
-            }
-            IsBusy = false;
+            });
+           
         }
 
         private async void Business_Tapped(object sender, EventArgs e)
         {
-            if (!IsBusy)
+            await vm.RunIsBusyTaskAsync(async () =>
             {
-                IsBusy = true;
 
                 await Navigation.PushAsync(new AccountingAddBusiness());
-            }
-            IsBusy = false;
+            });
+           
         }
         private async void Categories_Tapped(object sender, EventArgs e)
         {
-            if (!IsBusy)
+            await vm.RunIsBusyTaskAsync(async () =>
             {
-                IsBusy = true; ;
+
                 await Navigation.PushAsync(new AccountingAddBusiness());
-            }
-            IsBusy = false;
+            });
+           
         }
 
 
@@ -125,8 +126,13 @@ namespace MobileHRM.Views
 
         }
 
-        private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        private async void NotificationTapped(object sender, EventArgs e)
         {
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+
+                await PopupNavigation.Instance.PushAsync(new Popup.Notifications());
+            }); 
 
         }
 

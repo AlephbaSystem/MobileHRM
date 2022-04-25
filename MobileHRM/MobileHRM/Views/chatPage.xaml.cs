@@ -28,8 +28,11 @@ namespace MobileHRM.Views
         
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            var i = (TapGestureRecognizer)((Grid)sender).GestureRecognizers[0];
-            await Navigation.PushAsync(new MessagePage((Models.Entities.GroupModel)i.CommandParameter));
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                var i = (TapGestureRecognizer)((Grid)sender).GestureRecognizers[0];
+                await Navigation.PushAsync(new MessagePage((Models.Entities.GroupModel)i.CommandParameter));
+            });
         }
 
         private void ImageButton_Clicked(object sender, EventArgs e)
@@ -38,13 +41,21 @@ namespace MobileHRM.Views
         }
 
         private async void ImageButton_Clicked_1(object sender, EventArgs e)
-        {
-            await PopupNavigation.Instance.PushAsync(new Popup.Notifications());
-        }
 
-        private async void ImageButton_Clicked_2(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Contactslist());
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                await PopupNavigation.Instance.PushAsync(new Popup.Notifications());
+
+            });
+        }
+        private async void ImageButton_Clicked_2(object sender, EventArgs e)
+            
+        {
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                await Navigation.PushAsync(new Contactslist());
+            });
         }
 
         private async void ImageButton_Clicked_3(object sender, EventArgs e)
@@ -53,7 +64,10 @@ namespace MobileHRM.Views
         }
         private async void CustomEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
-            await vm.SearchByMessage(searchBar.Text);
+            await vm?.RunIsBusyTaskAsync(async () =>
+            {
+                await vm.SearchByMessage(searchBar.Text);
+            });
         }
     }
 }

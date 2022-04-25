@@ -38,19 +38,28 @@ namespace MobileHRM.Views
 
         private async void OnNewFrameClicked(object sender, EventArgs e)
         {
-            var popup = new KnowledgeCommentsPopup(vm.Item.id);
-            popup.Disappearing += Popup_Disappearing;
-            await PopupNavigation.Instance.PushAsync(popup);
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                var popup = new KnowledgeCommentsPopup(vm.Item.id);
+                popup.Disappearing += Popup_Disappearing;
+                await PopupNavigation.Instance.PushAsync(popup);
+            });
         }
 
-        private void Popup_Disappearing(object sender, EventArgs e)
+        private async void Popup_Disappearing(object sender, EventArgs e)
         {
-            vm.initialize();
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                vm.initialize();
+            });
         }
 
         private async void OnNotificationClicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new Notifications());
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                await PopupNavigation.Instance.PushAsync(new Notifications());
+            });
         }
 
         private void OnProfileClicked(object sender, EventArgs e)
@@ -75,21 +84,27 @@ namespace MobileHRM.Views
 
         private async void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
         {
-            var url = (sender as Label).Text;
-            try
+            await vm.RunIsBusyTaskAsync(async () =>
             {
-                await Browser.OpenAsync("https://www.google.com/", BrowserLaunchMode.SystemPreferred);
-            }
-            catch (Exception errore)
-            {
+                var url = (sender as Label).Text;
+                try
+                {
+                    await Browser.OpenAsync("https://www.google.com/", BrowserLaunchMode.SystemPreferred);
+                }
+                catch (Exception errore)
+                {
 
-                // An unexpected error occured. No browser may be installed on the device.
-            }
+                   // An unexpected error occured. No browser may be installed on the device.
+               }
+            });
         }
 
         private async void BackButtonClicked(object sender, EventArgs e)
         {
-            await Shell.Current.Navigation.PopAsync();
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                await Shell.Current.Navigation.PopAsync();
+            });
         }
     }
 
