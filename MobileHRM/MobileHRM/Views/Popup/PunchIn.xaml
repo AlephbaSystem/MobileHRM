@@ -17,8 +17,8 @@
             PositionOut="Center"
             ScaleIn="1.2"
             ScaleOut="0.8"
-            DurationIn="200"
-            DurationOut="200"
+            DurationIn="100"
+            DurationOut="100"
             EasingIn="SinOut"
             EasingOut="SinIn"
             HasBackgroundAnimation="True"/>

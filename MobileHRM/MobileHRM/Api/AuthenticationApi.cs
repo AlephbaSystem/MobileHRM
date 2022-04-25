@@ -91,7 +91,7 @@ namespace MobileHRM.Api
                 }
                 else
                 {
-                    var errorMessage = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                    string errorMessage = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
                     return new VerifyResponse
                     {
                         Content = errorMessage

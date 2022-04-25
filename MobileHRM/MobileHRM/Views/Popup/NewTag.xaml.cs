@@ -15,7 +15,7 @@ namespace MobileHRM.Views.Popup
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewTag : PopupPage
     {
-        KnowledgeNewViewModel vm = new KnowledgeNewViewModel();
+        private readonly KnowledgeNewViewModel vm = new KnowledgeNewViewModel();
         public NewTag(KnowledgeNewViewModel _vm)
         {
             InitializeComponent();

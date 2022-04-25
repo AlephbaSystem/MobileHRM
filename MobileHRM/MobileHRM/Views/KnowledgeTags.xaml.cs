@@ -15,7 +15,7 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class KnowledgeTags : ContentPage
     {
-        KnowledgeNewViewModel vm = new KnowledgeNewViewModel();
+        private readonly KnowledgeNewViewModel vm = new KnowledgeNewViewModel();
         public KnowledgeTags(KnowledgeNewViewModel _vm)
         {
             InitializeComponent();

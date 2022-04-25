@@ -15,13 +15,23 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddInvoice : ContentPage
     {
-        AddInvoiceViewModel vm;
+        private readonly AddInvoiceViewModel vm;
         public AddInvoice()
         {
             InitializeComponent();
             vm = new AddInvoiceViewModel();
             BindingContext = vm;
             vm.GetInvoiceNumber();
+        }
+
+        private void User_Tapped(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Notification_Tapped(object sender, EventArgs e)
+        {
+
         }
 
         private async void Attachment_Clicked(object sender, EventArgs e)
@@ -31,7 +41,7 @@ namespace MobileHRM.Views
 
         private async void Business_Tapped(object sender, EventArgs e)
         {
-            var popup = new BusinessPopup();
+            BusinessPopup popup = new BusinessPopup();
             popup.eventHandler += Business_Item;
             await PopupNavigation.Instance.PushAsync(popup);
         }
@@ -64,6 +74,11 @@ namespace MobileHRM.Views
         {
             vm.InvoiceDetail.date = DateTime.Parse(sender.ToString());
             vm.InvoiceDetail = vm.InvoiceDetail;
+        }
+
+        private void BackButton_Clicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("Tasks");
         }
     }
 }

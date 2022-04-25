@@ -15,8 +15,10 @@ namespace MobileHRM.ViewModel
         public int InvoiceNumber { get { return _InvoiceNumber; } set { _InvoiceNumber = value; OnPropertyChanged(nameof(InvoiceNumber)); } }
         public AddInvoiceViewModel()
         {
-            InvoiceDetail = new Invoice();
-            InvoiceDetail.attachments = new ObservableCollection<Models.Entities.Attachment>();
+            InvoiceDetail = new Invoice
+            {
+                attachments = new ObservableCollection<Models.Entities.Attachment>()
+            };
             save = new Command(SaveInvoice);
             clear = new Command(clearInvoice);
         }
@@ -37,12 +39,14 @@ namespace MobileHRM.ViewModel
         {
             InvoiceNumber = await Api.GetInvoiceNumber();
         }
-        AccountingApi Api = new AccountingApi();
+
+        readonly AccountingApi Api = new AccountingApi();
         private async void SaveInvoice(object sender)
         {
-            if (InvoiceDetail.type==0 || InvoiceDetail.businessId==0 || InvoiceDetail.attachments==null || InvoiceDetail.attachments.Count==0)
+            if (InvoiceDetail.type == 0 || InvoiceDetail.businessId == 0 || InvoiceDetail.attachments == null || InvoiceDetail.attachments.Count == 0)
             {
-                await Application.Current.MainPage.DisplayAlert("Error!","Please Fill All Information \nThen try Again!","Back");
+                //await Application.Current.MainPage.DisplayAlert("Error!","Please Fill All Information \nThen try Again!","Back");
+                await new Views.Popup.ShowMsgPopup("Please Fill All Information \nThen try Again!", "Error").ShowAsync();
                 return;
             }
             await Api.PostInvoice(InvoiceDetail);
@@ -50,8 +54,10 @@ namespace MobileHRM.ViewModel
         }
         private void clearInvoice(object sender)
         {
-            InvoiceDetail = new Invoice();
-            InvoiceDetail.attachments = new ObservableCollection<Models.Entities.Attachment>();
+            InvoiceDetail = new Invoice
+            {
+                attachments = new ObservableCollection<Models.Entities.Attachment>()
+            };
         }
         public ICommand save { protected set; get; }
         public ICommand clear { protected set; get; }
