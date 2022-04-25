@@ -11,6 +11,8 @@ namespace MobileHRM.ViewModel
 {
     public class KnowledgeViewModel : Base
     {
+
+
         public KnowledgeViewModel()
         {
         }
