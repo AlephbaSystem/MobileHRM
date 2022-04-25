@@ -17,6 +17,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
 		<PackageReference Include="Grpc.Core" Version="2.45.0" />
 		<PackageReference Include="Grpc.Tools" Version="2.45.0">
 			<PrivateAssets>all</PrivateAssets>
@@ -168,6 +169,9 @@
 		</EmbeddedResource>
 		<EmbeddedResource Update="Views\Popup\KnowledgeDetail.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Popup\Loading.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Views\Popup\NewReference.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
