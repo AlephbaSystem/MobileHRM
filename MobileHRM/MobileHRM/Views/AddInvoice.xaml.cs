@@ -76,9 +76,12 @@ namespace MobileHRM.Views
             vm.InvoiceDetail = vm.InvoiceDetail;
         }
 
-        private void BackButton_Clicked(object sender, EventArgs e)
+        private async void BackButton_Clicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("Tasks");
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                await Shell.Current.Navigation.PopAsync();
+            });
         }
     }
 }

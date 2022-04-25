@@ -20,7 +20,7 @@
                 </Frame>
                 <Frame CornerRadius="40" Padding="1" WidthRequest="45" HeightRequest="45" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35" >
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" />
+                        <TapGestureRecognizer Tapped="NotificationTapped" />
                     </Frame.GestureRecognizers>
                     <Image Aspect="AspectFill" WidthRequest="30" HeightRequest="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png"  />
                 </Frame>
@@ -112,33 +112,30 @@
                     </Frame.GestureRecognizers>
                     <Label Grid.Row="0" Text="Add Business" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#CCCCCC"/>
                 </Frame>
-                <Frame Padding="0"
+                    <Frame Padding="0"
                            Grid.Row="2"
                                Grid.ColumnSpan="2"
                                 CornerRadius="15"
                                    HeightRequest="130">
-                    <Frame.Background>
-                        <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
-                            <GradientStop Color="#3C3E45" Offset="0.2"/>
-                            <GradientStop Color="#272B35"  Offset="0.95" />
-                        </LinearGradientBrush>
-                    </Frame.Background>
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                    </Frame.GestureRecognizers>
-                    <Grid RowDefinitions="*,*">
+                        <Frame.Background>
+                            <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
+                                <GradientStop Color="#3C3E45" Offset="0.2"/>
+                                <GradientStop Color="#272B35"  Offset="0.95" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </Frame.GestureRecognizers>
+                        <Grid RowDefinitions="*,*">
                             <Label Grid.Row="0" x:Name="Balance" VerticalOptions="End" HorizontalOptions="Center" TextColor="#CCCCCC"/>
                             <Label Grid.Row="1" Text="Refresh" VerticalOptions="Start" HorizontalOptions="Center" TextColor="#7B61FF">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Refresh_Tapped" />
-                            </Label.GestureRecognizers>
-                        </Label>
-                    </Grid>
-                </Frame>
-                <Frame Grid.RowSpan="3" Grid.ColumnSpan="2" BackgroundColor="#af000000" IsVisible="{Binding IsBusy,Source={Reference page}}">
-                    <ActivityIndicator IsRunning="{Binding IsBusy,Source={Reference page}}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Color="Red" />
-                </Frame>
-            </Grid>
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Refresh_Tapped" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </Frame>
+                </Grid>
         </StackLayout>
     </StackLayout>
     </ScrollView>

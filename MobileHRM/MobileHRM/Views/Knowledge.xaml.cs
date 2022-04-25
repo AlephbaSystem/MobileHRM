@@ -36,8 +36,11 @@ namespace MobileHRM.Views
         }
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            var i = (TapGestureRecognizer)((Frame)sender).GestureRecognizers[0];
-            await Navigation.PushAsync(new KnowledgePage((KnowledgeDetail)i.CommandParameter));
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                var i = (TapGestureRecognizer)((Frame)sender).GestureRecognizers[0];
+                await Navigation.PushAsync(new KnowledgePage((KnowledgeDetail)i.CommandParameter));
+            });
         }
 
         private void ImageButton_Clicked(object sender, EventArgs e)
@@ -47,7 +50,10 @@ namespace MobileHRM.Views
 
         private async void ImageButton_Clicked_1(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new Popup.Notifications());
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                await PopupNavigation.Instance.PushAsync(new Popup.Notifications());
+            });
         }
 
         private async void OnNewFrameClicked(object sender, EventArgs e)

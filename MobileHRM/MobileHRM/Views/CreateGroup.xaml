@@ -16,7 +16,7 @@
             </Frame>
             <Frame CornerRadius="40" Padding="0" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" />
+                    <TapGestureRecognizer Tapped="Notification" />
                 </Frame.GestureRecognizers>
                 <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
             </Frame>
@@ -52,9 +52,6 @@
                         <loacl:CustomEntry Placeholder="Name"  FontAttributes="Bold" PlaceholderColor="Black" x:Name="GroupName" MaxLength="100"/>
                     </Frame>
                 </Grid>
-            </Frame>
-            <Frame Grid.RowSpan="3" BackgroundColor="#ab121212" IsVisible="{Binding IsBusy,Source={Reference page}}">
-                <ActivityIndicator VerticalOptions="CenterAndExpand" IsRunning="{Binding IsBusy,Source={Reference page}}"  />
             </Frame>
             <CollectionView x:Name="UsersList" Grid.Row="2" >
                 <CollectionView.ItemTemplate>

@@ -1,5 +1,6 @@
 ﻿using MobileHRM.Models.Entities.Request;
 using MobileHRM.ViewModel;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,27 +38,35 @@ namespace MobileHRM.Views
 
         }
 
-        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
         {
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+
+                await PopupNavigation.Instance.PushAsync(new Popup.Notifications());
+            });
+
         }
 
-        private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
         {
-            var layout = (Grid)sender;
-            var child =(Frame) ((Grid)sender).Children[0];
-            var gesture=(TapGestureRecognizer)layout.GestureRecognizers.First();
-            if (SelectedItems.Contains((Contact)gesture.CommandParameter))
-            {
-                child.CornerRadius = 0;
-                child.BackgroundColor = Color.Transparent;
-                SelectedItems.Remove((Contact)gesture.CommandParameter);
-            }
-            else
-            {
-                child.BackgroundColor = Color.FromHex("7B61FF");
-                child.CornerRadius = 15;
-                SelectedItems.Add((Contact)gesture.CommandParameter);
-            }
+        
+                var layout = (Grid)sender;
+                var child = (Frame)((Grid)sender).Children[0];
+                var gesture = (TapGestureRecognizer)layout.GestureRecognizers.First();
+                if (SelectedItems.Contains((Contact)gesture.CommandParameter))
+                {
+                    child.CornerRadius = 0;
+                    child.BackgroundColor = Color.Transparent;
+                    SelectedItems.Remove((Contact)gesture.CommandParameter);
+                }
+                else
+                {
+                    child.BackgroundColor = Color.FromHex("7B61FF");
+                    child.CornerRadius = 15;
+                    SelectedItems.Add((Contact)gesture.CommandParameter);
+                }
+            
         }
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
@@ -67,7 +76,10 @@ namespace MobileHRM.Views
         private List<Contact> SelectedItems = new List<Contact>();
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CreateGroup(SelectedItems));
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                await Navigation.PushAsync(new CreateGroup(SelectedItems));
+            });
         }
     }
 }
