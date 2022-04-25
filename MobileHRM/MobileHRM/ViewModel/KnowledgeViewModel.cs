@@ -6,16 +6,18 @@ using MobileHRM.Api;
 using MobileHRM.Helper;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.Windows.Input;
 
 namespace MobileHRM.ViewModel
 {
     public class KnowledgeViewModel : Base
     {
-
-
         public KnowledgeViewModel()
         {
+            Refresh = new Command(RefreshItems);
         }
+
+
         private List<KnowledgeDetail> _items;
         public List<KnowledgeDetail> Items
         {
@@ -45,7 +47,7 @@ namespace MobileHRM.ViewModel
         }
 
         readonly KnowledgeApi request = new KnowledgeApi();
-        public async void initialize()
+        public async Task initialize()
         {
             Items = await request.GetAllKnowledges(0, 20);
             IsEmpty = !Convert.ToBoolean(Items.Count);
@@ -76,5 +78,25 @@ namespace MobileHRM.ViewModel
                 throw;
             }
         }
+
+
+        public bool Isrefreshing
+        {
+            get { return _Isrefreshing; }
+            set
+            {
+                OnPropertyChanged(nameof(Isrefreshing));
+                _Isrefreshing = Isrefreshing;
+            }
+        }
+
+        private bool _Isrefreshing = false;
+        public async void RefreshItems(object sender)
+        {
+            await initialize();
+            Isrefreshing = false;
+        }
+
+        public ICommand Refresh { get; protected set; }
     }
 }
