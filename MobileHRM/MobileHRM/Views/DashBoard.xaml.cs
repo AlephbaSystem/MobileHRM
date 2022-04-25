@@ -41,8 +41,8 @@ namespace MobileHRM.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            var database = PunchDataBase.Instance.GetAwaiter().GetResult();
-            var item = await database.GetLastPunch("PunchIn", "restIn");
+            PunchDataBase database = PunchDataBase.Instance.GetAwaiter().GetResult();
+            Models.Entities.Punch item = await database.GetLastPunch("PunchIn", "restIn");
             if (item != null)
             {
                 (PunchInDetail.Children[0] as Label).Text = "PunchIn";

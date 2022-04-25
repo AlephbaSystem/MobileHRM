@@ -29,6 +29,7 @@ namespace MobileHRM.ViewModel
                 OnPropertyChanged(nameof(Items));
             }
         }
+
         public bool _isEmpty = true;
         public bool IsEmpty
         {
@@ -42,7 +43,8 @@ namespace MobileHRM.ViewModel
                 OnPropertyChanged(nameof(IsEmpty));
             }
         }
-        KnowledgeApi request = new KnowledgeApi();
+
+        readonly KnowledgeApi request = new KnowledgeApi();
         public async void initialize()
         {
             Items = await request.GetAllKnowledges(0, 20);
@@ -51,12 +53,11 @@ namespace MobileHRM.ViewModel
             {
                 for (int i = 0; i < Items.Count; i++)
                 {
-                    var KnowldgeCommenstUsers = await request.GetUserProfile(Items[i].id);
+                    List<UserProfile> KnowldgeCommenstUsers = await request.GetUserProfile(Items[i].id);
                     Items[i].commentedUsers = new List<image>();
                     await GetKnowledgeCommentsUser(KnowldgeCommenstUsers, i);
                 }
-            }
-            );
+            });
         }
         private Task GetKnowledgeCommentsUser(List<UserProfile> users, int index)
         {
@@ -64,7 +65,7 @@ namespace MobileHRM.ViewModel
             {
                 for (int i = 0; i < users.Count; i++)
                 {
-                    var userImageSource = DataConverter.ByteToImage(users[i].image);
+                    ImageSource userImageSource = DataConverter.ByteToImage(users[i].image);
                     Items[index].commentedUsers.Add(new image { UserImage = userImageSource });
                 }
                 return Task.CompletedTask;

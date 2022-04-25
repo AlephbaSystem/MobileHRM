@@ -14,10 +14,12 @@ namespace MobileHRM.Views.Popup
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PunchIn : PopupPage
     {
+        SummaryApi request;
         public PunchIn()
         {
             InitializeComponent();
             CheckTime();
+            request = new SummaryApi();
         }
         private async void OnExitImageButtonClicked(object sender, EventArgs e)
         {
@@ -26,16 +28,20 @@ namespace MobileHRM.Views.Popup
             await ImageExitPunchIn.ScaleTo(1, 100, Easing.SinIn);
             await PopupNavigation.Instance.PopAsync();
         }
-        SummaryApi request = new SummaryApi();
+
+        
         private async void Punch_Clicked(object sender, EventArgs e)
         {
             PunchDataBase database = PunchDataBase.Instance.GetAwaiter().GetResult();
             await database.InsertPunch(localDatabaseobj);
             await request.InsertPunch(DataObj);
             await PopupNavigation.Instance.PopAsync();
+
         }
+
         punchInRequest DataObj;
         Punch localDatabaseobj;
+
         private async void CheckTime()
         {
             PunchDataBase database = PunchDataBase.Instance.GetAwaiter().GetResult();

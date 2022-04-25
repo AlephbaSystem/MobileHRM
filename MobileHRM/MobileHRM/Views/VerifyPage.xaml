@@ -6,32 +6,24 @@
              BackgroundImage="background.png"
              x:Name="page">
 
-    <StackLayout>
-        <Grid VerticalOptions="FillAndExpand"
-              RowDefinitions="*,*,*"
-              HorizontalOptions="FillAndExpand">
 
-            <StackLayout>
-                <ImageButton VerticalOptions="Start"
-                         Margin="0,50,0,0"
-                         BackgroundColor="Transparent"
+    <Grid VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <ImageButton BackgroundColor="Transparent"
                          Clicked="OnImageButtonClicked"
                          HorizontalOptions="Center"
-                         Source="Alephba.png"
-                         WidthRequest="172"
-                         HeightRequest="172" />
+                         Source="Alephba.png"/>
 
                 <Label HorizontalOptions="Center"
-                   VerticalOptions="End"
                    TextColor="#CCCCCC"
                    Text="LOGIN TO YOUR DASHBOARD"
                    FontFamily="Roboto"
-                   TranslationY="10"
                    FontSize="20"/>
             </StackLayout>
 
-            <StackLayout Grid.Row="1"                     
-                   VerticalOptions="Center">
+            <StackLayout VerticalOptions="StartAndExpand">
                 <Frame Padding="0"
                    CornerRadius="10"
                    WidthRequest="250"                   
@@ -72,21 +64,19 @@
                 </Label>
             </StackLayout>
 
-            <Button Grid.Row="2"
-                    BackgroundColor="#F07520"
+            <Button BackgroundColor="#F07520"
                     HorizontalOptions="Center"
-                    VerticalOptions="Center"
+                    VerticalOptions="CenterAndExpand"
                     WidthRequest="290"
                     HeightRequest="50"
-                    TranslationY="30"
                     Text="Verify"
                     TextColor="White"
                     CornerRadius="10"
                     Clicked="Verify_Btn_Clk"/>
-            <Frame Grid.RowSpan="3" IsVisible="{Binding IsBusy,Source={x:Reference page}}" BackgroundColor="#9d000000">
-                <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsRunning="{Binding IsBusy,Source={x:Reference page}}" />
-            </Frame>
-        </Grid>
-    </StackLayout>
+        </StackLayout>
+        <Frame IsVisible="{Binding IsBusy,Source={x:Reference page}}" BackgroundColor="#9d000000">
+            <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsRunning="{Binding IsBusy,Source={x:Reference page}}" />
+        </Frame>
+    </Grid>
 
 </ContentPage>

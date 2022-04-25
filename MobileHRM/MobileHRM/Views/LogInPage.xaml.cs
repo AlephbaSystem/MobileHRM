@@ -2,7 +2,6 @@
 using MobileHRM.Models.Request;
 using System;
 using System.ComponentModel;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -85,9 +84,9 @@ namespace MobileHRM.Views
                 await imageButton.ScaleTo(1, 200, Easing.SinIn);
             }
 
-
             bool TC = await authenticationApi.TestConnection();
-            await DisplayAlert("", TC.ToString(), "cancel");
+            await new Popup.ShowMsgPopup(TC.ToString(), "Information").ShowAsync();
+            //await DisplayAlert("", TC.ToString(), "cancel");
             IsBusy = false;
         }
     }

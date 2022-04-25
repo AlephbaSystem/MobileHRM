@@ -1,10 +1,8 @@
 ﻿using MobileHRM.Database;
 using MobileHRM.Models;
 using MobileHRM.Views;
-using MobileHRM.Views.Popup;
-using System;
-using System.Threading.Tasks;
 using Xamarin.Forms;
+using System;
 
 
 namespace MobileHRM
@@ -16,8 +14,8 @@ namespace MobileHRM
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            MainPage = new MainPage();
-           // check();
+            //MainPage = new VerifyPage();
+            check();
         }
         private async void check()
         {
