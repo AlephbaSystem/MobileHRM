@@ -281,6 +281,7 @@ namespace MobileHRM.Views
         // Record the voice ***********************************************//
         private async void TapGestureRecognizer_Tapped_recorder(object sender, EventArgs e)
         {
+            
             if (ShowVoice != null && ShowVoice.IsRecording)
             {
                 voicefrm.BackgroundColor = Color.FromHex("272B35");
@@ -381,52 +382,62 @@ namespace MobileHRM.Views
         //***********************************************************************//
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
-            try
+            await Vm.RunIsBusyTaskAsync(async () =>
             {
-                var photo = await MediaPicker.CapturePhotoAsync();
-                // canceled
-                if (photo == null)
+                try
                 {
-                    return;
+                    var photo = await MediaPicker.CapturePhotoAsync();
+                    // canceled
+                    if (photo == null)
+                    {
+                        return;
+                    }
+                    Message message = new Message
+                    {
+                        updateAt = DateTime.Now,
+                        createdAt = DateTime.Now,
+                        message = "Photo",
+                        userId = User.UserId,
+                        messagesGroupId = group.id,
+                        mediaType = "Image"
+                    };
+                    //byte[] fileBytes = File.ReadAllBytes(photo.FullPath);
+                    using (Stream stream = await photo.OpenReadAsync())
+                    {
+                        message.media = new byte[(int)stream.Length];
+                        await stream.ReadAsync(message.media, 0, (int)stream.Length);
+                    }
+                    await Vm.sendMessage(message);
+                    await Vm.intialize();
+                    await addmessage();
                 }
-                Message message = new Message
+                catch (Exception ex)
                 {
-                    updateAt = DateTime.Now,
-                    createdAt = DateTime.Now,
-                    message = "Photo",
-                    userId = User.UserId,
-                    messagesGroupId = group.id,
-                    mediaType = "Image"
-                };
-                //byte[] fileBytes = File.ReadAllBytes(photo.FullPath);
-                using (Stream stream = await photo.OpenReadAsync())
-                {
-                    message.media = new byte[(int)stream.Length];
-                    await stream.ReadAsync(message.media, 0, (int)stream.Length);
+                    Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
                 }
-                await Vm.sendMessage(message);
-                await Vm.intialize();
-                await addmessage();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
-            }
+            });
         }
 
 
         private async void DeleteGroip_Tapped_(object sender, EventArgs e)
         {
-            if (await DisplayAlert("Warning!", "Group Will Delete Are You Sure?", "Ok", "Cancel"))
+            await Vm.RunIsBusyTaskAsync(async () =>
             {
-                Vm.DeleteGroup();
-                await Navigation.PopAsync();
-            }
+                if (await DisplayAlert("Warning!", "Group Will Delete Are You Sure?", "Ok", "Cancel"))
+                {
+                    Vm.DeleteGroup();
+                    await Navigation.PopAsync();
+                }
+            });
         }
 
         private async void more_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new Messages_Edit(new Models.Entities.Group { id = group.id, name = group.name, image = group.image, ownerId = group.ownerId }));
+            await Vm.RunIsBusyTaskAsync(async () =>
+            {
+                await PopupNavigation.Instance.PushAsync(new Messages_Edit(new Models.Entities.Group { id = group.id, name = group.name, image = group.image, ownerId = group.ownerId }));
+            }
+            );
         }
     }
 }
