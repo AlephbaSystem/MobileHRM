@@ -8,13 +8,14 @@ using Xamarin.Forms.Xaml;
 using MobileHRM.ViewModel;
 using MobileHRM.Models.Api;
 using Rg.Plugins.Popup.Services;
+using System.Windows.Input;
 
 namespace MobileHRM.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Knowledge : ContentPage
     {
-        KnowledgeViewModel vm;
+        readonly KnowledgeViewModel vm;
         public Knowledge()
         {
             InitializeComponent();
@@ -28,7 +29,10 @@ namespace MobileHRM.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            vm.initialize();
+            Task.Run(async () =>
+              {
+                  await vm.initialize();
+              });
         }
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
@@ -44,12 +48,10 @@ namespace MobileHRM.Views
 
         }
 
-        private async void NotificationClicked(object sender, EventArgs e)
-
+        private async void ImageButton_Clicked_1(object sender, EventArgs e)
         {
             await vm.RunIsBusyTaskAsync(async () =>
             {
-
                 await PopupNavigation.Instance.PushAsync(new Popup.Notifications());
             });
         }
@@ -76,11 +78,5 @@ namespace MobileHRM.Views
         {
 
         }
-
-        private void LoadItem_Scrolled(object sender, ItemsViewScrolledEventArgs e)
-        {
-
-        }
     }
 }
-

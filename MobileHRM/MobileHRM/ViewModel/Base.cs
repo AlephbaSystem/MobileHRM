@@ -19,17 +19,13 @@ namespace MobileHRM.ViewModel
 
         public bool IsBusy { get; set; }
 
-        // Experimental use at your own risk !
-        readonly private Func<Task> _tfunc;
-
         public async Task RunIsBusyTaskAsync(Func<Task> awaitableTask, bool IsLoading = true)
         {
             if (IsBusy)
-            {
                 return;
-            }
+
             IsBusy = true;
-            var lod = new Loading();
+            Loading lod = new Loading();
             try
             {
                 await lod.Show();
@@ -37,8 +33,7 @@ namespace MobileHRM.ViewModel
             }
             catch (Exception ex)
             {
-               
-               var q = ex.Message.ToString();
+                _ = ex.Message.ToString();
             }
             finally
             {
