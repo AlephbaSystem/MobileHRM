@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -24,7 +23,11 @@ namespace MobileHRM.Views.Popup
 
         private async void On_AddClicked(object sender, EventArgs e)
         {
-            vm.KnowledgeDetail.tags.Add(new Models.Entities.Request.tag() { color = TagColor.Text ?? "#fff", tagName = TagName.Text });
+            vm.KnowledgeDetail.tags.Add(new Models.Entities.Request.tag()
+            {
+                color = TagColor.Text ?? "#fff",
+                tagName = TagName.Text
+            });
             vm.KnowledgeDetail = vm.KnowledgeDetail;
             await Task.Delay(500);
             await PopupNavigation.Instance.PopAsync();
