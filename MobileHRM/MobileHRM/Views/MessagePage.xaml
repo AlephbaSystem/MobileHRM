@@ -4,7 +4,8 @@
              xmlns:customentry="clr-namespace:MobileHRM.Controls"
              x:Class="MobileHRM.Views.MessagePage"
              Background="#272B35"
-             Shell.TabBarIsVisible="False">
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="True">
     <Shell.TitleView>
         <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
             <Label x:Name="title"
