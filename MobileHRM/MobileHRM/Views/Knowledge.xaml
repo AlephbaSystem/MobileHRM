@@ -32,14 +32,18 @@
             BackgroundColor="#FFFFFF"
             CornerRadius="5"
             HeightRequest="70"
-            Margin="10,35,10,0">
-                <Grid ColumnDefinitions="0.5*,8*,2*">
-                    <entryCustom:CustomEntry Grid.Column="1" FontSize="12" Placeholder="Search"/>
-                    <ImageButton  Grid.Column="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent"
+            Margin="10,5,10,0">
+                <Grid ColumnDefinitions="*,Auto"
+                      Padding="20,0">
+                    <entryCustom:CustomEntry Grid.Column="0" FontSize="Body" Placeholder="Search"
+                                             VerticalOptions="CenterAndExpand"
+                                             HorizontalOptions="StartAndExpand"/>
+                    <ImageButton  Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent"
                 WidthRequest="30" HeightRequest="30"
                 Source="Search2.png"/>
                 </Grid>
             </Frame>
+            
             <Frame VerticalOptions="Start" 
                Padding="0" 
                CornerRadius="20"
@@ -120,11 +124,17 @@
                TranslationY="-30"
                VerticalOptions="End"
                HorizontalOptions="End"
+               BorderColor="#00A693"
                BackgroundColor="#272B35">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Tapped="OnNewFrameClicked" />
             </Frame.GestureRecognizers>
-            <Image Aspect="AspectFit"  HorizontalOptions="FillAndExpand" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Source="AddIcon.png" VerticalOptions="CenterAndExpand"/>
+            <Image Aspect="AspectFit" 
+                   HorizontalOptions="CenterAndExpand" 
+                   HeightRequest="30" WidthRequest="30" 
+                   BackgroundColor="Transparent" 
+                   Source="AddIcon.png" 
+                   VerticalOptions="CenterAndExpand"/>
         </Frame>
     </Grid>
 </ContentPage>
