@@ -12,16 +12,11 @@
         EasingOut="SinIn"
         HasBackgroundAnimation="True" 
         PositionIn="Right"
-        PositionOut="Right"
-        />
+        PositionOut="Right"/>
     </pages:PopupPage.Animation>
     <Frame BackgroundColor="#272B35" CornerRadius="27" Margin="40,140">
-        <Grid BackgroundColor="Transparent">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="5*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid BackgroundColor="Transparent"
+              RowDefinitions="*,5*,*">
             <Grid Grid.Row="0" ColumnDefinitions="*,2*,*">
                 <Label Grid.ColumnSpan="2" Margin="10,0,0,0" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" Text="New Reference" TextColor="#CCCCCC" />
                 <ImageButton Clicked="Close_Imagebutton" BackgroundColor="Transparent" Grid.Column="2"  Source="closeIcon.png" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" />

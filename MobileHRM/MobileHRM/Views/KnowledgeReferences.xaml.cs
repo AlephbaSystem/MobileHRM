@@ -14,7 +14,7 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class KnowledgeReferences : ContentPage
     {
-        ViewModel.KnowledgeNewViewModel _vm;
+        private readonly ViewModel.KnowledgeNewViewModel _vm;
         public KnowledgeReferences(ViewModel.KnowledgeNewViewModel vm)
         {
             InitializeComponent();
@@ -27,9 +27,20 @@ namespace MobileHRM.Views
             await Navigation.PopAsync();
         }
 
-        private async void Button_Clicked_1(object sender, EventArgs e)
+        private void Button_Clicked_1(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new NewReference(_vm));
+            if (!string.IsNullOrEmpty(ReferenceEntry.Text) && !string.IsNullOrEmpty(LinkEntry.Text))
+            {
+                _vm.KnowledgeDetail.references.Add(new Models.Entities.Request.reference()
+                {
+                    referencesName = ReferenceEntry.Text,
+                    link = LinkEntry.Text,
+                    adress = ""
+                });
+                _vm.KnowledgeDetail = _vm.KnowledgeDetail;
+                LinkEntry.Text = ReferenceEntry.Text = "";
+            }
+            //await PopupNavigation.Instance.PushAsync(new NewReference(_vm));
         }
 
         private async void Button_Clicked_2(object sender, EventArgs e)

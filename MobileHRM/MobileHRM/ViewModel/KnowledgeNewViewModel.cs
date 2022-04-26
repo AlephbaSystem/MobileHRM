@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using MobileHRM.Models.Entities.Request;
+using Xamarin.Essentials;
 
 namespace MobileHRM.ViewModel
 {
@@ -81,6 +82,14 @@ namespace MobileHRM.ViewModel
 
         private async void OnSaveClicked(object sender)
         {
+            NetworkAccess current = Connectivity.NetworkAccess;
+
+            if (current != NetworkAccess.Internet)
+            {
+                await new Views.Popup.ShowMsgPopup("cheak your internet connection", "Error").ShowAsync();
+                return;
+            }
+
             if (KnowledgeDetail.tags == null || KnowledgeDetail.references == null)
                 return;
 

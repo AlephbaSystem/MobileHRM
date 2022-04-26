@@ -82,21 +82,33 @@ namespace MobileHRM.Views
 
         }
 
-        private async void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        string txt;
+        private async void LinkTapped(object sender, EventArgs e)
         {
-            await vm.RunIsBusyTaskAsync(async () =>
-            {
-                var url = (sender as Label).Text;
-                try
-                {
-                    await Browser.OpenAsync("https://www.google.com/", BrowserLaunchMode.SystemPreferred);
-                }
-                catch (Exception errore)
-                {
+            NetworkAccess current = Connectivity.NetworkAccess;
 
-                   // An unexpected error occured. No browser may be installed on the device.
-               }
-            });
+            if (current != NetworkAccess.Internet)
+            {
+                await new ShowMsgPopup("cheak your internet connection", "Error").ShowAsync();
+                return;
+            }
+            //await vm.RunIsBusyTaskAsync(async () =>
+            //{
+            Label obj = (Label)sender;
+            txt = obj.Text;
+            if (!txt.StartsWith("http://"))
+            {
+                txt = "http://" + obj.Text;
+            }
+            try
+            {
+                await Browser.OpenAsync(txt, BrowserLaunchMode.SystemPreferred);
+            }
+            catch (Exception)
+            {
+                
+            }
+            //});
         }
 
         private async void BackButtonClicked(object sender, EventArgs e)

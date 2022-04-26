@@ -37,6 +37,8 @@ namespace MobileHRM.Views
                 tagName = TagEntry.Text
             });
             vm.KnowledgeDetail = vm.KnowledgeDetail;
+            TagEntry.Text = "";
+            MakeColor();
         }
 
         private async void OnClear_Tapped(object sender, EventArgs e)
