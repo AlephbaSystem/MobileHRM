@@ -60,6 +60,7 @@
                                           FontSize="Micro"
                                           Margin="10,0,0,0"
                                           WidthRequest="200"
+                                          MaxLength="15"
                                           BackgroundColor="#272B35"
                                           PlaceholderColor="#EBEBEB"
                                           TextColor="#EBEBEB"/>
@@ -114,7 +115,7 @@
 
                                                 <Image BackgroundColor="#A21441"
                                                    Margin="8"
-                                                         Source="Icon.png" />
+                                                         Source="Alephba.png"/>
                                             </Frame>
                                             <BoxView HeightRequest="0.1"
                                                      BackgroundColor="#C4C4C4"
