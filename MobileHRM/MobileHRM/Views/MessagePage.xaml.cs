@@ -281,7 +281,7 @@ namespace MobileHRM.Views
         // Record the voice ***********************************************//
         private async void TapGestureRecognizer_Tapped_recorder(object sender, EventArgs e)
         {
-            
+
             if (ShowVoice != null && ShowVoice.IsRecording)
             {
                 voicefrm.BackgroundColor = Color.FromHex("272B35");
@@ -321,7 +321,7 @@ namespace MobileHRM.Views
             }
         }
 
-        public void makeVoiceFrame(GroupMessage msg)
+        public async void makeVoiceFrame(GroupMessage msg)
         {
             ImageButton ImgPlayer = new ImageButton
             {
@@ -355,14 +355,19 @@ namespace MobileHRM.Views
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Margin = new Thickness(5, 0, 0, 10)
             };
-            Grid Grid = new Grid { ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition { Width = new GridLength(4, GridUnitType.Star) }, new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) } } };
-            Slider slider = new Slider { ThumbColor = Color.FromHex("00A693"), VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
+            var Grid = new Grid { ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition { Width = new GridLength(4, GridUnitType.Star) }, new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) } } };
+            
+            string audioPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + $"Audio-{msg.createdAt.ToString("yyyy_MM_dd__HH_mm_ss")}.wav"; ;
+            var Audio = await Vm.SaveVoice(msg.mediaId, audioPath, msg.createdAt);
+            StackLayout waves = new SoundWave(Audio).GetWave();
+
+            //var slider = new Slider { ThumbColor = Color.FromHex("00A693"), VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
             Grid.SetColumn(ImgPlayer, 1);
             Grid.SetColumn(timelabel, 1);
-            Grid.SetColumn(slider, 0);
+            Grid.SetColumn(waves, 0);
             Grid.Children.Add(ImgPlayer);
             Grid.Children.Add(timelabel);
-            Grid.Children.Add(slider);
+            Grid.Children.Add(waves);
             f.Content = Grid;
             if (msg.userId == User.UserId)
             {
@@ -378,7 +383,7 @@ namespace MobileHRM.Views
             messagelayout.Children.Add(f);
             ImgPlayer.Clicked += Vm.PlayVoice;
             ImgPlayer.CommandParameter = msg;
-            ImgPlayer.AutomationId = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + $"Audio-{msg.createdAt.ToString("yyyy_MM_dd__HH_mm_ss")}.wav";
+            ImgPlayer.AutomationId = audioPath; 
         }
 
         //***********************************************************************//
