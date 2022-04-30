@@ -34,9 +34,11 @@ namespace MobileHRM.Helper
             soundWaves.Spacing = SpaceBetween;
             int max = 30;
             int min = 1;
+            int fmax = WaveData.Max();
+            int fmin = WaveData.Min();
             foreach (short item in WaveData)
             {
-                int value = (((max - min) * (item - min)) / (max - min)) + min;
+                int value = (((fmax - fmin) * (item - min)) / (max - min)) + fmin;
                 Line li = new Line();
                 li.Y1 = 0;
                 li.Y2 = value;
