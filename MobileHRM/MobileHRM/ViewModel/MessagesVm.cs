@@ -115,6 +115,20 @@ namespace MobileHRM.ViewModel
         }
         private ObservableCollection<MessageItem> _myMessage { get; set; }
 
+        public async Task<Byte[]> SaveVoice(int mediaId, string Audio, DateTime createdAt)
+        {
+            Byte[] Mediadata;
+            if (!File.Exists(Audio))
+            {
+                Mediadata = await GetMediaByMediaId(mediaId);
+                DataConverter.SaveAudioByByte(Mediadata, createdAt);
+            }
+            else
+            {
+                Mediadata = File.ReadAllBytes(Audio);
+            }
+            return Mediadata;
+        }
         public async void PlayVoice(object sender, EventArgs e)
         {
             IsBusy = true;
@@ -126,12 +140,8 @@ namespace MobileHRM.ViewModel
             }
             var t = sender as ImageButton;
             var Audio = t.AutomationId.ToString();
-            if (!File.Exists(Audio))
-            {
-                var data = (GroupMessage)t.CommandParameter;
-                var Mediadata = await GetMediaByMediaId(data.mediaId);
-                DataConverter.SaveAudioByByte(Mediadata, data.createdAt);
-            }
+            var data = (GroupMessage)t.CommandParameter;
+            await SaveVoice(data.mediaId, Audio, data.createdAt);
 
             if (Audio == currentAudio)
             {
@@ -141,6 +151,7 @@ namespace MobileHRM.ViewModel
             currentAudio = Audio;
             audioplayer.FinishedPlaying += Audioplayer_FinishedPlaying;
             audioplayer.Play(Audio);
+
             IsPlaying = true;
         }
 
