@@ -21,10 +21,7 @@ namespace MobileHRM.ViewModel
         private List<KnowledgeDetail> _items;
         public List<KnowledgeDetail> Items
         {
-            get
-            {
-                return _items;
-            }
+            get => _items;
             set
             {
                 _items = value;
@@ -35,10 +32,7 @@ namespace MobileHRM.ViewModel
         public bool _isEmpty = true;
         public bool IsEmpty
         {
-            get
-            {
-                return _isEmpty;
-            }
+            get => _isEmpty;
             set
             {
                 _isEmpty = value;

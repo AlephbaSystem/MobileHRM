@@ -17,6 +17,8 @@ namespace MobileHRM.Models.Api
         public List<Reference> references { get; set; }
         public List<Tag> tags { get; set; }
         public List<image> commentedUsers { get; set; }
+        public bool isLike { get; set; }
+        public int reactionId { get; set; }
     }
     public class image
     {

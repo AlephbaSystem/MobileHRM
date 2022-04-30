@@ -38,7 +38,7 @@ namespace MobileHRM.Views
         {
             await vm.RunIsBusyTaskAsync(async () =>
             {
-                var i = (TapGestureRecognizer)((Frame)sender).GestureRecognizers[0];
+                TapGestureRecognizer i = (TapGestureRecognizer)((Frame)sender).GestureRecognizers[0];
                 await Navigation.PushAsync(new KnowledgePage((KnowledgeDetail)i.CommandParameter));
             });
         }

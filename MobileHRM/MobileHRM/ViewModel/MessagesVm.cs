@@ -124,12 +124,12 @@ namespace MobileHRM.ViewModel
                 audioplayer = new AudioPlayer();
                 IsPlaying = false;
             }
-            var t = sender as ImageButton;
-            var Audio = t.AutomationId.ToString();
+            ImageButton t = sender as ImageButton;
+            string Audio = t.AutomationId.ToString();
             if (!File.Exists(Audio))
             {
-                var data = (GroupMessage)t.CommandParameter;
-                var Mediadata = await GetMediaByMediaId(data.mediaId);
+                GroupMessage data = (GroupMessage)t.CommandParameter;
+                byte[] Mediadata = await GetMediaByMediaId(data.mediaId);
                 DataConverter.SaveAudioByByte(Mediadata, data.createdAt);
             }
 

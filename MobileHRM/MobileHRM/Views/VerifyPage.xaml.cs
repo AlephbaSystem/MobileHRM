@@ -1,5 +1,6 @@
 ﻿using MobileHRM.Api;
 using MobileHRM.Database;
+using MobileHRM.Models;
 using MobileHRM.Models.Entities;
 using MobileHRM.Models.Request;
 using MobileHRM.Models.Response;
@@ -39,6 +40,7 @@ namespace MobileHRM.Views
                 if (Vresponse.token != null)
                 {
                     await SaveToDatabase(Vresponse);
+
                     Application.Current.MainPage = new MainPage();
                 }
                 else
@@ -65,6 +67,8 @@ namespace MobileHRM.Views
             await userDatabase.SaveUserAsync(user);
             UserAuthDatabase userAuthDatabase = UserAuthDatabase.Instance.GetAwaiter().GetResult();
             await userAuthDatabase.SaveUserAutAsync(userAuth);
+            User.UserId = Vresponse.userId;
+            User.UserName = string.IsNullOrEmpty(Vresponse.UserName) ? "alephba" : Vresponse.UserName;
         }
 
         private async void ResendSmsTapped(object sender, EventArgs e)

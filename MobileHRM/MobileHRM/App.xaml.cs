@@ -8,16 +8,18 @@ using System;
 namespace MobileHRM
 {
     public partial class App : Application
-    {
-        private UserAuthDatabase userDb;
+    {        
         public App()
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
             //MainPage = new VerifyPage();
-            check();
+            OnCheck();
         }
-        private async void check()
+
+        private UserAuthDatabase userDb;
+
+        private async void OnCheck()
         {
             userDb = UserAuthDatabase.Instance.GetAwaiter().GetResult();
             Models.Entities.UserAutentication q = await userDb.GetUserAsync();
@@ -27,25 +29,14 @@ namespace MobileHRM
                 if (time.Days <= 30)
                 {
                     User.UserId = q.userId;
-                    if (string.IsNullOrEmpty(q.userName))
-                    {
-                        User.UserName = "alephba";
-                    }
-                    else
-                    {
-                        User.UserName = q.userName;
-                    }
+                    User.UserName = string.IsNullOrEmpty(q.userName) ? "alephba" : q.userName;
                     MainPage = new MainPage();
                 }
                 else
-                {
                     MainPage = new NavigationPage(new LogInPage());
-                }
             }
             else
-            {
                 MainPage = new NavigationPage(new LogInPage());
-            }
         }
         protected override void OnStart()
         {

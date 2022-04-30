@@ -335,8 +335,10 @@ namespace MobileHRM.Views
                 HeightRequest = 25
             };
             ImgPlayer.Clicked += new EventHandler(Vm.PlayVoice);
-            Grid grid = new Grid();
-            grid.ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition(), new ColumnDefinition(), new ColumnDefinition() };
+            Grid grid = new Grid
+            {
+                ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition(), new ColumnDefinition(), new ColumnDefinition() }
+            };
             Frame f = new Frame
             {
                 CornerRadius = 30,
@@ -353,8 +355,8 @@ namespace MobileHRM.Views
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Margin = new Thickness(5, 0, 0, 10)
             };
-            var Grid = new Grid { ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition { Width = new GridLength(4, GridUnitType.Star) }, new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) } } };
-            var slider = new Slider { ThumbColor = Color.FromHex("00A693"), VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
+            Grid Grid = new Grid { ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition { Width = new GridLength(4, GridUnitType.Star) }, new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) } } };
+            Slider slider = new Slider { ThumbColor = Color.FromHex("00A693"), VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
             Grid.SetColumn(ImgPlayer, 1);
             Grid.SetColumn(timelabel, 1);
             Grid.SetColumn(slider, 0);

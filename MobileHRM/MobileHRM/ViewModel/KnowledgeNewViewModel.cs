@@ -14,12 +14,13 @@ namespace MobileHRM.ViewModel
     {
         public KnowledgeNewViewModel()
         {
-            OnSave = new Command((sender) => OnSaveClicked(sender));            
+            OnSave = new Command((sender) => OnSaveClicked(sender));
             KnowledgeDetail = new PostKnoweldgeDetail
             {
                 knowledge = new knowledge()
                 {
                     userId = User.UserId,
+
                 },
                 references = new ObservableCollection<reference>(),
                 tags = new ObservableCollection<tag>()
@@ -52,7 +53,7 @@ namespace MobileHRM.ViewModel
         private bool _SaveEnabled { get; set; }
         public bool SaveEnabled
         {
-            get { return _SaveEnabled; }
+            get => _SaveEnabled;
             set
             {
                 _SaveEnabled = value;
@@ -63,10 +64,7 @@ namespace MobileHRM.ViewModel
         private PostKnoweldgeDetail _KnowledgeDetail;
         public PostKnoweldgeDetail KnowledgeDetail
         {
-            get
-            {
-                return _KnowledgeDetail;
-            }
+            get => _KnowledgeDetail;
             set
             {
                 _KnowledgeDetail = value;
@@ -83,21 +81,26 @@ namespace MobileHRM.ViewModel
         private async void OnSaveClicked(object sender)
         {
             NetworkAccess current = Connectivity.NetworkAccess;
-
             if (current != NetworkAccess.Internet)
             {
                 await new Views.Popup.ShowMsgPopup("cheak your internet connection", "Error").ShowAsync();
                 return;
             }
-
             if (KnowledgeDetail.tags == null || KnowledgeDetail.references == null)
+            {
                 return;
+            }
 
             KnowledgeDetail.knowledge.date = DateTime.Now;
             bool res = await request.PostKnowledge(KnowledgeDetail);
-
             if (res)
+            {
                 await Application.Current.MainPage.Navigation.PopAsync();
+            }
+            else
+            {
+                await new Views.Popup.ShowMsgPopup("Please try again", "Error").ShowAsync();
+            }
         }
     }
 }
