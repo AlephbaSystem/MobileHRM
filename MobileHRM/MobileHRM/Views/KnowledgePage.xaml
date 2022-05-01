@@ -72,15 +72,15 @@
                             <Frame x:Name="smile" 
                                    IsEnabled="{Binding isLike}" 
                                    AutomationId="{Binding Item.id}"
-                                   Padding="5" 
-                                   CornerRadius="40" 
-                                   WidthRequest="30" 
-                                   HeightRequest="30"
+                                   Padding="3" 
+                                   CornerRadius="37" 
+                                   WidthRequest="37" 
+                                   HeightRequest="37"
                                    VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="StartAndExpand" 
+                                   HorizontalOptions="CenterAndExpand" 
                                    BackgroundColor="#272B35">
                                 <Frame.Triggers>
-                                    <DataTrigger TargetType="Frame" 
+                                    <DataTrigger TargetType="Frame"
                                                  Binding="{Binding IsEnabled,Source={x:Reference frown}}"
                                                  Value="False">
                                         <Setter Property="BackgroundColor"
@@ -97,12 +97,12 @@
                                        TextColor="White"
                                        VerticalOptions="CenterAndExpand"
                                        HorizontalOptions="CenterAndExpand"
-                                       FontSize="Large"/>
+                                       FontSize="20"/>
                             </Frame>
-                            <Frame Padding="5" 
-                                   CornerRadius="40" 
-                                   WidthRequest="30" 
-                                   HeightRequest="30"
+                            <Frame Padding="3" 
+                                   CornerRadius="37" 
+                                   WidthRequest="37" 
+                                   HeightRequest="37"
                                    VerticalOptions="CenterAndExpand"
                                    HorizontalOptions="StartAndExpand" 
                                    BackgroundColor="#272B35">
@@ -111,11 +111,11 @@
                             <Frame  x:Name="frown"
                                     IsEnabled="{Binding !$isLike}" 
                                     AutomationId="{Binding Item.id}"
-                                    CornerRadius="40"
-                                    WidthRequest="30" 
-                                    HeightRequest="30"
+                                    CornerRadius="37"
+                                    WidthRequest="37" 
+                                    HeightRequest="37"
                                     BackgroundColor="#272B35" 
-                                    Padding="5"
+                                    Padding="3"
                                     HorizontalOptions="End" 
                                     VerticalOptions="CenterAndExpand">
                                 <Frame.Triggers>
@@ -132,11 +132,14 @@
                                                           Source={x:Reference page}}"
                                                           CommandParameter="{Binding Source={x:Reference frown}}" />
                                 </Frame.GestureRecognizers>
-                                <Label Text="+"
+                               
+                                    <Label Text="+"
                                        TextColor="White"
-                                       VerticalOptions="CenterAndExpand"
+                                       VerticalOptions="Start"
                                        HorizontalOptions="CenterAndExpand"
-                                       FontSize="Large"/>
+                                       FontSize="20"
+                                           />
+                                
                             </Frame>
 
                         </StackLayout>
