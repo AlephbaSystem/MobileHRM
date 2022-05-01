@@ -55,7 +55,7 @@ namespace MobileHRM.Views
                 (PunchOutDetail.Children[1] as Label).Text = item1.date.ToString("HH:mm");
             }
         }
-        private void ImageButton_Clicked_1(object sender, EventArgs e)
+        private void ImageButton_User(object sender, EventArgs e)
         {
 
         }
@@ -68,6 +68,9 @@ namespace MobileHRM.Views
             });
         }
 
+        private void searchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
+        }
     }
 }

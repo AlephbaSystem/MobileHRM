@@ -121,7 +121,7 @@ namespace MobileHRM.Views
             await label.ScaleTo(1, 100, Easing.SpringIn);
         }
 
-        private void ImageButton_Clicked_1(object sender, EventArgs e)
+        private void ImageButton_User(object sender, EventArgs e)
         {
 
         }

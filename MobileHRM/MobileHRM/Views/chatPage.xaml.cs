@@ -62,7 +62,7 @@ namespace MobileHRM.Views
         {
 
         }
-        private async void CustomEntry_TextChanged(object sender, TextChangedEventArgs e)
+        private async void searchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             await vm?.RunIsBusyTaskAsync(async () =>
             {

@@ -23,6 +23,7 @@ namespace MobileHRM.Droid.Controls
             View outerlayout = base.OnCreateView(inflater, container, savedInstanceState);
             _bottomView = outerlayout.FindViewById<BottomNavigationView>(Resource.Id.bottomtab_tabbar);
             _shellOverlay = outerlayout.FindViewById<FrameLayout>(Resource.Id.bottomtab_tabbar_container);
+            
 
             if (ShellItem is CustomTabbar todoTabBar && todoTabBar.LargeTab != null)
             {

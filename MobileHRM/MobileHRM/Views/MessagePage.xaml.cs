@@ -439,5 +439,15 @@ namespace MobileHRM.Views
             }
             );
         }
+
+        private void messageEntry_Focused(object sender, FocusEventArgs e)
+        {
+            MainView.Margin = new Thickness(0, 0, 0, 350);
+        }
+
+        private void messageEntry_Unfocused(object sender, FocusEventArgs e)
+        {
+            MainView.Margin = new Thickness(0, 0, 0, 0);
+        }
     }
 }

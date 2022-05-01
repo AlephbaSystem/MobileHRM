@@ -14,7 +14,7 @@ namespace MobileHRM
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            //MainPage = new VerifyPage();
+            //MainPage = new MainPage();
             check();
         }
         private async void check()
