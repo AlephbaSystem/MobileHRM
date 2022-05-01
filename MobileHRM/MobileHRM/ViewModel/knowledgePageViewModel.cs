@@ -18,32 +18,43 @@ namespace MobileHRM.ViewModel
             Smile = new Command(insertReaction);
             Frown = new Command(insertReaction1);
         }
+
         private KnowledgeDetail _item;
+
         public KnowledgeDetail Item
         {
-            get
-            {
-                return _item;
-            }
+            get => _item;
             set
             {
                 _item = value;
                 OnPropertyChanged(nameof(Item));
             }
         }
+
+        private List<KnowledgeDetail> _items;
+
+        public List<KnowledgeDetail> Items
+        {
+            get => _items;
+            set
+            {
+                _items = value;
+                OnPropertyChanged(nameof(Items));
+            }
+        }
+
         private List<Comment> _comments;
+
         public List<Comment> Comments
         {
-            get
-            {
-                return _comments;
-            }
+            get => _comments;
             set
             {
                 _comments = value;
                 OnPropertyChanged(nameof(Comments));
             }
         }
+
         //private bool _smileEnabled;
         //public bool smileEnabled
         //{
@@ -70,28 +81,30 @@ namespace MobileHRM.ViewModel
         //        OnPropertyChanged(nameof(frawnEnabled));
         //    }
         //}
-        KnowledgeApi request = new KnowledgeApi();
+        readonly KnowledgeApi request = new KnowledgeApi();
         public async void initialize()
         {
-            var i = await request.GetCommentsByKnowledgeId(User.UserId, Item.id);
-            Comments = i ?? new List<Comment>();
+            List<Comment> c = await request.GetCommentsByKnowledgeId(User.UserId, Item.id);
+            Comments = c ?? new List<Comment>();
         }
         private async void insertReaction(object sender)
         {
-            var layout = (sender as Frame);            
-            var gesture = layout.GestureRecognizers[0] as TapGestureRecognizer;
-            int commentId = int.Parse(layout.AutomationId);
-            var param = Comments.Where(p => p.commentId == commentId).FirstOrDefault();
+            Frame layout = sender as Frame;
+            TapGestureRecognizer gesture = layout.GestureRecognizers[0] as TapGestureRecognizer;
+            int knowledgeID = int.Parse(layout.AutomationId);
+            List<KnowledgeDetail> item = await request.GetKnowledgeById(knowledgeID);
+            Items = item ?? new List<KnowledgeDetail>();
+            KnowledgeDetail param = Items.Where(p => p.id == knowledgeID).FirstOrDefault();
             layout.BackgroundColor = Color.FromHex("#abcccccc");
             layout.IsEnabled = false;
             bool res = false;
             if (param.reactionId == 0)
             {
-                res = await request.SendReaction(new Reaction() { commentId = param.commentId, isLike = true, userId = User.UserId });
+                res = await request.SendReaction(new Reaction() { knowledgeId = param.id, isLike = true, userId = User.UserId });
             }
             else
             {
-                res = await request.UpdateReaction(new Models.Entities.Request.Reaction { reactionId = param.reactionId, commentId = param.commentId, isLike = !param.isLike, userId = User.UserId });
+                res = await request.UpdateReaction(new Models.Entities.Request.Reaction { reactionId = param.reactionId, knowledgeId = param.id, isLike = !param.isLike, userId = User.UserId });
             }
             if (res)
             {
@@ -100,20 +113,22 @@ namespace MobileHRM.ViewModel
         }
         private async void insertReaction1(object sender)
         {
-            var layout = (sender as Frame);
-            var gesture = layout.GestureRecognizers[0] as TapGestureRecognizer;
-            int commentId = int.Parse(layout.AutomationId);
-            var param = Comments.Where(p => p.commentId == commentId).FirstOrDefault();
+            Frame layout = sender as Frame;
+            TapGestureRecognizer gesture = layout.GestureRecognizers[0] as TapGestureRecognizer;
+            int knowledgeID = int.Parse(layout.AutomationId);
+            List<KnowledgeDetail> item = await request.GetKnowledgeById(knowledgeID);
+            Items = item ?? new List<KnowledgeDetail>();
+            KnowledgeDetail param = Items.Where(p => p.id == knowledgeID).FirstOrDefault();
             layout.BackgroundColor = Color.FromHex("#abcccccc");
             layout.IsEnabled = false;
             bool res = false;
             if (param.reactionId == 0)
             {
-                res = await request.SendReaction(new Reaction() { commentId = param.commentId, isLike = false, userId = User.UserId });
+                res = await request.SendReaction(new Reaction() { knowledgeId = param.id, isLike = false, userId = User.UserId });
             }
             else
             {
-                res = await request.UpdateReaction(new Models.Entities.Request.Reaction { reactionId = param.reactionId, commentId = param.commentId, isLike = !param.isLike, userId = User.UserId });
+                res = await request.UpdateReaction(new Models.Entities.Request.Reaction { reactionId = param.reactionId, knowledgeId = param.id, isLike = !param.isLike, userId = User.UserId });
             }
             if (res)
             {

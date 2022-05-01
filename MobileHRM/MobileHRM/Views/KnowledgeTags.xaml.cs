@@ -31,14 +31,17 @@ namespace MobileHRM.Views
         private void New_Clicked(object sender, EventArgs e)
         {
             //await PopupNavigation.Instance.PushAsync(new NewTag(vm));
-            vm.KnowledgeDetail.tags.Add(new Models.Entities.Request.tag()
+            if (!string.IsNullOrEmpty(ColorEntry.Text) && !string.IsNullOrEmpty(TagEntry.Text))
             {
-                color = ColorEntry.Text ?? "#fff",
-                tagName = TagEntry.Text
-            });
-            vm.KnowledgeDetail = vm.KnowledgeDetail;
-            TagEntry.Text = "";
-            MakeColor();
+                vm.KnowledgeDetail.tags.Add(new Models.Entities.Request.tag()
+                {
+                    color = ColorEntry.Text ?? "#fff",
+                    tagName = TagEntry.Text
+                });
+                vm.KnowledgeDetail = vm.KnowledgeDetail;
+                TagEntry.Text = "";
+                MakeColor();
+            }
         }
 
         private async void OnClear_Tapped(object sender, EventArgs e)

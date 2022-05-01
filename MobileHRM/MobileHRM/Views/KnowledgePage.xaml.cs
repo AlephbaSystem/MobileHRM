@@ -18,7 +18,7 @@ namespace MobileHRM.Views
     public partial class KnowledgePage : ContentPage
     {
         private readonly KnowledgeDetail _Knowledge;
-        knowledgePageViewModel vm;
+        private readonly knowledgePageViewModel vm;
         public KnowledgePage(KnowledgeDetail knowledge)
         {
             InitializeComponent();
@@ -92,23 +92,23 @@ namespace MobileHRM.Views
                 await new ShowMsgPopup("cheak your internet connection", "Error").ShowAsync();
                 return;
             }
-            //await vm.RunIsBusyTaskAsync(async () =>
-            //{
-            Label obj = (Label)sender;
-            txt = obj.Text;
-            if (!txt.StartsWith("http://"))
+            await vm.RunIsBusyTaskAsync(async () =>
             {
-                txt = "http://" + obj.Text;
-            }
-            try
-            {
-                await Browser.OpenAsync(txt, BrowserLaunchMode.SystemPreferred);
-            }
-            catch (Exception)
-            {
-                
-            }
-            //});
+                Label obj = (Label)sender;
+                txt = obj.Text;
+                if (!txt.StartsWith("http://"))
+                {
+                    txt = "http://" + obj.Text;
+                }
+                try
+                {
+                    await Browser.OpenAsync(txt, BrowserLaunchMode.SystemPreferred);
+                }
+                catch (Exception e)
+                {
+                    throw;
+                }
+            });
         }
 
         private async void BackButtonClicked(object sender, EventArgs e)
@@ -117,6 +117,13 @@ namespace MobileHRM.Views
             {
                 await Shell.Current.Navigation.PopAsync();
             });
+        }
+
+        private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        {
+            TapGestureRecognizer i = (TapGestureRecognizer)((Frame)sender).GestureRecognizers[0];
+            var q = new KnowledgePage((KnowledgeDetail)i.CommandParameter);
+
         }
     }
 

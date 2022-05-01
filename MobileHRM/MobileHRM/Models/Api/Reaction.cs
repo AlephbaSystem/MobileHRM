@@ -6,7 +6,7 @@ namespace MobileHRM.Models.Api
 {
     public class Reaction
     {
-        public int commentId { get; set; }
+        public int knowledgeId { get; set; }
         public int userId { get; set; }
         public bool isLike { get; set; }
     }

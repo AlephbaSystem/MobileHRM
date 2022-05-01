@@ -12,7 +12,7 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class KnowledgeNew : ContentPage
     {
-        ViewModel.KnowledgeNewViewModel vm;
+        private readonly ViewModel.KnowledgeNewViewModel vm;
         public KnowledgeNew()
         {
             InitializeComponent();

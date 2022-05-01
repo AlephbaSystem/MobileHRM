@@ -180,8 +180,7 @@
                         Text="Save"
                         Command="{Binding OnSave}"
                         BackgroundColor="#26AB5B"
-                        IsEnabled="{Binding SaveEnabled}"
-                        />
+                        IsEnabled="{Binding SaveEnabled}"/>
                 </Grid>
             </Grid>
         </ScrollView>

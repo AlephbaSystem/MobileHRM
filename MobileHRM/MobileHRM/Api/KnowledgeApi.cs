@@ -22,6 +22,7 @@ namespace MobileHRM.Api
                 string jsondata = await Base.Get(uri);
                 jsondata ??= "";
                 List<KnowledgeDetail> items = JsonDataConverter<KnowledgeDetail[]>.JsonStringToObject(jsondata).ToList();
+                items.Reverse();
                 return items;
             }
             catch (Exception e)
@@ -201,6 +202,24 @@ namespace MobileHRM.Api
             catch (Exception e)
             {
                 return false;
+                throw;
+            }
+        }
+
+
+        public async Task<List<KnowledgeDetail>> GetKnowledgeById(int id)
+        {
+            try
+            {
+                string url = requestUri + $"GetKnowledgeByID?id={id}";
+                string jsondata = await Base.Get(url);
+                jsondata ??= "";
+                List<KnowledgeDetail> items = JsonDataConverter<KnowledgeDetail[]>.JsonStringToObject(jsondata).ToList();
+                return items;
+            }
+            catch (Exception e)
+            {
+                return new List<KnowledgeDetail>();
                 throw;
             }
         }
