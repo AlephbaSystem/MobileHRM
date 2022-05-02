@@ -3,10 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sharpnadow="http://sharpnado.com"
              x:Class="MobileHRM.Views.AddInvoiceAttachment"
-             BackgroundColor="#1A1C23">
-    <ContentPage.Content>
-        <Grid Margin="10,0" RowDefinitions="0.5*,4*,1.5*">
-            <Label VerticalTextAlignment="Center" TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="0" Text="Attachments" />
+             BackgroundColor="#1A1C23"
+             Shell.NavBarIsVisible="False">
+
+
+    <StackLayout>
+    <StackLayout FlowDirection="RightToLeft" Spacing="10" Orientation="Horizontal" Margin="15,20,15,0"
+                         Grid.Row="0">
+        <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+            </Frame.GestureRecognizers>
+            <Frame Padding="0" CornerRadius="40">
+                <Image HorizontalOptions="FillAndExpand" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+            </Frame>
+        </Frame>
+        <Frame CornerRadius="40" Padding="1" WidthRequest="45" HeightRequest="45" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35" >
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Notification_Tapped" />
+            </Frame.GestureRecognizers>
+            <Image Aspect="AspectFill" WidthRequest="30" HeightRequest="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png"  />
+        </Frame>
+        <ImageButton WidthRequest="30" HeightRequest="40" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="arrow2.png"
+                             Clicked="Arrow"/>
+    </StackLayout>
+        <Label VerticalTextAlignment="Center" TextColor="#CCCCCC" HorizontalTextAlignment="Start" Grid.Row="0" Text="Attachments" />
+        <StackLayout VerticalOptions="EndAndExpand" Margin="0,0,0,10">
+    <Grid   Margin="10,0" RowDefinitions="0.5*,4*,1.5*">
+           
             <StackLayout Spacing="5" Grid.Row="1" BindableLayout.ItemsSource="{Binding InvoiceDetail.attachments}" >
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
@@ -37,5 +61,7 @@
                 <Button CornerRadius="5" TextColor="#FFFDFF" Grid.Column="2" FontAttributes="Bold" FontSize="Micro" VerticalOptions="CenterAndExpand" Text="Done" BackgroundColor="#26AB5B" Clicked="Done_Clicked" />
             </Grid>
         </Grid>
-    </ContentPage.Content>
+        </StackLayout>
+
+    </StackLayout>
 </ContentPage>

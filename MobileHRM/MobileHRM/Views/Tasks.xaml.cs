@@ -13,9 +13,11 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Tasks : ContentPage
     {
+        ViewModel.Base vm;
         public Tasks()
         {
             InitializeComponent();
+            vm = new ViewModel.Base();
         }
 
         private void ImageButton_Clicked(object sender, EventArgs e)
@@ -63,9 +65,12 @@ namespace MobileHRM.Views
 
         }
 
-        private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        private async void Notification(object sender, EventArgs e)
         {
-
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                await PopupNavigation.Instance.PushAsync(new Popup.Notifications());
+            });
         }
     }
 }

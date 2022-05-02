@@ -4,13 +4,14 @@
              xmlns:sh="http://sharpnado.com"
              xmlns:customEntry="clr-namespace:MobileHRM.Controls" xmlns:vm="clr-namespace:MobileHRM.ViewModel"
              NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False"
              BackgroundColor="#1A1C23"
              x:Class="MobileHRM.Views.AccountingAddBusiness">
-    <Shell.TitleView>
-        <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent">
+    <StackLayout>
+        <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" Margin="0,15,10,0" Spacing="10">
             <Frame BackgroundColor="#7B61FF" VerticalOptions="CenterAndExpand" Padding="1" CornerRadius="40"  Margin="0,0,20,0">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" />
                 </Frame.GestureRecognizers>
                 <Frame Padding="0" CornerRadius="40">
                     <Image HorizontalOptions="FillAndExpand" WidthRequest="46" HeightRequest="46" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
@@ -22,8 +23,10 @@
                 </Frame.GestureRecognizers>
                 <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
             </Frame>
+            <ImageButton WidthRequest="40" HeightRequest="40" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="arrow2.png" Margin="5,0,0,0"
+                             Clicked="Arrow2"/>
         </StackLayout>
-    </Shell.TitleView>
+   
     <StackLayout  Margin="20" Spacing="10">
         <Label Margin="5,20" Text="Add Customer" TextColor="#CCCCCC"
                    HorizontalOptions="Start"
@@ -202,5 +205,6 @@
 
 
 
+    </StackLayout>
     </StackLayout>
 </ContentPage>

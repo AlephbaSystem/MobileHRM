@@ -2,9 +2,11 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileHRM.Views.Accounting_Report"
-            BarBackgroundColor="#272B35">
+            BarBackgroundColor="#272B35"
+            Shell.NavBarIsVisible="False">
     <Shell.TitleView>
-        <StackLayout FlowDirection="RightToLeft" Spacing="10" Orientation="Horizontal" BackgroundColor="Transparent" >
+        
+            <StackLayout FlowDirection="RightToLeft" Spacing="10" Orientation="Horizontal" BackgroundColor="Transparent" >
             <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF" >
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
@@ -27,6 +29,10 @@
                 <Image Aspect="AspectFill" WidthRequest="37" HeightRequest="37" TranslationX="2" TranslationY="1" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Source="AddIcon.png" />
             </Frame>
         </StackLayout>
+       
     </Shell.TitleView>
-  <!--Pages can be added as references or inline-->
+    
 </TabbedPage>
+
+
+<!--Pages can be added as references or inline-->

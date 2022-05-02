@@ -90,5 +90,13 @@ namespace MobileHRM.Views
                 }
             });
         }
+
+        private async void ArrowBack(object sender, EventArgs e)
+        {
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                await Navigation.PopAsync();
+            });
+        }
     }
 }
