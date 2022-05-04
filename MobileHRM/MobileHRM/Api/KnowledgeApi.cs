@@ -223,5 +223,22 @@ namespace MobileHRM.Api
                 throw;
             }
         }
+
+        public async Task<List<Models.Response.RKnowledge>> getReactionsByKnowledgeId(int KnowledgeId, int userId)
+        {
+            try
+            {
+                string url = requestUri + $"getReactionsByKnowledgeId?KnowledgeId={KnowledgeId}&userId={userId}";
+                string jsondata = await Base.Get(url);
+                jsondata ??= "";
+                List<Models.Response.RKnowledge> items = JsonDataConverter<Models.Response.RKnowledge[]>.JsonStringToObject(jsondata).ToList();
+                return items;
+            }
+            catch (Exception e)
+            {
+                return new List<Models.Response.RKnowledge>();
+                throw;
+            }
+        }
     }
 }
