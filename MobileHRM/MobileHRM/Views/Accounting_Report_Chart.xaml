@@ -5,6 +5,7 @@
              xmlns:forms1="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
 
              Background="#1A1C23"
+             Shell.NavBarIsVisible="False"
              Title="Charts"
              >
 

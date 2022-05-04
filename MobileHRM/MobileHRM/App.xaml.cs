@@ -13,8 +13,8 @@ namespace MobileHRM
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            //MainPage = new VerifyPage();
-            OnCheck();
+            MainPage = new MainPage();
+           //OnCheck();
         }
 
         private UserAuthDatabase userDb;

@@ -20,7 +20,7 @@
                     </Frame>
                     <Frame CornerRadius="40" Padding="1" WidthRequest="45" HeightRequest="45" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35" >
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                            <TapGestureRecognizer Tapped="Notification" />
                         </Frame.GestureRecognizers>
                         <Image Aspect="AspectFill" WidthRequest="30" HeightRequest="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png"  />
                     </Frame>

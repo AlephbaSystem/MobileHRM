@@ -356,7 +356,7 @@ namespace MobileHRM.Views
                 Margin = new Thickness(5, 0, 0, 10)
             };
             var Grid = new Grid { ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition { Width = new GridLength(4, GridUnitType.Star) }, new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) } } };
-            
+
             string audioPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + $"Audio-{msg.createdAt.ToString("yyyy_MM_dd__HH_mm_ss")}.wav"; ;
             var Audio = await Vm.SaveVoice(msg.mediaId, audioPath, msg.createdAt);
             StackLayout waves = new SoundWave(Audio).GetWave();
@@ -383,7 +383,7 @@ namespace MobileHRM.Views
             messagelayout.Children.Add(f);
             ImgPlayer.Clicked += Vm.PlayVoice;
             ImgPlayer.CommandParameter = msg;
-            ImgPlayer.AutomationId = audioPath; 
+            ImgPlayer.AutomationId = audioPath;
         }
 
         //***********************************************************************//
@@ -445,6 +445,30 @@ namespace MobileHRM.Views
                 await PopupNavigation.Instance.PushAsync(new Messages_Edit(new Models.Entities.Group { id = group.id, name = group.name, image = group.image, ownerId = group.ownerId }));
             }
             );
+        }
+
+        private void messageEntry_Focused(object sender, FocusEventArgs e)
+        {
+            MainView.Margin = new Thickness(0, 0, 0, 350);
+        }
+
+        private void messageEntry_Unfocused(object sender, FocusEventArgs e)
+        {
+            MainView.Margin = new Thickness(0, 0, 0, 0);
+        }
+
+        private void ImageButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void BackArrow(object sender, EventArgs e)
+        {
+            await Vm.RunIsBusyTaskAsync(async () =>
+            {
+
+                await Navigation.PopAsync();
+            });
         }
     }
 }

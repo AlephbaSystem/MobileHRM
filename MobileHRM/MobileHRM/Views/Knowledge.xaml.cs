@@ -43,12 +43,12 @@ namespace MobileHRM.Views
             });
         }
 
-        private void ImageButton_Clicked(object sender, EventArgs e)
+        private void ImageButton_User(object sender, EventArgs e)
         {
 
         }
 
-        private async void ImageButton_Clicked_1(object sender, EventArgs e)
+        private async void OnTabNotification(object sender, EventArgs e)
         {
             await vm.RunIsBusyTaskAsync(async () =>
             {
@@ -64,7 +64,7 @@ namespace MobileHRM.Views
             });
         }
 
-        private void ImageButton_Clicked_3(object sender, EventArgs e)
+        private void searchBar_TextChanged(object sender, EventArgs e)
         {
 
         }

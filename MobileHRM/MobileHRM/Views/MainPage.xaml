@@ -5,8 +5,8 @@
        xmlns:entryCustom="clr-namespace:MobileHRM.Controls"       
        xmlns:c="clr-namespace:MobileHRM.Controls"
        xmlns:model="clr-namespace:MobileHRM.Models"
-       BackgroundColor="#fff"  
-       Shell.BackgroundColor="#1A1C23"
+       BackgroundColor="#00A693"  
+       Shell.BackgroundColor="#00A693"
        Shell.NavBarHasShadow="False"
        x:Class="MobileHRM.MainPage"
        Style="{StaticResource basic}">
@@ -16,6 +16,7 @@
                     Icon="Dashboard.png">
             <ShellContent
                     ContentTemplate="{DataTemplate views:DashBoard}" />
+            
         </Tab>
         <Tab Title="Knowledge"
                     Icon="Vectorknowledge.webp">

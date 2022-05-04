@@ -3,15 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:loacl="clr-namespace:MobileHRM.Controls"
              x:Class="MobileHRM.Views.CreateGroup"
              x:Name="page"
-             BackgroundColor="#1A1C23">
-    <Shell.TitleView>
-        <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" Margin="0,0,20,0">
+             BackgroundColor="#1A1C23"
+             Shell.NavBarIsVisible="False">
+    <StackLayout>
+   
+        <StackLayout FlowDirection="RightToLeft" Orientation="Horizontal" BackgroundColor="Transparent" Margin="0,20,15,0">
             <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                 </Frame.GestureRecognizers>
                 <Frame Padding="0" CornerRadius="40">
-                    <Image HorizontalOptions="FillAndExpand" WidthRequest="47" HeightRequest="47" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
+                    <Image HorizontalOptions="FillAndExpand" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
                 </Frame>
             </Frame>
             <Frame CornerRadius="40" Padding="0" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="#272B35">
@@ -20,10 +22,12 @@
                 </Frame.GestureRecognizers>
                 <Image Aspect="AspectFit" WidthRequest="35" HeightRequest="35" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png" />
             </Frame>
+            <ImageButton WidthRequest="40" HeightRequest="40" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="arrow2.png" Margin="5,0,0,0"
+                             Clicked="ArrowBack"/>
 
         </StackLayout>
-    </Shell.TitleView>
-    <ContentPage.Content>
+  
+   
         <Grid RowDefinitions="2*,*,3*">
             <Frame HorizontalOptions="CenterAndExpand" Grid.Row="0" CornerRadius="90" VerticalOptions="CenterAndExpand" BackgroundColor="#CCCCCC"  Padding="2">
                 <Frame.GestureRecognizers>
@@ -88,5 +92,5 @@
                 </Button.Triggers>
             </Button>
         </Grid>
-    </ContentPage.Content>
+    </StackLayout>
 </ContentPage>

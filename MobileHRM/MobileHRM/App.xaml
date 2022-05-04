@@ -6,7 +6,7 @@
         <Style x:Key="basic"
            TargetType="Shell">
             <Setter Property="Shell.FlyoutBackgroundColor"
-                Value="LightGreen" />
+                Value="#00A693" />
             <Setter Property="Shell.TabBarBackgroundColor"
                 Value="#2f353a" />
             <Setter Property="Shell.BackgroundColor"
@@ -16,7 +16,7 @@
             <Setter Property="Shell.DisabledColor"
                 Value="Silver" />
             <Setter Property="Shell.UnselectedColor"
-                Value="LightGreen" />
+                Value="#00A693" />
             <Setter Property="Shell.BackgroundColor" Value="#1A1C23"/>
         </Style>
         <Style TargetType="Label" ApplyToDerivedTypes="True">

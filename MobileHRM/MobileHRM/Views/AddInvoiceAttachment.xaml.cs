@@ -10,6 +10,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Linq;
+using Rg.Plugins.Popup.Services;
 
 namespace MobileHRM.Views
 {
@@ -50,6 +51,33 @@ namespace MobileHRM.Views
             var data = (Attachment)((TapGestureRecognizer)(sender as Frame).GestureRecognizers[0]).CommandParameter;
             bool res = _vm.InvoiceDetail.attachments.Remove(data);
             _vm.InvoiceDetail.attachments = _vm.InvoiceDetail.attachments;
+        }
+
+        private async void Notification_Tapped(object sender, EventArgs e)
+        {
+            await _vm.RunIsBusyTaskAsync(async () =>
+            {
+                await PopupNavigation.Instance.PushAsync(new Popup.Notifications());
+            });
+        }
+
+        private async void Arrow(object sender, EventArgs e)
+
+        {
+            await _vm.RunIsBusyTaskAsync(async () =>
+            { 
+            await Navigation.PopAsync();
+        });
+        }
+
+        private async Task Image1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+
         }
     }
 }

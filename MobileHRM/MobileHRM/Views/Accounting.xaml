@@ -9,10 +9,10 @@
 
     <ScrollView>
     <StackLayout VerticalOptions="StartAndExpand">
-            <StackLayout FlowDirection="RightToLeft" Spacing="20" Orientation="Horizontal" Margin="0,20,15,0">
+            <StackLayout FlowDirection="RightToLeft" Spacing="10" Orientation="Horizontal" Margin="0,20,15,0">
                 <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4" />
+                        <TapGestureRecognizer Tapped="ImageButton_User" />
                     </Frame.GestureRecognizers>
                     <Frame Padding="0" CornerRadius="40">
                         <Image HorizontalOptions="FillAndExpand" WidthRequest="50" HeightRequest="50" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Source="imageUser.png" />
@@ -24,32 +24,35 @@
                     </Frame.GestureRecognizers>
                     <Image Aspect="AspectFill" WidthRequest="30" HeightRequest="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"  Source="Notification2.png"  />
                 </Frame>
+
+
             </StackLayout>
             <sharpnado:Shadows>
-            <sharpnado:Shadows.Shades>
-                <sharpnado:ImmutableShades>
-                    <sharpnado:Shade Offset="0,5"  Color="White" BlurRadius="5" />
-                </sharpnado:ImmutableShades>
-            </sharpnado:Shadows.Shades>
-            <Frame Padding="0" HasShadow="False"
+                <sharpnado:Shadows.Shades>
+                    <sharpnado:ImmutableShades>
+                        <sharpnado:Shade Offset="0,5"  Color="White" BlurRadius="5" />
+                    </sharpnado:ImmutableShades>
+                </sharpnado:Shadows.Shades>
+                <Frame Padding="0" HasShadow="False"
                                CornerRadius="5"
                                HeightRequest="50"
-                               Margin="0,20">
-                <Frame.Background>
-                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
-                        <GradientStop Offset="0.9" Color="#FFFFFF" />
-                        <GradientStop Offset="1" Color="#ccc" />
-                    </LinearGradientBrush>
-                </Frame.Background>
-                <Grid ColumnDefinitions="0.5*,8*,2*" VerticalOptions="CenterAndExpand">
-                    <customEntry:CustomEntry  x:Name="searchBar" Grid.Column="1" Placeholder="Invoices..." FontFamily="quickSand" FontSize="12"/>
-                    <ImageButton  Grid.Column="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent"
+                               Margin="10,20">
+                    <Frame.Background>
+                        <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
+                            <GradientStop Offset="0.9" Color="#FFFFFF" />
+                            <GradientStop Offset="1" Color="#ccc" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <Grid ColumnDefinitions="0.5*,8*,2*" VerticalOptions="CenterAndExpand">
+                        <customEntry:CustomEntry  TextChanged="searchBar_TextChanged" x:Name="searchBar" Grid.Column="1" Placeholder="Search" FontFamily="quickSand" FontSize="12"/>
+                        <ImageButton  Grid.Column="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent"
                                        WidthRequest="30" HeightRequest="30"
                                        Source="Search2.png"/>
-                </Grid>
-            </Frame>
-        </sharpnado:Shadows>
-        <Label Margin="20,10" Text="Accounting" TextColor="#CCCCCC"
+                    </Grid>
+                </Frame>
+            </sharpnado:Shadows>
+
+            <Label Margin="20,10" Text="Accounting" TextColor="#CCCCCC"
                    HorizontalOptions="Start"/>
         <StackLayout Spacing="20" Margin="15,0">
             <Grid ColumnDefinitions="*,*" ColumnSpacing="15"

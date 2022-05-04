@@ -81,5 +81,13 @@ namespace MobileHRM.Views
                 await Navigation.PushAsync(new CreateGroup(SelectedItems));
             });
         }
+
+        private async void ArrowBack(object sender, EventArgs e)
+        {
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                await Navigation.PopAsync();
+            });
+        }
     }
 }

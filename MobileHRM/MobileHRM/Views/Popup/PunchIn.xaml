@@ -51,7 +51,7 @@
                     <Grid RowDefinitions="2*,3*" Grid.Row="1" BackgroundColor="#1A1C23" VerticalOptions="FillAndExpand">
                         <Grid ColumnDefinitions="2*,8*" Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="20,0">
                             <Frame Padding="0" Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" CornerRadius="50" BackgroundColor="#272B35">
-                                <Image x:Name="ImageType" Source="punchIn.png" BackgroundColor="Transparent" Margin="20"/>
+                                <Image x:Name="ImageType" Source="punch In.png" BackgroundColor="Transparent" Margin="20"/>
                             </Frame>
 
                             <Grid x:Name="PunchDetail" VerticalOptions="Center" Grid.Column="1" RowDefinitions="*,*,*">
