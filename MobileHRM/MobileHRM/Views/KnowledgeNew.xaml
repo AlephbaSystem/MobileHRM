@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
              BackgroundColor="#1A1C23"
-             x:Class="MobileHRM.Views.KnowledgeNew">
+             x:Class="MobileHRM.Views.KnowledgeNew"
+             Shell.BackgroundColor="#1A1C23">
     <ContentPage.Content>
         <ScrollView Padding="0"
                     Margin="20,0">

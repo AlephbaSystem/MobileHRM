@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
              BackgroundColor="#1A1C23"
+             Shell.BackgroundColor="#1A1C23"
              x:Class="MobileHRM.Views.KnowledgeReferences">
     <ContentPage.Content>
         <Grid RowDefinitions="Auto,Auto,*">
