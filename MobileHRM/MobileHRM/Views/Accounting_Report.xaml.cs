@@ -17,6 +17,7 @@ namespace MobileHRM.Views
             InitializeComponent();
             Children.Add(new Accounting_Report_Chart());
             Children.Add(new Accounting_Report_OverView());
+          
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
