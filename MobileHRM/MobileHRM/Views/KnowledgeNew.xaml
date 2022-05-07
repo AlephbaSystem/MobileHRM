@@ -128,6 +128,7 @@
 
 
                 <Label Text="Details"
+                       FontSize="13"
                        Grid.Row="3"
                        TextColor="#CCCCCC"
                        VerticalOptions="Start"/>
@@ -183,11 +184,12 @@
                         CornerRadius="8"
                         Text="References"
                         Clicked="OnReferenceClicked"
+                            FontSize="13"
                         BackgroundColor="#7B61FF"/>
                     <Button Grid.Column="2"
-                        TextColor="#FFFDFF"
                         CornerRadius="8"
                         Text="Save"
+                         TextColor="White"   
                         Command="{Binding OnSave}"
                         BackgroundColor="#26AB5B"
                         IsEnabled="{Binding SaveEnabled}"/>

@@ -35,17 +35,18 @@
                         <sh:Shade Offset="0,5"  Color="White" BlurRadius="5" />
                     </sh:ImmutableShades>
                 </sh:Shadows.Shades>
-                <Frame Padding="8" HasShadow="False"
+                <Frame Padding="0" HasShadow="False"
                                CornerRadius="5"
-                               HeightRequest="50"
-                               Margin="10,20">
+                               HeightRequest="75"
+                               Margin="10,20,10,30"
+                       >
                     <Frame.Background>
                         <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
                             <GradientStop Offset="0.9" Color="#FFFFFF" />
                             <GradientStop Offset="1" Color="#ccc" />
                         </LinearGradientBrush>
                     </Frame.Background>
-                    <Grid ColumnDefinitions="auto,8*,2*" VerticalOptions="CenterAndExpand">
+                    <Grid ColumnDefinitions="0.5*,8*,2*" VerticalOptions="CenterAndExpand">
                         <entryCustom:CustomEntry  TextChanged="searchBar_TextChanged" x:Name="searchBar" Grid.Column="1" Placeholder="Search" FontFamily="quickSand" FontSize="12"/>
                         <ImageButton  Grid.Column="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent"
                                        WidthRequest="30" HeightRequest="30"
