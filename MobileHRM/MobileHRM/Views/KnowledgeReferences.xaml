@@ -4,8 +4,16 @@
              xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
              BackgroundColor="#1A1C23"
              Shell.BackgroundColor="#1A1C23"
+             Shell.NavBarIsVisible="False"
              x:Class="MobileHRM.Views.KnowledgeReferences">
-    <ContentPage.Content>
+    
+    <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+        <ImageButton Source="arrow2.png"
+                     VerticalOptions="StartAndExpand"
+                     HorizontalOptions="StartAndExpand"
+                             BackgroundColor="Transparent"
+                             Margin="10"
+                             Clicked="BackArrow"/>
         <Grid RowDefinitions="Auto,Auto,*">
             <Label Text="References"
                    Grid.Row="0"
@@ -120,5 +128,5 @@
             </StackLayout>
             
         </Grid>
-    </ContentPage.Content>
+    </StackLayout>
 </ContentPage>

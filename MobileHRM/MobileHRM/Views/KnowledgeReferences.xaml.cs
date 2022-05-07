@@ -27,6 +27,14 @@ namespace MobileHRM.Views
             await Navigation.PopAsync();
         }
 
+        private async void BackArrow(object sender, EventArgs e)
+        {
+            await _vm.RunIsBusyTaskAsync(async () =>
+            {
+                await Navigation.PopAsync();
+            });
+        }
+
         private void Button_Clicked_1(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(ReferenceEntry.Text) && !string.IsNullOrEmpty(LinkEntry.Text))

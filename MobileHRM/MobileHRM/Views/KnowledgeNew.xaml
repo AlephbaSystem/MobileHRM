@@ -4,8 +4,17 @@
              xmlns:coustomEntry="clr-namespace:MobileHRM.Controls"
              BackgroundColor="#1A1C23"
              x:Class="MobileHRM.Views.KnowledgeNew"
-             Shell.BackgroundColor="#1A1C23">
-    <ContentPage.Content>
+             Shell.BackgroundColor="#1A1C23"
+             Shell.NavBarIsVisible="False">
+   
+        <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"  >
+        <ImageButton Source="arrow2.png"
+                     VerticalOptions="StartAndExpand"
+                     HorizontalOptions="StartAndExpand"
+                             BackgroundColor="Transparent"
+                             Margin="10"
+                             Clicked="BackArrow"/>
+
         <ScrollView Padding="0"
                     Margin="20,0">
             <Grid RowDefinitions="Auto,1.3*,1.5*,10*,Auto"
@@ -185,5 +194,6 @@
                 </Grid>
             </Grid>
         </ScrollView>
-    </ContentPage.Content>
+   
+    </StackLayout>
 </ContentPage>
