@@ -52,6 +52,13 @@ namespace MobileHRM.Views
                 await Navigation.PushAsync(new KnowledgeTags(vm));
             });
         }
+        private async void BackArrow (object sender, EventArgs e)
+        {
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                await Navigation.PopAsync();
+            });
+        }
     }
 
 }
