@@ -163,6 +163,28 @@ namespace MobileHRM.Api
                 throw;
             }
         }
+
+        readonly HttpClient httpClient = new HttpClient();
+        public async Task<bool> Knowledge_InsertReaction(Models.Api.Reaction item)
+        {
+            try
+            {
+                string url = requestUri + "knowledge_InsertReaction";
+                var contentStr = JsonConvert.SerializeObject(item);
+                StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await httpClient.PostAsync(url, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
         public async Task<bool> SendReaction(Models.Api.Reaction reaction)
         {
             try

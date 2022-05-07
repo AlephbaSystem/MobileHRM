@@ -18,12 +18,12 @@ namespace MobileHRM.Views
     public partial class KnowledgePage : ContentPage
     {
         private readonly KnowledgeDetail _Knowledge;
-        private readonly knowledgePageViewModel vm;
+        private readonly KnowledgePageViewModel vm;
         public KnowledgePage(KnowledgeDetail knowledge)
         {
             InitializeComponent();
             _Knowledge = knowledge;
-            vm = new knowledgePageViewModel(knowledge);
+            vm = new KnowledgePageViewModel(knowledge);
             BindingContext = vm;
         }
         protected override async void OnAppearing()

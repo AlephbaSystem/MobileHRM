@@ -11,9 +11,9 @@ using MobileHRM.Models.Response;
 
 namespace MobileHRM.ViewModel
 {
-    class knowledgePageViewModel : Base
+    class KnowledgePageViewModel : Base
     {
-        public knowledgePageViewModel(KnowledgeDetail knowledge)
+        public KnowledgePageViewModel(KnowledgeDetail knowledge)
         {
             Item = knowledge;
             Smile = new Command(insertReaction);
@@ -21,7 +21,6 @@ namespace MobileHRM.ViewModel
         }
 
         private KnowledgeDetail _item;
-
         public KnowledgeDetail Item
         {
             get => _item;
@@ -33,7 +32,6 @@ namespace MobileHRM.ViewModel
         }
 
         private List<RKnowledge> _items;
-
         public List<RKnowledge> Items
         {
             get => _items;
@@ -45,7 +43,6 @@ namespace MobileHRM.ViewModel
         }
 
         private List<Comment> _comments;
-
         public List<Comment> Comments
         {
             get => _comments;
@@ -93,20 +90,20 @@ namespace MobileHRM.ViewModel
             Frame layout = sender as Frame;
             TapGestureRecognizer gesture = layout.GestureRecognizers[0] as TapGestureRecognizer;
             int knowledgeID = int.Parse(layout.AutomationId);
-            List<RKnowledge> item = await request.getReactionsByKnowledgeId(knowledgeID, User.UserId);
-            Items = item ?? new List<RKnowledge>();
-            RKnowledge param = Items.FirstOrDefault(p => p.KnowledgeId == knowledgeID);
+            //List<RKnowledge> item = await request.getReactionsByKnowledgeId(knowledgeID, User.UserId);
+            //Items = item ?? new List<RKnowledge>();
+            //RKnowledge param = Items.FirstOrDefault(p => p.KnowledgeId == knowledgeID);
             layout.BackgroundColor = Color.FromHex("#abcccccc");
             layout.IsEnabled = false;
-            bool res = false;
-            if (param.reactionId == 0)
-            {
-                res = await request.SendReaction(new Reaction() { knowledgeId = param.KnowledgeId, isLike = true, userId = User.UserId });
-            }
-            else
-            {
-                res = await request.UpdateReaction(new Models.Entities.Request.Reaction { reactionId = param.reactionId, knowledgeId = param.KnowledgeId, isLike = !param.isLike, userId = User.UserId });
-            }
+            //bool res = false;
+            //if (param.reactionId == 0)
+            //{
+            bool res = await request.Knowledge_InsertReaction(new Reaction() { knowledgeId = knowledgeID, isLike = true, userId = User.UserId });
+            //}
+            //else
+            //{
+            //    res = await request.UpdateReaction(new Models.Entities.Request.Reaction { reactionId = param.reactionId, knowledgeId = param.KnowledgeId, isLike = !param.isLike, userId = User.UserId });
+            //}
             if (res)
             {
                 initialize();
@@ -117,20 +114,20 @@ namespace MobileHRM.ViewModel
             Frame layout = sender as Frame;
             TapGestureRecognizer gesture = layout.GestureRecognizers[0] as TapGestureRecognizer;
             int knowledgeID = int.Parse(layout.AutomationId);
-            List<RKnowledge> item = await request.getReactionsByKnowledgeId(knowledgeID,User.UserId);
-            Items = item ?? new List<RKnowledge>();
-            RKnowledge param = Items.Where(p => p.KnowledgeId == knowledgeID).FirstOrDefault();
+            //List<RKnowledge> item = await request.getReactionsByKnowledgeId(knowledgeID,User.UserId);
+            //Items = item ?? new List<RKnowledge>();
+            //RKnowledge param = Items.Where(p => p.KnowledgeId == knowledgeID).FirstOrDefault();
             layout.BackgroundColor = Color.FromHex("#abcccccc");
             layout.IsEnabled = false;
-            bool res = false;
-            if (param.reactionId == 0)
-            {
-                res = await request.SendReaction(new Reaction() { knowledgeId = param.KnowledgeId, isLike = false, userId = User.UserId });
-            }
-            else
-            {
-                res = await request.UpdateReaction(new Models.Entities.Request.Reaction { reactionId = param.reactionId, knowledgeId = param.KnowledgeId, isLike = !param.isLike, userId = User.UserId });
-            }
+            //bool res = false;
+            //if (param.reactionId == 0)
+            //{
+            bool res = await request.SendReaction(new Reaction() { knowledgeId = knowledgeID, isLike = false, userId = User.UserId });
+            //}
+            //else
+            //{
+            //    res = await request.UpdateReaction(new Models.Entities.Request.Reaction { reactionId = param.reactionId, knowledgeId = param.KnowledgeId, isLike = !param.isLike, userId = User.UserId });
+            //}
             if (res)
             {
                 initialize();
