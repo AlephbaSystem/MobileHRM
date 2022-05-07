@@ -49,10 +49,7 @@ namespace MobileHRM.Views
 
         private async void Popup_Disappearing(object sender, EventArgs e)
         {
-            await vm.RunIsBusyTaskAsync(async () =>
-            {
-                vm.initialize();
-            });
+            vm.initialize();
         }
 
         private async void OnNotificationClicked(object sender, EventArgs e)
