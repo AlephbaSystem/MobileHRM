@@ -11,4 +11,9 @@ namespace MobileHRM.Models.Response
         public int userId { get; set; }
         public bool isLike { get; set; }
     }
+    public class responseKnowledge
+    {
+        public bool isLike { get; set; }
+        public int Number { get; set; }
+    }
 }

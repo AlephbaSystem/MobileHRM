@@ -90,8 +90,8 @@
                                     </DataTrigger>
                                 </Frame.Triggers>
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BindingContext.Smile, Source={x:Reference page}}"
-                                                          CommandParameter="{Binding Source={x:Reference smile}}"/>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.Frown, Source={x:Reference page}}"
+                                                          CommandParameter="{Binding Source={x:Reference frown}}"/>
                                 </Frame.GestureRecognizers>
                                 <Label Text="-"
                                        TextColor="White"
@@ -128,17 +128,15 @@
                                     </DataTrigger>
                                 </Frame.Triggers>
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BindingContext.Frown, 
-                                                          Source={x:Reference page}}"
-                                                          CommandParameter="{Binding Source={x:Reference frown}}" />
+                                    <TapGestureRecognizer Command="{Binding BindingContext.Smile, Source={x:Reference page}}"
+                                                          CommandParameter="{Binding Source={x:Reference smile}}" />
                                 </Frame.GestureRecognizers>
                                
                                     <Label Text="+"
                                        TextColor="White"
                                        VerticalOptions="Start"
                                        HorizontalOptions="CenterAndExpand"
-                                       FontSize="20"
-                                           />
+                                       FontSize="20"/>
                                 
                             </Frame>
 

@@ -24,7 +24,7 @@ namespace MobileHRM.Views
                 ItemSpacing = 15
             };
             vm = new KnowledgeViewModel();
-            BindingContext = vm;
+            BindingContext = vm;            
         }
         protected override void OnAppearing()
         {
