@@ -185,49 +185,6 @@ namespace MobileHRM.Api
                 throw;
             }
         }
-        public async Task<bool> SendReaction(Models.Api.Reaction reaction)
-        {
-            try
-            {
-                string uri = requestUri + "insertReaction";
-                string jsonstr = JsonDataConverter<Models.Api.Reaction>.ObjectToJsonString(reaction);
-                HttpRequestMessage request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Post,
-                    RequestUri = new Uri(uri),
-                    Content = new StringContent(jsonstr, Encoding.UTF8, "application/json")
-                };
-                bool res = await Base.Post(request);
-                return res;
-            }
-            catch (Exception e)
-            {
-                return false;
-                throw;
-            }
-        }
-        public async Task<bool> UpdateReaction(Models.Entities.Request.Reaction reaction)
-        {
-            try
-            {
-                string uri = requestUri + "updateReaction";
-                string jsonstr = JsonDataConverter<Models.Entities.Request.Reaction>.ObjectToJsonString(reaction);
-                HttpRequestMessage request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Put,
-                    RequestUri = new Uri(uri),
-                    Content = new StringContent(jsonstr, Encoding.UTF8, "application/json")
-                };
-                bool res = await Base.Put(request);
-                return res;
-            }
-            catch (Exception e)
-            {
-                return false;
-                throw;
-            }
-        }
-
 
         public async Task<List<KnowledgeDetail>> GetKnowledgeById(int id)
         {
@@ -246,19 +203,19 @@ namespace MobileHRM.Api
             }
         }
 
-        public async Task<List<Models.Response.RKnowledge>> getReactionsByKnowledgeId(int KnowledgeId, int userId)
+        public async Task<Models.Response.responseKnowledge> getReactionsByKnowledgeId(int KnowledgeId, int userId)
         {
             try
             {
                 string url = requestUri + $"getReactionsByKnowledgeId?KnowledgeId={KnowledgeId}&userId={userId}";
                 string jsondata = await Base.Get(url);
                 jsondata ??= "";
-                List<Models.Response.RKnowledge> items = JsonDataConverter<Models.Response.RKnowledge[]>.JsonStringToObject(jsondata).ToList();
+                Models.Response.responseKnowledge items = JsonDataConverter<Models.Response.responseKnowledge>.JsonStringToObject(jsondata);
                 return items;
             }
             catch (Exception e)
             {
-                return new List<Models.Response.RKnowledge>();
+                return new Models.Response.responseKnowledge();
                 throw;
             }
         }

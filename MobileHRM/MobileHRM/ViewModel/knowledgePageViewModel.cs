@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using MobileHRM.Models;
 using System.Linq;
 using MobileHRM.Models.Response;
+using System.Threading.Tasks;
 
 namespace MobileHRM.ViewModel
 {
@@ -16,8 +17,12 @@ namespace MobileHRM.ViewModel
         public KnowledgePageViewModel(KnowledgeDetail knowledge)
         {
             Item = knowledge;
-            Smile = new Command(insertReaction);
-            Frown = new Command(insertReaction1);
+            Smile = new Command(LikeReaction);
+            Frown = new Command(DisLikeReaction);
+            Task.Run(async () =>
+            {
+                await Likes();
+            });
         }
 
         private KnowledgeDetail _item;
@@ -28,17 +33,6 @@ namespace MobileHRM.ViewModel
             {
                 _item = value;
                 OnPropertyChanged(nameof(Item));
-            }
-        }
-
-        private List<RKnowledge> _items;
-        public List<RKnowledge> Items
-        {
-            get => _items;
-            set
-            {
-                _items = value;
-                OnPropertyChanged(nameof(Items));
             }
         }
 
@@ -53,86 +47,52 @@ namespace MobileHRM.ViewModel
             }
         }
 
-        //private bool _smileEnabled;
-        //public bool smileEnabled
-        //{
-        //    get
-        //    {
-        //        return _smileEnabled;
-        //    }
-        //    set
-        //    {
-        //        _smileEnabled = value;
-        //        OnPropertyChanged(nameof(smileEnabled));
-        //    }
-        //}
-        //private bool _frawnEnabled;
-        //public bool frawnEnabled
-        //{
-        //    get
-        //    {
-        //        return _frawnEnabled;
-        //    }
-        //    set
-        //    {
-        //        _frawnEnabled = value;
-        //        OnPropertyChanged(nameof(frawnEnabled));
-        //    }
-        //}
+        private responseKnowledge _responseKnowledges;
+        public responseKnowledge ResponseKnowledges
+        {
+            get => _responseKnowledges;
+            set
+            {
+                _responseKnowledges = value;
+                OnPropertyChanged(nameof(ResponseKnowledges));
+            }
+        }
+
+
         readonly KnowledgeApi request = new KnowledgeApi();
         public async void initialize()
         {
             List<Comment> c = await request.GetCommentsByKnowledgeId(User.UserId, Item.id);
             Comments = c ?? new List<Comment>();
+            await Likes();
         }
-        private async void insertReaction(object sender)
+
+        private async Task Likes()
+        {
+            responseKnowledge q = await request.getReactionsByKnowledgeId(Item.id, User.UserId);
+            ResponseKnowledges = q ?? new responseKnowledge();
+        }
+
+        private async void LikeReaction(object sender)
+        {
+            await IsLike(sender, true);
+        }
+        private async void DisLikeReaction(object sender)
+        {
+            await IsLike(sender, false);
+        }
+
+        private async Task IsLike(object sender, bool islike)
         {
             Frame layout = sender as Frame;
-            TapGestureRecognizer gesture = layout.GestureRecognizers[0] as TapGestureRecognizer;
             int knowledgeID = int.Parse(layout.AutomationId);
-            //List<RKnowledge> item = await request.getReactionsByKnowledgeId(knowledgeID, User.UserId);
-            //Items = item ?? new List<RKnowledge>();
-            //RKnowledge param = Items.FirstOrDefault(p => p.KnowledgeId == knowledgeID);
-            layout.BackgroundColor = Color.FromHex("#abcccccc");
-            layout.IsEnabled = false;
-            //bool res = false;
-            //if (param.reactionId == 0)
-            //{
-            bool res = await request.Knowledge_InsertReaction(new Reaction() { knowledgeId = knowledgeID, isLike = true, userId = User.UserId });
-            //}
-            //else
-            //{
-            //    res = await request.UpdateReaction(new Models.Entities.Request.Reaction { reactionId = param.reactionId, knowledgeId = param.KnowledgeId, isLike = !param.isLike, userId = User.UserId });
-            //}
+            bool res = await request.Knowledge_InsertReaction(new Reaction() { knowledgeId = knowledgeID, isLike = islike, userId = User.UserId });
             if (res)
             {
                 initialize();
             }
         }
-        private async void insertReaction1(object sender)
-        {
-            Frame layout = sender as Frame;
-            TapGestureRecognizer gesture = layout.GestureRecognizers[0] as TapGestureRecognizer;
-            int knowledgeID = int.Parse(layout.AutomationId);
-            //List<RKnowledge> item = await request.getReactionsByKnowledgeId(knowledgeID,User.UserId);
-            //Items = item ?? new List<RKnowledge>();
-            //RKnowledge param = Items.Where(p => p.KnowledgeId == knowledgeID).FirstOrDefault();
-            layout.BackgroundColor = Color.FromHex("#abcccccc");
-            layout.IsEnabled = false;
-            //bool res = false;
-            //if (param.reactionId == 0)
-            //{
-            bool res = await request.SendReaction(new Reaction() { knowledgeId = knowledgeID, isLike = false, userId = User.UserId });
-            //}
-            //else
-            //{
-            //    res = await request.UpdateReaction(new Models.Entities.Request.Reaction { reactionId = param.reactionId, knowledgeId = param.KnowledgeId, isLike = !param.isLike, userId = User.UserId });
-            //}
-            if (res)
-            {
-                initialize();
-            }
-        }
+
         public ICommand Smile { get; protected set; }
         public ICommand Frown { get; protected set; }
     }
