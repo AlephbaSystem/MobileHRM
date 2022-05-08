@@ -233,11 +233,11 @@ namespace MobileHRM.Views
 
         private void MakeFrame(GroupMessage item)
         {
-            Frame frm = new Frame { Padding = new Thickness(10, 5) };
+            Frame frm = new Frame { Padding = new Thickness(10, 20) };
             Label timelabel = new Label
             {
                 Text = DateConveter(item.createdAt),
-                FontSize = 8,
+                FontSize = 10,
                 TextColor = Color.Silver,
                 HorizontalTextAlignment = TextAlignment.End,
                 Margin = new Thickness(30, 0, 30, 10)
@@ -341,10 +341,12 @@ namespace MobileHRM.Views
             };
             Frame f = new Frame
             {
-                CornerRadius = 30,
+                CornerRadius = 50,
                 Padding = new Thickness(0),
                 Content = ImgPlayer,
-                HeightRequest = 70
+                HeightRequest = 70,
+                
+               
             };
             Label timelabel = new Label
             {
@@ -353,12 +355,12 @@ namespace MobileHRM.Views
                 TextColor = Color.Silver,
                 VerticalOptions = LayoutOptions.EndAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                Margin = new Thickness(5, 0, 0, 10)
+                Margin = new Thickness(5, 10, 10, 10)
             };
-            var Grid = new Grid { ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition { Width = new GridLength(4, GridUnitType.Star) }, new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) } } };
+            Grid Grid = new Grid { ColumnDefinitions = new ColumnDefinitionCollection() { new ColumnDefinition { Width = new GridLength(4, GridUnitType.Star) }, new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) } } };
 
             string audioPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + $"Audio-{msg.createdAt.ToString("yyyy_MM_dd__HH_mm_ss")}.wav"; ;
-            var Audio = await Vm.SaveVoice(msg.mediaId, audioPath, msg.createdAt);
+            byte[] Audio = await Vm.SaveVoice(msg.mediaId, audioPath, msg.createdAt);
             StackLayout waves = new SoundWave(Audio).GetWave();
 
             //var slider = new Slider { ThumbColor = Color.FromHex("00A693"), VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };

@@ -77,7 +77,7 @@
                                 TextColor="#FFFDFF"
                                 CornerRadius="8"
                                 Text="Done"
-                                BackgroundColor="#26AB5B"/>
+                                BackgroundColor="#00A693"/>
                     </Grid>
                 </Grid>
             </Grid>

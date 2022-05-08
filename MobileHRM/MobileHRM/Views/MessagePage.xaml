@@ -65,7 +65,6 @@
                             Placeholder="Type Somthing Here " 
                             PlaceholderColor="White" 
                             FontSize="10"
-                            MaxLength="12"
                             TextColor="White"/>
                     <Frame Grid.Column="0" Padding="0"
                             BackgroundColor="#272B35"
@@ -73,7 +72,7 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                         </Frame.GestureRecognizers>
-                        <Image Grid.Column="0" Source="finalCamera.png"
+                        <Image Grid.Column="0" Source="Camera.png"
                                 HeightRequest="20"
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center"
@@ -86,7 +85,7 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_recorder" />
                         </Frame.GestureRecognizers>
-                        <Image x:Name="AudioImg" Grid.Column="1" Source="Vectormicro.png"
+                        <Image x:Name="AudioImg" Grid.Column="1" Source="Microphone.png"
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center"/>
                     </Frame>

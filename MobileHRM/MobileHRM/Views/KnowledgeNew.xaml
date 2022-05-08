@@ -183,15 +183,17 @@
                         TextColor="#FFFDFF"
                         CornerRadius="8"
                         Text="References"
+                        FontAttributes="Bold"
                         Clicked="OnReferenceClicked"
-                            FontSize="13"
+                        FontSize="12"
                         BackgroundColor="#7B61FF"/>
                     <Button Grid.Column="2"
                         CornerRadius="8"
                         Text="Save"
-                         TextColor="White"   
+                        FontAttributes="Bold"
+                        TextColor="White"   
                         Command="{Binding OnSave}"
-                        BackgroundColor="#26AB5B"
+                        BackgroundColor="#00A693"
                         IsEnabled="{Binding SaveEnabled}"/>
                 </Grid>
             </Grid>
