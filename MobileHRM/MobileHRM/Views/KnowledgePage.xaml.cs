@@ -25,7 +25,6 @@ namespace MobileHRM.Views
             _Knowledge = knowledge;
             vm = new KnowledgePageViewModel(knowledge);
             BindingContext = vm;
-
         }
         protected override async void OnAppearing()
         {

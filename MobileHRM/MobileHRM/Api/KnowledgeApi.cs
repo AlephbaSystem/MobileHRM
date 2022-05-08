@@ -203,19 +203,19 @@ namespace MobileHRM.Api
             }
         }
 
-        public async Task<List<Models.Response.responseKnowledge>> getReactionsByKnowledgeId(int KnowledgeId, int userId)
+        public async Task<Models.Response.responseKnowledge> getReactionsByKnowledgeId(int KnowledgeId, int userId)
         {
             try
             {
                 string url = requestUri + $"getReactionsByKnowledgeId?KnowledgeId={KnowledgeId}&userId={userId}";
                 string jsondata = await Base.Get(url);
                 jsondata ??= "";
-                List<Models.Response.responseKnowledge> items = JsonDataConverter<Models.Response.responseKnowledge[]>.JsonStringToObject(jsondata).ToList();
+                Models.Response.responseKnowledge items = JsonDataConverter<Models.Response.responseKnowledge>.JsonStringToObject(jsondata);
                 return items;
             }
             catch (Exception e)
             {
-                return new List<Models.Response.responseKnowledge>();
+                return new Models.Response.responseKnowledge();
                 throw;
             }
         }

@@ -69,8 +69,8 @@
                                      BackgroundColor="#1A1C23"
                                      HorizontalOptions="EndAndExpand">
 
-                            <Frame x:Name="smile" 
-                                   IsEnabled="{Binding isLike}" 
+                            <Frame x:Name="smile"
+                                   IsEnabled="{Binding ResponseKnowledges.IsLike}" 
                                    AutomationId="{Binding Item.id}"
                                    Padding="3" 
                                    CornerRadius="37" 
@@ -78,15 +78,13 @@
                                    HeightRequest="37"
                                    VerticalOptions="CenterAndExpand"
                                    HorizontalOptions="CenterAndExpand" 
-                                   BackgroundColor="#272B35">
+                                   BackgroundColor="#272B35">                                
                                 <Frame.Triggers>
                                     <DataTrigger TargetType="Frame"
-                                                 Binding="{Binding IsEnabled,Source={x:Reference frown}}"
-                                                 Value="False">
+                                                 Binding="{Binding Source={x:Reference frown}, Path=IsEnabled}"
+                                                 Value="True">
                                         <Setter Property="BackgroundColor"
-                                                Value="#272B35" />
-                                        <Setter Property="IsEnabled"
-                                                Value="True" />
+                                                Value="Red" />
                                     </DataTrigger>
                                 </Frame.Triggers>
                                 <Frame.GestureRecognizers>
@@ -99,6 +97,7 @@
                                        HorizontalOptions="CenterAndExpand"
                                        FontSize="20"/>
                             </Frame>
+                            
                             <Frame Padding="3" 
                                    CornerRadius="37" 
                                    WidthRequest="37" 
@@ -106,10 +105,12 @@
                                    VerticalOptions="CenterAndExpand"
                                    HorizontalOptions="StartAndExpand" 
                                    BackgroundColor="#272B35">
-                                
+                                <Label TextColor="White"
+                                       VerticalTextAlignment="Center"
+                                       HorizontalTextAlignment="Center"
+                                       Text="{Binding ResponseKnowledges.Number}"/>
                             </Frame>
                             <Frame  x:Name="frown"
-                                    IsEnabled="{Binding !$isLike}" 
                                     AutomationId="{Binding Item.id}"
                                     CornerRadius="37"
                                     WidthRequest="37" 
@@ -119,12 +120,9 @@
                                     HorizontalOptions="End" 
                                     VerticalOptions="CenterAndExpand">
                                 <Frame.Triggers>
-                                    <DataTrigger TargetType="Frame"
-                                                 Binding="{Binding IsEnabled,Source={x:Reference smile}}"
-                                                 Value="False">
-                                        <Setter Property="BackgroundColor"
-                                                Value="#272B35" />
-                                        <Setter Property="IsEnabled" Value="True" />
+                                    <DataTrigger TargetType="Frame" Binding="{Binding Source={x:Reference smile},Path=IsEnabled}" Value="True">
+                                        <Setter Property="BackgroundColor" Value="Red" />
+                                        <Setter Property="IsEnabled" Value="False" />
                                     </DataTrigger>
                                 </Frame.Triggers>
                                 <Frame.GestureRecognizers>

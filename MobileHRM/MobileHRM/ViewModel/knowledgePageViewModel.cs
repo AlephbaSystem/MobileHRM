@@ -19,7 +19,10 @@ namespace MobileHRM.ViewModel
             Item = knowledge;
             Smile = new Command(LikeReaction);
             Frown = new Command(DisLikeReaction);
-            likes();
+            Task.Run(async () =>
+            {
+                await Likes();
+            });
         }
 
         private KnowledgeDetail _item;
@@ -44,14 +47,14 @@ namespace MobileHRM.ViewModel
             }
         }
 
-        private List<responseKnowledge> _responseKnowledges;
-        public List<responseKnowledge> responseKnowledges
+        private responseKnowledge _responseKnowledges;
+        public responseKnowledge ResponseKnowledges
         {
             get => _responseKnowledges;
             set
             {
                 _responseKnowledges = value;
-                OnPropertyChanged(nameof(responseKnowledges));
+                OnPropertyChanged(nameof(ResponseKnowledges));
             }
         }
 
@@ -61,30 +64,28 @@ namespace MobileHRM.ViewModel
         {
             List<Comment> c = await request.GetCommentsByKnowledgeId(User.UserId, Item.id);
             Comments = c ?? new List<Comment>();
-            await likes();
+            await Likes();
         }
 
-        private async Task likes()
+        private async Task Likes()
         {
-            List<responseKnowledge> q = await request.getReactionsByKnowledgeId(Item.id, User.UserId);
-            responseKnowledges = q ?? new List<responseKnowledge>();
+            responseKnowledge q = await request.getReactionsByKnowledgeId(Item.id, User.UserId);
+            ResponseKnowledges = q ?? new responseKnowledge();
         }
 
         private async void LikeReaction(object sender)
         {
-            await isLike(sender, true);
+            await IsLike(sender, true);
         }
         private async void DisLikeReaction(object sender)
         {
-            await isLike(sender, false);
+            await IsLike(sender, false);
         }
 
-        private async Task isLike(object sender, bool islike)
+        private async Task IsLike(object sender, bool islike)
         {
             Frame layout = sender as Frame;
             int knowledgeID = int.Parse(layout.AutomationId);
-            layout.BackgroundColor = Color.FromHex("#abcccccc");
-            layout.IsEnabled = false;
             bool res = await request.Knowledge_InsertReaction(new Reaction() { knowledgeId = knowledgeID, isLike = islike, userId = User.UserId });
             if (res)
             {
