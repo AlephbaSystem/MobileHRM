@@ -74,7 +74,7 @@ namespace MobileHRM.ViewModel
                 {
                     IsBusy = true;
                     Items = new ObservableCollection<GroupModel>();
-                    var items = await api.GetGroupsByUserd(User.UserId);
+                    System.Collections.Generic.List<Models.Api.Group> items = await api.GetGroupsByUserd(User.UserId);
                     foreach (Models.Api.Group item in items)
                     {
                         if (item.lastMessage == null)

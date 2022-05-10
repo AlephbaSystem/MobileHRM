@@ -32,7 +32,9 @@
                    HorizontalOptions="EndAndExpand">
                     <Image HorizontalOptions="FillAndExpand"
                        BackgroundColor="Transparent"
-                       Source=""/>
+                           Source="ImageUser.png"/>
+
+
                 </Frame>
                 <ImageButton BackgroundColor="Transparent"
                          HorizontalOptions="End"

@@ -12,10 +12,11 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class chatPage : ContentPage
     {
-        readonly ChatViewModel vm = new ChatViewModel();
+        readonly ChatViewModel vm;
         public chatPage()
         {
             InitializeComponent();
+            vm = new ChatViewModel();
             BindingContext = vm;            
         }
         protected override async void OnAppearing()

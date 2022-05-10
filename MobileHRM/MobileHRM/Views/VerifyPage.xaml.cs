@@ -14,7 +14,7 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VerifyPage : ContentPage
     {
-        private readonly AuthenticationApi authenticationApi = new AuthenticationApi();
+        private readonly AuthenticationApi authenticationApi;
         private readonly string _loginPhone;
         private bool isTimerRun = true;
         private int seconds = 181; //timer       
@@ -23,6 +23,7 @@ namespace MobileHRM.Views
         {
             InitializeComponent();
             TimerSendSms();
+            authenticationApi = new AuthenticationApi();
             _loginPhone = loginPhone;
         }
 

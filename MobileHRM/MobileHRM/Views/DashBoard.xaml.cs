@@ -55,9 +55,12 @@ namespace MobileHRM.Views
                 (PunchOutDetail.Children[1] as Label).Text = item1.date.ToString("HH:mm");
             }
         }
-        private void ImageButton_User(object sender, EventArgs e)
+        private async void ImageButton_User(object sender, EventArgs e)
         {
-
+            await vm.RunIsBusyTaskAsync(async () =>
+            {
+                await PopupNavigation.Instance.PushAsync(new CreatUser());
+            });
         }
 
         private async void Punch_Tapped(object sender, EventArgs e)

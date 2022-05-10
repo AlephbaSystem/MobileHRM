@@ -84,7 +84,7 @@
                                                  Binding="{Binding Source={x:Reference frown}, Path=IsEnabled}"
                                                  Value="True">
                                         <Setter Property="BackgroundColor"
-                                                Value="Red" />
+                                                Value="#00A693" />
                                     </DataTrigger>
                                 </Frame.Triggers>
                                 <Frame.GestureRecognizers>
@@ -121,7 +121,7 @@
                                     VerticalOptions="CenterAndExpand">
                                 <Frame.Triggers>
                                     <DataTrigger TargetType="Frame" Binding="{Binding Source={x:Reference smile},Path=IsEnabled}" Value="True">
-                                        <Setter Property="BackgroundColor" Value="Red" />
+                                        <Setter Property="BackgroundColor" Value="#00A693" />
                                         <Setter Property="IsEnabled" Value="False" />
                                     </DataTrigger>
                                 </Frame.Triggers>
