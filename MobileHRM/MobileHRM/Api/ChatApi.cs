@@ -17,13 +17,13 @@ namespace MobileHRM.Api
 {
     class ChatApi
     {
-        string requestUri = "http://185.18.214.100:29174/api/Message/";
+        string requestUri = ":29174/api/Message/";
         HttpClient Client = new HttpClient();
         public async Task<bool> CreateGroup(createGroup dataObj)
         {
             try
             {
-                string url = requestUri + "CreateGroup";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/CreateGroup";
                 string contentStr = JsonDataConverter<createGroup>.ObjectToJsonString(dataObj);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
                 HttpRequestMessage request = new HttpRequestMessage()
@@ -45,7 +45,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + "joinUsersToGroup";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/joinUsersToGroup";
                 string contentStr = JsonDataConverter<GroupUser>.ObjectToJsonString(dataObj);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
                 HttpRequestMessage request = new HttpRequestMessage()
@@ -67,7 +67,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + "ReciveMessage";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/ReciveMessage";
                 string contentStr = JsonDataConverter<Message>.ObjectToJsonString(dataObj);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
                 HttpRequestMessage request = new HttpRequestMessage()
@@ -92,7 +92,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + "InsertMessageSeens";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/InsertMessageSeens";
                 string contentStr = JsonDataConverter<List<Models.Entities.Request.MessageSeen>>.ObjectToJsonString(dataObj);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
                 HttpRequestMessage request = new HttpRequestMessage()
@@ -116,7 +116,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + $"DeleteGroupByGroupId?groupId={groupId}";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/DeleteGroupByGroupId?groupId={groupId}";
                 var status = await Base.Delete(url);
                 return status;
             }
@@ -131,7 +131,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + $"removeUserFromGroup?userId={userId}&groupId={groupId}";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/removeUserFromGroup?userId={userId}&groupId={groupId}";
                 var status = await Base.Delete(url);
                 return status;
             }
@@ -146,7 +146,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + "UpdateGroup";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/UpdateGroup";
                 string contentStr = JsonDataConverter<GroupUpdate>.ObjectToJsonString(group);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
                 HttpRequestMessage request = new HttpRequestMessage()
@@ -169,7 +169,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + $"GetGroupsByUserid?userId={userId}";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/GetGroupsByUserid?userId={userId}";
                 string jsonStr = await Base.Get(url);
                 if (jsonStr == null)
                 {
@@ -188,7 +188,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + $"GetMessagesByGroupId?Groupid={Groupid}&offset={offset}&pagination={pagination}";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/GetMessagesByGroupId?Groupid={Groupid}&offset={offset}&pagination={pagination}";
 
                 string jsonStr = await Base.Get(url);
                 if (jsonStr == null)
@@ -209,7 +209,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + $"GetallUsers";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/GetallUsers";
                 string jsonStr = await Base.Get(url);
                 if (jsonStr == null)
                 {
@@ -229,7 +229,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + $"GetGroupUsersByGroupId?groupId={groupId}";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/GetGroupUsersByGroupId?groupId={groupId}";
                 string jsonStr = await Base.Get(url);
                 if (jsonStr == null)
                 {
@@ -249,7 +249,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + $"GetChatsByMessage?Message={Message}&userId={userId}";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/GetChatsByMessage?Message={Message}&userId={userId}";
                 string jsonStr = await Base.Get(url);
                 if (jsonStr == null)
                 {
@@ -269,7 +269,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string uri = requestUri + $"GetMediaByMediaId?mediaId={mediaId}";
+                string uri = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/GetMediaByMediaId?mediaId={mediaId}";
                 string contentStr = await Base.Get(uri);
                 var items = JsonDataConverter<byte[]>.JsonStringToObject(contentStr);
                 return items ?? new byte[0];

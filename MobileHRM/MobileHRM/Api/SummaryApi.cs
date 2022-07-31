@@ -12,7 +12,7 @@ namespace MobileHRM.Api
 {
     internal class SummaryApi
     {
-        string requestUri = "http://185.18.214.100:29176/api/Summary";
+        string requestUri = ":29176/api/Summary";
         HttpClient Client = new HttpClient();
 
 
@@ -20,7 +20,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + "InsertPunch";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/InsertPunch";
                 string contentStr = JsonConvert.SerializeObject(Saitama);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
                 HttpRequestMessage request = new HttpRequestMessage()
@@ -39,13 +39,11 @@ namespace MobileHRM.Api
 
             }
         }
-
-
         public async Task<List<Punch>> GetPunchByUserId(int userId)
         {
             try
             {
-                string url = requestUri + $"GetPunchByUserId?userId{userId}";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/GetPunchByUserId?userId{userId}";
                 string contentStr = JsonConvert.SerializeObject(userId);
                 string ContenStr = await Base.Get(url);
                 var items = JsonDataConverter<List<Punch>>.JsonStringToObject(contentStr);
@@ -56,15 +54,5 @@ namespace MobileHRM.Api
                 return new List<Punch>();
             }
         }
-
-
-
-
-
     }
-
-
-
-
-
 }

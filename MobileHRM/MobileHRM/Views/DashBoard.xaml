@@ -4,9 +4,6 @@
              xmlns:local="clr-namespace:MobileHRM.Models" xmlns:sharpnado="http://sharpnado.com" Shell.NavBarIsVisible="False"
              x:Class="MobileHRM.Views.DashBoard"
              Shell.BackgroundColor="#1A1C23">
-    
-       
-    
     <ContentPage.Content>
 
         <StackLayout BackgroundColor="#1A1C23">

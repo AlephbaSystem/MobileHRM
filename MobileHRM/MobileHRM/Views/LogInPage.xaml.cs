@@ -1,7 +1,12 @@
 ﻿using MobileHRM.Api;
+using MobileHRM.Interfaces;
 using MobileHRM.Models.Request;
+using MobileHRM.ViewModel;
+using MobileHRM.Views.Popup;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -10,12 +15,14 @@ namespace MobileHRM.Views
     [DesignTimeVisible(true)]
     public partial class LogInPage : ContentPage
     {
+        ViewModel.DashBoardViewModel vm;
         AuthenticationApi authenticationApi;
 
         public LogInPage()
         {
             InitializeComponent();
             authenticationApi = new AuthenticationApi();
+            vm = new DashBoardViewModel();
         }
 
 
@@ -63,16 +70,11 @@ namespace MobileHRM.Views
             }
         }
 
-        //private bool IsValidEmail(string emailaddress)
-        //{
-        //    return System.Text.RegularExpressions.Regex.IsMatch(emailaddress, @"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$");
-        //}
-
         private bool IsValidPhone(string emailaddress)
         {
             return System.Text.RegularExpressions.Regex.IsMatch(emailaddress, @"^(0|\+98)?([ ]|,|-|[()]){0,2}9[0|1|2|3|4]([ ]|,|-|[()]){0,3}(?:[0-9]([ ]|,|-|[()]){0,2}){8}$");
         }
-
+        
         private async void OnImageButtonClicked(object sender, EventArgs e)
         {
             if (IsBusy != true)
@@ -88,6 +90,11 @@ namespace MobileHRM.Views
             await new Popup.ShowMsgPopup(TC.ToString(), "Information").ShowAsync();
             //await DisplayAlert("", TC.ToString(), "cancel");
             IsBusy = false;
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+                await PopupNavigation.Instance.PushAsync(new SettingSetIp());
         }
     }
 }

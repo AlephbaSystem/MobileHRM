@@ -10,7 +10,7 @@ namespace MobileHRM.Api
 {
     public class AccountingApi
     {
-        string requestUrl = "http://185.18.214.100:29177/api/Accounting/";
+        string requestUrl = ":29177/api/Accounting";
         public async Task<bool> PostInvoice(Invoice invoiceDetail)
         {
             try
@@ -21,7 +21,7 @@ namespace MobileHRM.Api
                 {
                     Content = content,
                     Method = HttpMethod.Post,
-                    RequestUri = new Uri(requestUrl + "AddInvoice"),  //Most Be Changed To Api Url
+                    RequestUri = new Uri($"http://{MobileHRM.Helper.Statics.IP}{requestUrl}/AddInvoice"),  //Most Be Changed To Api Url
                 };
 
                 return await Base.Post(request);
@@ -35,7 +35,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string Uri = requestUrl + "GetAllBusiness"; //Most Be Changed To Api Url
+                string Uri = $"http://{MobileHRM.Helper.Statics.IP}{requestUrl}/GetAllBusiness"; //Most Be Changed To Api Url
                 string ContentStr = await Base.Get(Uri);
                 List<Models.Entities.Business> Items = JsonDataConverter<List<Models.Entities.Business>>.JsonStringToObject(ContentStr);
                 return Items ?? new List<Models.Entities.Business>();
@@ -49,7 +49,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string Uri = requestUrl + "GetInvoiceNumber"; //Most Be Changed To Api Url
+                string Uri = $"http://{MobileHRM.Helper.Statics.IP}{requestUrl}/GetInvoiceNumber"; //Most Be Changed To Api Url
                 string ContentStr = await Base.Get(Uri);
                 int number = JsonDataConverter<int>.JsonStringToObject(ContentStr);
                 return number;
@@ -69,7 +69,7 @@ namespace MobileHRM.Api
                 {
                     Content = content,
                     Method = HttpMethod.Post,
-                    RequestUri = new Uri(requestUrl + "AddBusiness"),
+                    RequestUri = new Uri($"http://{MobileHRM.Helper.Statics.IP}{requestUrl}/AddBusiness"),
                 };
 
                 return await Base.Post(request);
@@ -83,7 +83,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string uri = requestUrl + "GetAllInvoice";
+                string uri = $"http://{MobileHRM.Helper.Statics.IP}{requestUrl}/GetAllInvoice";
                 string ContentStr = await Base.Get(uri);
                 var items = JsonDataConverter<List<subInvoice>>.JsonStringToObject(ContentStr);
                 return items ?? new List<subInvoice>();
@@ -97,7 +97,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string uri = requestUrl + "GetBalance";
+                string uri = $"http://{MobileHRM.Helper.Statics.IP}{requestUrl}/GetBalance";
                 string ContentStr = await Base.Get(uri);
                 decimal balance = JsonDataConverter<decimal>.JsonStringToObject(ContentStr);
                 return balance;

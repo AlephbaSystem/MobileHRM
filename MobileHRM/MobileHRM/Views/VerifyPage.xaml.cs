@@ -14,19 +14,23 @@ namespace MobileHRM.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VerifyPage : ContentPage
     {
-        private readonly AuthenticationApi authenticationApi;
-        private readonly string _loginPhone;
+        private AuthenticationApi authenticationApi;
+        private string _loginPhone;
         private bool isTimerRun = true;
         private int seconds = 181; //timer       
 
         public VerifyPage(string loginPhone)
         {
             InitializeComponent();
-            TimerSendSms();
             authenticationApi = new AuthenticationApi();
             _loginPhone = loginPhone;
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
+            TimerSendSms();
+        }
         private async void Verify_Btn_Clk(object sender, EventArgs e)
         {
             if (!IsBusy)
@@ -89,7 +93,7 @@ namespace MobileHRM.Views
                         if (q.IsSuccess)
                         {
                             seconds = 181;
-                            await TimerSendSms();
+                            TimerSendSms();
                         }
                         else
                         {
@@ -107,7 +111,7 @@ namespace MobileHRM.Views
             IsBusy = false;
         }
 
-        private async Task TimerSendSms()
+        private void TimerSendSms()
         {
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {

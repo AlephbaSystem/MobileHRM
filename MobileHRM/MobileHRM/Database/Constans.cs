@@ -9,6 +9,7 @@ namespace MobileHRM.Database
     {
         public const string DatabaseFilename = "UserDb.db3";
         public const string DatabaseFilename1 = "PunchDb.db3";
+        public const string DatabaseFilename2 = "IpAddressDb.db3";
 
         public const SQLite.SQLiteOpenFlags Flags =
             // open the database in read/write mode
@@ -31,6 +32,15 @@ namespace MobileHRM.Database
             get
             {
                 string basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DatabaseFilename1);
+                return basePath;
+            }
+        }
+
+        public static string DatabasePath2
+        {
+            get
+            {
+                string basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DatabaseFilename2);
                 return basePath;
             }
         }

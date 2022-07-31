@@ -67,6 +67,7 @@ namespace MobileHRM.Database
             }
         }
 
+
         //Delete a user.
         public async Task<int> DeleteUserAsync(UserEntitieModel user) => await Database.DeleteAsync(user);
 

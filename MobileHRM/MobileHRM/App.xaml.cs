@@ -3,7 +3,7 @@ using MobileHRM.Models;
 using MobileHRM.Views;
 using Xamarin.Forms;
 using System;
-
+using MobileHRM.Views.Popup;
 
 namespace MobileHRM
 {
@@ -13,7 +13,7 @@ namespace MobileHRM
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-           // MainPage = new MainPage();
+            //MainPage = new MainPage();
            OnCheck();
         }
 
@@ -30,13 +30,17 @@ namespace MobileHRM
                 {
                     User.UserId = q.userId;
                     User.UserName = string.IsNullOrEmpty(q.userName) ? "alephba" : q.userName;
-                    MainPage = new MainPage();
+                    MainPage = new NavigationPage(new LogInPage());
                 }
                 else
                     MainPage = new NavigationPage(new LogInPage());
             }
             else
                 MainPage = new NavigationPage(new LogInPage());
+
+#if DEBUG
+            MobileHRM.Helper.Statics.IP = "10.1.1.21";
+#endif
         }
         protected override void OnStart()
         {

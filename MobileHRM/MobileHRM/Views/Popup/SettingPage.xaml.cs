@@ -54,10 +54,10 @@ namespace MobileHRM.Views.Popup
                 GroupPicture.HorizontalOptions = LayoutOptions.FillAndExpand;
                 GroupPicture.VerticalOptions = LayoutOptions.FillAndExpand;
                 GroupPicture.Source = ImageSource.FromFile(photo.FullPath);
-               // using (var stream = await photo.openreadasync())
+                //using (var stream = await photo.openreadasync())
                 //{
-                  //  group.image = new byte[(int)stream.length];
-                    //await stream.readasync(group.image, 0, (int)stream.length);
+                //    group.image = new byte[(int)stream.length];
+                //    await stream.readasync(group.image, 0, (int)stream.length);
                 //}
             }
         }

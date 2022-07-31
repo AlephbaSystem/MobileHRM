@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns:pages="http://rotorgames.com"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                  xmlns:customEntry="clr-namespace:MobileHRM.Controls"
+                  x:Class="MobileHRM.Views.Popup.SettingSetIp"
+                  HasKeyboardOffset="False"
+                   CloseWhenBackgroundIsClicked="True">
+
+
+
+    <Frame Padding="0" BackgroundColor="#272B35" CornerRadius="25" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="15,0,15,0">
+        <StackLayout  Margin="20" Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+            <Frame HorizontalOptions="CenterAndExpand"  CornerRadius="93" VerticalOptions="CenterAndExpand" BackgroundColor="#00A693"  Padding="3">
+
+                <Frame Padding="0" BackgroundColor="#272B35" CornerRadius="90" WidthRequest="180" HeightRequest="180" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Image x:Name="GroupPicture" Source="SecurityNetwork.png" Aspect="AspectFill"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                </Frame>
+            </Frame>
+
+            <Label Margin="5,20" Text="Ip Address" TextColor="#CCCCCC" FontSize="Large"
+                   HorizontalOptions="Start"/>
+            <Grid ColumnDefinitions="*,3*"
+              RowDefinitions="*,*,*" RowSpacing="10">
+                <Label  Text="Ip" TextColor="#CCCCCC" FontAttributes="Bold" FontSize="20"
+                   HorizontalOptions="Start"
+                VerticalOptions="Center"
+               Grid.Column="0"
+               Grid.Row="0"/>
+                <Frame Padding="0" HeightRequest="50"
+              Grid.Column="1"
+               Grid.Row="0"
+               BackgroundColor="#CCCCCC"
+               CornerRadius="10">
+                    <customEntry:CustomEntry FontAttributes="Bold"
+                    Placeholder="Ip"
+                    x:Name="IpAddresstxt"
+                    PlaceholderColor="#1A1C23"
+                    FontSize="13"/>
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#CCCCCC"
+                          Offset="0.9" />
+                            <GradientStop Color="Black"
+                          Offset="1" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                </Frame>
+            </Grid>
+            <Grid ColumnDefinitions="*,*,*"
+                  VerticalOptions="EndAndExpand">
+                <Button 
+                     Grid.Column="0"
+                    Clicked="Back_Click"
+                    BackgroundColor="#9A031E"
+                    Text="Back"
+                  
+                    TextColor="#EBEBEB"
+                    CornerRadius="8"/>
+                <Button 
+                     Grid.Column="2" 
+                    BackgroundColor="#00A693"
+                    Text="Save"
+                    Clicked="btn_Save"
+                    TextColor="#EBEBEB"
+                    CornerRadius="8"/>
+            </Grid>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

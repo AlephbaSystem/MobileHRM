@@ -7,7 +7,7 @@
              x:Name="page"
              x:Class="MobileHRM.Views.Accounting">
 
-    <ScrollView>
+    <ScrollView> 
     <StackLayout VerticalOptions="StartAndExpand">
             <StackLayout FlowDirection="RightToLeft" Spacing="10" Orientation="Horizontal" Margin="0,20,15,0">
                 <Frame Padding="1" CornerRadius="40" VerticalOptions="CenterAndExpand" BackgroundColor="#7B61FF">

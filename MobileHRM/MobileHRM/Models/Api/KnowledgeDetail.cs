@@ -6,22 +6,22 @@ using Xamarin.Forms;
 
 namespace MobileHRM.Models.Api
 {
-    public class KnowledgeDetail
-    {
-        public int id { get; set; }
-        public int userId { get; set; }
-        public string userName { get; set; } = string.Empty;
-        public string title { get; set; }
-        public string detail { get; set; }
-        public DateTime date { get; set; }
-        public List<Reference> references { get; set; }
-        public List<Tag> tags { get; set; }
-        public List<image> commentedUsers { get; set; }
-        public bool isLike { get; set; }
-        public int reactionId { get; set; }
-    }
-    public class image
-    {
-        public ImageSource UserImage { get; set; }
-    }
+        public class KnowledgeDetail
+        {
+            public int id { get; set; }
+            public int userId { get; set; }
+            public string userName { get; set; } = string.Empty;
+            public string title { get; set; }
+            public string detail { get; set; }
+            public DateTime date { get; set; }
+            public List<Reference> references { get; set; }
+            public List<Tag> tags { get; set; }
+            public List<image> commentedUsers { get; set; }
+            public bool isLike { get; set; }
+            public int reactionId { get; set; }
+        }
+        public class image
+        {
+            public ImageSource UserImage { get; set; }
+        }
 }

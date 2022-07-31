@@ -13,8 +13,9 @@ namespace MobileHRM.Api
 {
     public class AuthenticationApi
     {
-        readonly string requestUri = "http://185.18.214.100:29172/";
-        HttpClient httpClient;
+        //readonly string requestUri = ":29172";
+        readonly string requestUri = ":29172";
+        private HttpClient httpClient;
 
         public AuthenticationApi()
         {
@@ -26,7 +27,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + "ServerInfo/TestConnection";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/ServerInfo/TestConnection";
                 var TC = await Base.Get(url);
                 //var CC = JsonDataConverter<bool>.JsonStringToObject(TC);
 
@@ -43,7 +44,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + "User/Login";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/User/Login";
                 string contentStr = JsonConvert.SerializeObject(requestModel);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await httpClient.PostAsync(url, content);
@@ -79,7 +80,7 @@ namespace MobileHRM.Api
         {
             try
             {
-                string url = requestUri + "User/Validate";
+                string url = $"http://{MobileHRM.Helper.Statics.IP}{requestUri}/User/Validate";
                 string contentStr = JsonConvert.SerializeObject(requestModel);
                 StringContent content = new StringContent(contentStr, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await httpClient.PostAsync(url, content);

@@ -5,12 +5,21 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="MobileHRM.Views.LogInPage"
              BackgroundImage="background.png"
+             Shell.BackgroundColor="#1A1C23"
              x:Name="page">
 
     <Grid>
         <StackLayout VerticalOptions="FillAndExpand"
               HorizontalOptions="FillAndExpand">
-            <StackLayout VerticalOptions="CenterAndExpand">
+            <StackLayout VerticalOptions="StartAndExpand">
+
+
+                <Image Source="Setting.png" VerticalOptions="Start" HorizontalOptions="StartAndExpand">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+
                 <ImageButton BackgroundColor="Transparent"
                          Clicked="OnImageButtonClicked"
                          HorizontalOptions="Center"
@@ -20,7 +29,7 @@
                    TextColor="#CCCCCC"
                    Text="LOGIN TO YOUR DASHBOARD"
                    FontFamily="Roboto"
-                   FontSize="20"/>                
+                   FontSize="20"/>
             </StackLayout>
 
             <Frame Padding="0"
