@@ -8,13 +8,13 @@ using MobileHRM.Views.Popup;
 namespace MobileHRM
 {
     public partial class App : Application
-    {        
+    {
         public App()
         {
             InitializeComponent();
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
             //MainPage = new MainPage();
-           OnCheck();
+            OnCheck();
         }
 
         private UserAuthDatabase userDb;
@@ -38,9 +38,9 @@ namespace MobileHRM
             else
                 MainPage = new NavigationPage(new LogInPage());
 
-#if DEBUG
-            MobileHRM.Helper.Statics.IP = "10.1.1.21";
-#endif
+            var resx = IpAddressDataBase.Instance.GetAwaiter().GetResult();
+            var res = await resx.GetUserAsync();
+            MobileHRM.Helper.Statics.IP = res?.ip;
         }
         protected override void OnStart()
         {

@@ -1,12 +1,12 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
-using MobileHRM.Models;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Linq;
 using System.Text.RegularExpressions;
+using MobileHRM.Models.Entities;
 
 namespace MobileHRM.Database
 {
@@ -16,11 +16,25 @@ namespace MobileHRM.Database
         public static readonly AsyncLazy<IpAddressDataBase> Instance = new AsyncLazy<IpAddressDataBase>(async () =>
         {
             IpAddressDataBase instance = new IpAddressDataBase();
-            CreateTableResult result = await Database.CreateTableAsync<IpAddress>();
-            return instance;
+           var f = await instance.CreateTable();
+            return instance; 
         });
-
-
+        public async Task<bool> CreateTable()
+        {
+            try
+            {
+                var tableInfo = Database.GetConnection().GetTableInfo(nameof(IpAddress));
+                if (tableInfo.Count <= 0)
+                {
+                    CreateTableResult result = await Database.CreateTableAsync<IpAddress>();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public IpAddressDataBase()
         {
             Database = new SQLiteAsyncConnection(Constans.DatabasePath, Constans.Flags);
@@ -31,8 +45,7 @@ namespace MobileHRM.Database
 
             if (!ValidateIPAddress(ipAddress)) return false;
 
-
-            if (!string.IsNullOrEmpty(ipAddress.ipAddress.ToString()))
+            if (!string.IsNullOrEmpty(ipAddress.ip.ToString()))
             {
                 await Database.InsertAsync(ipAddress);
                 return true;
@@ -40,10 +53,18 @@ namespace MobileHRM.Database
             return false;
         }
 
+        public async Task<IpAddress> GetUserAsync() => (await Database.QueryAsync<IpAddress>("select * from IpAddress")).FirstOrDefault();
+
+        public async Task<int> RemoveAll()
+        {
+            var result = await Database.DeleteAllAsync<IpAddress>();
+            return result;
+        }
+
         private bool ValidateIPAddress(IpAddress ipAddress)
         {
             Regex regex = new Regex(@"\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b");
-            return regex.IsMatch(ipAddress.ipAddress.ToString());
+            return regex.IsMatch(ipAddress.ip.ToString());
         }
     }
 

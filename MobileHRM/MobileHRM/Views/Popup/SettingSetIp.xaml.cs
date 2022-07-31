@@ -1,5 +1,7 @@
-﻿using MobileHRM.Database;
+﻿using MobileHRM.Database
+    ;
 using MobileHRM.Interfaces;
+using MobileHRM.Models.Entities;
 using MobileHRM.Models.Request;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
@@ -31,6 +33,9 @@ namespace MobileHRM.Views.Popup
             base.OnAppearing();
 
             db = await IpAddressDataBase.Instance;
+            var res = await db.GetUserAsync();
+            IpAddresstxt.Text = res?.ip;
+            MobileHRM.Helper.Statics.IP = IpAddresstxt.Text;
         }
 
         private async void Back_Click(object sender, EventArgs e)
@@ -40,16 +45,17 @@ namespace MobileHRM.Views.Popup
 
         private async void btn_Save(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(MobileHRM.Helper.Statics.IP))
+            {
+                await db.RemoveAll();
+            }
             ip = IpAddresstxt.Text;
-            bool valid = await db.SaveUserAsync(new Models.IpAddress { ipAddress = IpAddresstxt.Text });
+            bool valid = await db.SaveUserAsync(new IpAddress { ip = IpAddresstxt.Text });
             if (valid)
                 await new Popup.ShowMsgPopup("IpAddress saved !!!", "Success").ShowAsync();
             else
                 await new Popup.ShowMsgPopup("IpAddress is not Valid !!!", "Error").ShowAsync();
             MobileHRM.Helper.Statics.IP = IpAddresstxt.Text;
-
-
-
         }
     }
 }
