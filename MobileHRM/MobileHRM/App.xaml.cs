@@ -30,7 +30,7 @@ namespace MobileHRM
                 {
                     User.UserId = q.userId;
                     User.UserName = string.IsNullOrEmpty(q.userName) ? "alephba" : q.userName;
-                    MainPage = new NavigationPage(new LogInPage());
+                    MainPage = new MainPage();
                 }
                 else
                     MainPage = new NavigationPage(new LogInPage());
