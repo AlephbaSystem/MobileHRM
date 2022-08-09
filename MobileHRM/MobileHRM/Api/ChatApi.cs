@@ -17,7 +17,7 @@ namespace MobileHRM.Api
 {
     class ChatApi
     {
-        string requestUri = ":29174/api/Message/";
+        string requestUri = ":29174/api/Message";
         HttpClient Client = new HttpClient();
         public async Task<bool> CreateGroup(createGroup dataObj)
         {

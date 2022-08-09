@@ -91,7 +91,7 @@ namespace MobileHRM.ViewModel
                 return;
             }
 
-            KnowledgeDetail.knowledge.date = DateTime.Now;
+            KnowledgeDetail.knowledge.date = DateTime.Now; 
             bool res = await request.PostKnowledge(KnowledgeDetail);
             if (res)
             {

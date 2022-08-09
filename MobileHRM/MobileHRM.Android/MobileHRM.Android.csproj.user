@@ -4,6 +4,6 @@
     <SelectedDevice>Xiaomi Redmi Note 8 Pro</SelectedDevice>
     <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
     <ActiveDebugProfile>Xiaomi Redmi Note 8 Pro</ActiveDebugProfile>
-    <DefaultDevice>3.7_WVGA_Nexus_One_API_24</DefaultDevice>
+    <DefaultDevice>pixel_5_-_api_30</DefaultDevice>
   </PropertyGroup>
 </Project>

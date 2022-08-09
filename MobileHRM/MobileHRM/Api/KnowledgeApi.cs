@@ -13,7 +13,7 @@ namespace MobileHRM.Api
 {
     public class KnowledgeApi
     {
-        string requestUri = ":29173/api/Knowledge/";
+        string requestUri = ":29173/api/Knowledge";
         public async Task<List<KnowledgeDetail>> GetAllKnowledges(int offset, int pagination)
         {
             try
