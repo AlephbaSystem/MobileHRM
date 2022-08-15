@@ -14,13 +14,13 @@ namespace MobileHRM.Views
     public partial class AccountingAddBusiness : ContentPage
     {
         ViewModel.Base vm1;
-        private readonly AddBusinessViewModel Vm;
+        private AddBusinessViewModel Vm;
         public AccountingAddBusiness()
         {
             InitializeComponent();
             Vm = new AddBusinessViewModel();
             BindingContext = Vm;
-            vm1 = new AddBusinessViewModel();
+      //      vm1 = new AddBusinessViewModel();
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
