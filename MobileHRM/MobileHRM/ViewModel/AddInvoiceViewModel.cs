@@ -51,6 +51,7 @@ namespace MobileHRM.ViewModel
             }
             await Api.PostInvoice(InvoiceDetail);
             await Application.Current.MainPage.Navigation.PopAsync();
+            await new Views.Popup.ShowMsgPopup(" Saved", "Success").ShowAsync();
         }
         private void clearInvoice(object sender)
         {

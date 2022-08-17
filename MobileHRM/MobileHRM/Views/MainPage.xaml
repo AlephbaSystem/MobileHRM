@@ -23,7 +23,8 @@
             <ShellContent
                     ContentTemplate="{DataTemplate views:Knowledge}" />
         </Tab>
-        <Tab Title="Accounting">
+        <Tab Title="Accounting"
+               Icon="Accounting.png">
             <ShellContent 
                     ContentTemplate="{DataTemplate views:Accounting}" />
         </Tab>
