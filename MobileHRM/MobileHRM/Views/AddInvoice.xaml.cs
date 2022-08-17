@@ -50,7 +50,7 @@ namespace MobileHRM.Views
             var item = ((Models.Entities.Business)sender);
             ((Label)BusinessGrid.Children[1]).Text = item.name;
             vm.InvoiceDetail.businessId = item.id;
-            ((Label)BusinessGrid.Children[0]).Text = item.id.ToString();
+            vm.InvoiceDetail = vm.InvoiceDetail;
         }
 
         private async void Type_Tapped(object sender, EventArgs e)

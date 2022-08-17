@@ -70,8 +70,8 @@ namespace MobileHRM.Views.Popup
                     userId = User.UserId
                 };
                 ImageType.Source = "PunchIn.png";
-                TextType.Text = "PunchIn";
-                (PunchDetail.Children[0] as Label).Text = $"PunchIn date And Time";
+                TextType.Text = "Punch In";
+                (PunchDetail.Children[0] as Label).Text = $"Punch In date And Time";
             }
             else if (item.type == "PunchIn" && DateTime.Now.Hour <= 15 && DateTime.Now.Minute < 40)
             {
@@ -90,8 +90,8 @@ namespace MobileHRM.Views.Popup
                     userId = User.UserId
                 };
                 ImageType.Source = "PunchOut.png";
-                TextType.Text = "PunchOut";
-                (PunchDetail.Children[0] as Label).Text = "PuncIn " + "date And Time";
+                TextType.Text = "Punch Out";
+                (PunchDetail.Children[0] as Label).Text = "Punc In " + "date And Time";
                 (PunchDetail.Children[1] as Label).Text = "Today" + $"({item.date:hh:mm})";
                 (PunchDetail.Children[2] as Label).Text = $"{item.date:dd-MM-yyyy}";
             }
@@ -112,7 +112,7 @@ namespace MobileHRM.Views.Popup
                     userId = User.UserId
                 };
                 ImageType.Source = "PunchIn.png";
-                (PunchDetail.Children[0] as Label).Text = "PunchIn " + "date And Time";
+                (PunchDetail.Children[0] as Label).Text = "Punch In " + "date And Time";
                 (PunchDetail.Children[1] as Label).Text = "Today" + $"({item.date:hh:mm})";
                 (PunchDetail.Children[2] as Label).Text = $"{item.date:dd-MM-yyyy}";
             }
@@ -120,10 +120,10 @@ namespace MobileHRM.Views.Popup
             {
                 TextType.IsEnabled = false;
                 CommentEntry.IsVisible = false;
-                PunchNote.Text = "You are PunchOut!";
+                PunchNote.Text = "You are Punch Out!";
                 ImageType.Source = "PunchOut.png";
-                TextType.Text = "PunchOut";
-                (PunchDetail.Children[0] as Label).Text = "PunchOut " + "Date And Time";
+                TextType.Text = "Punch Out";
+                (PunchDetail.Children[0] as Label).Text = "Punch Out " + "Date And Time";
                 (PunchDetail.Children[1] as Label).Text = "Today" + $"({item.date:hh:mm})";
                 (PunchDetail.Children[2] as Label).Text = $"{item.date:dd-MM-yyyy}";
             }
@@ -144,9 +144,9 @@ namespace MobileHRM.Views.Popup
                     userId = User.UserId
                 };
                 ImageType.Source = "PunchOut.png";
-                TextType.Text = "PunchOut";
-                (PunchDetail.Children[0] as Label).Text = $"PunchOut date And Time";
-                (PunchDetail.Children[0] as Label).Text = "PuncOut " + "date And Time";
+                TextType.Text = "Punch Out";
+                (PunchDetail.Children[0] as Label).Text = $"Punch Out date And Time";
+                (PunchDetail.Children[0] as Label).Text = "Punch Out " + "date And Time";
                 (PunchDetail.Children[1] as Label).Text = "Today" + $"({item.date:hh:mm})";
                 (PunchDetail.Children[2] as Label).Text = $"{item.date:dd-MM-yyyy}";
             }
