@@ -24,7 +24,7 @@ namespace MobileHRM.Views
                 ItemSpacing = 15
             };
             vm = new KnowledgeViewModel();
-            BindingContext = vm;            
+            BindingContext = vm;
         }
         protected override void OnAppearing()
         {
@@ -66,7 +66,8 @@ namespace MobileHRM.Views
 
         private void searchBar_TextChanged(object sender, EventArgs e)
         {
-
+            IEnumerable<KnowledgeDetail> searchResult = vm.Items.Where(a => a.title.Contains(searchBar.Text));
+            Describtion.ItemsSource = searchResult;
         }
 
         private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
