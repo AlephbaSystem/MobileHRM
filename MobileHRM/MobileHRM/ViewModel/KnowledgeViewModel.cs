@@ -7,6 +7,14 @@ using MobileHRM.Helper;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Windows.Input;
+using Xamarin.Forms.Extended;
+using MobileHRM.Views;
+using System.Collections;
+using MobileHRM.Models.Entities.Request;
+using System.Linq;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace MobileHRM.ViewModel
 {
@@ -39,11 +47,16 @@ namespace MobileHRM.ViewModel
                 OnPropertyChanged(nameof(IsEmpty));
             }
         }
-
+        public int NumberPage;
         readonly KnowledgeApi request = new KnowledgeApi();
+
+
+
         public async Task initialize()
         {
-            Items = await request.GetAllKnowledges(0, 20);
+            Items = await request.GetAllKnowledges(NumberPage, 20);
+
+
             IsEmpty = !Convert.ToBoolean(Items.Count);
             await Task.Run(async () =>
             {
@@ -92,5 +105,17 @@ namespace MobileHRM.ViewModel
         }
 
         public ICommand Refresh { get; protected set; }
+
+
+        ///////////////////////*************************************888/////////////////////////88888
+
+
+   
+
+
+
+
+
+        ///////////////////////*************************************888/////////////////////////88888
     }
 }

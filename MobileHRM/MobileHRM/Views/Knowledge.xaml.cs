@@ -9,6 +9,7 @@ using MobileHRM.ViewModel;
 using MobileHRM.Models.Api;
 using Rg.Plugins.Popup.Services;
 using System.Windows.Input;
+using Xamarin.Forms.Extended;
 
 namespace MobileHRM.Views
 {
@@ -16,6 +17,8 @@ namespace MobileHRM.Views
     public partial class Knowledge : ContentPage
     {
         readonly KnowledgeViewModel vm;
+
+
         public Knowledge()
         {
             InitializeComponent();
@@ -78,6 +81,13 @@ namespace MobileHRM.Views
         private void ImageButton_Clicked_2(object sender, EventArgs e)
         {
 
+        }
+
+        private  async void Nextpage_Clicked(object sender, EventArgs e)
+        {
+            if (vm.Items.Count == 20) vm.NumberPage++;
+            await vm.initialize();
+            
         }
     }
 }
